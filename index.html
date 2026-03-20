@@ -107,6 +107,7 @@
   .hero-meta .source { color:white; font-weight:700; }
   .hero-meta .dot { opacity:0.5; }
   .articles-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; padding:8px 0; }
+  #grid { min-height:200px; }
   .article-card { background:rgba(255,255,255,0.05); border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); box-shadow:0 4px 24px rgba(0,0,0,0.3); cursor:pointer; transition:transform 0.25s ease,box-shadow 0.25s ease; display:flex; flex-direction:column; animation:fadeUp 0.5s ease both; text-decoration:none; color:inherit; }
   .article-card:hover { transform:translateY(-5px); box-shadow:0 12px 40px rgba(139,92,246,0.25),0 0 0 1px rgba(45,212,191,0.2); border-color:rgba(45,212,191,0.3); }
   .card-image { position:relative; height:200px; overflow:hidden; }
@@ -260,6 +261,12 @@
   </div>
 </div>
 
+
+<!-- Book Banner -->
+<div id="bookBanner" style="background:linear-gradient(135deg,rgba(13,148,136,0.15),rgba(139,92,246,0.15));border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 32px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
+  <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);font-family:'DM Sans',sans-serif;">📚 <em>By the founder:</em></span>
+  <a href="https://www.amazon.com.au/dp/0645763209" target="_blank" rel="noopener" style="font-size:0.82rem;font-weight:600;color:#2dd4bf;text-decoration:none;font-family:'DM Sans',sans-serif;transition:color 0.2s;" onmouseover="this.style.color='#a78bfa'" onmouseout="this.style.color='#2dd4bf'">The Microdosing Guidebook — Available on Amazon →</a>
+</div>
 <div class="social-bar">
   <a href="https://www.instagram.com/psychedelictherapyclub" target="_blank" rel="noopener">
     <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -585,6 +592,9 @@ const TOPICS = [
   {label:'Culture',    query:'psychedelic culture mental health'},
 ];
 
+// Special pages — not news topics
+const SPECIAL_PAGES = ['Legal Map', 'Glossary', 'PsyFinance'];
+
 const IMGS = Array.from({length:18},(_,i)=>`https://picsum.photos/seed/psych${i+1}/800/500`);
 let activeTopic = TOPICS[0];
 
@@ -599,11 +609,17 @@ function renderFilters() {
     const cnt = getCount(t.label);
     const badge = cnt ? `<span class="topic-count">${cnt}</span>` : '';
     return `<button class="filter-btn${activeTopic.label===t.label?' active':''}" data-topic="${t.label}" onclick="switchTopic('${t.label}')">${t.label}${badge}</button>`;
-  }).join('');
+  }).join('') +
+  `<span style="margin:0 8px;color:rgba(255,255,255,0.15);align-self:center;">|</span>` +
+  SPECIAL_PAGES.map(p =>
+    `<button class="filter-btn special-btn${currentPage===p?' active':''}" data-topic="${p}" onclick="showPage('${p}')" style="border-color:rgba(139,92,246,0.4);color:rgba(139,92,246,0.9);">${p}</button>`
+  ).join('');
 }
 
 function switchTopic(label) {
   activeTopic = TOPICS.find(t=>t.label===label);
+  currentPage = null;
+  document.getElementById('searchInput').style.display='';
   renderFilters();
   fetchNews();
 }
@@ -632,61 +648,60 @@ function parseXML(xml, offset) {
 
 async function fetchNews() {
   showLoading();
-  const q = encodeURIComponent(activeTopic.query + ' 2025 2026');
-  const rssUrl = 'https://news.google.com/rss/search?q=' + q + '&hl=en-US&gl=US&ceid=US:en';
-  const enc = encodeURIComponent(rssUrl);
+  const q = activeTopic.query;
 
-  const strategies = [
-    async () => {
-      const r = await fetch('https://api.rss2json.com/v1/api.json?rss_url=' + enc + '&count=18', {signal: AbortSignal.timeout(7000)});
-      if (!r.ok) throw new Error('bad');
-      const d = await r.json();
-      if (d.status !== 'ok' || !d.items?.length) throw new Error('empty');
-      return d.items.map((item, i) => ({
+  // The Guardian Open Platform API — free, no proxy, no CORS issues
+  // 5000 requests/day free
+  const guardianKey = 'test'; // 'test' key works for basic queries
+  const guardianUrl = `https://content.guardianapis.com/search?q=${encodeURIComponent(q)}&section=science|society|world&show-fields=thumbnail,trailText,byline&page-size=20&order-by=newest&api-key=${guardianKey}`;
+
+  try {
+    const res = await fetch(guardianUrl);
+    const data = await res.json();
+    if (data.response?.results?.length) {
+      const articles = data.response.results.map((item, i) => ({
+        title: item.webTitle,
+        excerpt: stripHtml(item.fields?.trailText || ''),
+        source: 'The Guardian',
+        date: formatDate(item.webPublicationDate),
+        url: item.webUrl,
+        imageUrl: item.fields?.thumbnail || IMGS[i % IMGS.length],
+        category: activeTopic.label === 'All' ? guessCat(item.webTitle) : activeTopic.label,
+      }));
+      if (articles.length) { renderArticles(articles); return; }
+    }
+  } catch(e) { console.warn('Guardian failed:', e); }
+
+  // Fallback: rss2json
+  try {
+    const rss = `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`;
+    const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rss)}&count=18`);
+    const data = await res.json();
+    if (data.status === 'ok' && data.items?.length) {
+      const articles = data.items.map((item, i) => ({
         title: item.title,
         excerpt: stripHtml(item.description || item.content || ''),
-        source: extractSource(item.author || item.source?.name || ''),
+        source: extractSource(item.author || ''),
         date: formatDate(item.pubDate),
         url: item.link,
         imageUrl: item.enclosure?.link || item.thumbnail || IMGS[i % IMGS.length],
         category: activeTopic.label === 'All' ? guessCat(item.title) : activeTopic.label,
       }));
-    },
-    async () => {
-      const r = await fetch('https://api.allorigins.win/get?url=' + enc, {signal: AbortSignal.timeout(8000)});
-      if (!r.ok) throw new Error('bad');
-      const d = await r.json();
-      if (!d.contents) throw new Error('empty');
-      const arts = parseXML(d.contents, 0);
-      if (!arts.length) throw new Error('empty');
-      return arts;
-    },
-    async () => {
-      const r = await fetch('https://api.allorigins.win/raw?url=' + enc, {signal: AbortSignal.timeout(8000)});
-      if (!r.ok) throw new Error('bad');
-      const xml = await r.text();
-      if (!xml || !xml.includes('<item')) throw new Error('empty');
-      const arts = parseXML(xml, 2);
-      if (!arts.length) throw new Error('empty');
-      return arts;
-    },
-    async () => {
-      const r = await fetch('https://thingproxy.freeboard.io/fetch/' + rssUrl, {signal: AbortSignal.timeout(9000)});
-      if (!r.ok) throw new Error('bad');
-      const xml = await r.text();
-      if (!xml || !xml.includes('<item')) throw new Error('empty');
-      const arts = parseXML(xml, 4);
-      if (!arts.length) throw new Error('empty');
-      return arts;
-    },
-  ];
+      if (articles.length) { renderArticles(articles); return; }
+    }
+  } catch(e) { console.warn('rss2json failed:', e); }
 
-  for (let i = 0; i < strategies.length; i++) {
-    try {
-      const articles = await strategies[i]();
-      if (articles && articles.length) { renderArticles(articles); return; }
-    } catch(e) { continue; }
-  }
+  // Fallback: allorigins
+  try {
+    const rss = `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-US&gl=US&ceid=US:en`;
+    const res = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rss)}`);
+    const data = await res.json();
+    if (data.contents) {
+      const articles = parseXML(data.contents, 0);
+      if (articles.length) { renderArticles(articles); return; }
+    }
+  } catch(e) { console.warn('allorigins failed:', e); }
+
   showError();
 }
 
@@ -881,6 +896,213 @@ function filterRetreats() {
 }
 
 function generateJobs() { return ''; }
+
+
+// ─── LEGAL MAP ───────────────────────────────────────────────
+function renderLegalMap() {
+  const grid = document.getElementById('grid');
+  const legalData = [
+    // [Country, Psilocybin, MDMA, Ketamine, Ayahuasca, Notes]
+    ['🇦🇺 Australia',     'Medical',    'Medical',    'Prescription', 'Legal',       'TGA approved Jul 2023'],
+    ['🇧🇷 Brazil',        'Decrim',     'Illegal',    'Prescription', 'Legal',       'Religious use legal'],
+    ['🇨🇦 Canada',        'Exemptions', 'Exemptions', 'Prescription', 'Grey zone',   'Section 56 exemptions'],
+    ['🇳🇱 Netherlands',   'Truffles OK','Illegal',    'Prescription', 'Legal',       'Truffles not mushrooms'],
+    ['🇵🇹 Portugal',      'Decrim',     'Decrim',     'Prescription', 'Decrim',      'All drugs decrim 2001'],
+    ['🇺🇸 Oregon',        'Licensed',   'Research',   'Prescription', 'Grey zone',   'Measure 109 active'],
+    ['🇺🇸 Colorado',      'Licensed',   'Research',   'Prescription', 'Grey zone',   'Prop 122 active'],
+    ['🇺🇸 California',    'Decrim',     'Research',   'Prescription', 'Grey zone',   'SB 58 passed 2023'],
+    ['🇨🇭 Switzerland',   'Research',   'Research',   'Prescription', 'Illegal',     'Compassionate use'],
+    ['🇬🇧 UK',            'Illegal',    'Research',   'Prescription', 'Illegal',     'Schedule 1 substances'],
+    ['🇩🇪 Germany',       'Research',   'Research',   'Prescription', 'Illegal',     'Trials underway'],
+    ['🇯🇲 Jamaica',       'Legal',      'Grey zone',  'Prescription', 'Legal',       'No psilocybin law'],
+    ['🇲🇽 Mexico',        'Indigenous', 'Illegal',    'Prescription', 'Indigenous',  'Religious/traditional use'],
+    ['🇮🇱 Israel',        'Research',   'Research',   'Prescription', 'Illegal',     'Phase 2 trials'],
+    ['🇳🇿 New Zealand',   'Research',   'Research',   'Prescription', 'Illegal',     'Following AU closely'],
+  ];
+
+  const colorMap = {
+    'Legal':'#22c55e','Medical':'#0d9488','Licensed':'#0d9488',
+    'Decrim':'#f59e0b','Exemptions':'#a78bfa','Research':'#60a5fa',
+    'Indigenous':'#f97316','Truffles OK':'#10b981','Grey zone':'#6b7280',
+    'Prescription':'#6366f1','Illegal':'rgba(255,255,255,0.2)'
+  };
+  const textMap = {
+    'Legal':'#fff','Medical':'#fff','Licensed':'#fff',
+    'Decrim':'#1a1a1a','Exemptions':'#fff','Research':'#fff',
+    'Indigenous':'#fff','Truffles OK':'#fff','Grey zone':'#fff',
+    'Prescription':'#fff','Illegal':'rgba(255,255,255,0.5)'
+  };
+
+  function badge(status) {
+    const bg = colorMap[status] || 'rgba(255,255,255,0.1)';
+    const col = textMap[status] || 'white';
+    return `<span style="background:${bg};color:${col};padding:2px 8px;border-radius:999px;font-size:0.68rem;font-weight:600;white-space:nowrap;">${status}</span>`;
+  }
+
+  grid.style.display='block';
+  grid.innerHTML = `
+    <div style="animation:fadeUp 0.4s ease;grid-column:1/-1;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;margin-bottom:8px;background:linear-gradient(90deg,#0d9488,#a78bfa,#f472b6);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Legal Status Map</h2>
+      <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:24px;">Current regulatory status by country. Always verify locally — laws change rapidly.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;font-size:0.75rem;">
+        ${Object.entries(colorMap).slice(0,8).map(([k,v])=>`<span style="display:flex;align-items:center;gap:4px;color:rgba(255,255,255,0.65);"><span style="width:10px;height:10px;border-radius:50%;background:${v};display:inline-block;"></span>${k}</span>`).join('')}
+      </div>
+      <div style="overflow-x:auto;border-radius:16px;border:1px solid rgba(255,255,255,0.08);">
+        <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+          <thead>
+            <tr style="background:rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.08);">
+              <th style="padding:14px 16px;text-align:left;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Country</th>
+              <th style="padding:14px 16px;text-align:center;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Psilocybin</th>
+              <th style="padding:14px 16px;text-align:center;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">MDMA</th>
+              <th style="padding:14px 16px;text-align:center;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Ketamine</th>
+              <th style="padding:14px 16px;text-align:center;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Ayahuasca</th>
+              <th style="padding:14px 16px;text-align:left;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${legalData.map((row,i)=>`
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);background:${i%2===0?'transparent':'rgba(255,255,255,0.02)'};">
+                <td style="padding:14px 16px;color:white;font-weight:600;">${row[0]}</td>
+                <td style="padding:14px 16px;text-align:center;">${badge(row[1])}</td>
+                <td style="padding:14px 16px;text-align:center;">${badge(row[2])}</td>
+                <td style="padding:14px 16px;text-align:center;">${badge(row[3])}</td>
+                <td style="padding:14px 16px;text-align:center;">${badge(row[4])}</td>
+                <td style="padding:14px 16px;color:rgba(255,255,255,0.5);font-size:0.78rem;">${row[5]}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:16px;font-size:0.72rem;color:rgba(255,255,255,0.3);">⚠️ This is for informational purposes only. Laws change — always verify current regulations in your jurisdiction. Last updated March 2026.</p>
+    </div>`;
+}
+
+// ─── GLOSSARY ────────────────────────────────────────────────
+function renderGlossary() {
+  const grid = document.getElementById('grid');
+  const terms = [
+    ['Ayahuasca', 'A psychedelic brew from the Amazon made from Banisteriopsis caapi vine and Psychotria viridis leaves, containing DMT and MAOIs. Used in traditional indigenous ceremonies and increasingly in therapeutic contexts.'],
+    ['Default Mode Network (DMN)', 'A brain network active during self-referential thinking and mind-wandering. Psychedelics temporarily disrupt DMN activity, which is thought to underlie their therapeutic effects on rigid thought patterns.'],
+    ['Ego Dissolution', 'The temporary loss of the subjective sense of self, often occurring at higher doses of psychedelics. Associated with mystical experiences and considered therapeutically significant.'],
+    ['Entheogens', 'Psychoactive substances used in spiritual or religious contexts. From Greek: "generating the divine within." Includes psilocybin mushrooms, ayahuasca, peyote, and others.'],
+    ['Harm Reduction', 'A set of practical strategies aimed at reducing negative consequences of drug use without requiring abstinence. Includes safe dosing guidelines, set and setting awareness, and integration support.'],
+    ['Integration', 'The process of making meaning from a psychedelic experience and incorporating insights into daily life. Often involves therapy, journaling, meditation, and community support.'],
+    ['Ketamine', 'A dissociative anaesthetic with rapid antidepressant effects. The only legally available psychedelic-like medicine in most countries. Used via IV infusion, nasal spray (esketamine/Spravato), or IM injection.'],
+    ['LSD (Lysergic acid diethylamide)', 'A semi-synthetic psychedelic derived from ergot fungus. Active at microgram doses. Being studied for anxiety, addiction, and cluster headaches. Currently Schedule I in the US.'],
+    ['MAPS', 'Multidisciplinary Association for Psychedelic Studies. A non-profit research organisation that has led the most advanced clinical trials for MDMA-assisted therapy for PTSD.'],
+    ['MDMA', '3,4-methylenedioxymethamphetamine. Empathogen/entactogen with therapeutic potential for PTSD. Rejected by FDA in 2024 pending further trials. Currently in Phase 3 research globally.'],
+    ['Microdosing', 'Taking sub-perceptual doses of psychedelics (typically 1/10th of a full dose) on a regular schedule. Associated with improved mood, focus, and creativity. Evidence base still emerging.'],
+    ['Mystical Experience', 'A profound state characterised by unity, sacredness, noetic quality, and transcendence of time and space. Correlated with positive long-term outcomes in psychedelic therapy research.'],
+    ['Neuroplasticity', 'The brain's ability to reorganise itself by forming new neural connections. Psychedelics promote neuroplasticity, which may underlie their ability to break entrenched thought and behaviour patterns.'],
+    ['Psilocybin', 'The active compound in "magic mushrooms." Converts to psilocin in the body. Being studied for depression, anxiety, addiction, and end-of-life distress. FDA Breakthrough Therapy designation.'],
+    ['Psychedelic-Assisted Therapy (PAT)', 'A therapeutic model combining psychedelic medicine with psychological support. Includes preparation, dosing sessions with trained therapists, and integration work.'],
+    ['PTSD', 'Post-Traumatic Stress Disorder. A mental health condition triggered by traumatic events. One of the primary indications being studied for MDMA-assisted therapy.'],
+    ['Set and Setting', 'Coined by Timothy Leary. "Set" refers to mindset (intentions, expectations, emotional state). "Setting" refers to the physical and social environment. Both profoundly influence psychedelic experiences.'],
+    ['Therapeutic Window', 'The dose range in which a drug produces beneficial effects without unacceptable side effects. For psychedelics, this typically means doses that produce meaningful subjective effects without overwhelming distress.'],
+    ['TGA (Therapeutic Goods Administration)', 'Australia's drug regulator. In July 2023, became the first national regulator to approve psychedelics (psilocybin and MDMA) for therapeutic use.'],
+    ['Treatment-Resistant Depression (TRD)', 'Depression that has not responded to at least two adequate trials of antidepressants. A major indication for psilocybin therapy research.'],
+  ];
+
+  const grouped = {};
+  terms.forEach(([term, def]) => {
+    const letter = term[0].toUpperCase();
+    if (!grouped[letter]) grouped[letter] = [];
+    grouped[letter].push([term, def]);
+  });
+
+  grid.style.display='block';
+  grid.innerHTML = `
+    <div style="animation:fadeUp 0.4s ease;grid-column:1/-1;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;margin-bottom:8px;background:linear-gradient(90deg,#2dd4bf,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Psychedelic Therapy Glossary</h2>
+      <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:28px;">Key terms explained simply. No jargon, no judgment.</p>
+      ${Object.entries(grouped).sort().map(([letter, termList]) => `
+        <div style="margin-bottom:32px;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:rgba(139,92,246,0.7);margin-bottom:16px;border-bottom:1px solid rgba(139,92,246,0.2);padding-bottom:8px;">${letter}</h3>
+          ${termList.map(([term, def]) => `
+            <div style="margin-bottom:16px;padding:16px 20px;background:rgba(255,255,255,0.03);border-radius:12px;border:1px solid rgba(255,255,255,0.06);">
+              <div style="font-weight:600;color:white;margin-bottom:6px;font-family:'DM Sans',sans-serif;">${term}</div>
+              <div style="color:rgba(255,255,255,0.6);font-size:0.88rem;line-height:1.7;">${def}</div>
+            </div>`).join('')}
+        </div>`).join('')}
+    </div>`;
+}
+
+// ─── PSYFINANCE ──────────────────────────────────────────────
+function renderPsyFinance() {
+  const grid = document.getElementById('grid');
+
+  const deals = [
+    {date:'Aug 2025', company:'Gilgamesh Pharmaceuticals', deal:'Acquired by AbbVie', amount:'$1.2B', type:'Acquisition', substance:'Bretisilocin (psilocybin)', stage:'Phase 2'},
+    {date:'2025', company:'Compass Pathways', deal:'Phase 3 trials ongoing', amount:'Listed (CMPS)', type:'Public', substance:'COMP360 (psilocybin)', stage:'Phase 3'},
+    {date:'2025', company:'Cybin', deal:'Rebranded to Helus', amount:'Listed (CYBN)', type:'Public', substance:'CYB003 (psilocybin)', stage:'Phase 3'},
+    {date:'2025', company:'Lykos Therapeutics', deal:'FDA CRL — seeking resubmission', amount:'Private', type:'Pipeline', substance:'MDMA', stage:'Phase 3'},
+    {date:'2024', company:'MindMed', deal:'Nasdaq listed', amount:'Listed (MNMD)', type:'Public', substance:'MM120 (LSD)', stage:'Phase 3'},
+    {date:'2024', company:'Atai Life Sciences', deal:'Multiple pipeline assets', amount:'Listed (ATAI)', type:'Public', substance:'Multiple', stage:'Phase 2/3'},
+    {date:'2023', company:'Awakn Life Sciences', deal:'Series A funding', amount:'$20M', type:'Funding', substance:'Ketamine/MDMA', stage:'Phase 2'},
+    {date:'2023', company:'Field Trip Health', deal:'Restructured to Journey Clinical', amount:'Private', type:'Restructure', substance:'Ketamine', stage:'Commercial'},
+  ];
+
+  const typeColors = {
+    'Acquisition':'#f472b6','Public':'#0d9488','Funding':'#a78bfa',
+    'Pipeline':'#f59e0b','Restructure':'#60a5fa'
+  };
+
+  grid.style.display='block';
+  grid.innerHTML = `
+    <div style="animation:fadeUp 0.4s ease;grid-column:1/-1;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:400;margin-bottom:8px;background:linear-gradient(90deg,#f472b6,#fbbf24,#0d9488);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">PsyFinance</h2>
+      <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:8px;">Funding rounds, acquisitions, public listings and pipeline updates in the psychedelic industry.</p>
+      <p style="color:rgba(255,255,255,0.3);font-size:0.72rem;margin-bottom:24px;">⚠️ Not financial advice. Always do your own research.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;">
+        <div style="background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);border-radius:14px;padding:20px;">
+          <div style="font-size:0.7rem;color:rgba(244,114,182,0.8);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Biggest Deal 2025</div>
+          <div style="font-size:1.4rem;font-weight:700;color:white;">$1.2B</div>
+          <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:4px;">AbbVie × Gilgamesh</div>
+        </div>
+        <div style="background:rgba(13,148,136,0.1);border:1px solid rgba(13,148,136,0.2);border-radius:14px;padding:20px;">
+          <div style="font-size:0.7rem;color:rgba(45,212,191,0.8);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Public Companies</div>
+          <div style="font-size:1.4rem;font-weight:700;color:white;">8+</div>
+          <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:4px;">Nasdaq & TSX listed</div>
+        </div>
+        <div style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);border-radius:14px;padding:20px;">
+          <div style="font-size:0.7rem;color:rgba(167,139,250,0.8);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">2026 Outlook</div>
+          <div style="font-size:1.4rem;font-weight:700;color:white;">Pivotal</div>
+          <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:4px;">Multiple FDA decisions expected</div>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;border-radius:16px;border:1px solid rgba(255,255,255,0.08);">
+        <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+          <thead>
+            <tr style="background:rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.08);">
+              <th style="padding:14px 16px;text-align:left;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Date</th>
+              <th style="padding:14px 16px;text-align:left;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Company</th>
+              <th style="padding:14px 16px;text-align:left;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Deal</th>
+              <th style="padding:14px 16px;text-align:left;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Amount</th>
+              <th style="padding:14px 16px;text-align:left;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Type</th>
+              <th style="padding:14px 16px;text-align:left;color:rgba(255,255,255,0.6);font-weight:500;font-family:'DM Sans',sans-serif;">Substance</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${deals.map((d,i)=>`
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.05);background:${i%2===0?'transparent':'rgba(255,255,255,0.02)'};">
+                <td style="padding:14px 16px;color:rgba(255,255,255,0.5);white-space:nowrap;">${d.date}</td>
+                <td style="padding:14px 16px;color:white;font-weight:600;">${d.company}</td>
+                <td style="padding:14px 16px;color:rgba(255,255,255,0.7);">${d.deal}</td>
+                <td style="padding:14px 16px;color:white;font-weight:700;">${d.amount}</td>
+                <td style="padding:14px 16px;"><span style="background:${typeColors[d.type]||'rgba(255,255,255,0.1)'};color:white;padding:2px 10px;border-radius:999px;font-size:0.72rem;font-weight:600;">${d.type}</span></td>
+                <td style="padding:14px 16px;color:rgba(255,255,255,0.5);font-size:0.78rem;">${d.substance}</td>
+              </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:24px;padding:20px;background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.15);border-radius:14px;">
+        <div style="font-size:0.8rem;color:rgba(251,191,36,0.8);font-weight:600;margin-bottom:6px;">📈 2026 Watch List</div>
+        <div style="font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.7;">Compass Pathways (Phase 3 psilocybin results), MindMed MM120 FDA filing, multiple MDMA resubmission updates, and potential right-to-try legislation in the US.</div>
+      </div>
+    </div>`;
+}
 
 renderFilters();
 fetchNews();
