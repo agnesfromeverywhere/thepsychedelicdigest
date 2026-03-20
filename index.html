@@ -595,6 +595,17 @@ const SPECIAL_PAGES = ['Legal Map', 'Glossary', 'PsyFinance'];
 
 const IMGS = Array.from({length:18},(_,i)=>`https://picsum.photos/seed/psych${i+1}/800/500`);
 let activeTopic = TOPICS[0];
+let currentPage = null;
+let _allArticles = [];
+
+function filterBySearch(q) {
+  if (!_allArticles.length) return;
+  const filtered = q ? _allArticles.filter(a => 
+    a.title.toLowerCase().includes(q.toLowerCase()) || 
+    a.source.toLowerCase().includes(q.toLowerCase())
+  ) : _allArticles;
+  renderArticles(filtered, true);
+}
 
 function renderFilters() {
   // Count articles per topic
@@ -806,6 +817,19 @@ function handleSubscribe(e){
 }
 
 // ── SECTION SWITCHING ──────────────────────────────────────
+function showPage(page) {
+  currentPage = page;
+  document.getElementById('searchInput').style.display = 'none';
+  document.getElementById('hero').innerHTML = '';
+  document.getElementById('statusBar').style.display = 'none';
+  document.getElementById('loadingState').style.display = 'none';
+  document.getElementById('empty').style.display = 'none';
+  renderFilters();
+  if (page === 'Legal Map') renderLegalMap();
+  else if (page === 'Glossary') renderGlossary();
+  else if (page === 'PsyFinance') renderPsyFinance();
+}
+
 function showSection(name) {
   ['news','jobs','retreats','collab'].forEach(s => {
     const el = document.getElementById('section-'+s);
