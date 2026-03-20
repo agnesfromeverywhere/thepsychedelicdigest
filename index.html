@@ -597,6 +597,8 @@ const IMGS = Array.from({length:18},(_,i)=>`https://picsum.photos/seed/psych${i+
 let activeTopic = TOPICS[0];
 let currentPage = null;
 let _allArticles = [];
+let currentPage = null;
+let _allArticles = [];
 
 function filterBySearch(q) {
   if (!_allArticles.length) return;
@@ -728,6 +730,18 @@ async function fetchNews() {
   } catch(e) { console.warn('corsproxy failed:', e.message); }
 
   showError();
+}
+
+function filterBySearch(val) {
+  if (!_allArticles.length) return;
+  const q = val.toLowerCase().trim();
+  if (!q) { renderArticles(_allArticles, true); return; }
+  const filtered = _allArticles.filter(a =>
+    a.title.toLowerCase().includes(q) ||
+    a.excerpt.toLowerCase().includes(q) ||
+    a.source.toLowerCase().includes(q)
+  );
+  renderArticles(filtered.length ? filtered : _allArticles, true);
 }
 
 
