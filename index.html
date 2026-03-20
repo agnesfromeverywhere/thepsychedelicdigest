@@ -828,22 +828,40 @@ function showPage(page) {
 }
 
 function showSection(name) {
+  const isNews = name === 'news';
+
+  // Toggle tab styles
   ['news','jobs','retreats','collab'].forEach(s => {
-    const el = document.getElementById('section-'+s);
     const tab = document.getElementById('tab-'+s);
-    if (el) el.style.display = s === name ? 'block' : 'none';
     if (tab) {
       tab.style.background = s === name ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.04)';
       tab.style.color = s === name ? 'white' : 'rgba(255,255,255,0.6)';
     }
   });
-  // Hide/show filters + search for news section only
+
+  // Show/hide news-specific elements (hero, grid, loading etc)
+  ['hero','grid','loadingState','statusBar','section-news'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = isNews ? '' : 'none';
+  });
+  document.getElementById('empty').style.display = 'none';
+
+  // Show/hide non-news sections
+  ['jobs','retreats','collab'].forEach(s => {
+    const el = document.getElementById('section-'+s);
+    if (el) el.style.display = s === name ? 'block' : 'none';
+  });
+
+  // Filters + search bar only for news
   const fw = document.querySelector('.filters-wrap');
   const sw = document.querySelector('.search-wrap');
-  if (fw) fw.style.display = name === 'news' ? 'block' : 'none';
-  if (sw) sw.style.display = name === 'news' ? 'block' : 'none';
-  if (name === 'jobs') renderJobs('all');
-  if (name === 'retreats') renderRetreats('all','all');
+  if (fw) fw.style.display = isNews ? 'block' : 'none';
+  if (sw) sw.style.display = isNews ? 'block' : 'none';
+
+  // Render section content
+  if (isNews) fetchNews();
+  else if (name === 'jobs') renderJobs('all');
+  else if (name === 'retreats') renderRetreats('all','all');
 }
 
 // ── JOBS DATA ──────────────────────────────────────────────
