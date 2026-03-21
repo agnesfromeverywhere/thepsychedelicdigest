@@ -35,10 +35,13 @@ function mdToHtml(md) {
 }
 
 // Parse frontmatter from a .md file
-// Expects YAML-like block between --- markers at the top
+// Handles: CRLF line endings, trailing spaces on ---, missing final newline
 function parseFrontmatter(raw) {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-  if (!match) return { meta: {}, body: raw };
+  // Normalise line endings first
+  const normalised = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  // Match --- block at start, tolerating trailing whitespace on the closing ---
+  const match = normalised.match(/^---[ \t]*\n([\s\S]*?)\n---[ \t]*(?:\n|$)([\s\S]*)$/);
+  if (!match) return { meta: {}, body: normalised };
 
   const meta = {};
   match[1].split('\n').forEach(line => {
