@@ -1,4 +1,4 @@
-[australia-psilocybin-approval-2026.md](https://github.com/user-attachments/files/26162165/australia-psilocybin-approval-2026.md)
+[australia-psilocybin-approval-2026.md](https://github.com/user-attachments/files/26162993/australia-psilocybin-approval-2026.md)
 ---
 title: Australia's Psilocybin Approval: What It Means for Patients in 2026
 date: 2026-03-15
