@@ -1,23 +1,38 @@
 {
   "rewrites": [
-    { "source": "/api/rss",    "destination": "/api/rss.js"  },
-    { "source": "/api/blog",   "destination": "/api/blog.js" },
-    { "source": "/(.*)",       "destination": "/index.html"  }
+    { "source": "/api/rss",          "destination": "/api/rss.js"         },
+    { "source": "/api/blog",         "destination": "/api/blog.js"        },
+    { "source": "/api/ping-google",  "destination": "/api/ping-google.js" },
+    { "source": "/sitemap.xml",      "destination": "/api/sitemap.js"     },
+    { "source": "/(.*)",             "destination": "/index.html"         }
+  ],
+  "crons": [
+    {
+      "path":     "/api/ping-google",
+      "schedule": "0 6 * * *"
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options",  "value": "nosniff" },
-        { "key": "X-Frame-Options",         "value": "DENY" },
-        { "key": "Referrer-Policy",         "value": "strict-origin-when-cross-origin" },
-        { "key": "Strict-Transport-Security","value": "max-age=63072000" }
+        { "key": "X-Content-Type-Options",    "value": "nosniff"                        },
+        { "key": "X-Frame-Options",           "value": "DENY"                           },
+        { "key": "Referrer-Policy",           "value": "strict-origin-when-cross-origin" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000"               }
       ]
     },
     {
       "source": "/api/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=300, stale-while-revalidate=60" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type",  "value": "application/xml"                                },
+        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=300" }
       ]
     }
   ]
