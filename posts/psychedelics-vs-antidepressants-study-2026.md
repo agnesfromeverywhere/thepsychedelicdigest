@@ -1,4 +1,4 @@
-[psychedelics-vs-antidepressants-study-2026 (3).md](https://github.com/user-attachments/files/26228329/psychedelics-vs-antidepressants-study-2026.3.md)
+[psychedelics-vs-antidepressants-study-2026 (4).md](https://github.com/user-attachments/files/26228513/psychedelics-vs-antidepressants-study-2026.4.md)
 ---
 title: The New Study Says Psychedelics Are No Better Than Antidepressants. Here Is What It Actually Means.
 date: 2026-03-22
