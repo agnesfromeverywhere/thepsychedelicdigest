@@ -1,4 +1,4 @@
-[psychedelics-vs-antidepressants-study-2026.md](https://github.com/user-attachments/files/26162401/psychedelics-vs-antidepressants-study-2026.md)
+[psychedelics-vs-antidepressants-study-2026 (1).md](https://github.com/user-attachments/files/26228217/psychedelics-vs-antidepressants-study-2026.1.md)
 ---
 title: The New Study Says Psychedelics Are No Better Than Antidepressants. Here Is What It Actually Means.
 date: 2026-03-22
@@ -53,6 +53,8 @@ Antidepressants require daily dosing, often indefinitely. Many patients develop 
 A course of psilocybin therapy typically involves one or two sessions. In multiple studies, remission has persisted for months to years after a single experience. That is a completely different therapeutic model, even if the 12-week depression score looks similar.
 
 That durability argument was not tested by this study. It needs to be tested rigorously. But it is the right question to be asking.
+
+![Is the hype about magic mushrooms coming to an end? They said it changes nothing. But people still improved, still healed, still moved forward. Psychedelics didn't fail, the narrative did.](/hype_magic_mushroom_agnes_horry.png)
 
 ## The Honest Position
 
