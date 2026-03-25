@@ -839,26 +839,40 @@ function parseXML(xml, offset) {
 }
 
 // ─── FETCH NEWS ──────────────────────────────────────────────
+async function fetchWithTimeout(url, options = {}, timeoutMs = 6000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function fetchNews() {
   showLoading();
   const q = activeTopic.query;
+  const googleNewsRss = 'https://news.google.com/rss/search?q=' + encodeURIComponent(q) + '&hl=en-US&gl=US&ceid=US:en';
+  const isLocalFile = location.protocol === 'file:';
 
-  // Strategy 1: own Vercel proxy — no CORS issues
-  try {
-    const res = await fetch('/api/rss?q=' + encodeURIComponent(q));
-    if (res.ok) {
-      const xml = await res.text();
-      if (xml && xml.includes('<item>')) {
-        const arts = parseXML(xml, 0);
-        if (arts.length) { renderArticles(arts); return; }
+  // Strategy 1: own proxy, but only when the site is served from a real web server.
+  if (!isLocalFile) {
+    try {
+      const res = await fetchWithTimeout('/api/rss?q=' + encodeURIComponent(q));
+      if (res.ok) {
+        const xml = await res.text();
+        if (xml && xml.includes('<item>')) {
+          const arts = parseXML(xml, 0);
+          if (arts.length) { renderArticles(arts); return; }
+        }
       }
-    }
-  } catch(e) { console.warn('Proxy failed:', e.message); }
+    } catch(e) { console.warn('Proxy failed:', e.message); }
+  }
 
   // Strategy 2: rss2json
   try {
-    const rss = encodeURIComponent('https://news.google.com/rss/search?q=' + encodeURIComponent(q) + '&hl=en-US&gl=US&ceid=US:en');
-    const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=' + rss + '&count=18');
+    const rss = encodeURIComponent(googleNewsRss);
+    const res = await fetchWithTimeout('https://api.rss2json.com/v1/api.json?rss_url=' + rss + '&count=18');
     if (res.ok) {
       const data = await res.json();
       if (data.status === 'ok' && data.items && data.items.length) {
@@ -869,7 +883,7 @@ async function fetchNews() {
           date:     formatDate(item.pubDate),
           url:      item.link || '#',
           imageUrl: (item.enclosure && item.enclosure.link) || item.thumbnail || IMGS[i % IMGS.length],
-          category: guessCat(item.title),
+          category: guessCat(item.title || ''),
         })).filter(a => a.title && a.url !== '#');
         if (arts.length) { renderArticles(arts); return; }
       }
@@ -878,8 +892,7 @@ async function fetchNews() {
 
   // Strategy 3: allorigins
   try {
-    const rss = 'https://news.google.com/rss/search?q=' + encodeURIComponent(q) + '&hl=en-US&gl=US&ceid=US:en';
-    const res = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(rss));
+    const res = await fetchWithTimeout('https://api.allorigins.win/get?url=' + encodeURIComponent(googleNewsRss));
     if (res.ok) {
       const data = await res.json();
       if (data && data.contents && data.contents.includes('<item>')) {
@@ -891,8 +904,7 @@ async function fetchNews() {
 
   // Strategy 4: corsproxy
   try {
-    const rss = 'https://news.google.com/rss/search?q=' + encodeURIComponent(q) + '&hl=en-US&gl=US&ceid=US:en';
-    const res = await fetch('https://corsproxy.io/?' + encodeURIComponent(rss));
+    const res = await fetchWithTimeout('https://corsproxy.io/?' + encodeURIComponent(googleNewsRss));
     if (res.ok) {
       const xml = await res.text();
       if (xml && xml.includes('<item>')) {
@@ -1459,68 +1471,4 @@ function renderPsyFinance() {
       </div>
       <div style="margin-top:24px;padding:20px;background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.15);border-radius:14px;">
         <div style="font-size:0.8rem;color:rgba(251,191,36,0.8);font-weight:600;margin-bottom:6px;">📈 2026 Watch List</div>
-        <div style="font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.7;">Compass Pathways (Phase 3 psilocybin results), MindMed (LSD anxiety program), Cybin/Helus (next-gen psilocybin compounds), Atai Life Sciences (platform strategy), and any new regulatory catalysts that shift the sector.</div>
-      </div>
-    </div>`;
-}
-
-// ─── LIGHTWEIGHT PARTICLES ───────────────────────────────────
-(function initParticles(){
-  const wrap = document.getElementById('particles');
-  if (!wrap) return;
-  const count = window.innerWidth < 768 ? 12 : 22;
-  wrap.innerHTML = '';
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = (Math.random() * 5 + 2).toFixed(2);
-    p.style.width = size + 'px';
-    p.style.height = size + 'px';
-    p.style.left = (Math.random() * 100) + 'vw';
-    p.style.background = ['rgba(45,212,191,0.22)','rgba(167,139,250,0.20)','rgba(244,114,182,0.18)','rgba(251,191,36,0.16)'][i % 4];
-    p.style.animationDuration = (18 + Math.random() * 18).toFixed(2) + 's';
-    p.style.animationDelay = (-Math.random() * 24).toFixed(2) + 's';
-    wrap.appendChild(p);
-  }
-})();
-
-window.addEventListener('resize', () => {
-  clearTimeout(window.__particleResizeTimer);
-  window.__particleResizeTimer = setTimeout(() => {
-    const wrap = document.getElementById('particles');
-    if (!wrap) return;
-    wrap.innerHTML = '';
-    const count = window.innerWidth < 768 ? 12 : 22;
-    for (let i = 0; i < count; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      const size = (Math.random() * 5 + 2).toFixed(2);
-      p.style.width = size + 'px';
-      p.style.height = size + 'px';
-      p.style.left = (Math.random() * 100) + 'vw';
-      p.style.background = ['rgba(45,212,191,0.22)','rgba(167,139,250,0.20)','rgba(244,114,182,0.18)','rgba(251,191,36,0.16)'][i % 4];
-      p.style.animationDuration = (18 + Math.random() * 18).toFixed(2) + 's';
-      p.style.animationDelay = (-Math.random() * 24).toFixed(2) + 's';
-      wrap.appendChild(p);
-    }
-  }, 150);
-});
-
-// ─── MODAL CLOSE HELPERS ─────────────────────────────────────
-document.addEventListener('click', (e) => {
-  if (e.target.classList && e.target.classList.contains('modal-overlay')) {
-    e.target.classList.remove('open');
-  }
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.modal-overlay.open').forEach(el => el.classList.remove('open'));
-  }
-});
-
-// ─── APP BOOT ────────────────────────────────────────────────
-routeFromPath(window.location.pathname || '/');
-</script>
-</body>
-</html>
+        <div style="font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.7;">Compass Pathways (Phase 3 psilocybin results), MindMed 
