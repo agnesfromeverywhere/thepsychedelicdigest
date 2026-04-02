@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Psychedelic Digest — Psychedelic Therapy News</title>
 <meta name="description" content="Your daily curation of the latest psychedelic therapy news. From breakthrough research to policy shifts — all the stories that matter, in one place.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:; img-src * data: blob:; connect-src *;">
+<link rel="canonical" href="https://thepsychedelicdigest.com">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; img-src 'self' https: data: blob:; connect-src 'self' https:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; form-action 'self' https://beehiiv.com; upgrade-insecure-requests;">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -297,7 +299,7 @@
 <!-- Privacy Policy Modal -->
 <div class="modal-overlay" id="privacyModal">
   <div class="modal" style="max-width:640px;max-height:80vh;overflow-y:auto;">
-    <button class="modal-close" onclick="document.getElementById('privacyModal').classList.remove('open')">×</button>
+    <button class="modal-close" type="button" data-close-modal="privacyModal" aria-label="Close privacy policy">×</button>
     <h2>Privacy Policy</h2>
     <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;margin-bottom:20px;">Last updated: March 2026</p>
     <p>The Psychedelic Digest ("we", "our", "us") is committed to protecting your privacy. This policy explains how we handle your information.</p>
@@ -313,7 +315,7 @@
 <!-- About Modal -->
 <div class="modal-overlay" id="aboutModal">
   <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('aboutModal').classList.remove('open')">×</button>
+    <button class="modal-close" type="button" data-close-modal="aboutModal" aria-label="Close about dialog">×</button>
     <h2>About The Psychedelic Digest</h2>
     <p>We are your safe, judgment-free window into the world of psychedelic therapy. From breakthrough research to policy shifts — all the stories that matter, in one place.</p>
     <p>Whether you are a clinician, a patient, a researcher, or just quietly curious — this is your daily digest of what is happening at the frontier of consciousness medicine.</p>
@@ -326,7 +328,7 @@
 <!-- Book Banner -->
 <div id="bookBanner" style="background:linear-gradient(135deg,rgba(13,148,136,0.15),rgba(139,92,246,0.15));border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:12px 32px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;">
   <span style="font-size:0.82rem;color:rgba(255,255,255,0.7);font-family:'DM Sans',sans-serif;">📚 <em>By the founder:</em></span>
-  <a href="https://www.amazon.com.au/dp/0645763209" target="_blank" rel="noopener" style="font-size:0.82rem;font-weight:600;color:#2dd4bf;text-decoration:none;font-family:'DM Sans',sans-serif;transition:color 0.2s;" onmouseover="this.style.color='#a78bfa'" onmouseout="this.style.color='#2dd4bf'">The Microdosing Guidebook — Available on Amazon →</a>
+  <a href="https://www.amazon.com.au/dp/0645763209" target="_blank" rel="noopener noreferrer" class="js-amazon-link" style="font-size:0.82rem;font-weight:600;color:#2dd4bf;text-decoration:none;font-family:'DM Sans',sans-serif;transition:color 0.2s;">The Microdosing Guidebook — Available on Amazon →</a>
 </div>
 <div class="social-bar">
   <a href="https://www.instagram.com/psychedelictherapyclub" target="_blank" rel="noopener">
@@ -337,16 +339,18 @@
     <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     YouTube
   </a>
-  <button onclick="document.getElementById('aboutModal').classList.add('open')" style="background:none;border:none;color:rgba(255,255,255,0.5);font-size:0.75rem;font-family:'DM Sans',sans-serif;letter-spacing:0.05em;cursor:pointer;padding:0;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">About</button>
+  <button type="button" data-open-modal="aboutModal" class="js-about-button" style="background:none;border:none;color:rgba(255,255,255,0.5);font-size:0.75rem;font-family:'DM Sans',sans-serif;letter-spacing:0.05em;cursor:pointer;padding:0;transition:color 0.2s;">About</button>
 </div>
 <header style="padding:12px 32px;">
   <div class="header-inner" style="flex-direction:row;justify-content:center;gap:24px;align-items:center;">
-    <canvas id="logoC" width="140" height="150" style="display:block;flex-shrink:0;"></canvas>
-    <div style="display:flex;flex-direction:column;">
-      <h1 style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:400;letter-spacing:-1px;line-height:1.05;background:linear-gradient(90deg,#0d9488,#2dd4bf,#60a5fa,#a78bfa,#f472b6,#fb923c,#fbbf24,#34d399,#2dd4bf,#0d9488);background-size:400% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:iridescent-title 5s linear infinite;">The Psychedelic Digest</h1>
-      <canvas id="logoLC" width="260" height="10" style="display:block;margin-top:6px;"></canvas>
-      <p style="font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.85);font-weight:400;margin-top:6px;">The latest psychedelic therapy news, curated daily</p>
-    </div>
+    <button type="button" data-action="go-home" style="display:flex;align-items:center;gap:24px;background:none;border:none;cursor:pointer;padding:0;text-align:left;" title="Go to home">
+      <canvas id="logoC" width="140" height="150" style="display:block;flex-shrink:0;"></canvas>
+      <div style="display:flex;flex-direction:column;">
+        <h1 style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:400;letter-spacing:-1px;line-height:1.05;background:linear-gradient(90deg,#0d9488,#2dd4bf,#60a5fa,#a78bfa,#f472b6,#fb923c,#fbbf24,#34d399,#2dd4bf,#0d9488);background-size:400% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:iridescent-title 5s linear infinite;">The Psychedelic Digest</h1>
+        <canvas id="logoLC" width="260" height="10" style="display:block;margin-top:6px;"></canvas>
+        <p style="font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.85);font-weight:400;margin-top:6px;">The latest psychedelic therapy news, curated daily</p>
+      </div>
+    </button>
   </div>
 </header>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -485,15 +489,15 @@
   <div class="filters-inner">
     <!-- Primary nav row -->
     <div id="primaryNav" style="display:flex;align-items:center;gap:6px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:10px;overflow-x:auto;scrollbar-width:none;">
-      <button onclick="showSection('news')"     id="tab-news"       class="nav-pill">📰 News</button>
-      <button onclick="showSection('blog')"     id="tab-blog"       class="nav-pill">✍️ Blog</button>
-      <button onclick="showSection('jobs')"     id="tab-jobs"       class="nav-pill">💼 Jobs</button>
-      <button onclick="showSection('retreats')" id="tab-retreats"   class="nav-pill">🏕️ Retreats</button>
-      <button onclick="showSection('collab')"   id="tab-collab"     class="nav-pill nav-pill-collab">✨ Collaborate</button>
+      <button type="button" data-section="news"     id="tab-news"       class="nav-pill">📰 News</button>
+      <button type="button" data-section="blog"     id="tab-blog"       class="nav-pill">✍️ Blog</button>
+      <button type="button" data-section="jobs"     id="tab-jobs"       class="nav-pill">💼 Jobs</button>
+      <button type="button" data-section="retreats" id="tab-retreats"   class="nav-pill">🏕️ Retreats</button>
+      <button type="button" data-section="collab"   id="tab-collab"     class="nav-pill nav-pill-collab">✨ Collaborate</button>
       <span style="flex:1"></span>
-      <button onclick="showPage('Legal Map')"   id="tab-legalmap"   class="nav-pill nav-pill-special" style="--accent:rgba(45,212,191,0.8);">🗺️ Legal Map</button>
-      <button onclick="showPage('Glossary')"    id="tab-glossary"   class="nav-pill nav-pill-special" style="--accent:rgba(167,139,250,0.8);">📖 Glossary</button>
-      <button onclick="showPage('PsyFinance')"  id="tab-psyfinance" class="nav-pill nav-pill-special" style="--accent:rgba(251,191,36,0.8);">💰 PsyFinance</button>
+      <button type="button" data-page="Legal Map"   id="tab-legalmap"   class="nav-pill nav-pill-special" style="--accent:rgba(45,212,191,0.8);">🗺️ Legal Map</button>
+      <button type="button" data-page="Glossary"    id="tab-glossary"   class="nav-pill nav-pill-special" style="--accent:rgba(167,139,250,0.8);">📖 Glossary</button>
+      <button type="button" data-page="PsyFinance"  id="tab-psyfinance" class="nav-pill nav-pill-special" style="--accent:rgba(251,191,36,0.8);">💰 PsyFinance</button>
     </div>
     <!-- Topic filter pills — only shown when on News section -->
     <div class="category-filters" id="categoryFilters"></div>
@@ -503,7 +507,7 @@
 <div class="search-wrap">
   <div class="search-wrap-inner">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" class="search-input" id="searchInput" placeholder="Search articles..." oninput="filterBySearch(this.value)">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search articles..." aria-label="Search articles">
   </div>
 </div>
 
@@ -537,7 +541,7 @@
     </div>
     <!-- Single post view — hidden until a post is clicked -->
     <div id="blog-post-view" style="display:none;max-width:760px;margin:0 auto;padding-bottom:64px;">
-      <button onclick="closeBlogPost()" style="display:flex;align-items:center;gap:6px;background:none;border:none;color:rgba(255,255,255,0.5);font-family:'DM Sans',sans-serif;font-size:0.85rem;cursor:pointer;padding:0;margin-bottom:32px;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">← Back to Blog</button>
+      <button type="button" id="closeBlogPostBtn" style="display:flex;align-items:center;gap:6px;background:none;border:none;color:rgba(255,255,255,0.5);font-family:'DM Sans',sans-serif;font-size:0.85rem;cursor:pointer;padding:0;margin-bottom:32px;transition:color 0.2s;">← Back to Blog</button>
       <div id="blog-post-content"></div>
     </div>
   </div>
@@ -618,12 +622,8 @@
       <a href="/cdn-cgi/l/email-protection#7e0e1f0c0a101b0c0d16170e0d3e0a161b0e0d071d161b1a1b12171d1a17191b0d0a501d1113410d0b1c141b1d0a432e1f0c0a101b0c0d16170e5e3b100f0b170c07" style="display:inline-block;padding:14px 32px;border-radius:999px;background:linear-gradient(135deg,#8b5cf6,#f472b6);color:white;text-decoration:none;font-size:0.9rem;font-weight:600;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Get in Touch →</a>
     </div>
 
-  <!-- ═══════════════════════════════════════════════════════
-       INFLUENCER DIRECTORY
-  ════════════════════════════════════════════════════════ -->
+  <!-- ═══════════════ INFLUENCER DIRECTORY ═══════════════ -->
   <div style="margin-top:64px;padding-top:56px;border-top:1px solid rgba(255,255,255,0.08);">
-
-    <!-- Header -->
     <div style="text-align:center;margin-bottom:40px;">
       <div style="display:inline-block;background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(244,114,182,0.15));border:1px solid rgba(139,92,246,0.3);border-radius:999px;padding:5px 16px;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#a78bfa;margin-bottom:16px;">New</div>
       <h2 style="font-size:2.2rem;font-weight:400;background:linear-gradient(90deg,#a78bfa,#f472b6,#fb923c,#a78bfa);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:iridescent-title 5s linear infinite;margin-bottom:12px;">Influencer Directory</h2>
@@ -639,7 +639,7 @@
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <a href="mailto:hello@thepsychedelicdigest.com?subject=Brand%20Access%20Request&body=Hi%2C%0A%0AI%20would%20like%20to%20unlock%20the%20influencer%20directory.%0A%0ABrand%20name%3A%0AWebsite%3A%0AGoals%3A%0A%0AThank%20you." style="display:inline-block;padding:10px 22px;border-radius:999px;background:linear-gradient(135deg,#8b5cf6,#f472b6);color:white;text-decoration:none;font-size:0.85rem;font-weight:600;white-space:nowrap;">Get Access</a>
-        <button onclick="document.getElementById('ifUnlockBanner').style.display='none'" style="padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.45);font-size:0.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Dismiss</button>
+        <button type="button" onclick="document.getElementById('ifUnlockBanner').style.display='none'" style="padding:10px 18px;border-radius:999px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.45);font-size:0.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;">Dismiss</button>
       </div>
     </div>
 
@@ -700,7 +700,6 @@
       <p style="color:rgba(255,255,255,0.5);font-size:0.88rem;margin-bottom:20px;max-width:480px;margin-left:auto;margin-right:auto;">Join the directory free. Get discovered by retreat centres, publishers, clinics and wellness brands. Reviewed within 48h.</p>
       <a href="mailto:hello@thepsychedelicdigest.com?subject=Apply%20to%20Join%20Influencer%20Directory&body=Hi%2C%0A%0AI%27d%20like%20to%20apply%20to%20join%20the%20influencer%20directory.%0A%0AName%3A%0APlatforms%3A%0AAudience%20size%3A%0ANiche%3A%0ABio%3A%0A%0AThank%20you." style="display:inline-block;padding:12px 28px;border-radius:999px;border:1px solid rgba(13,148,136,0.5);color:#2dd4bf;text-decoration:none;font-size:0.88rem;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='rgba(13,148,136,0.15)'" onmouseout="this.style.background='transparent'">Apply to Join Free</a>
     </div>
-
   </div>
   <!-- end influencer directory -->
 
@@ -712,7 +711,7 @@
     <div class="newsletter-content">
       <h2>Stay Connected to the Frontier</h2>
       <p>Weekly digest of the most important developments in psychedelic medicine. No jargon, no judgment. Join our growing community.</p>
-      <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+      <form class="newsletter-form" id="newsletterForm">
         <input type="email" class="newsletter-input" id="emailInput" placeholder="Your email address" required/>
         <button type="submit" class="newsletter-btn">Subscribe</button>
       </form>
@@ -729,7 +728,7 @@
     </div>
     <div class="footer-col">
       <h4>Links</h4>
-      <ul><li><a href="#">About Us</a></li><li><a href="#">Sources</a></li><li><a href="#">Contact</a></li><li><a href="#" onclick="event.preventDefault();document.getElementById('privacyModal').classList.add('open')">Privacy Policy</a></li></ul>
+      <ul><li><a href="#">About Us</a></li><li><a href="#">Sources</a></li><li><a href="#">Contact</a></li><li><a href="#" data-open-modal="privacyModal">Privacy Policy</a></li></ul>
     </div>
     <div class="footer-col">
       <h4>Follow Us</h4>
@@ -745,7 +744,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2026 The Psychedelic Digest. All rights reserved. | <a href="#" onclick="event.preventDefault();document.getElementById('privacyModal').classList.add('open')" style="color:rgba(255,255,255,0.35);text-decoration:none;">Privacy Policy</a></p>
+    <p>&copy; 2026 The Psychedelic Digest. All rights reserved. | <a href="#" data-open-modal="privacyModal" style="color:rgba(255,255,255,0.35);text-decoration:none;">Privacy Policy</a></p>
     <p>Designed with intention.</p>
   </div>
 </footer>
@@ -788,6 +787,7 @@ let _isPopState    = false;
 function pushRoute(path) {
   if (!_isPopState && window.location.pathname !== path) {
     history.pushState({path}, '', path);
+    updateCanonical(path);
   }
 }
 
@@ -820,6 +820,7 @@ function routeFromPath(path) {
 }
 
 window.addEventListener('popstate', e => {
+  updateCanonical(window.location.pathname);
   routeFromPath(window.location.pathname);
 });
 
@@ -844,7 +845,7 @@ function updateNavActive() {
 function renderFilters() {
   document.getElementById('categoryFilters').innerHTML = TOPICS.map(t => {
     const isActive = activeTopic.label === t.label && currentPage === null && currentSection === 'news';
-    return `<button class="filter-btn${isActive ? ' active' : ''}" onclick="switchTopic('${t.label}')">${t.label}</button>`;
+    return `<button type="button" class="filter-btn${isActive ? ' active' : ''}" data-topic="${escAttr(t.label)}">${esc(t.label)}</button>`;
   }).join('');
   updateNavActive();
 }
@@ -1050,8 +1051,8 @@ function renderArticles(articles, skipStore) {
   }
 
   const a = articles[0];
-  hero.innerHTML = `<a class="hero" href="${esc(a.url)}" target="_blank" rel="noopener" style="animation:fadeUp 0.6s ease both;display:block;text-decoration:none;">
-    <img src="${esc(a.imageUrl)}" alt="" onerror="this.src='${IMGS[0]}'" loading="lazy"/>
+  hero.innerHTML = `<a class="hero" href="${safeUrl(a.url)}" target="_blank" rel="noopener" style="animation:fadeUp 0.6s ease both;display:block;text-decoration:none;">
+    <img src="${esc(a.imageUrl)}" alt="${esc(a.title)}" loading="lazy"/>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <span class="category-badge">${esc(a.category)}</span>
@@ -1061,9 +1062,9 @@ function renderArticles(articles, skipStore) {
     </div></a>`;
 
   grid.innerHTML = articles.slice(1).map((art, i) => `
-    <a class="article-card" href="${esc(art.url)}" target="_blank" rel="noopener" style="animation-delay:${i * 0.06}s">
+    <a class="article-card" href="${safeUrl(art.url)}" target="_blank" rel="noopener" style="animation-delay:${i * 0.06}s">
       <div class="card-image">
-        <img src="${esc(art.imageUrl)}" alt="" onerror="this.src='${IMGS[i % IMGS.length]}'" loading="lazy"/>
+        <img src="${esc(art.imageUrl)}" alt="${esc(art.title)}" loading="lazy"/>
         <span class="card-cat">${esc(art.category)}</span>
       </div>
       <div class="card-body">
@@ -1088,7 +1089,7 @@ function showError() {
   document.getElementById('statusBar').style.display    = 'none';
   document.getElementById('grid').innerHTML = `<div class="error-msg" style="grid-column:1/-1;text-align:center;padding:60px 20px;">
     <p style="color:rgba(255,255,255,0.5);font-size:1rem;margin-bottom:16px;">Could not load articles right now.</p>
-    <button onclick="fetchNews()" style="padding:10px 28px;border-radius:999px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.06);color:white;font-family:'DM Sans',sans-serif;cursor:pointer;font-size:0.9rem;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">Try again</button>
+    <button type="button" id="retryNewsBtn" style="padding:10px 28px;border-radius:999px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.06);color:white;font-family:'DM Sans',sans-serif;cursor:pointer;font-size:0.9rem;transition:all 0.2s;">Try again</button>
   </div>`;
 }
 
@@ -1166,7 +1167,7 @@ async function renderBlog(openSlug) {
     }
 
     grid.innerHTML = data.posts.map(p => `
-      <div class="blog-card" onclick="openBlogPost('${esc(p.slug)}')">
+      <button type="button" class="blog-card js-blog-card" data-slug="${escAttr(p.slug)}" aria-label="Open ${escAttr(p.title)}">
         <div class="blog-card-img-wrap">
           ${p.image
             ? `<img class="blog-card-img" src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy"/>`
@@ -1185,7 +1186,7 @@ async function renderBlog(openSlug) {
             <span style="color:#a78bfa;font-weight:600;">Read →</span>
           </div>
         </div>
-      </div>`).join('');
+      </button>`).join('');
   } catch(e) {
     loading.style.display = 'none';
     errEl.style.display   = 'block';
@@ -1212,6 +1213,7 @@ async function loadBlogPost(slug) {
 
     // Full SEO meta update for the post
     document.title = post.title + ' — The Psychedelic Digest';
+    updateCanonical('/blog/' + encodeURIComponent(slug));
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', post.excerpt);
 
@@ -1223,7 +1225,7 @@ async function loadBlogPost(slug) {
       </div>
       <h1 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;color:white;line-height:1.15;margin-bottom:12px;">${esc(post.title)}</h1>
       <p style="color:rgba(255,255,255,0.45);font-size:0.85rem;margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.08);">By ${esc(post.author)}</p>
-      <div>${post.html}</div>`;
+      <div>${sanitizeHtml(post.html)}</div>`;
   } catch(e) {
     content.innerHTML = '<p style="color:rgba(255,255,255,0.4);padding:40px 0;">Could not load this post.</p>';
   }
@@ -1235,11 +1237,53 @@ function closeBlogPost() {
   postView.style.display = 'none';
   listView.style.display = 'block';
   document.title = 'The Psychedelic Digest — Psychedelic Therapy News';
+  updateCanonical('/blog');
   if (!_isPopState) pushRoute('/blog');
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 // ─── UTILITIES ───────────────────────────────────────────────
+function escAttr(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function safeUrl(url) {
+  const fallback = 'https://thepsychedelicdigest.com';
+  if (!url) return fallback;
+  try {
+    const parsed = new URL(url, window.location.origin);
+    return /^https?:$/i.test(parsed.protocol) ? parsed.href : fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+function sanitizeHtml(html) {
+  const template = document.createElement('template');
+  template.innerHTML = String(html || '');
+  template.content.querySelectorAll('script,style,iframe,object,embed,form,link,meta').forEach(el => el.remove());
+  template.content.querySelectorAll('*').forEach(el => {
+    [...el.attributes].forEach(attr => {
+      const name = attr.name.toLowerCase();
+      const value = attr.value || '';
+      if (name.startsWith('on')) {
+        el.removeAttribute(attr.name);
+        return;
+      }
+      if ((name === 'href' || name === 'src') && /^javascript:/i.test(value.trim())) {
+        el.removeAttribute(attr.name);
+        return;
+      }
+      if (name === 'target') {
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  });
+  return template.innerHTML;
+}
+function updateCanonical(path) {
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.setAttribute('href', 'https://thepsychedelicdigest.com' + path);
+}
 function stripHtml(h) {
   return h.replace(/<[^>]*>/g, '').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#39;/g,"'").trim();
 }
@@ -1313,7 +1357,7 @@ function renderJobs(filter) {
   list.innerHTML = jobs.map(j => {
     const col   = JOB_CATEGORY_COLORS[j.category] || '#ffffff';
     const badge = j.badge ? `<span style="background:linear-gradient(135deg,rgba(45,212,191,0.3),rgba(139,92,246,0.2));border:1px solid rgba(45,212,191,0.3);color:#2dd4bf;font-size:0.65rem;padding:2px 8px;border-radius:999px;font-weight:700;">${j.badge}</span>` : '';
-    return `<a href="${j.url}" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:rgba(255,255,255,0.04);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.18)';this.style.background='rgba(255,255,255,0.07)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
+    return `<a href="${safeUrl(j.url)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:rgba(255,255,255,0.04);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;transition:all 0.25s;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
         <h3 style="font-size:1rem;font-weight:600;color:white;line-height:1.3;">${j.title}</h3>
         ${badge}
@@ -1353,7 +1397,7 @@ function renderRetreats(region, substance) {
   }
   list.innerHTML = filtered.map(r => {
     const badge = r.verified ? '<span style="background:rgba(45,212,191,0.2);border:1px solid rgba(45,212,191,0.4);color:#2dd4bf;font-size:0.65rem;padding:2px 8px;border-radius:999px;font-weight:700;">✓ Verified</span>' : '';
-    return `<a href="${r.url}" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:rgba(255,255,255,0.04);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;transition:all 0.25s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.18)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'">
+    return `<a href="${safeUrl(r.url)}" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:rgba(255,255,255,0.04);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;transition:all 0.25s;">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
         <h3 style="font-size:1rem;font-weight:600;color:white;">${r.name}</h3>
         ${badge}
@@ -1613,6 +1657,81 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// ─── DOM EVENT LISTENERS ─────────────────────────────────────
+document.addEventListener('click', (e) => {
+  const openModal = e.target.closest('[data-open-modal]');
+  if (openModal) {
+    e.preventDefault();
+    const modal = document.getElementById(openModal.getAttribute('data-open-modal'));
+    if (modal) modal.classList.add('open');
+    return;
+  }
+
+  const closeModal = e.target.closest('[data-close-modal]');
+  if (closeModal) {
+    const modal = document.getElementById(closeModal.getAttribute('data-close-modal'));
+    if (modal) modal.classList.remove('open');
+    return;
+  }
+
+  const topicBtn = e.target.closest('[data-topic]');
+  if (topicBtn) {
+    switchTopic(topicBtn.getAttribute('data-topic'));
+    return;
+  }
+
+  const sectionBtn = e.target.closest('[data-section]');
+  if (sectionBtn) {
+    showSection(sectionBtn.getAttribute('data-section'));
+    return;
+  }
+
+  const pageBtn = e.target.closest('[data-page]');
+  if (pageBtn) {
+    showPage(pageBtn.getAttribute('data-page'));
+    return;
+  }
+
+  const homeBtn = e.target.closest('[data-action="go-home"]');
+  if (homeBtn) {
+    switchTopic('All');
+    return;
+  }
+
+  const retryBtn = e.target.closest('#retryNewsBtn');
+  if (retryBtn) {
+    fetchNews();
+    return;
+  }
+
+  const blogCard = e.target.closest('.js-blog-card');
+  if (blogCard) {
+    openBlogPost(blogCard.getAttribute('data-slug'));
+  }
+});
+
+document.getElementById('searchInput')?.addEventListener('input', (e) => filterBySearch(e.target.value));
+document.getElementById('newsletterForm')?.addEventListener('submit', handleSubscribe);
+document.getElementById('closeBlogPostBtn')?.addEventListener('click', closeBlogPost);
+document.addEventListener('error', (e) => {
+  const target = e.target;
+  if (!(target instanceof HTMLImageElement)) return;
+  if (target.dataset.fallbackApplied === 'true') return;
+  target.dataset.fallbackApplied = 'true';
+  target.src = IMGS[0];
+}, true);
+
+
+const amazonLink = document.querySelector('.js-amazon-link');
+if (amazonLink) {
+  amazonLink.addEventListener('mouseenter', () => { amazonLink.style.color = '#a78bfa'; });
+  amazonLink.addEventListener('mouseleave', () => { amazonLink.style.color = '#2dd4bf'; });
+}
+const aboutButton = document.querySelector('.js-about-button');
+if (aboutButton) {
+  aboutButton.addEventListener('mouseenter', () => { aboutButton.style.color = 'white'; });
+  aboutButton.addEventListener('mouseleave', () => { aboutButton.style.color = 'rgba(255,255,255,0.5)'; });
+}
 // ─── INFLUENCER DIRECTORY ────────────────────────────────────
 var INFLUENCERS = [
   {id:1,name:'Maya R.',category:'Educator',featured:true,platforms:['YouTube','Instagram','Newsletter'],audienceBand:'mid',audienceLabel:'80K-120K',location:'US',niches:['Psilocybin','Research','Policy'],collabs:['Sponsored content','Brand ambassador','Podcast guest'],bio:'Science communicator translating psychedelic research into plain language. Known for viral explainers on neuroplasticity and psilocybin mechanisms.',avatar:'M',color:'#0d9488',verified:true},
@@ -1638,7 +1757,7 @@ function renderInfluencerCard(inf, featured) {
   var niches = inf.niches.map(function(n){ return '<span style="font-size:0.66rem;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.08);display:inline-block;margin:2px;">'+n+'</span>'; }).join('');
   var collabs = inf.collabs.join(' · ');
   var nm = inf.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-  return '<div style="background:rgba(255,255,255,0.04);backdrop-filter:blur(12px);border-radius:16px;overflow:hidden;'+border+'transition:all 0.25s;cursor:default;" onmouseover="this.style.borderColor=\''+hoverBorder+'\';this.style.background=\'rgba(255,255,255,0.07)\'" onmouseout="this.style.borderColor=\''+defaultBorder+'\';this.style.background=\'rgba(255,255,255,0.04)\'">'
+  return '<div style="background:rgba(255,255,255,0.04);backdrop-filter:blur(12px);border-radius:16px;overflow:hidden;'+border+'transition:all 0.25s;" onmouseover="this.style.borderColor=\''+hoverBorder+'\';this.style.background=\'rgba(255,255,255,0.07)\'" onmouseout="this.style.borderColor=\''+defaultBorder+'\';this.style.background=\'rgba(255,255,255,0.04)\'">'
     +'<div style="display:flex;align-items:center;gap:14px;padding:20px 20px 12px;">'
     +'<div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,'+inf.color+',rgba(13,17,23,0.7));display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:700;color:white;flex-shrink:0;">'+inf.avatar+'</div>'
     +'<div style="flex:1;min-width:0;">'
@@ -1655,8 +1774,8 @@ function renderInfluencerCard(inf, featured) {
     +'<div style="padding:0 20px 10px;">'+niches+'</div>'
     +'<div style="padding:0 20px 10px;font-size:0.68rem;color:rgba(255,255,255,0.28);line-height:1.7;">'+collabs+'</div>'
     +'<div style="margin:0 20px 18px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;gap:8px;">'
-    +'<button onclick="ifUnlock(\''+nm+'\')" style="flex:1;padding:9px 0;border-radius:10px;background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(244,114,182,0.15));border:1px solid rgba(139,92,246,0.3);color:#a78bfa;font-size:0.76rem;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif;transition:all 0.2s;" onmouseover="this.style.background=\'rgba(139,92,246,0.3)\'" onmouseout="this.style.background=\'linear-gradient(135deg,rgba(139,92,246,0.2),rgba(244,114,182,0.15))\'">🔓 Unlock Contact</button>'
-    +'<button onclick="ifBrief(\''+nm+'\')" style="padding:9px 14px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:0.76rem;cursor:pointer;font-family:\'DM Sans\',sans-serif;transition:all 0.2s;" onmouseover="this.style.background=\'rgba(255,255,255,0.1)\'" onmouseout="this.style.background=\'rgba(255,255,255,0.05)\'">📋 Brief</button>'
+    +'<button type="button" onclick="ifUnlock(\''+nm+'\')" style="flex:1;padding:9px 0;border-radius:10px;background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(244,114,182,0.15));border:1px solid rgba(139,92,246,0.3);color:#a78bfa;font-size:0.76rem;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif;transition:all 0.2s;" onmouseover="this.style.background=\'rgba(139,92,246,0.3)\'" onmouseout="this.style.background=\'linear-gradient(135deg,rgba(139,92,246,0.2),rgba(244,114,182,0.15))\'">🔓 Unlock Contact</button>'
+    +'<button type="button" onclick="ifBrief(\''+nm+'\')" style="padding:9px 14px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);font-size:0.76rem;cursor:pointer;font-family:\'DM Sans\',sans-serif;transition:all 0.2s;" onmouseover="this.style.background=\'rgba(255,255,255,0.1)\'" onmouseout="this.style.background=\'rgba(255,255,255,0.05)\'">📋 Brief</button>'
     +'</div></div>';
 }
 
