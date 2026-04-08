@@ -566,7 +566,7 @@
   <div id="section-jobs" style="display:none;animation:fadeUp 0.5s ease both;">
     <div style="text-align:center;padding:48px 0 32px;">
       <h2 style="font-size:2.2rem;font-weight:400;background:linear-gradient(90deg,#0d9488,#2dd4bf,#a78bfa);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:iridescent-title 5s linear infinite;margin-bottom:12px;">Work in the Field</h2>
-      <p style="color:rgba(255,255,255,0.55);font-size:1rem;max-width:540px;margin:0 auto 32px;">The latest job opportunities in psychedelic therapy — facilitators, researchers, clinicians, policy roles and startup positions.</p>
+      <p style="color:rgba(255,255,255,0.55);font-size:1rem;max-width:540px;margin:0 auto 32px;">The latest verified job opportunities in psychedelic therapy — from Australia to the US and UK. Updated April 2026.</p>
       <a href="/cdn-cgi/l/email-protection#7913161b0a390d111c090a001a111c1d1c15101a1d101e1c0a0d571a1614460a0c1b131c1a0d4433161b5935100a0d10171e592a0c1b14100a0a101617" style="display:inline-block;padding:12px 28px;border-radius:999px;background:linear-gradient(135deg,rgba(13,148,136,0.3),rgba(45,212,191,0.15));border:1px solid rgba(45,212,191,0.4);color:#2dd4bf;text-decoration:none;font-size:0.85rem;font-weight:600;margin-bottom:48px;transition:all 0.2s;" onmouseover="this.style.background='rgba(45,212,191,0.2)'" onmouseout="this.style.background='linear-gradient(135deg,rgba(13,148,136,0.3),rgba(45,212,191,0.15))'">Submit a Job Listing →</a>
     </div>
     <div id="jobs-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:48px;"></div>
@@ -1359,14 +1359,16 @@ function handleSubscribe(e) {
 
 // ─── JOBS ────────────────────────────────────────────────────
 const JOBS = [
-  {title:'Clinical Research Coordinator',    company:'MAPS',                    location:'San Jose, CA — Remote', type:'Full-time', category:'Research',   url:'https://maps.org/about/jobs/',                           badge:''},
-  {title:'Psychedelic Research Scientist',   company:'Compass Pathways',        location:'London, UK',            type:'Full-time', category:'Research',   url:'https://www.compasspathways.com/about/careers/',         badge:''},
-  {title:'Integration Therapist (Remote)',   company:'Enthea',                  location:'Remote',                type:'Contract',  category:'Clinical',   url:'https://www.enthea.com/careers',                        badge:'New'},
-  {title:'Policy Analyst — Psychedelic Reform', company:'Drug Policy Alliance', location:'Washington, DC',        type:'Full-time', category:'Policy',     url:'https://drugpolicy.org/about-us/jobs/',                  badge:''},
-  {title:'Ketamine-Assisted Therapy Nurse',  company:'Mindbloom',               location:'New York, NY',          type:'Full-time', category:'Clinical',   url:'https://www.mindbloom.com/careers',                     badge:''},
-  {title:'Retreat Program Coordinator',      company:'Rythmia Life Advancement',location:'Costa Rica',            type:'Full-time', category:'Operations', url:'https://www.rythmia.com/employment.html',               badge:''},
-  {title:'Psychedelic Therapy Facilitator',  company:'Numinus Wellness',        location:'Vancouver, Canada',     type:'Full-time', category:'Clinical',   url:'https://numinus.com/careers/',                          badge:'Featured'},
-  {title:'Content & Community Manager',      company:'Psychedelic Alpha',       location:'Remote',                type:'Part-time', category:'Media',      url:'https://psychedelicalpha.com/about',                    badge:'New'},
+  {title:'Psychedelic-Assisted Therapist',   company:'Monarch Mental Health Group', location:'Australia — Multiple sites', type:'Full-time', category:'Clinical',   url:'https://www.mmhg.com.au/careers/psychedelic-assisted-therapist', badge:'New'},
+  {title:'Program Director — Psychedelic Science', company:'UC Berkeley BCSP',   location:'Berkeley, CA',          type:'Full-time', category:'Research',   url:'https://jobs.psychedelicalpha.com/j/program-director-uc-berkeley-center-for-the-science-of-psychedelics-01b205b98c50', badge:'Featured'},
+  {title:'Psychedelic Therapist',            company:'Innerwell',               location:'Remote — US',           type:'Contract',  category:'Clinical',   url:'https://jobs.psychedelicalpha.com/j/psychedelic-therapist-7417cb444d10', badge:'New'},
+  {title:'Research Therapist',               company:'Clerkenwell Health',       location:'London, UK',            type:'Full-time', category:'Research',   url:'https://jobs.psychedelicalpha.com/j/research-therapist-e142b76469c1', badge:''},
+  {title:'Clinical Operations Manager',      company:'Compass Pathways',        location:'East Coast, US / UK',   type:'Full-time', category:'Operations', url:'https://www.compasspathways.com/about/careers/',          badge:''},
+  {title:'Ketamine Therapist',               company:'Journey Clinical',        location:'Remote — US',           type:'Contract',  category:'Clinical',   url:'https://jobs.psychedelicalpha.com/company/journey-clinical-e025b3debbb5', badge:''},
+  {title:'Associate / Principal (Mental Health)', company:'Lionheart Ventures', location:'San Francisco, CA',     type:'Full-time', category:'Research',   url:'https://jobs.psychedelicalpha.com/company/lionheart-ventures-733678b1e035', badge:''},
+  {title:'Research Nurse / Clinical Trial Coordinator', company:'Monarch Mental Health Group', location:'Australia', type:'Full-time', category:'Research', url:'https://www.mmhg.com.au/careers/research-nurse',        badge:'New'},
+  {title:'Clinical Trial Manager — Psychedelic Research', company:'Mount Sinai Health Systems', location:'New York, NY', type:'Full-time', category:'Research', url:'https://www.indeed.com/q-psychedelic-jobs.html',      badge:''},
+  {title:'Psychedelic Researcher',           company:'Psylo / UNSW Sydney',     location:'Sydney, Australia',     type:'Full-time', category:'Research',   url:'https://jobs.psychedelicalpha.com/company/psylo-1868874889fb', badge:'New'},
 ];
 
 const JOB_CATEGORY_COLORS = {
