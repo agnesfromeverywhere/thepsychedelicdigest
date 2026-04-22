@@ -6,6 +6,7 @@ author: Agnes Horry
 excerpt: Microdosing has moved from Silicon Valley productivity hack to serious academic research. Here is what the evidence actually shows, and what it does not.
 category: Research
 tags: microdosing, psilocybin, research, science, mental health, depression
+image: "/images/microdosing-science.jpg"
 ---
 
 Microdosing has moved from Silicon Valley productivity hack to a topic of serious academic inquiry.
