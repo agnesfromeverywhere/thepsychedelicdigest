@@ -5,7 +5,7 @@ author: "Agnes Horry"
 category: "Policy"
 readTime: "5 min read"
 excerpt: "Trump signed an executive order to fast-track psychedelic therapy review. Here is what it actually changes for patients, investors, and Australia in 2026."
-image: "/images/trump-psychedelic-2026.jpg"
+image: "image: "/images/trump-psychedelic-2026.jpg?v=2""
 tags:
   - psychedelic therapy
   - policy
