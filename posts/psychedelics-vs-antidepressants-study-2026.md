@@ -1,4 +1,3 @@
-[psychedelics-vs-antidepressants-study-2026 (4).md](https://github.com/user-attachments/files/26228513/psychedelics-vs-antidepressants-study-2026.4.md)
 ---
 title: The New Study Says Psychedelics Are No Better Than Antidepressants. Here Is What It Actually Means.
 date: 2026-03-22
@@ -6,6 +5,7 @@ author: Agnes Horry
 excerpt: A study published this week in JAMA Psychiatry says psilocybin is no more effective than antidepressants. Before the internet implodes, here is what it actually found.
 category: Research
 tags: psilocybin, antidepressants, clinical trials, depression, research, JAMA, placebo
+image: "/images/jama-antidepressants.jpg"
 ---
 
 A study dropped this week in JAMA Psychiatry and the headline has been making the rounds: psychedelics are no better than antidepressants for depression.
