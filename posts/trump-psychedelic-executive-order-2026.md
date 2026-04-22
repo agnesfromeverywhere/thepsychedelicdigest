@@ -4,9 +4,14 @@ date: "2026-04-20"
 author: "Agnes Horry"
 category: "Policy"
 readTime: "5 min read"
-tags: ["psychedelic therapy", "policy", "ibogaine", "psilocybin", "USA"]
+excerpt: "Trump signed an executive order to fast-track psychedelic therapy review. Here is what it actually changes for patients, investors, and Australia in 2026."
 image: "/images/trump-psychedelic-2026.jpg"
-description: "Trump signed an executive order to fast-track psychedelic therapy review. Here is what it actually changes for patients, investors, and Australia in 2026."
+tags:
+  - psychedelic therapy
+  - policy
+  - ibogaine
+  - psilocybin
+  - USA
 ---
 
 Trump signed an executive order in April 2026 to accelerate federal review of psychedelic-assisted therapies, including psilocybin, MDMA, and ibogaine. It does not legalise anything overnight. But it changes the regulatory tone in ways that matter for every stakeholder in this space: patients, clinicians, investors, and policymakers worldwide.
