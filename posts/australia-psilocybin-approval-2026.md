@@ -1,4 +1,3 @@
-[australia-psilocybin-approval-2026.md](https://github.com/user-attachments/files/26162993/australia-psilocybin-approval-2026.md)
 ---
 title: Australia's Psilocybin Approval: What It Means for Patients in 2026
 date: 2026-03-15
@@ -6,6 +5,7 @@ author: Agnes Horry
 excerpt: In July 2023, Australia became the first country to officially approve psilocybin as a medicine. Here is what that means in practice — who can access it, what it costs, and what the research says.
 category: Policy
 tags: psilocybin, australia, tga, policy, access
+image: "/images/australia-psilocybin.jpg"
 ---
 
 In July 2023, Australia's Therapeutic Goods Administration (TGA) made history by becoming the first national regulator to approve psychedelic substances for therapeutic use. Psilocybin received approval for treatment-resistant depression. MDMA received approval for PTSD.
