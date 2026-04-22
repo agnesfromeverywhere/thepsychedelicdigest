@@ -1,14 +1,20 @@
 [microdosing-science-2026.md](https://github.com/user-attachments/files/26162403/microdosing-science-2026.md)
 ---
-title: Microdosing in 2026: What the Science Actually Says
-date: 2026-03-10
-author: Agnes Horry
-excerpt: Microdosing has moved from Silicon Valley productivity hack to serious academic research. Here is what the evidence actually shows, and what it does not.
-category: Research
-tags: microdosing, psilocybin, research, science, mental health, depression
+title: "Microdosing in 2026: What the Science Actually Says"
+date: "2026-03-10"
+author: "Agnes Horry"
+category: "Research"
+readTime: "2 min read"
+excerpt: "Microdosing has moved from Silicon Valley productivity hack to serious academic research. Here is what the evidence actually shows, and what it does not."
 image: "/images/microdosing-science.jpg"
+tags:
+  - microdosing
+  - psilocybin
+  - research
+  - science
+  - mental health
+  - depression
 ---
-
 Microdosing has moved from Silicon Valley productivity hack to a topic of serious academic inquiry.
 
 But the evidence is messier than the headlines suggest.
