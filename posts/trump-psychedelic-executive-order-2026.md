@@ -13,7 +13,6 @@ tags:
   - psilocybin
   - USA
 ---
-
 Trump signed an executive order in April 2026 to accelerate federal review of psychedelic-assisted therapies, including psilocybin, MDMA, and ibogaine. It does not legalise anything overnight. But it changes the regulatory tone in ways that matter for every stakeholder in this space: patients, clinicians, investors, and policymakers worldwide.
 
 Here is what is actually shifting, and what to watch next.
