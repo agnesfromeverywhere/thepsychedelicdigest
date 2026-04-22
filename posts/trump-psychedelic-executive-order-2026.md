@@ -5,7 +5,7 @@ author: "Agnes Horry"
 category: "Policy"
 readTime: "5 min read"
 tags: ["psychedelic therapy", "policy", "ibogaine", "psilocybin", "USA"]
-image: "/posts/images/trump-psychedelic-2026.jpg"
+image: "/images/trump-psychedelic-2026.jpg"
 description: "Trump signed an executive order to fast-track psychedelic therapy review. Here is what it actually changes for patients, investors, and Australia in 2026."
 ---
 
