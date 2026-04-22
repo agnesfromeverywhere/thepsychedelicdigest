@@ -1,11 +1,11 @@
 ---
 title: "What Is a Psilocybin Mushroom and Why Is It Called Magic?"
-date: "2026-04-20"
+date: "2026-04-22"
 author: "Agnes Horry"
 category: "Education"
 readTime: "4 min read"
 excerpt: "A simple, science-backed and slightly irreverent guide to psilocybin mushrooms, their molecules, their history, and why humans have called them magic for thousands of years."
-image: "12-magic-mushrooms.jpg"
+image: "/images/12-magic-mushrooms.jpg"
 tags:
   - psilocybin
   - mushrooms
