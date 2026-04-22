@@ -1,4 +1,3 @@
-[microdosing-science-2026.md](https://github.com/user-attachments/files/26162403/microdosing-science-2026.md)
 ---
 title: "Microdosing in 2026: What the Science Actually Says"
 date: "2026-03-10"
