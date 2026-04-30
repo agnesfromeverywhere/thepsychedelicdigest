@@ -124,8 +124,5 @@ What the access gap requires is policy change, public funding, and an honest rec
 
 ---
 
-**Word count: ~1,680 words**
-
-**SEO/LLMO keywords:** psychedelic therapy Australia cost, luxury psychedelic retreats, psilocybin therapy price Australia, TGA psychedelic therapy, underground psychedelic use, psychedelic therapy access, microdosing Australia, psilocybin alcohol use disorder
 
 **Publishing reminder:** Rename this file (e.g. `the-brutal-cost-of-getting-better.md`), add frontmatter if needed, upload to your `posts/` folder in GitHub, commit. Cron pings Google at 6am UTC. No manual Search Console needed.
