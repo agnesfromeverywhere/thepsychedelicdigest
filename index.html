@@ -1352,7 +1352,7 @@ function parseXML(xml, offset) {
   try {
     const parser = new DOMParser();
     const doc    = parser.parseFromString(xml, 'text/xml');
-    const items  = [...doc.querySelectorAll('item')].slice(0, 18);
+    const items  = [.doc.querySelectorAll('item')].slice(0, 18);
     if (!items.length) return [];
     return items.map((item, i) => {
       const g = tag => { try { return item.getElementsByTagName(tag)[0]?.textContent?.trim() || ''; } catch(e) { return ''; } };
