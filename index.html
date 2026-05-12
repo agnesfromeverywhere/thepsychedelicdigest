@@ -440,7 +440,7 @@
   /* Blog post body */
   #blog-post-content h1 { font-family:Playfair Display,serif; font-size:2.2rem; font-weight:700; color:var(--text-primary); line-height:1.15; margin-bottom:18px; }
   #blog-post-content h2 { font-family:Playfair Display,serif; font-size:1.4rem; font-weight:600; color:var(--text-primary); margin:32px 0 12px; }
-  #blog-post-content h3 { font-family:'DM Sans',sans-serif; font-size:1.05rem; font-weight:600; color:var(--text-primary); margin:24px 0 8px; }
+  #blog-post-content h3 { font-family:DM Sans,sans-serif; font-size:1.05rem; font-weight:600; color:var(--text-primary); margin:24px 0 8px; }
   #blog-post-content p  { color:var(--text-secondary); line-height:1.85; margin-bottom:18px; font-size:0.97rem; }
   #blog-post-content strong { color:var(--text-primary); font-weight:700; }
   #blog-post-content a     { color:var(--accent); text-decoration:none; border-bottom:0.5px solid var(--accent-border); transition:border-color 0.2s; }
@@ -527,7 +527,7 @@
   .filters-inner { max-width: 1280px; margin: 0 auto; }
 
 
-  .legal-card { text-align:left; border:0.5px solid rgba(255,255,255,0.10); border-radius:12px; padding:10px 11px; background:rgba(255,255,255,0.045); cursor:pointer; transition:transform 0.18s var(--ease-out-expo), background 0.18s, border-color 0.18s; font-family:'DM Sans',sans-serif; color:var(--text-primary); }
+  .legal-card { text-align:left; border:0.5px solid rgba(255,255,255,0.10); border-radius:12px; padding:10px 11px; background:rgba(255,255,255,0.045); cursor:pointer; transition:transform 0.18s var(--ease-out-expo), background 0.18s, border-color 0.18s; font-family:DM Sans,sans-serif; color:var(--text-primary); }
   .legal-card:hover { transform:translateY(-2px); background:rgba(255,255,255,0.075); border-color:rgba(255,255,255,0.20); }
   .legal-card:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
   .legal-dot { width:9px; height:9px; border-radius:50%; display:inline-block; box-shadow:0 0 12px currentColor; }
@@ -539,6 +539,36 @@
   .legal-card-status { font-size:0.62rem; color:var(--text-muted); margin-top:2px; }
   .legal-popup-list { list-style:none; margin:10px 0 0; padding:0; display:grid; gap:8px; }
   .legal-popup-list li { padding:9px 10px; border-radius:10px; background:rgba(255,255,255,0.045); border:0.5px solid rgba(255,255,255,0.08); color:var(--text-secondary); font-size:0.82rem; line-height:1.45; }
+
+  /* Calmer homepage utility system */
+  .utility-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; padding:18px 0 2px; }
+  .utility-card { display:flex; align-items:center; gap:12px; min-height:86px; padding:16px; border-radius:16px; text-decoration:none; color:inherit; background:rgba(255,255,255,0.045); border:0.5px solid rgba(255,255,255,0.10); border-top-color:rgba(255,255,255,0.16); transition:transform 0.22s var(--ease-out-expo), background 0.22s, border-color 0.22s; cursor:pointer; }
+  .utility-card:hover { transform:translateY(-3px); background:rgba(255,255,255,0.075); border-color:rgba(45,212,191,0.26); }
+  .utility-icon { width:42px; height:42px; border-radius:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.25rem; background:linear-gradient(135deg,rgba(45,212,191,0.18),rgba(167,139,250,0.14)); }
+  .utility-title { font-family:'Syne',sans-serif; font-size:0.74rem; font-weight:800; color:var(--text-primary); line-height:1.2; }
+  .utility-text { font-size:0.66rem; color:var(--text-muted); line-height:1.35; margin-top:4px; }
+  .breath-card { border-radius:16px; border:0.5px solid rgba(255,255,255,0.09); border-top:0.5px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.04); padding:16px; }
+  .breath-label { font-family:'Syne',sans-serif; font-size:0.58rem; font-weight:800; letter-spacing:0.13em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .compound-pill { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:999px; border:0.5px solid rgba(255,255,255,0.10); background:rgba(255,255,255,0.04); font-size:0.62rem; color:var(--text-secondary); margin:3px 3px 0 0; }
+  .myth-row { display:grid; gap:8px; margin-top:12px; }
+  .myth-item { padding:10px; border-radius:12px; background:rgba(255,255,255,0.045); border:0.5px solid rgba(255,255,255,0.07); }
+  .myth-q { font-size:0.74rem; color:var(--text-primary); font-weight:700; line-height:1.35; }
+  .myth-a { font-size:0.65rem; color:var(--text-muted); line-height:1.45; margin-top:4px; }
+  .motion-timeline { margin:18px 0 0; border-radius:18px; overflow:hidden; border:0.5px solid rgba(255,255,255,0.09); border-top:0.5px solid rgba(255,255,255,0.16); background:linear-gradient(135deg,rgba(255,255,255,0.045),rgba(13,148,136,0.045)); position:relative; }
+  .motion-timeline::before { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg,transparent,rgba(45,212,191,0.09),transparent); transform:translateX(-100%); animation:timelineSweep 7s linear infinite; }
+  @keyframes timelineSweep { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+  .timeline-track { display:flex; gap:12px; padding:18px; overflow:hidden; }
+  .timeline-track-inner { display:flex; gap:12px; min-width:max-content; animation:timelineMove 34s linear infinite; }
+  .motion-timeline:hover .timeline-track-inner { animation-play-state:paused; }
+  @keyframes timelineMove { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .timeline-node { width:190px; flex:0 0 190px; padding:14px; border-radius:14px; background:rgba(18,16,24,0.72); border:0.5px solid rgba(255,255,255,0.08); }
+  .timeline-year { font-family:'Syne',sans-serif; font-size:0.82rem; font-weight:800; color:#b8f609; margin-bottom:6px; }
+  .timeline-title { font-size:0.78rem; color:var(--text-primary); font-weight:700; line-height:1.25; margin-bottom:5px; }
+  .timeline-note { font-size:0.65rem; color:var(--text-muted); line-height:1.45; }
+  .js-hover-card:hover { background:rgba(255,255,255,0.075) !important; }
+  @media(max-width:900px){ .utility-row{grid-template-columns:repeat(2,minmax(0,1fr));} }
+  @media(max-width:600px){ .utility-row{grid-template-columns:1fr;} .timeline-node{width:170px;flex-basis:170px;} }
+
 
 </style>
 </head>
@@ -761,6 +791,25 @@
 <main style="max-width:1280px;margin:0 auto;padding:0 24px 40px;">
   <!-- NEWS SECTION — two-column editorial layout -->
   <div id="section-news-layout" style="display:block;">
+    <!-- QUICK UTILITIES ROW — calmer entry points beyond news -->
+    <div class="utility-row" aria-label="Quick psychedelic therapy tools">
+      <button type="button" class="utility-card" data-page="Legal Map">
+        <span class="utility-icon">🗺️</span>
+        <span><span class="utility-title">Legal Map</span><span class="utility-text">Where therapy, research and retreats are possible.</span></span>
+      </button>
+      <button type="button" class="utility-card" data-page="CostCalc">
+        <span class="utility-icon">💊</span>
+        <span><span class="utility-title">Treatment Costs</span><span class="utility-text">Compare ketamine, MDMA and psilocybin pathways.</span></span>
+      </button>
+      <button type="button" class="utility-card" data-page="Glossary">
+        <span class="utility-icon">📖</span>
+        <span><span class="utility-title">Beginner Glossary</span><span class="utility-text">Simple definitions for curious readers.</span></span>
+      </button>
+      <button type="button" class="utility-card" data-section="learn" data-course="history">
+        <span class="utility-icon">🎓</span>
+        <span><span class="utility-title">Start Learning</span><span class="utility-text">Free history course and LSD explainer.</span></span>
+      </button>
+    </div>
     <!-- Hero + numbered stories LEFT | Sidebar RIGHT -->
     <div id="news-two-col" style="display:grid;grid-template-columns:1fr 300px;gap:20px;padding:20px 0 0;">
       <!-- LEFT: hero card + numbered story list -->
@@ -775,7 +824,7 @@
               <div style="font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#2dd4bf;">🌍 Legal Status Mini-Map</div>
               <div style="font-size:0.62rem;color:var(--text-muted);margin-top:3px;">Click a country card for substances and clinics.</div>
             </div>
-            <button type="button" data-page="Legal Map" style="font-size:0.65rem;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">Full map →</button>
+            <button type="button" data-page="Legal Map" style="font-size:0.65rem;color:var(--accent);background:none;border:none;cursor:pointer;font-family:DM Sans,sans-serif;">Full map →</button>
           </div>
           <div id="mini-legal-map" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px;padding:14px;"></div>
           <div style="display:flex;align-items:center;gap:10px;padding:8px 16px;border-top:0.5px solid rgba(255,255,255,0.05);flex-wrap:wrap;">
@@ -794,25 +843,25 @@
               <span style="font-family:'Syne',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(184,246,9,0.8);">💹 PsyStock</span>
               <span style="font-size:0.58rem;color:var(--text-muted);font-family:monospace;">Psychedelic sector · delayed</span>
             </div>
-            <button type="button" data-page="PsyFinance" style="font-size:0.65rem;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">Full report →</button>
+            <button type="button" data-page="PsyFinance" style="font-size:0.65rem;color:var(--accent);background:none;border:none;cursor:pointer;font-family:DM Sans,sans-serif;">Full report →</button>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
-            <a href="https://finance.yahoo.com/quote/CMPS/" target="_blank" rel="noopener" style="text-decoration:none;padding:12px 16px;border-right:0.5px solid rgba(255,255,255,0.05);border-bottom:0.5px solid rgba(255,255,255,0.05);transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background=''">
+            <a href="https://finance.yahoo.com/quote/CMPS/" target="_blank" rel="noopener" style="text-decoration:none;padding:12px 16px;border-right:0.5px solid rgba(255,255,255,0.05);border-bottom:0.5px solid rgba(255,255,255,0.05);transition:background 0.2s;" class="js-hover-card">
               <div style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.85);">CMPS</div>
               <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:4px;">Compass Pathways</div>
               <div style="font-size:0.70rem;color:#22c55e;font-weight:600;">Psilocybin · Phase 3</div>
             </a>
-            <a href="https://finance.yahoo.com/quote/MNMD/" target="_blank" rel="noopener" style="text-decoration:none;padding:12px 16px;border-bottom:0.5px solid rgba(255,255,255,0.05);transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background=''">
+            <a href="https://finance.yahoo.com/quote/MNMD/" target="_blank" rel="noopener" style="text-decoration:none;padding:12px 16px;border-bottom:0.5px solid rgba(255,255,255,0.05);transition:background 0.2s;" class="js-hover-card">
               <div style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.85);">MNMD</div>
               <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:4px;">MindMed</div>
               <div style="font-size:0.70rem;color:#22c55e;font-weight:600;">LSD · Phase 3</div>
             </a>
-            <a href="https://finance.yahoo.com/quote/ATAI/" target="_blank" rel="noopener" style="text-decoration:none;padding:12px 16px;border-right:0.5px solid rgba(255,255,255,0.05);transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background=''">
+            <a href="https://finance.yahoo.com/quote/ATAI/" target="_blank" rel="noopener" style="text-decoration:none;padding:12px 16px;border-right:0.5px solid rgba(255,255,255,0.05);transition:background 0.2s;" class="js-hover-card">
               <div style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.85);">ATAI</div>
               <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:4px;">Atai Life Sciences</div>
               <div style="font-size:0.70rem;color:#f59e0b;font-weight:600;">Multiple · Phase 2/3</div>
             </a>
-            <a href="https://finance.yahoo.com/quote/CYBN/" target="_blank" rel="noopener" style="text-decoration:none;padding:12px 16px;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.background=''">
+            <a href="https://finance.yahoo.com/quote/CYBN/" target="_blank" rel="noopener" style="text-decoration:none;padding:12px 16px;transition:background 0.2s;" class="js-hover-card">
               <div style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.85);">CYBN</div>
               <div style="font-size:0.65rem;color:var(--text-muted);margin-bottom:4px;">Cybin (Helus)</div>
               <div style="font-size:0.70rem;color:#22c55e;font-weight:600;">Psilocybin · Phase 3</div>
@@ -823,8 +872,7 @@
         <!-- Book CTA card -->
         <a href="https://amzn.to/4f37j75" target="_blank" rel="noopener sponsored"
           style="display:flex;align-items:center;gap:16px;margin-top:10px;padding:16px 18px;border-radius:12px;border:0.5px solid rgba(184,246,9,0.2);border-top:0.5px solid rgba(184,246,9,0.3);background:rgba(184,246,9,0.04);text-decoration:none;transition:all 0.2s;"
-          onmouseover="this.style.background='rgba(184,246,9,0.08)';this.style.borderColor='rgba(184,246,9,0.35)'"
-          onmouseout="this.style.background='rgba(184,246,9,0.04)';this.style.borderColor='rgba(184,246,9,0.2)'">
+          class="js-hover-card">
           <div style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,rgba(184,246,9,0.2),rgba(13,148,136,0.2));display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">📗</div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:0.60rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:rgba(184,246,9,0.7);margin-bottom:3px;">By the founder</div>
@@ -839,13 +887,55 @@
           <div class="skeleton"><div class="skeleton-body"><div class="skeleton-line medium"></div><div class="skeleton-line"></div></div></div>
         </div>
       </section>
-      <!-- RIGHT: sidebar -->
-      <aside id="sidebar-col" aria-label="Also this week" style="display:flex;flex-direction:column;gap:8px;">
-        <div style="font-family:'Syne',sans-serif;font-size:0.60rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);padding-bottom:8px;border-bottom:0.5px solid var(--border-1);margin-bottom:8px;">Also This Week</div>
-        <div id="sidebar-list" style="display:flex;flex-direction:column;gap:8px;"></div>
-        <div id="sidebar-loading" style="display:none;padding:20px 0;text-align:center;color:var(--text-muted);font-size:0.78rem;">Loading...</div>
-      </aside>
-    </div>
+      <!-- RIGHT: breathing sidebar — education, myths and community hooks -->
+      <aside id="sidebar-col" aria-label="Explore beyond news" style="display:flex;flex-direction:column;gap:12px;">
+        <div id="compound-of-day" class="breath-card"></div>
+
+        <div class="breath-card">
+          <div class="breath-label">Mythbusters</div>
+          <div class="myth-row">
+            <div class="myth-item">
+              <div class="myth-q">Do psychedelics stay in your spine?</div>
+              <div class="myth-a">No. This is a long-running myth. Effects are usually linked to brain receptors, dose, setting and integration.</div>
+            </div>
+            <div class="myth-item">
+              <div class="myth-q">Is microdosing always noticeable?</div>
+              <div class="myth-a">Not necessarily. A microdose is usually intended to be sub-perceptual, which is why tracking mood and sleep matters.</div>
+            </div>
+            <div class="myth-item">
+              <div class="myth-q">Is natural automatically safe?</div>
+              <div class="myth-a">No. Plant medicines can interact with medication, trauma history, heart health and mental health risk.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="breath-card">
+          <div class="breath-label">Community Signal</div>
+          <div style="font-family:Playfair Display,serif;font-size:1rem;line-height:1.45;color:var(--text-primary);margin-bottom:8px;">What are people trying to understand this week?</div>
+          <div style="display:grid;gap:7px;">
+            <button type="button" class="utility-card" data-topic="Ketamine" style="min-height:auto;padding:10px;border-radius:12px;">Ketamine therapy for depression</button>
+            <button type="button" class="utility-card" data-topic="Microdosing" style="min-height:auto;padding:10px;border-radius:12px;">Microdosing and anxiety</button>
+            <button type="button" class="utility-card" data-topic="Policy" style="min-height:auto;padding:10px;border-radius:12px;">Legal access near me</button>
+          </div>
+        </div>
+
+        <div id="sidebar-list" style="display:none;"></div>
+      </aside>    </div>
+
+    <!-- MOTION TIMELINE — visual break between news and newsletter -->
+    <section class="motion-timeline" aria-label="Moving psychedelic history timeline">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px 0;position:relative;z-index:1;">
+        <div>
+          <div class="breath-label" style="margin-bottom:4px;">Psychedelic Timeline</div>
+          <div style="font-family:Playfair Display,serif;font-size:1.15rem;color:var(--text-primary);line-height:1.35;">From sacred use to modern medicine</div>
+        </div>
+        <button type="button" class="cta-dark" data-section="learn" data-course="history" style="padding:8px 16px;font-size:0.72rem;">Open course →</button>
+      </div>
+      <div class="timeline-track">
+        <div id="timeline-track-inner" class="timeline-track-inner"></div>
+      </div>
+    </section>
+
     <!-- Old flat grid hidden — kept for search results -->
     <div class="articles-grid" id="grid" style="display:none;"></div>
     <div class="empty" id="empty" style="display:none">No articles found.</div>
@@ -858,7 +948,7 @@
       <div style="font-family:'Syne',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2dd4bf;margin-bottom:8px;">📓 Weekly Integration Prompt</div>
       <div id="journal-prompt" style="font-family:Playfair Display,serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.55;margin-bottom:12px;"></div>
       <div style="display:flex;align-items:center;gap:12px;">
-        <button onclick="window._nextPrompt()" style="padding:6px 14px;border-radius:999px;border:0.5px solid rgba(45,212,191,0.3);background:rgba(45,212,191,0.08);color:#2dd4bf;font-size:0.70rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">Next prompt →</button>
+        <button type="button" data-action="next-prompt" style="padding:6px 14px;border-radius:999px;border:0.5px solid rgba(45,212,191,0.3);background:rgba(45,212,191,0.08);color:#2dd4bf;font-size:0.70rem;font-weight:600;cursor:pointer;font-family:DM Sans,sans-serif;">Next prompt →</button>
         <a href="https://amzn.to/4f37j75" target="_blank" rel="noopener sponsored" style="font-size:0.68rem;color:rgba(184,246,9,0.7);text-decoration:none;">Get the microdosing journal →</a>
       </div>
     </div>
@@ -872,7 +962,7 @@
       <div id="blog-error"   style="text-align:center;padding:40px;color:var(--text-muted);display:none;">Could not load blog posts.</div>
     </div>
     <div id="blog-post-view" style="display:none;max-width:760px;margin:0 auto;padding-bottom:64px;">
-      <button type="button" id="closeBlogPostBtn" style="display:flex;align-items:center;gap:6px;background:none;border:none;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:0.85rem;cursor:pointer;padding:0;margin-bottom:32px;transition:color 0.2s;">← Back to Blog</button>
+      <button type="button" id="closeBlogPostBtn" style="display:flex;align-items:center;gap:6px;background:none;border:none;color:var(--text-muted);font-family:DM Sans,sans-serif;font-size:0.85rem;cursor:pointer;padding:0;margin-bottom:32px;transition:color 0.2s;">← Back to Blog</button>
       <div id="blog-post-content"></div>
     </div>
   </div>
@@ -896,14 +986,14 @@
       <a href="mailto:hello@thepsychedelicdigest.com?subject=Retreat%20Listing" class="cta-dark" style="margin-bottom:48px;">List Your Retreat →</a>
     </div>
     <div style="display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;margin-top:32px;">
-      <select id="retreatRegion" onchange="filterRetreats()">
+      <select id="retreatRegion">
         <option value="all">All Regions</option>
         <option value="australia">Australia</option>
         <option value="europe">Europe</option>
         <option value="americas">Americas</option>
         <option value="asia-pacific">Asia-Pacific</option>
       </select>
-      <select id="retreatSubstance" onchange="filterRetreats()">
+      <select id="retreatSubstance">
         <option value="all">All Substances</option>
         <option value="psilocybin">Psilocybin</option>
         <option value="ayahuasca">Ayahuasca</option>
@@ -937,9 +1027,9 @@
       <div style="font-family:Playfair Display,serif;font-size:1.15rem;color:rgba(255,255,255,0.88);margin-bottom:6px;">Got a question about psychedelic therapy?</div>
       <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;">Agnes answers reader questions in the weekly newsletter. Anonymous submissions welcome.</div>
       <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="display:flex;flex-direction:column;gap:10px;">
-        <input type="email" name="email" placeholder="Your email (optional — for follow-up)" style="padding:10px 14px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:0.80rem;outline:none;">
-        <textarea name="question" placeholder="Your question..." rows="3" style="padding:10px 14px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:0.80rem;outline:none;resize:vertical;"></textarea>
-        <button type="submit" style="align-self:flex-start;padding:8px 20px;border-radius:999px;background:#a78bfa;color:white;border:none;font-size:0.75rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;">Submit question →</button>
+        <input type="email" name="email" placeholder="Your email (optional — for follow-up)" style="padding:10px 14px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.8);font-family:DM Sans,sans-serif;font-size:0.80rem;outline:none;">
+        <textarea name="question" placeholder="Your question..." rows="3" style="padding:10px 14px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.8);font-family:DM Sans,sans-serif;font-size:0.80rem;outline:none;resize:vertical;"></textarea>
+        <button type="submit" style="align-self:flex-start;padding:8px 20px;border-radius:999px;background:#a78bfa;color:white;border:none;font-size:0.75rem;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;">Submit question →</button>
       </form>
     </div>
     <div style="text-align:center;padding:48px 0 40px;">
@@ -994,12 +1084,12 @@
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <a href="mailto:hello@thepsychedelicdigest.com?subject=Influencer%20Directory%20Access" class="cta-dark" style="font-size:0.85rem;padding:10px 22px;">Get Access</a>
-          <button type="button" onclick="document.getElementById('ifUnlockBanner').style.display='none'" style="padding:10px 18px;border-radius:999px;border:1px solid var(--border-1);background:rgba(255,255,255,0.60);color:var(--text-muted);font-size:0.82rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;">Dismiss</button>
+          <button type="button" data-action="dismiss-influencer-banner" style="padding:10px 18px;border-radius:999px;border:1px solid var(--border-1);background:rgba(255,255,255,0.60);color:var(--text-muted);font-size:0.82rem;cursor:pointer;font-family:DM Sans,sans-serif;transition:all 0.2s;">Dismiss</button>
         </div>
       </div>
 
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;align-items:center;">
-        <select id="ifCategory" onchange="filterInfluencers()">
+        <select id="ifCategory">
           <option value="all">All Categories</option>
           <option value="Educator">Educator</option>
           <option value="Experiential">Experiential</option>
@@ -1008,7 +1098,7 @@
           <option value="Journalist">Journalist / Author</option>
           <option value="Advocate">Advocate</option>
         </select>
-        <select id="ifPlatform" onchange="filterInfluencers()">
+        <select id="ifPlatform">
           <option value="all">All Platforms</option>
           <option value="Instagram">Instagram</option>
           <option value="YouTube">YouTube</option>
@@ -1017,14 +1107,14 @@
           <option value="Newsletter">Newsletter</option>
           <option value="LinkedIn">LinkedIn</option>
         </select>
-        <select id="ifAudience" onchange="filterInfluencers()">
+        <select id="ifAudience">
           <option value="all">Any Audience Size</option>
           <option value="micro">Micro 1K-10K</option>
           <option value="small">Small 10K-50K</option>
           <option value="mid">Mid 50K-200K</option>
           <option value="large">Large 200K+</option>
         </select>
-        <select id="ifNiche" onchange="filterInfluencers()">
+        <select id="ifNiche">
           <option value="all">All Niches</option>
           <option value="Psilocybin">Psilocybin</option>
           <option value="MDMA">MDMA</option>
@@ -1062,7 +1152,7 @@
         <div style="font-size:0.68rem;color:var(--text-muted);">No jargon. No judgment. Every Friday.</div>
       </div>
       <form id="newsletterForm" style="display:flex;gap:8px;flex-shrink:0;">
-        <input type="email" id="emailInput" placeholder="your@email.com" required style="padding:9px 16px;border-radius:999px;border:0.5px solid var(--border-2);background:rgba(255,255,255,0.06);color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:0.78rem;outline:none;width:200px;backdrop-filter:blur(8px);">
+        <input type="email" id="emailInput" placeholder="your@email.com" required style="padding:9px 16px;border-radius:999px;border:0.5px solid var(--border-2);background:rgba(255,255,255,0.06);color:var(--text-primary);font-family:DM Sans,sans-serif;font-size:0.78rem;outline:none;width:200px;backdrop-filter:blur(8px);">
         <button type="submit" class="newsletter-btn" style="padding:9px 20px;border-radius:999px;background:#b8f609;color:#1a1200;font-weight:700;font-size:0.78rem;border:none;cursor:pointer;white-space:nowrap;box-shadow:0 2px 12px rgba(238,212,56,0.45),inset 0 1px 0 rgba(255,255,255,0.3);">Subscribe →</button>
       </form>
     </div>
@@ -1573,17 +1663,10 @@ function renderArticles(articles) {
     }).join('');
     storyList.innerHTML = storyHtml;
   }
-  if (sidebar) {
-    sidebar.innerHTML = _allArticles.slice(6, 14).map(function(a) {
-      return articleLink(a,
-        '<div style="font-size:0.65rem;color:var(--accent);font-weight:700;margin-bottom:5px;">' + esc(a.category || 'News') + '</div>' +
-        '<div style="font-size:0.78rem;line-height:1.35;font-weight:600;color:var(--text-primary);">' + esc(a.title) + '</div>' +
-        '<div style="font-size:0.62rem;color:var(--text-muted);margin-top:6px;">' + esc(a.source || 'News') + ' · ' + esc(a.date || '') + '</div>',
-        'display:block;padding:12px;border-radius:12px;border:0.5px solid var(--border-1);background:var(--surface-1);'
-      );
-    }).join('');
-  }
+  if (sidebar) { sidebar.innerHTML = ''; }
   renderMiniLegalMap();
+  renderCompoundOfDay();
+  renderMotionTimeline();
 }
 
 // ─── FETCH NEWS ──────────────────────────────────────────────
@@ -1655,6 +1738,59 @@ var LEGAL_STATUS_COUNTRIES = [
   {country:'New Zealand', status:'illegal', label:'Mostly illegal', substances:'Classic psychedelics are generally controlled. Research and exceptional medical access are limited.', clinics:'No broad legal psychedelic clinic ecosystem.'},
   {country:'Costa Rica', status:'decrim', label:'Retreat grey zone', substances:'Plant medicine retreats operate, especially ayahuasca, but medical psychedelic therapy is not broadly regulated.', clinics:'Retreat centres.'}
 ];
+
+
+var COMPOUND_OF_DAY = [
+  {name:'Psilocybin', emoji:'🍄', origin:'Magic mushrooms', focus:'Depression research, end-of-life anxiety, spiritual experience', myth:'It is not a shortcut. Set, setting and integration shape the outcome.', search:'Psilocybin'},
+  {name:'MDMA', emoji:'💗', origin:'Synthetic empathogen', focus:'PTSD-assisted therapy, trauma processing, relational safety', myth:'Therapeutic MDMA is not the same as party use. Context and screening matter.', search:'MDMA'},
+  {name:'Ketamine', emoji:'💧', origin:'Dissociative anaesthetic', focus:'Treatment-resistant depression and suicidal ideation clinics', myth:'It can be medical without being classic psychedelic therapy.', search:'Ketamine'},
+  {name:'LSD', emoji:'🌈', origin:'Ergot-derived compound', focus:'Anxiety, addiction, cluster headache and consciousness research', myth:'It does not stay in your spine forever. That is folklore, not evidence.', search:'LSD'},
+  {name:'Ayahuasca', emoji:'🌿', origin:'Amazonian plant brew', focus:'Traditional ceremonial use, trauma narratives, addiction research', myth:'Natural does not mean low risk. Medication interactions can be serious.', search:'Ayahuasca'}
+];
+
+var PSYCHEDELIC_TIMELINE = [
+  {year:'Ancient', title:'Sacred plant medicines', note:'Mushrooms, peyote and ayahuasca appear across ritual and healing traditions.'},
+  {year:'1938', title:'LSD is synthesized', note:'Albert Hofmann first synthesizes LSD at Sandoz in Switzerland.'},
+  {year:'1943', title:'Bicycle Day', note:'The first intentional LSD experience becomes a turning point in psychiatry.'},
+  {year:'1957', title:'Mushrooms enter Western media', note:'Life magazine introduces psilocybin mushrooms to a mainstream audience.'},
+  {year:'1970', title:'Prohibition era', note:'The Controlled Substances Act shuts down much of the early research wave.'},
+  {year:'2000s', title:'Research returns', note:'Johns Hopkins, Imperial and MAPS help rebuild clinical credibility.'},
+  {year:'2023', title:'Australia changes the map', note:'MDMA and psilocybin become prescribable in limited psychiatric contexts.'},
+  {year:'Tomorrow', title:'Integrated care', note:'The next frontier is training, equity, safety, data and honest education.'}
+];
+
+function renderCompoundOfDay() {
+  var el = document.getElementById('compound-of-day');
+  if (!el) return;
+  var idx = Math.floor(Date.now() / 86400000) % COMPOUND_OF_DAY.length;
+  var c = COMPOUND_OF_DAY[idx];
+  el.innerHTML = '<div class="breath-label">Psychedelic of the Day</div>' +
+    '<div style="display:flex;align-items:flex-start;gap:12px;">' +
+      '<div style="width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,rgba(45,212,191,0.18),rgba(184,246,9,0.10));display:flex;align-items:center;justify-content:center;font-size:1.45rem;flex-shrink:0;">' + esc(c.emoji) + '</div>' +
+      '<div style="flex:1;min-width:0;">' +
+        '<div style="font-family:Playfair Display,serif;font-size:1.28rem;color:var(--text-primary);line-height:1.1;">' + esc(c.name) + '</div>' +
+        '<div style="font-size:0.66rem;color:var(--text-muted);margin-top:4px;">' + esc(c.origin) + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div style="margin-top:12px;">' +
+      '<span class="compound-pill">🔬 ' + esc(c.focus) + '</span>' +
+      '<span class="compound-pill">⚡ Myth: ' + esc(c.myth) + '</span>' +
+    '</div>' +
+    '<button type="button" data-topic="' + escAttr(c.search) + '" style="margin-top:14px;width:100%;padding:9px 12px;border-radius:999px;border:0.5px solid rgba(45,212,191,0.25);background:rgba(45,212,191,0.08);color:var(--accent);font-size:0.72rem;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;">Read latest ' + esc(c.name) + ' news →</button>';
+}
+
+function renderMotionTimeline() {
+  var el = document.getElementById('timeline-track-inner');
+  if (!el) return;
+  var nodes = PSYCHEDELIC_TIMELINE.concat(PSYCHEDELIC_TIMELINE);
+  el.innerHTML = nodes.map(function(t) {
+    return '<div class="timeline-node">' +
+      '<div class="timeline-year">' + esc(t.year) + '</div>' +
+      '<div class="timeline-title">' + esc(t.title) + '</div>' +
+      '<div class="timeline-note">' + esc(t.note) + '</div>' +
+    '</div>';
+  }).join('');
+}
 
 function statusClass(status) {
   if (status === 'medical') return 'legal-status-medical';
@@ -2060,7 +2196,7 @@ function renderLegalMap() {
           '</div>' +
           '<div style="display:flex;gap:6px;flex-wrap:wrap;">' +
             ['all','legal','medical','decrim','research','illegal'].map(function(s) {
-              return '<button onclick="window._mapFilter(\'' + s + '\')" id="mf-' + s + '" style="padding:5px 14px;border-radius:999px;border:0.5px solid ' + (s==='all'?'rgba(255,255,255,0.2)':getColor(s)+'66') + ';background:' + (s==='all'?'rgba(255,255,255,0.08)':getColor(s)+'18') + ';color:' + (s==='all'?'rgba(255,255,255,0.7)':getColor(s)) + ';font-size:0.68rem;font-weight:600;cursor:pointer;text-transform:capitalize;">' + s + '</button>';
+              return '<button type="button" data-map-filter="' + escAttr(s) + '" id="mf-' + escAttr(s) + '" style="padding:5px 14px;border-radius:999px;border:0.5px solid ' + (s==='all'?'rgba(255,255,255,0.2)':getColor(s)+'66') + ';background:' + (s==='all'?'rgba(255,255,255,0.08)':getColor(s)+'18') + ';color:' + (s==='all'?'rgba(255,255,255,0.7)':getColor(s)) + ';font-size:0.68rem;font-weight:600;cursor:pointer;text-transform:capitalize;">' + esc(s) + '</button>';
             }).join('') +
           '</div>' +
         '</div>' +
@@ -2406,8 +2542,8 @@ function renderInfluencerCard(inf, featured) {
     +'<div style="padding:0 20px 10px;">'+niches+'</div>'
     +'<div style="padding:0 20px 10px;font-size:0.68rem;color:var(--text-muted);line-height:1.7;">'+collabs+'</div>'
     +'<div style="margin:0 20px 18px;padding-top:12px;border-top:0.5px solid var(--bp-ink-08);display:flex;gap:8px;">'
-    +'<button type="button" onclick="ifUnlock(\''+nm+'\')" style="flex:1;padding:9px 0;border-radius:10px;background:var(--text-primary);border:none;color:white;font-size:0.76rem;font-weight:600;cursor:pointer;font-family:\'DM Sans\',sans-serif;transition:opacity 0.2s;">🔓 Unlock Contact</button>'
-    +'<button type="button" onclick="ifBrief(\''+nm+'\')" style="padding:9px 14px;border-radius:10px;background:rgba(255,255,255,0.80);border:0.5px solid var(--border-1);color:var(--text-secondary);font-size:0.76rem;cursor:pointer;font-family:\'DM Sans\',sans-serif;transition:all 0.2s;">📋 Brief</button>'
+    +'<button type="button" data-if-unlock="'+escAttr(inf.name)+'" style="flex:1;padding:9px 0;border-radius:10px;background:var(--text-primary);border:none;color:white;font-size:0.76rem;font-weight:600;cursor:pointer;font-family:DM Sans,sans-serif;transition:opacity 0.2s;">🔓 Unlock Contact</button>'
+    +'<button type="button" data-if-brief="'+escAttr(inf.name)+'" style="padding:9px 14px;border-radius:10px;background:rgba(255,255,255,0.80);border:0.5px solid var(--border-1);color:var(--text-secondary);font-size:0.76rem;cursor:pointer;font-family:DM Sans,sans-serif;transition:all 0.2s;">📋 Brief</button>'
     +'</div></div>';
 }
 
@@ -2532,6 +2668,42 @@ document.addEventListener('click', (e) => {
     return;
   }
 
+  const mapFilterBtn = e.target.closest('[data-map-filter]');
+  if (mapFilterBtn) {
+    e.preventDefault();
+    if (typeof window._mapFilter === 'function') window._mapFilter(mapFilterBtn.getAttribute('data-map-filter'));
+    return;
+  }
+
+  const ifUnlockBtn = e.target.closest('[data-if-unlock]');
+  if (ifUnlockBtn) {
+    e.preventDefault();
+    ifUnlock(ifUnlockBtn.getAttribute('data-if-unlock'));
+    return;
+  }
+
+  const ifBriefBtn = e.target.closest('[data-if-brief]');
+  if (ifBriefBtn) {
+    e.preventDefault();
+    ifBrief(ifBriefBtn.getAttribute('data-if-brief'));
+    return;
+  }
+
+  const nextPromptBtn = e.target.closest('[data-action="next-prompt"]');
+  if (nextPromptBtn) {
+    e.preventDefault();
+    window._nextPrompt();
+    return;
+  }
+
+  const dismissIfBtn = e.target.closest('[data-action="dismiss-influencer-banner"]');
+  if (dismissIfBtn) {
+    e.preventDefault();
+    var banner = document.getElementById('ifUnlockBanner');
+    if (banner) banner.style.display = 'none';
+    return;
+  }
+
   const langBtn = e.target.closest('[data-lang]');
   if (langBtn) { applyLang(langBtn.getAttribute('data-lang')); return; }
 
@@ -2596,6 +2768,14 @@ document.addEventListener('keydown', (e) => {
 document.getElementById('searchInput')?.addEventListener('input', (e) => filterBySearch(e.target.value));
 document.getElementById('newsletterForm')?.addEventListener('submit', handleSubscribe);
 document.getElementById('closeBlogPostBtn')?.addEventListener('click', closeBlogPost);
+['retreatRegion','retreatSubstance'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (el) el.addEventListener('change', filterRetreats);
+});
+['ifCategory','ifPlatform','ifAudience','ifNiche'].forEach(function(id) {
+  var el = document.getElementById(id);
+  if (el) el.addEventListener('change', filterInfluencers);
+});
 
 document.addEventListener('error', (e) => {
   const target = e.target;
@@ -2907,6 +3087,8 @@ function renderLibrary() {
 
 // ─── APP BOOT ────────────────────────────────────────────────
 wireDropdowns();
+renderCompoundOfDay();
+renderMotionTimeline();
 applyLang(_lang);
 routeFromPath(window.location.pathname || '/');
 
