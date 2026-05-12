@@ -438,8 +438,8 @@
   .blog-card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 0.5px solid var(--border-1); font-size: 0.72rem; color: var(--text-muted); }
 
   /* Blog post body */
-  #blog-post-content h1 { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:var(--text-primary); line-height:1.15; margin-bottom:18px; }
-  #blog-post-content h2 { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:600; color:var(--text-primary); margin:32px 0 12px; }
+  #blog-post-content h1 { font-family:Playfair Display,serif; font-size:2.2rem; font-weight:700; color:var(--text-primary); line-height:1.15; margin-bottom:18px; }
+  #blog-post-content h2 { font-family:Playfair Display,serif; font-size:1.4rem; font-weight:600; color:var(--text-primary); margin:32px 0 12px; }
   #blog-post-content h3 { font-family:'DM Sans',sans-serif; font-size:1.05rem; font-weight:600; color:var(--text-primary); margin:24px 0 8px; }
   #blog-post-content p  { color:var(--text-secondary); line-height:1.85; margin-bottom:18px; font-size:0.97rem; }
   #blog-post-content strong { color:var(--text-primary); font-weight:700; }
@@ -527,6 +527,19 @@
   .filters-inner { max-width: 1280px; margin: 0 auto; }
 
 
+  .legal-card { text-align:left; border:0.5px solid rgba(255,255,255,0.10); border-radius:12px; padding:10px 11px; background:rgba(255,255,255,0.045); cursor:pointer; transition:transform 0.18s var(--ease-out-expo), background 0.18s, border-color 0.18s; font-family:'DM Sans',sans-serif; color:var(--text-primary); }
+  .legal-card:hover { transform:translateY(-2px); background:rgba(255,255,255,0.075); border-color:rgba(255,255,255,0.20); }
+  .legal-card:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  .legal-dot { width:9px; height:9px; border-radius:50%; display:inline-block; box-shadow:0 0 12px currentColor; }
+  .legal-status-medical { color:#22c55e; }
+  .legal-status-decrim { color:#f59e0b; }
+  .legal-status-research { color:#8b5cf6; }
+  .legal-status-illegal { color:#ef4444; }
+  .legal-card-title { font-family:'Syne',sans-serif; font-size:0.78rem; font-weight:800; margin-top:7px; }
+  .legal-card-status { font-size:0.62rem; color:var(--text-muted); margin-top:2px; }
+  .legal-popup-list { list-style:none; margin:10px 0 0; padding:0; display:grid; gap:8px; }
+  .legal-popup-list li { padding:9px 10px; border-radius:10px; background:rgba(255,255,255,0.045); border:0.5px solid rgba(255,255,255,0.08); color:var(--text-secondary); font-size:0.82rem; line-height:1.45; }
+
 </style>
 </head>
 <body>
@@ -593,7 +606,7 @@
           <div style="font-size:0.62rem;color:var(--text-muted);margin-top:2px;">Clerkenwell Health — Affiliate partner</div>
         </a>
         <div class="dropdown-divider"></div>
-        <button type="button" class="dropdown-item" data-section="learn">📚 All Courses</button>
+        <button type="button" class="dropdown-item" disabled aria-disabled="true" style="opacity:0.38;cursor:not-allowed;color:var(--text-muted);">More coming soon</button>
       </div>
     </div>
     <div class="dropdown-wrap right" id="resourcesDropdown" style="flex-shrink:0;">
@@ -755,28 +768,22 @@
         <article id="hero" style="border-radius:16px;overflow:hidden;position:relative;min-height:300px;margin-bottom:14px;cursor:pointer;border:0.5px solid var(--border-1);border-top:0.5px solid var(--border-2);box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 8px 40px rgba(0,0,0,0.4);transition:transform 0.3s;background:var(--surface-1);"></article>
         <div id="story-list" role="list" aria-label="More stories" style="display:flex;flex-direction:column;gap:8px;"></div>
 
-        <!-- WORLD MAP — interactive legal status map -->
-        <div id="world-map-widget" style="margin-top:14px;border-radius:14px;overflow:hidden;border:0.5px solid rgba(255,255,255,0.08);border-top:0.5px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.02);">
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px 10px;border-bottom:0.5px solid rgba(255,255,255,0.05);">
-            <div style="display:flex;align-items:center;gap:8px;">
-              <span style="font-family:'Syne',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2dd4bf;">🌍 Legal Status Map</span>
-              <span style="font-size:0.58rem;color:var(--text-muted);font-family:monospace;">Worldwide · Click a country</span>
+        <!-- MINI LEGAL STATUS MAP — card-based, interactive -->
+        <div id="mini-legal-map-widget" style="margin-top:14px;border-radius:14px;overflow:hidden;border:0.5px solid rgba(255,255,255,0.08);border-top:0.5px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px 10px;border-bottom:0.5px solid rgba(255,255,255,0.05);">
+            <div>
+              <div style="font-family:'Syne',sans-serif;font-size:0.68rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#2dd4bf;">🌍 Legal Status Mini-Map</div>
+              <div style="font-size:0.62rem;color:var(--text-muted);margin-top:3px;">Click a country card for substances and clinics.</div>
             </div>
             <button type="button" data-page="Legal Map" style="font-size:0.65rem;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">Full map →</button>
           </div>
-          <div id="mini-world-map" style="width:100%;height:260px;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(6,13,12,0) 0%,rgba(6,13,12,0) 100%);"></div>
-          <div id="map-tooltip" style="display:none;position:absolute;z-index:100;background:rgba(12,20,18,0.97);border:0.5px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;pointer-events:none;max-width:220px;">
-            <div id="tt-country" style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;color:white;margin-bottom:4px;"></div>
-            <div id="tt-status" style="font-size:0.70rem;margin-bottom:4px;"></div>
-            <div id="tt-note" style="font-size:0.65rem;color:rgba(255,255,255,0.45);"></div>
-          </div>
+          <div id="mini-legal-map" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px;padding:14px;"></div>
           <div style="display:flex;align-items:center;gap:10px;padding:8px 16px;border-top:0.5px solid rgba(255,255,255,0.05);flex-wrap:wrap;">
             <span style="font-size:0.58rem;color:rgba(255,255,255,0.3);">Legend:</span>
-            <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#22c55e;display:inline-block;"></span>Legal/Medical</span>
+            <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#22c55e;display:inline-block;"></span>Legal/medical</span>
             <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#f59e0b;display:inline-block;"></span>Decrim</span>
             <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#8b5cf6;display:inline-block;"></span>Research only</span>
             <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#ef4444;display:inline-block;"></span>Illegal</span>
-            <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#94a3b8;display:inline-block;"></span>Grey zone</span>
           </div>
         </div>
 
@@ -821,7 +828,7 @@
           <div style="width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,rgba(184,246,9,0.2),rgba(13,148,136,0.2));display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">📗</div>
           <div style="flex:1;min-width:0;">
             <div style="font-size:0.60rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:rgba(184,246,9,0.7);margin-bottom:3px;">By the founder</div>
-            <div style="font-family:'Playfair Display',serif;font-size:0.90rem;font-weight:700;color:rgba(255,255,255,0.90);line-height:1.3;">HOW TO START MICRODOSING</div>
+            <div style="font-family:Playfair Display,serif;font-size:0.90rem;font-weight:700;color:rgba(255,255,255,0.90);line-height:1.3;">HOW TO START MICRODOSING</div>
             <div style="font-size:0.72rem;color:var(--text-muted);margin-top:2px;">Step by step, guide and journal — Available on Amazon</div>
           </div>
           <div style="flex-shrink:0;padding:7px 14px;border-radius:999px;background:#b8f609;color:#0a1200;font-size:0.70rem;font-weight:700;box-shadow:0 2px 10px rgba(184,246,9,0.3);">Buy →</div>
@@ -849,7 +856,7 @@
     <!-- B: Integration Journal Prompt card -->
     <div style="margin-bottom:24px;border-radius:14px;padding:20px 24px;border:0.5px solid rgba(45,212,191,0.2);border-top:0.5px solid rgba(45,212,191,0.35);background:rgba(45,212,191,0.04);">
       <div style="font-family:'Syne',sans-serif;font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2dd4bf;margin-bottom:8px;">📓 Weekly Integration Prompt</div>
-      <div id="journal-prompt" style="font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.55;margin-bottom:12px;"></div>
+      <div id="journal-prompt" style="font-family:Playfair Display,serif;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.55;margin-bottom:12px;"></div>
       <div style="display:flex;align-items:center;gap:12px;">
         <button onclick="window._nextPrompt()" style="padding:6px 14px;border-radius:999px;border:0.5px solid rgba(45,212,191,0.3);background:rgba(45,212,191,0.08);color:#2dd4bf;font-size:0.70rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;">Next prompt →</button>
         <a href="https://amzn.to/4f37j75" target="_blank" rel="noopener sponsored" style="font-size:0.68rem;color:rgba(184,246,9,0.7);text-decoration:none;">Get the microdosing journal →</a>
@@ -907,7 +914,7 @@
     <div id="retreats-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-bottom:48px;"></div>
     <div id="retreatBookCTA" style="display:none;margin-bottom:40px;padding:36px 40px;background:var(--surface-1);border:0.5px solid var(--border-1);border-radius:20px;text-align:center;box-shadow:0 4px 20px var(--bp-ink-08);">
       <div style="font-size:1.6rem;margin-bottom:12px;">🌿</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;color:var(--text-primary);margin-bottom:8px;">Browse 500+ Retreats Worldwide</h3>
+      <h3 style="font-family:Playfair Display,serif;font-size:1.3rem;font-weight:400;color:var(--text-primary);margin-bottom:8px;">Browse 500+ Retreats Worldwide</h3>
       <p style="color:var(--text-muted);font-size:0.88rem;max-width:480px;margin:0 auto 6px;line-height:1.6;">Find and book verified psychedelic retreats globally via BookRetreats — psilocybin, ayahuasca, ketamine and more.</p>
       <p style="color:var(--text-muted);font-size:0.72rem;margin-bottom:20px;">Affiliate partner — we may earn a commission at no extra cost to you.</p>
       <a href="https://bookretreats.com/s/other-retreats/psychedelic-retreats" target="_blank" rel="noopener sponsored" class="cta-dark">Browse All Retreats on BookRetreats →</a>
@@ -915,7 +922,7 @@
     <p style="text-align:center;color:var(--text-muted);font-size:0.8rem;padding-bottom:32px;">To list your retreat: <a href="mailto:hello@thepsychedelicdigest.com" style="color:#0d9488;">hello@thepsychedelicdigest.com</a> — Basic listing free · Premium from $99/month</p>
     <div id="retreats-bookretreat-cta" style="margin-top:16px;margin-bottom:48px;border-radius:20px;background:var(--surface-1);border:0.5px solid var(--border-1);padding:40px 32px;text-align:center;box-shadow:0 4px 20px var(--bp-ink-08);">
       <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#8b5cf6;margin-bottom:12px;">Browse &amp; Book</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;color:var(--text-primary);margin-bottom:10px;">Find your retreat on BookRetreats</h3>
+      <h3 style="font-family:Playfair Display,serif;font-size:1.5rem;font-weight:400;color:var(--text-primary);margin-bottom:10px;">Find your retreat on BookRetreats</h3>
       <p style="color:var(--text-muted);font-size:0.88rem;max-width:480px;margin:0 auto 24px;line-height:1.7;">500+ vetted psychedelic retreats worldwide. Filter by substance, location, duration and budget. Free cancellation on most bookings.</p>
       <a href="https://bookretreats.com/s/other-retreats/psychedelic-retreats" target="_blank" rel="noopener sponsored" class="cta-dark">Browse All Retreats →</a>
       <p style="font-size:0.68rem;color:var(--text-muted);margin-top:14px;">Affiliate partner — we may earn a commission on bookings at no extra cost to you.</p>
@@ -927,7 +934,7 @@
     <!-- C: Ask Agnes -->
     <div style="margin-bottom:28px;border-radius:14px;padding:22px 24px;border:0.5px solid rgba(167,139,250,0.2);border-top:0.5px solid rgba(167,139,250,0.35);background:rgba(167,139,250,0.04);">
       <div style="font-family:'Syne',sans-serif;font-size:0.60rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#a78bfa;margin-bottom:8px;">💬 Ask Agnes</div>
-      <div style="font-family:'Playfair Display',serif;font-size:1.15rem;color:rgba(255,255,255,0.88);margin-bottom:6px;">Got a question about psychedelic therapy?</div>
+      <div style="font-family:Playfair Display,serif;font-size:1.15rem;color:rgba(255,255,255,0.88);margin-bottom:6px;">Got a question about psychedelic therapy?</div>
       <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;">Agnes answers reader questions in the weekly newsletter. Anonymous submissions welcome.</div>
       <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="display:flex;flex-direction:column;gap:10px;">
         <input type="email" name="email" placeholder="Your email (optional — for follow-up)" style="padding:10px 14px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:0.80rem;outline:none;">
@@ -1040,7 +1047,7 @@
 
       <div style="text-align:center;padding:40px;background:var(--surface-1);border:0.5px solid var(--border-1);border-radius:20px;margin-bottom:16px;box-shadow:0 4px 16px var(--bp-ink-08);">
         <div style="font-size:1.5rem;margin-bottom:12px;">🌿</div>
-        <h3 style="color:var(--text-primary);font-size:1.2rem;font-weight:400;font-family:'Playfair Display',serif;margin-bottom:8px;">Are you a creator in this space?</h3>
+        <h3 style="color:var(--text-primary);font-size:1.2rem;font-weight:400;font-family:Playfair Display,serif;margin-bottom:8px;">Are you a creator in this space?</h3>
         <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:20px;max-width:480px;margin-left:auto;margin-right:auto;">Join the directory free. Get discovered by retreat centres, publishers, clinics and wellness brands. Reviewed within 48h.</p>
         <a href="mailto:hello@thepsychedelicdigest.com?subject=Creator%20Directory%20Application" class="cta-dark" style="font-size:0.88rem;">Apply to Join Free</a>
       </div>
@@ -1051,7 +1058,7 @@
   <div id="section-news">
     <div style="margin:20px 0 0;border-radius:14px;padding:16px 22px;display:flex;align-items:center;gap:20px;background:linear-gradient(135deg,rgba(255,255,255,0.06) 0%,rgba(255,255,255,0.02) 50%,rgba(13,148,136,0.06) 100%);backdrop-filter:blur(20px);border:0.5px solid var(--border-2);border-top-color:rgba(255,255,255,0.15);box-shadow:inset 0 1px 0 rgba(255,255,255,0.10),0 4px 20px rgba(0,0,0,0.3);">
       <div style="flex:1;min-width:0;">
-        <div style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:2px;">The weekly digest — straight to your inbox</div>
+        <div style="font-family:Playfair Display,serif;font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:2px;">The weekly digest — straight to your inbox</div>
         <div style="font-size:0.68rem;color:var(--text-muted);">No jargon. No judgment. Every Friday.</div>
       </div>
       <form id="newsletterForm" style="display:flex;gap:8px;flex-shrink:0;">
@@ -1080,6 +1087,13 @@
       <p class="section-subtitle">Free courses, curated videos and professional training in psychedelic therapy.</p>
     </div>
     <div id="learn-content"></div>
+  </div>
+
+  <div id="legalStatusPopup" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="legalStatusTitle" style="max-width:620px;">
+      <button type="button" class="modal-close" data-close-modal="legalStatusPopup" aria-label="Close">×</button>
+      <div id="legalStatusBody"></div>
+    </div>
   </div>
 
 <footer>
@@ -1345,31 +1359,7 @@ window._nextPrompt = function() {
 };
 
 function wireDropdowns() {
-  var resourcesBtn = document.getElementById('resourcesBtn');
-  if (resourcesBtn) resourcesBtn.addEventListener('click', function(e) {
-    e.preventDefault(); e.stopPropagation();
-    toggleDropdown('resourcesDropdown');
-  });
-  var tabNews = document.getElementById('tab-news');
-  if (tabNews) tabNews.addEventListener('click', function(e) {
-    e.preventDefault(); e.stopPropagation();
-    if (currentSection !== 'news') showSection('news');
-    toggleDropdown('newsDropdown');
-  });
-  var medicinesBtn = document.getElementById('medicinesBtn');
-  if (medicinesBtn) medicinesBtn.addEventListener('click', function(e) {
-    e.preventDefault(); e.stopPropagation();
-    toggleDropdown('medicinesDropdown');
-  });
-  var tabLearn = document.getElementById('tab-learn');
-  if (tabLearn) tabLearn.addEventListener('click', function(e) {
-    e.preventDefault(); e.stopPropagation();
-    toggleDropdown('learnDropdown');
-  });
-  var tabLearnNav = document.getElementById('tab-learn-nav');
-  if (tabLearnNav) tabLearnNav.addEventListener('click', function() {
-    closeAllDropdowns(); showSection('learn');
-  });
+  // Navigation dropdowns are handled by the delegated document click listener below.
 }
 
 // ─── TOPIC SWITCHING ─────────────────────────────────────────
@@ -1425,34 +1415,97 @@ function showPage(page) {
   else if (page === 'ResearchTracker') renderResearchTracker();
 }
 
+// ─── SECTION DISPLAY ─────────────────────────────────────────
+function showSection(section, course) {
+  currentPage = null;
+  currentSection = section || 'news';
+  closeAllDropdowns();
+  var newsLayout = document.getElementById('section-news-layout');
+  var newsStrip = document.getElementById('section-news');
+  var sectionIds = ['blog','library','jobs','retreats','collab','learn'];
+  if (newsLayout) newsLayout.style.display = currentSection === 'news' ? 'block' : 'none';
+  if (newsStrip) newsStrip.style.display = currentSection === 'news' ? 'block' : 'none';
+  sectionIds.forEach(function(id) {
+    var el = document.getElementById('section-' + id);
+    if (el) el.style.display = currentSection === id ? 'block' : 'none';
+  });
+  var fw = document.querySelector('.filters-wrap');
+  var sw = document.querySelector('.search-wrap');
+  if (fw) fw.style.display = currentSection === 'news' ? 'block' : 'none';
+  if (sw) sw.style.display = currentSection === 'news' ? 'block' : 'none';
+  updateNavActive();
+  if (currentSection === 'news') {
+    if (!_isPopState) updateCanonical('/');
+    if (!_allArticles.length) fetchNews();
+  } else if (currentSection === 'blog') {
+    if (!_isPopState && !course) pushRoute('/blog');
+    renderBlog(course || '');
+  } else if (currentSection === 'library') {
+    if (!_isPopState) pushRoute('/library');
+    renderLibrary();
+  } else if (currentSection === 'jobs') {
+    if (!_isPopState) pushRoute('/jobs');
+    renderJobs();
+  } else if (currentSection === 'retreats') {
+    if (!_isPopState) pushRoute('/retreats');
+    renderRetreats();
+  } else if (currentSection === 'collab') {
+    if (!_isPopState) pushRoute('/collaborate');
+    filterInfluencers();
+  } else if (currentSection === 'learn') {
+    if (!_isPopState) pushRoute('/learn');
+    renderLearn(course || '');
+  }
+  try { window.scrollTo({top:0, behavior:'smooth'}); } catch(e) { window.scrollTo(0,0); }
+}
+
 // ─── PARSE XML ───────────────────────────────────────────────
 function parseXML(xml, offset) {
   try {
-    const parser = new DOMParser();
-    const doc    = parser.parseFromString(xml, 'text/xml');
-    const items  = [...doc.querySelectorAll('item')].slice(0, 18);
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(String(xml || ''), 'text/xml');
+    if (doc.querySelector('parsererror')) return [];
+    var items = Array.prototype.slice.call(doc.querySelectorAll('item')).slice(0, 20);
     if (!items.length) return [];
-    return items.map((item, i) => {
-      const g = tag => { try { return item.getElementsByTagName(tag)[0]?.textContent?.trim() || ''; } catch(e) { return ''; } };
-      const url = g('link') || g('guid') || '#';
-      let imageUrl = '';
-      try { const mc = item.getElementsByTagNameNS('*','content')[0] || item.getElementsByTagName('media:content')[0]; if (mc) imageUrl = mc.getAttribute('url') || ''; } catch(_) {}
-      if (!imageUrl) { try { const enc = item.getElementsByTagName('enclosure')[0]; if (enc && (enc.getAttribute('type')||'').startsWith('image')) imageUrl = enc.getAttribute('url') || ''; } catch(_) {} }
-      if (!imageUrl) { try { const m = g('description').match(/<img[^>]+src=["']([^"']+)["']/i); if (m) imageUrl = m[1]; } catch(_) {} }
-      if (!imageUrl || !imageUrl.startsWith('http')) {
-        const seed = Math.abs((g('title')+g('pubDate')).split('').reduce((a,c)=>(a*31+c.charCodeAt(0))|0,0));
-        imageUrl = 'https://picsum.photos/seed/'+seed+'/800/500';
+    return items.map(function(item, i) {
+      function g(tag) {
+        try {
+          var el = item.getElementsByTagName(tag)[0];
+          return el && el.textContent ? el.textContent.trim() : '';
+        } catch(e) { return ''; }
+      }
+      var url = g('link') || g('guid') || '#';
+      var imageUrl = '';
+      try {
+        var mc = item.getElementsByTagNameNS('*','content')[0] || item.getElementsByTagName('media:content')[0];
+        if (mc) imageUrl = mc.getAttribute('url') || '';
+      } catch(e) {}
+      if (!imageUrl) {
+        try {
+          var enc = item.getElementsByTagName('enclosure')[0];
+          if (enc && String(enc.getAttribute('type') || '').indexOf('image') === 0) imageUrl = enc.getAttribute('url') || '';
+        } catch(e) {}
+      }
+      if (!imageUrl) {
+        try {
+          var m = g('description').match(/<img[^>]+src=["']([^"']+)["']/i);
+          if (m) imageUrl = m[1];
+        } catch(e) {}
+      }
+      if (!imageUrl || imageUrl.indexOf('http') !== 0) {
+        var seed = Math.abs((g('title') + g('pubDate')).split('').reduce(function(a,c){ return (a * 31 + c.charCodeAt(0)) | 0; }, 0));
+        imageUrl = 'https://picsum.photos/seed/' + seed + '/800/500';
       }
       return {
-        title:    g('title'),
-        excerpt:  stripHtml(g('description') || ''),
-        source:   g('source') || extractSource(g('author') || ''),
-        date:     formatDate(g('pubDate')),
-        url:      url.startsWith('http') ? url : '#',
-        imageUrl,
-        category: guessCat(g('title')),
+        title: g('title'),
+        excerpt: stripHtml(g('description') || ''),
+        source: g('source') || extractSource(g('author') || ''),
+        date: formatDate(g('pubDate')),
+        url: url.indexOf('http') === 0 ? url : '#',
+        imageUrl: imageUrl,
+        category: guessCat(g('title') + ' ' + g('description'))
       };
-    }).filter(a => a.title && a.url !== '#');
+    }).filter(function(a) { return a.title && a.url !== '#'; });
   } catch(e) { return []; }
 }
 
@@ -1464,70 +1517,180 @@ function fetchWithTimeout(url, ms) {
   return Promise.race([fetch(url), timeout]);
 }
 
+function showLoading() {
+  var loading = document.getElementById('loadingState');
+  var empty = document.getElementById('empty');
+  var hero = document.getElementById('hero');
+  var storyList = document.getElementById('story-list');
+  var sidebar = document.getElementById('sidebar-list');
+  if (loading) loading.style.display = '';
+  if (empty) empty.style.display = 'none';
+  if (hero) hero.innerHTML = '';
+  if (storyList) storyList.innerHTML = '';
+  if (sidebar) sidebar.innerHTML = '';
+}
+
+function articleLink(article, inner, extraStyle) {
+  return '<a href="' + safeUrl(article.url) + '" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;' + (extraStyle || '') + '">' + inner + '</a>';
+}
+
+function renderArticles(articles) {
+  _allArticles = Array.isArray(articles) ? articles.slice(0, 20) : [];
+  var loading = document.getElementById('loadingState');
+  var hero = document.getElementById('hero');
+  var storyList = document.getElementById('story-list');
+  var sidebar = document.getElementById('sidebar-list');
+  var empty = document.getElementById('empty');
+  if (loading) loading.style.display = 'none';
+  if (!_allArticles.length) {
+    if (empty) empty.style.display = 'block';
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+  var first = _allArticles[0];
+  if (hero) {
+    hero.innerHTML = articleLink(first,
+      '<img src="' + escAttr(first.imageUrl) + '" alt="' + escAttr(first.title) + '" loading="eager" style="width:100%;height:300px;object-fit:cover;display:block;">' +
+      '<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,4,18,0.96),rgba(6,4,18,0.22),transparent);"></div>' +
+      '<div style="position:absolute;left:22px;right:22px;bottom:20px;z-index:2;">' +
+        '<span class="category-badge">' + esc(first.category || 'News') + '</span>' +
+        '<h1 style="font-family:Playfair Display,serif;font-size:clamp(1.6rem,4vw,2.6rem);line-height:1.08;color:white;margin:6px 0 10px;">' + esc(first.title) + '</h1>' +
+        '<p style="color:rgba(255,255,255,0.68);font-size:0.9rem;line-height:1.55;max-width:720px;">' + esc(first.excerpt || '') + '</p>' +
+        '<div style="display:flex;gap:8px;align-items:center;color:rgba(255,255,255,0.42);font-size:0.72rem;margin-top:12px;"><span style="color:var(--accent);font-weight:700;">' + esc(first.source || 'News') + '</span><span>•</span><span>' + esc(first.date || '') + '</span></div>' +
+      '</div>',
+      'display:block;position:absolute;inset:0;'
+    );
+  }
+  if (storyList) {
+    var storyHtml = _allArticles.slice(1, 6).map(function(a, i) {
+      var n = String(i + 2).padStart(2, '0');
+      return articleLink(a,
+        '<span style="font-family:monospace;color:var(--accent);font-size:0.72rem;width:28px;flex-shrink:0;">' + n + '</span>' +
+        '<span style="flex:1;min-width:0;"><span style="display:block;font-size:0.86rem;font-weight:700;color:var(--text-primary);line-height:1.35;">' + esc(a.title) + '</span><span style="display:block;margin-top:4px;font-size:0.68rem;color:var(--text-muted);">' + esc(a.source || 'News') + ' · ' + esc(a.date || '') + '</span></span>' +
+        '<span style="font-size:0.72rem;color:var(--accent);">→</span>',
+        'display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:12px;border:0.5px solid var(--border-1);background:var(--surface-1);'
+      );
+    }).join('');
+    storyList.innerHTML = storyHtml;
+  }
+  if (sidebar) {
+    sidebar.innerHTML = _allArticles.slice(6, 14).map(function(a) {
+      return articleLink(a,
+        '<div style="font-size:0.65rem;color:var(--accent);font-weight:700;margin-bottom:5px;">' + esc(a.category || 'News') + '</div>' +
+        '<div style="font-size:0.78rem;line-height:1.35;font-weight:600;color:var(--text-primary);">' + esc(a.title) + '</div>' +
+        '<div style="font-size:0.62rem;color:var(--text-muted);margin-top:6px;">' + esc(a.source || 'News') + ' · ' + esc(a.date || '') + '</div>',
+        'display:block;padding:12px;border-radius:12px;border:0.5px solid var(--border-1);background:var(--surface-1);'
+      );
+    }).join('');
+  }
+  renderMiniLegalMap();
+}
+
 // ─── FETCH NEWS ──────────────────────────────────────────────
 async function fetchNews() {
   showLoading();
-  const topicQuery = activeTopic ? activeTopic.query : 'psychedelic therapy';
-  const googleRSS_AU = 'https://news.google.com/rss/search?q=' + encodeURIComponent(topicQuery) + '&hl=en-AU&gl=AU&ceid=AU:en';
-  const googleRSS_US = 'https://news.google.com/rss/search?q=' + encodeURIComponent(topicQuery) + '&hl=en-US&gl=US&ceid=US:en';
-
-  // Own API
-  try {
-    const res = await fetchWithTimeout('https://www.thepsychedelicdigest.com/api/rss?q=' + encodeURIComponent(topicQuery), 6000);
-    if (res.ok) { const xml = await res.text(); if (xml && xml.includes('<item>')) { const arts = parseXML(xml, 0); if (arts.length) { renderArticles(arts); return; } } }
-  } catch(e) {}
-
-  // allorigins /raw AU — THE method that works (returns XML directly)
-  try {
-    const res = await fetchWithTimeout('https://api.allorigins.win/raw?url=' + encodeURIComponent(googleRSS_AU), 7000);
-    if (res.ok) { const xml = await res.text(); if (xml && xml.includes('<item>')) { const arts = parseXML(xml, 0); if (arts.length) { renderArticles(arts); return; } } }
-  } catch(e) { console.warn('allorigins/raw AU:', e.message); }
-
-  // allorigins /raw US
-  try {
-    const res = await fetchWithTimeout('https://api.allorigins.win/raw?url=' + encodeURIComponent(googleRSS_US), 7000);
-    if (res.ok) { const xml = await res.text(); if (xml && xml.includes('<item>')) { const arts = parseXML(xml, 0); if (arts.length) { renderArticles(arts); return; } } }
-  } catch(e) { console.warn('allorigins/raw US:', e.message); }
-
-  // rss2json
-  try {
-    const res = await fetchWithTimeout('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(googleRSS_AU) + '&count=20', 7000);
-    if (res.ok) {
-      const data = await res.json();
-      if (data.status === 'ok' && data.items && data.items.length) {
-        const arts = data.items.map(function(item, i) {
-          return { title: item.title||'', excerpt: stripHtml(item.description||item.content||''), source: extractSource(item.author||item.link||''), date: formatDate(item.pubDate), url: item.link||'#', imageUrl: (item.enclosure&&item.enclosure.link)||item.thumbnail||IMGS[i%IMGS.length], category: guessCat(item.title) };
-        }).filter(function(a) { return a.title && a.url !== '#'; });
-        if (arts.length) { renderArticles(arts); return; }
+  var q = activeTopic ? activeTopic.query : 'psychedelic therapy';
+  var rssAU = 'https://news.google.com/rss/search?q=' + encodeURIComponent(q) + '&hl=en-AU&gl=AU&ceid=AU:en';
+  var attempts = [
+    'https://www.thepsychedelicdigest.com/api/rss?q=' + encodeURIComponent(q),
+    'https://api.allorigins.win/raw?url=' + encodeURIComponent(rssAU),
+    'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssAU) + '&count=20',
+    'https://corsproxy.io/?' + encodeURIComponent(rssAU)
+  ];
+  for (var i = 0; i < attempts.length; i++) {
+    var url = attempts[i];
+    try {
+      var res = await fetchWithTimeout(url, 8000);
+      var arts = [];
+      if (url.indexOf('rss2json.com') !== -1) {
+        var data = await res.json();
+        if (data && data.items && data.items.length) {
+          arts = data.items.map(function(item, idx) {
+            return {
+              title: item.title || '',
+              excerpt: stripHtml(item.description || item.content || ''),
+              source: extractSource(item.author || item.link || ''),
+              date: formatDate(item.pubDate),
+              url: item.link || '#',
+              imageUrl: (item.enclosure && item.enclosure.link) || item.thumbnail || IMGS[idx % IMGS.length],
+              category: guessCat((item.title || '') + ' ' + (item.description || ''))
+            };
+          }).filter(function(a) { return a.title && a.url !== '#'; });
+        }
+      } else {
+        var xml = await res.text();
+        if (xml && xml.indexOf('<item>') !== -1) arts = parseXML(xml, i * 20);
       }
-    }
-  } catch(e) { console.warn('rss2json:', e.message); }
+      if (arts.length) { renderArticles(arts); return; }
+    } catch(e) {}
+  }
 
-  // corsproxy
-  try {
-    const res = await fetchWithTimeout('https://corsproxy.io/?' + encodeURIComponent(googleRSS_AU), 7000);
-    if (res.ok) { const xml = await res.text(); if (xml && xml.includes('<item>')) { const arts = parseXML(xml, 0); if (arts.length) { renderArticles(arts); return; } } }
-  } catch(e) { console.warn('corsproxy:', e.message); }
-
-  // Static fallback
-  const STATIC = [
+  var STATIC = [
     {title:'Australia becomes first country to legalise MDMA and psilocybin therapy',excerpt:'The TGA authorised prescription of MDMA for PTSD and psilocybin for treatment-resistant depression, making Australia a world leader in psychedelic medicine.',source:'TGA Australia',date:'2023',url:'https://www.tga.gov.au',imageUrl:IMGS[0],category:'Policy'},
     {title:'Psilocybin therapy shows lasting benefits for depression at 12 months',excerpt:'A landmark follow-up study in Lancet Psychiatry finds psilocybin-assisted therapy outperforms SSRIs at 12-month follow-up for treatment-resistant depression.',source:'Lancet Psychiatry',date:'2024',url:'https://www.thelancet.com',imageUrl:IMGS[1],category:'Research'},
-    {title:'MDMA therapy for PTSD: Phase 3 trial results explained',excerpt:'MAPS Phase 3 trials show 67% of participants no longer met PTSD criteria after MDMA-assisted therapy.',source:'MAPS',date:'2024',url:'https://maps.org',imageUrl:IMGS[2],category:'MDMA'},
+    {title:'MDMA therapy for PTSD: Phase 3 trial results explained',excerpt:'Phase 3 studies show why MDMA-assisted therapy remains a defining story in psychedelic medicine.',source:'MAPS',date:'2024',url:'https://maps.org',imageUrl:IMGS[2],category:'MDMA'},
     {title:'Oregon opens first licensed psilocybin service centres',excerpt:'Oregon becomes the first US state to open regulated psilocybin service centres under Measure 109.',source:'Oregon Health Authority',date:'2024',url:'https://www.oregon.gov',imageUrl:IMGS[3],category:'Policy'},
-    {title:'Ketamine therapy for depression: what the evidence shows',excerpt:'IV ketamine and esketamine are now widely prescribed for treatment-resistant depression. A review of the clinical evidence.',source:'NEJM',date:'2024',url:'https://www.nejm.org',imageUrl:IMGS[4],category:'Ketamine'},
-    {title:'Compass Pathways Phase 3 psilocybin trial hits primary endpoint',excerpt:'COMP360 psilocybin therapy significantly reduced depression scores versus placebo in the largest psilocybin trial ever conducted.',source:'Compass Pathways',date:'2024',url:'https://compasspathways.com',imageUrl:IMGS[5],category:'Psilocybin'},
-    {title:'Microdosing psilocybin: what the science actually says',excerpt:'A growing body of research examines sub-perceptual doses of psilocybin. We review the controlled studies and remaining questions.',source:'Psychopharmacology',date:'2024',url:'https://www.springer.com',imageUrl:IMGS[6],category:'Research'},
-    {title:'Ayahuasca retreats: safety, legality and what to expect',excerpt:'As ayahuasca tourism grows, researchers document both therapeutic benefits and risks of unregulated use.',source:'Journal of Psychoactive Drugs',date:'2024',url:'https://www.tandfonline.com',imageUrl:IMGS[7],category:'Ayahuasca'},
-    {title:'PTSD and psychedelic therapy: a guide for patients in Australia',excerpt:'What Australian patients need to know about accessing psilocybin and MDMA therapy under the TGA Authorised Prescriber scheme.',source:'The Psychedelic Digest',date:'2024',url:'https://www.thepsychedelicdigest.com',imageUrl:IMGS[8],category:'Policy'},
-    {title:'The war on drugs: how criminalisation failed public health',excerpt:'Five decades after Nixon declared war on drugs, policymakers are reconsidering the evidence.',source:'The Lancet',date:'2024',url:'https://www.thelancet.com',imageUrl:IMGS[9],category:'Culture'},
-    {title:'MindMed LSD therapy Phase 2b trial shows significant results',excerpt:'MM120 demonstrates statistically significant reduction in generalised anxiety disorder symptoms.',source:'MindMed',date:'2024',url:'https://mindmed.co',imageUrl:IMGS[10],category:'LSD'},
-    {title:'Psychedelic practitioner training: what clinicians need to know',excerpt:'As clinical psychedelic therapy expands, demand for trained facilitators is growing. A guide to current training programmes.',source:'Clerkenwell Health',date:'2024',url:'https://training.clerkenwellhealth.com/link/RzuUOg',imageUrl:IMGS[11],category:'Research'},
-    {title:'The neuroscience of psychedelics: how psilocybin changes the brain',excerpt:'Neuroimaging studies reveal how psilocybin disrupts the default mode network and promotes lasting changes in brain connectivity.',source:'Nature Neuroscience',date:'2024',url:'https://www.nature.com',imageUrl:IMGS[12],category:'Research'},
-    {title:'Cannabis and mental health: separating fact from fear',excerpt:'With medicinal cannabis now widely available in Australia, researchers are clarifying the evidence on anxiety, depression and PTSD.',source:'Australian Journal of Psychiatry',date:'2024',url:'https://www.ranzcp.org',imageUrl:IMGS[13],category:'Cannabis'},
-    {title:'Recent decriminalisation victories: a global map',excerpt:'From Germany to Colorado, jurisdictions are moving away from criminal penalties for psychedelic possession.',source:'Drug Policy Alliance',date:'2024',url:'https://drugpolicy.org',imageUrl:IMGS[14],category:'Decrim'},
+    {title:'Ketamine therapy for depression: what the evidence shows',excerpt:'IV ketamine and esketamine are now widely prescribed for treatment-resistant depression.',source:'NEJM',date:'2024',url:'https://www.nejm.org',imageUrl:IMGS[4],category:'Ketamine'},
+    {title:'Recent decriminalisation victories: a global map',excerpt:'From Germany to Colorado, jurisdictions are moving away from criminal penalties for psychedelic possession.',source:'Drug Policy Alliance',date:'2024',url:'https://drugpolicy.org',imageUrl:IMGS[5],category:'Decrim'},
+    {title:'Psychedelic practitioner training: what clinicians need to know',excerpt:'As clinical psychedelic therapy expands, demand for trained facilitators is growing.',source:'Clerkenwell Health',date:'2024',url:'https://training.clerkenwellhealth.com/link/RzuUOg',imageUrl:IMGS[6],category:'Research'}
   ];
   renderArticles(STATIC);
+}
+
+// ─── MINI LEGAL STATUS MAP ───────────────────────────────────
+var LEGAL_STATUS_COUNTRIES = [
+  {country:'Australia', status:'medical', label:'Legal/medical', substances:'MDMA for PTSD and psilocybin for treatment-resistant depression via Authorised Prescribers. Ketamine is available in clinical contexts.', clinics:'Authorised Prescriber psychiatrists and approved clinics.'},
+  {country:'USA', status:'decrim', label:'Mixed/decrim', substances:'Ketamine clinics are legal. Oregon and Colorado regulate psilocybin services. Other psychedelics vary by state and remain federally controlled.', clinics:'Ketamine clinics, Oregon psilocybin service centres, Colorado rollout.'},
+  {country:'Canada', status:'medical', label:'Medical access', substances:'Ketamine clinics operate. Psilocybin may be accessed through Special Access Program or exemptions in limited cases.', clinics:'Ketamine clinics and selected research/medical providers.'},
+  {country:'Netherlands', status:'decrim', label:'Truffles tolerated', substances:'Psilocybin truffles are legally sold in smart shops. Psilocybin mushrooms are illegal. Ayahuasca and MDMA remain restricted.', clinics:'Retreat centres using legal truffles.'},
+  {country:'Portugal', status:'decrim', label:'Decriminalised', substances:'Personal possession is decriminalised across drugs, but commercial psychedelic therapy is not broadly legal.', clinics:'No mainstream legal psychedelic clinics.'},
+  {country:'UK', status:'research', label:'Research only', substances:'Psilocybin, MDMA and LSD remain controlled outside licensed research. Ketamine treatment is available in private medical settings.', clinics:'Ketamine clinics and licensed clinical trials.'},
+  {country:'Germany', status:'research', label:'Research only', substances:'Psychedelics remain controlled outside research. Cannabis reform changed cannabis policy, not classic psychedelic therapy access.', clinics:'University and clinical research settings.'},
+  {country:'Jamaica', status:'medical', label:'Legal/retreat', substances:'Psilocybin mushrooms are not prohibited in the same way as many countries, supporting a retreat ecosystem.', clinics:'Psilocybin retreat centres.'},
+  {country:'Mexico', status:'decrim', label:'Traditional/grey', substances:'Some traditional plant medicine practices operate in grey zones. Commercial medical use varies and is not uniformly regulated.', clinics:'Retreat centres and traditional medicine settings.'},
+  {country:'Peru', status:'decrim', label:'Traditional use', substances:'Ayahuasca has protected traditional and cultural status. Other psychedelics vary.', clinics:'Ayahuasca retreat centres.'},
+  {country:'Brazil', status:'decrim', label:'Religious use', substances:'Ayahuasca is permitted in recognised religious contexts. Other classic psychedelics remain restricted.', clinics:'Religious and retreat contexts, not broad medical clinics.'},
+  {country:'Israel', status:'research', label:'Research only', substances:'Active MDMA and psilocybin research exists, but broad medical access remains limited.', clinics:'Research sites and clinical trial settings.'},
+  {country:'Switzerland', status:'research', label:'Limited medical', substances:'Some compassionate or exceptional medical access may occur under approval. Research remains important.', clinics:'Specialist psychiatrists and research settings.'},
+  {country:'New Zealand', status:'illegal', label:'Mostly illegal', substances:'Classic psychedelics are generally controlled. Research and exceptional medical access are limited.', clinics:'No broad legal psychedelic clinic ecosystem.'},
+  {country:'Costa Rica', status:'decrim', label:'Retreat grey zone', substances:'Plant medicine retreats operate, especially ayahuasca, but medical psychedelic therapy is not broadly regulated.', clinics:'Retreat centres.'}
+];
+
+function statusClass(status) {
+  if (status === 'medical') return 'legal-status-medical';
+  if (status === 'decrim') return 'legal-status-decrim';
+  if (status === 'research') return 'legal-status-research';
+  return 'legal-status-illegal';
+}
+
+function renderMiniLegalMap() {
+  var wrap = document.getElementById('mini-legal-map');
+  if (!wrap) return;
+  wrap.innerHTML = LEGAL_STATUS_COUNTRIES.map(function(c, i) {
+    return '<button type="button" class="legal-card" data-legal-country="' + escAttr(c.country) + '">' +
+      '<span class="legal-dot ' + statusClass(c.status) + '"></span>' +
+      '<div class="legal-card-title">' + esc(c.country) + '</div>' +
+      '<div class="legal-card-status">' + esc(c.label) + '</div>' +
+    '</button>';
+  }).join('');
+}
+
+function openLegalStatusPopup(country) {
+  var c = LEGAL_STATUS_COUNTRIES.find(function(item) { return item.country === country; });
+  if (!c) return;
+  var body = document.getElementById('legalStatusBody');
+  var modal = document.getElementById('legalStatusPopup');
+  if (!body || !modal) return;
+  body.innerHTML = '<div style="font-size:0.62rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Legal status snapshot</div>' +
+    '<h2 id="legalStatusTitle" style="margin-bottom:8px;">' + esc(c.country) + '</h2>' +
+    '<div class="' + statusClass(c.status) + '" style="font-size:0.82rem;font-weight:700;margin-bottom:16px;">● ' + esc(c.label) + '</div>' +
+    '<ul class="legal-popup-list">' +
+      '<li><strong style="color:var(--text-primary);">Substance breakdown:</strong><br>' + esc(c.substances) + '</li>' +
+      '<li><strong style="color:var(--text-primary);">Clinics / access points:</strong><br>' + esc(c.clinics) + '</li>' +
+    '</ul>' +
+    '<p style="font-size:0.70rem;color:var(--text-muted);margin-top:14px;line-height:1.55;">This is a simplified editorial snapshot, not legal advice. Always verify local law before making decisions.</p>';
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
 }
 
 
@@ -2296,6 +2459,7 @@ var TOPICS_EN = [
   {label:'Policy',     query:'psychedelic policy law regulation', slug:'policy'},
   {label:'Research',   query:'psychedelic research clinical trial', slug:'research'},
   {label:'Culture',    query:'psychedelic culture mental health', slug:'culture'},
+  {label:'Decrim',     query:'psychedelic decriminalization decriminalisation policy', slug:'decrim'},
 ];
 var TOPICS_FR = [
   {label:'Tout',        query:'thérapie psychédélique France',           slug:'all'},
@@ -2344,8 +2508,29 @@ function applyLang(lang) {
 
 // ─── DOM EVENT LISTENERS ─────────────────────────────────────
 document.addEventListener('click', (e) => {
-  // Let dropdown triggers handle themselves
-  if (e.target.closest('#tab-news, #tab-learn, #resourcesBtn, #medicinesBtn')) return;
+  const navTrigger = e.target.closest('#tab-news, #tab-learn, #resourcesBtn, #medicinesBtn');
+  if (navTrigger) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (navTrigger.id === 'tab-news') {
+      if (currentSection !== 'news') showSection('news');
+      toggleDropdown('newsDropdown');
+    } else if (navTrigger.id === 'tab-learn') {
+      toggleDropdown('learnDropdown');
+    } else if (navTrigger.id === 'resourcesBtn') {
+      toggleDropdown('resourcesDropdown');
+    } else if (navTrigger.id === 'medicinesBtn') {
+      toggleDropdown('medicinesDropdown');
+    }
+    return;
+  }
+
+  const legalCard = e.target.closest('[data-legal-country]');
+  if (legalCard) {
+    e.preventDefault();
+    openLegalStatusPopup(legalCard.getAttribute('data-legal-country'));
+    return;
+  }
 
   const langBtn = e.target.closest('[data-lang]');
   if (langBtn) { applyLang(langBtn.getAttribute('data-lang')); return; }
@@ -2373,7 +2558,11 @@ document.addEventListener('click', (e) => {
     closeAllDropdowns();
     const topic = topicBtn.getAttribute('data-topic');
     if (currentSection !== 'news') showSection('news');
+    var previousPopState = _isPopState;
+    _isPopState = true;
     switchTopic(topic);
+    _isPopState = previousPopState;
+    updateCanonical('/');
     return;
   }
   const sectionBtn = e.target.closest('[data-section]');
