@@ -309,7 +309,7 @@
 
   /* Article grid + cards */
   .articles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; padding: 8px 0; }
-  #grid { min-height: 200px; }
+  #news-grid { min-height: 200px; }
   .article-card { background: var(--surface-1); border-radius: 14px; overflow: hidden; border: 0.5px solid var(--border-1); box-shadow: 0 4px 24px rgba(0,0,0,0.3); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); cursor: pointer; transition: transform 0.25s var(--ease-out-expo), box-shadow 0.25s var(--ease-out-expo), border-color 0.25s, background 0.25s; display: flex; flex-direction: column; text-decoration: none; color: inherit; position: relative; opacity: 0; transform: translateY(18px); }
   .article-card.visible { animation: fadeUp 0.5s var(--ease-out-expo) both; opacity: 1; transform: translateY(0); }
   .article-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(13,148,136,0.12), 0 0 0 1px var(--accent-border); border-color: var(--accent-border); background: var(--surface-2); }
@@ -619,21 +619,21 @@
 @media (max-width: 768px) { #learn-content iframe { min-height: 200px !important; } #learn-content div[style*="grid-template-columns:1fr 1fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; } }
 
 /* ── PSYFINANCE ───────────────────────────── */
-@media (max-width: 768px) { #grid div[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr !important; } #grid div[style*="minmax(200px"] { grid-template-columns: repeat(2, 1fr) !important; } }
-@media (max-width: 480px) { #grid div[style*="minmax(200px"] { grid-template-columns: 1fr 1fr !important; } }
+@media (max-width: 768px) { #news-grid div[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr !important; } #news-grid div[style*="minmax(200px"] { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 480px) { #news-grid div[style*="minmax(200px"] { grid-template-columns: 1fr 1fr !important; } }
 
 /* ── LEGAL MAP (full page) ────────────────── */
 @media (max-width: 768px) { #map-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; } #country-detail div[style*="grid-template-columns:1fr 1fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; } }
 @media (max-width: 480px) { #map-grid { grid-template-columns: 1fr !important; } }
-@media (max-width: 600px) { #grid div[style*="display:flex;gap:6px;flex-wrap:wrap"] { flex-direction: row !important; flex-wrap: wrap !important; } }
+@media (max-width: 600px) { #news-grid div[style*="display:flex;gap:6px;flex-wrap:wrap"] { flex-direction: row !important; flex-wrap: wrap !important; } }
 
 /* ── COST CALCULATOR ──────────────────────── */
 @media (max-width: 860px) { .seo-cost-grid { grid-template-columns: 1fr !important; } }
 @media (max-width: 600px) { .seo-cost-wrap { padding: 0 !important; } .seo-cost-panel { padding: 16px !important; } #cc-substance, #cc-location { flex-wrap: wrap !important; gap: 6px !important; } .cc-pill { font-size: 0.82rem !important; padding: 8px 14px !important; min-height: 40px !important; } }
 
 /* ── TRIAL TRACKER TABLE ─────────────────── */
-@media (max-width: 768px) { #grid table { font-size: 0.72rem !important; } #grid th, #grid td { padding: 8px 10px !important; white-space: normal !important; } }
-@media (max-width: 600px) { #grid div[style*="overflow-x:auto"] { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; } }
+@media (max-width: 768px) { #news-grid table { font-size: 0.72rem !important; } #news-grid th, #news-grid td { padding: 8px 10px !important; white-space: normal !important; } }
+@media (max-width: 600px) { #news-grid div[style*="overflow-x:auto"] { overflow-x: auto !important; -webkit-overflow-scrolling: touch !important; } }
 
 /* ── FOOTER ───────────────────────────────── */
 @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr !important; gap: 28px !important; } .footer-brand { grid-column: 1 / -1 !important; } }
@@ -898,15 +898,15 @@
 
 /* ── PSYFINANCE ──────────────────────────────────────────── */
 @media (max-width: 768px) {
-  #grid > div > div[style*="grid-template-columns:1fr 1fr 1fr"] {
+  #news-grid > div > div[style*="grid-template-columns:1fr 1fr 1fr"] {
     grid-template-columns: 1fr !important;
   }
-  #grid > div > div[style*="minmax(200px"] {
+  #news-grid > div > div[style*="minmax(200px"] {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 @media (max-width: 480px) {
-  #grid > div > div[style*="minmax(200px"] {
+  #news-grid > div > div[style*="minmax(200px"] {
     grid-template-columns: 1fr 1fr !important;
   }
 }
@@ -1031,6 +1031,41 @@
   @media (max-width: 480px) { [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2,1fr) !important; } }
 
 </style>
+
+<script type="application/ld+json" id="seo-architecture-schema">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"The Psychedelic Digest",
+  "url":"https://www.thepsychedelicdigest.com/",
+  "potentialAction":{"@type":"SearchAction","target":"https://www.thepsychedelicdigest.com/search?q={search_term_string}","query-input":"required name=search_term_string"},
+  "hasPart":[
+    {"@type":"CollectionPage","name":"Latest Psychedelic News","url":"https://www.thepsychedelicdigest.com/news/"},
+    {"@type":"CollectionPage","name":"Psychedelic Legality Map","url":"https://www.thepsychedelicdigest.com/legality/"},
+    {"@type":"Blog","name":"The Digest Editorial Blog","url":"https://www.thepsychedelicdigest.com/blog/"},
+    {"@type":"CollectionPage","name":"Psychedelic Retreats","url":"https://www.thepsychedelicdigest.com/retreats/"},
+    {"@type":"CollectionPage","name":"Psychedelic Clinics","url":"https://www.thepsychedelicdigest.com/clinics/"},
+    {"@type":"CollectionPage","name":"Psychedelic Finance","url":"https://www.thepsychedelicdigest.com/finance/"},
+    {"@type":"Course","name":"Learn+ Psychedelic Education","url":"https://www.thepsychedelicdigest.com/learn/"},
+    {"@type":"CollectionPage","name":"Psychedelic Library","url":"https://www.thepsychedelicdigest.com/library/"},
+    {"@type":"CollectionPage","name":"Psychedelic Research","url":"https://www.thepsychedelicdigest.com/research/"}
+  ]
+}
+</script>
+<script type="application/ld+json" id="homepage-aeo-faq-schema">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Is psychedelic therapy legal?","acceptedAnswer":{"@type":"Answer","text":"Psychedelic therapy legality depends on the country, substance, clinical setting and medical indication. Some places allow supervised medical use of MDMA, psilocybin or ketamine, while others allow only research or decriminalised personal possession."}},
+    {"@type":"Question","name":"How do I choose a safe psychedelic clinic?","acceptedAnswer":{"@type":"Answer","text":"A safer psychedelic clinic should use licensed clinicians, medical screening, clear consent forms, emergency protocols, integration support, transparent pricing and evidence-based treatment pathways. Avoid providers that promise guaranteed cures or pressure people into high-dose experiences."}},
+    {"@type":"Question","name":"Are psychedelic retreats safe?","acceptedAnswer":{"@type":"Answer","text":"Some retreats are well structured, but safety varies widely. Key risks include weak screening, unsafe facilitation, medication interactions, lack of integration, poor emergency planning and vulnerable participants being pushed beyond their capacity."}},
+    {"@type":"Question","name":"What does psychedelic integration mean?","acceptedAnswer":{"@type":"Answer","text":"Psychedelic integration is the process of making sense of insights, emotions and memories after an experience, then translating them into grounded changes in everyday life. It can include therapy, journaling, nervous system support, community reflection and behavioural change."}},
+    {"@type":"Question","name":"Can psychedelics make anxiety worse?","acceptedAnswer":{"@type":"Answer","text":"Yes, psychedelics can temporarily or sometimes persistently worsen anxiety in some people, especially with high doses, poor setting, trauma history, bipolar risk, psychosis vulnerability, unsafe retreats or medication interactions. Screening and support matter."}}
+  ]
+}
+</script>
+
 </head>
 <body>
 
@@ -1073,7 +1108,7 @@
         <button type="button" class="dropdown-item" data-topic="All" data-section-news="true" style="color:var(--text-muted);font-size:0.76rem;">Medicines — use search 🔍</button>
       </div>
     </div>
-    <button type="button" data-section="blog"     id="tab-blog"     class="nav-pill" role="tab" style="color:#f3ffb9;">Blog</button>
+    <button type="button" data-section="blog"     id="tab-blog"     class="nav-pill" role="tab" style="color:#f3ffb9;">Editorial</button>
     <button type="button" data-section="library"  id="tab-library"  class="nav-pill" role="tab" style="color:rgba(251,191,36,0.75);">📚 The Library</button>
     <button type="button" data-section="jobs"     id="tab-jobs"     class="nav-pill" role="tab" style="color:#f62e09;">Jobs</button>
     <button type="button" data-section="retreats" id="tab-retreats" class="nav-pill" role="tab" style="color:#b8f609;">Retreats</button>
@@ -1356,6 +1391,53 @@
           </div>
         </div>
 
+
+
+        <!-- AEO / LLMO Answer Engine Block -->
+        <section id="answer-engine-block" aria-label="Psychedelic therapy quick answers" style="margin-top:14px;border-radius:14px;border:0.5px solid rgba(45,212,191,0.18);border-top:0.5px solid rgba(45,212,191,0.32);background:rgba(45,212,191,0.035);padding:18px;">
+          <div style="font-family:'Syne',sans-serif;font-size:0.62rem;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;color:#2dd4bf;margin-bottom:8px;">AI Search Quick Answers</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.35rem;line-height:1.25;margin:0 0 10px;color:rgba(255,255,255,0.92);">The questions people ask before they trust psychedelic therapy</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;">
+            <a href="/legality/" data-page="Legal Map" style="text-decoration:none;border:0.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px;background:rgba(255,255,255,0.035);display:block;">
+              <strong style="display:block;color:#fff;font-size:0.84rem;margin-bottom:5px;">Is psychedelic therapy legal?</strong>
+              <span style="font-size:0.72rem;color:var(--text-muted);line-height:1.5;">Check legality by country, substance and clinical pathway.</span>
+            </a>
+            <a href="/clinics/" data-page="Clinics" style="text-decoration:none;border:0.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px;background:rgba(255,255,255,0.035);display:block;">
+              <strong style="display:block;color:#fff;font-size:0.84rem;margin-bottom:5px;">How do I choose a safe clinic?</strong>
+              <span style="font-size:0.72rem;color:var(--text-muted);line-height:1.5;">Screening, clinician oversight, consent, integration and red flags.</span>
+            </a>
+            <a href="/blog/" data-section="blog" style="text-decoration:none;border:0.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px;background:rgba(255,255,255,0.035);display:block;">
+              <strong style="display:block;color:#fff;font-size:0.84rem;margin-bottom:5px;">Can psychedelics change you?</strong>
+              <span style="font-size:0.72rem;color:var(--text-muted);line-height:1.5;">Editorial answers built for Google AI, ChatGPT and Perplexity.</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- Editorial Blog Preview -->
+        <section id="homepage-blog-preview" aria-label="Editorial blog preview" style="margin-top:14px;border-radius:14px;border:0.5px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);padding:16px 18px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;">
+            <div>
+              <div style="font-family:'Syne',sans-serif;font-size:0.62rem;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;color:#f3ffb9;">Editorial Blog</div>
+              <p style="font-size:0.72rem;color:var(--text-muted);margin-top:4px;">Long-form AEO, GEO and LLMO articles answering the questions other psychedelic sites miss.</p>
+            </div>
+            <button type="button" data-section="blog" style="font-size:0.65rem;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;">Open blog →</button>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
+            <button type="button" data-section="blog" style="text-align:left;border:0.5px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.025);border-radius:10px;padding:10px;color:inherit;cursor:pointer;">
+              <strong style="font-size:0.78rem;display:block;color:#fff;line-height:1.35;">What Psychedelic Therapy Really Feels Like</strong>
+              <span style="font-size:0.64rem;color:var(--text-muted);">AEO article template</span>
+            </button>
+            <button type="button" data-section="blog" style="text-align:left;border:0.5px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.025);border-radius:10px;padding:10px;color:inherit;cursor:pointer;">
+              <strong style="font-size:0.78rem;display:block;color:#fff;line-height:1.35;">7 Hidden Risks of Psychedelic Retreats</strong>
+              <span style="font-size:0.64rem;color:var(--text-muted);">Retreat affiliate support</span>
+            </button>
+            <button type="button" data-section="blog" style="text-align:left;border:0.5px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.025);border-radius:10px;padding:10px;color:inherit;cursor:pointer;">
+              <strong style="font-size:0.78rem;display:block;color:#fff;line-height:1.35;">Can Psychedelics Permanently Change You?</strong>
+              <span style="font-size:0.64rem;color:var(--text-muted);">High-volume emotional search</span>
+            </button>
+          </div>
+        </section>
+
         <!-- Book CTA card -->
         <a href="https://amzn.to/4f37j75" target="_blank" rel="noopener sponsored"
           style="display:flex;align-items:center;gap:16px;margin-top:10px;padding:16px 18px;border-radius:12px;border:0.5px solid rgba(184,246,9,0.2);border-top:0.5px solid rgba(184,246,9,0.3);background:rgba(184,246,9,0.04);text-decoration:none;transition:all 0.2s;"
@@ -1394,7 +1476,7 @@
       </aside>
     </div>
     <!-- Old flat grid hidden — kept for search results -->
-    <div class="articles-grid" id="grid" style="display:none;"></div>
+    <div class="articles-grid" id="news-grid" style="display:none;"></div>
     <div class="empty" id="empty" style="display:none">No articles found.</div>
   </div>
 
@@ -1811,14 +1893,15 @@ function routeFromPath(path) {
   if (special) { showPage(special.label); _isPopState = false; return; }
   const blogPost = path.match(/^\/blog\/([a-zA-Z0-9\-_]+)$/);
   if (blogPost) { showSection('blog', blogPost[1]); _isPopState = false; return; }
-  if (path === '/blog') { showSection('blog'); _isPopState = false; return; }
+  if (path === '/news') { showSection('news'); _isPopState = false; return; }
+  if (path === '/blog' || path === '/articles' || path === '/editorial') { showSection('blog'); _isPopState = false; return; }
   const topic = TOPICS.find(t => '/' + t.slug === path);
   if (topic) { switchTopic(topic.label); _isPopState = false; return; }
   if (path === '/jobs')        { showSection('jobs');     _isPopState = false; return; }
   if (path === '/retreats')    { showSection('retreats'); _isPopState = false; return; }
   if (path === '/collaborate') { showSection('collab');   _isPopState = false; return; }
-  if (path === '/library')     { showSection('library');  _isPopState = false; return; }
-  if (path === '/learn')        { showSection('learn');     _isPopState = false; return; }
+  if (path === '/library' || path === '/books')     { showSection('library');  _isPopState = false; return; }
+  if (path === '/learn' || path === '/guides' || path === '/glossary')        { showSection('learn');     _isPopState = false; return; }
   switchTopic('All');
   _isPopState = false;
 }
@@ -1830,7 +1913,7 @@ window.addEventListener('popstate', e => {
 
 // ─── NAV ACTIVE STATES ───────────────────────────────────────
 function updateNavActive() {
-  ['news','blog','library','jobs','retreats','collab','learn'].forEach(s => {
+  ['news','blog','library','jobs','retreats','collab','learn','clinics'].forEach(s => {
     const el = document.getElementById('tab-' + s);
     if (!el) return;
     el.classList.toggle('active', s === currentSection && currentPage === null);
@@ -1977,7 +2060,7 @@ function showSection(section, option) {
   });
 
   // Reset the reusable news grid used by special pages/search.
-  var grid = document.getElementById('grid');
+  var grid = document.getElementById('news-grid');
   if (grid) { grid.style.display = 'none'; grid.innerHTML = ''; }
   var empty = document.getElementById('empty');
   if (empty) empty.style.display = 'none';
@@ -2035,7 +2118,7 @@ function showPage(page) {
   const sb   = document.getElementById('statusBar');
   const ls   = document.getElementById('loadingState');
   const emp  = document.getElementById('empty');
-  const grid = document.getElementById('grid');
+  const grid = document.getElementById('news-grid');
   if (hero) hero.innerHTML = '';
   if (stories) stories.innerHTML = '';
   if (sidebar) sidebar.innerHTML = '';
@@ -2051,6 +2134,7 @@ function showPage(page) {
   else if (page === 'PsyFinance') renderPsyFinance();
   else if (page === 'CostCalc') renderCostCalc();
   else if (page === 'ResearchTracker') renderResearchTracker();
+  else if (page === 'Clinics') renderClinics();
 }
 
 // ─── PARSE XML ───────────────────────────────────────────────
@@ -2108,8 +2192,8 @@ function blueprintAuraImage(title, category) {
   var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">'
     +'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl('+h1+',72%,14%)"/><stop offset="0.55" stop-color="hsl('+h2+',74%,22%)"/><stop offset="1" stop-color="hsl('+h3+',78%,12%)"/></linearGradient>'
     +'<radialGradient id="a" cx="30%" cy="20%" r="70%"><stop offset="0" stop-color="#2dd4bf" stop-opacity="0.45"/><stop offset="0.55" stop-color="#a78bfa" stop-opacity="0.15"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>'
-    +'<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#fff" stroke-opacity="0.08" stroke-width="1"/></pattern></defs>'
-    +'<rect width="800" height="500" fill="url(#g)"/><rect width="800" height="500" fill="url(#a)"/><rect width="800" height="500" fill="url(#grid)"/>'
+    +'<pattern id="news-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#fff" stroke-opacity="0.08" stroke-width="1"/></pattern></defs>'
+    +'<rect width="800" height="500" fill="url(#g)"/><rect width="800" height="500" fill="url(#a)"/><rect width="800" height="500" fill="url(#news-grid)"/>'
     +'<g fill="none" stroke="#2dd4bf" stroke-opacity="0.4" stroke-width="2"><circle cx="620" cy="130" r="74"/><circle cx="620" cy="130" r="38"/><path d="M80 380 C180 260,270 450,380 305 S585 215,710 355"/></g>'
     +'<text x="48" y="420" fill="#fff" fill-opacity="0.82" font-family="Arial,sans-serif" font-size="32" font-weight="700">'+esc(label)+'</text>'
     +'<text x="50" y="455" fill="#2dd4bf" fill-opacity="0.7" font-family="monospace" font-size="13" letter-spacing="4">THE PSYCHEDELIC DIGEST</text></svg>';
@@ -2692,7 +2776,7 @@ function filterRetreats() {
 
 // ─── LEGAL MAP ───────────────────────────────────────────────
 function renderLegalMap() {
-  const grid = document.getElementById('grid');
+  const grid = document.getElementById('news-grid');
   if (!grid) return;
 
   const COUNTRIES = [
@@ -2728,7 +2812,7 @@ function renderLegalMap() {
     research:'#8b5cf6', illegal:'#ef4444', grey:'#94a3b8'
   };
 
-  const grid2 = document.getElementById('grid');
+  const grid2 = document.getElementById('news-grid');
   if (!grid2) return;
   grid2.style.display = 'block';
 
@@ -2846,7 +2930,7 @@ function renderLegalMap() {
 
 // ─── COST CALCULATOR ─────────────────────────────────────────
 function renderCostCalc() {
-  const grid = document.getElementById('grid');
+  const grid = document.getElementById('news-grid');
   grid.style.display = 'block';
   grid.innerHTML =
     '<div style="animation:fadeUp 0.4s ease;max-width:600px;">' +
@@ -2901,7 +2985,7 @@ function renderCostCalc() {
 
 // ─── RESEARCH TRACKER ─────────────────────────────────────────
 function renderResearchTracker() {
-  const grid = document.getElementById('grid');
+  const grid = document.getElementById('news-grid');
   grid.style.display = 'block';
   const TRIALS = [
     {id:'NCT04670081',compound:'Psilocybin (COMP360)',company:'Compass Pathways',condition:'TRD',phase:'3',status:'active',n:255,location:'EU, USA, AU',est:'Q3 2026',url:'https://clinicaltrials.gov/ct2/show/NCT04670081'},
@@ -2948,7 +3032,7 @@ function renderResearchTracker() {
 
 // ─── GLOSSARY ────────────────────────────────────────────────
 function renderGlossary() {
-  const grid = document.getElementById('grid');
+  const grid = document.getElementById('news-grid');
   const terms = [
     ['Ayahuasca', 'A psychedelic brew from the Amazon made from Banisteriopsis caapi vine and Psychotria viridis leaves, containing DMT and MAOIs. Used in traditional indigenous ceremonies and increasingly in therapeutic contexts.'],
     ['Default Mode Network (DMN)', 'A brain network active during self-referential thinking and mind-wandering. Psychedelics temporarily disrupt DMN activity, which is thought to underlie their therapeutic effects on rigid thought patterns.'],
@@ -2995,7 +3079,7 @@ function renderGlossary() {
 
 // ─── PSYFINANCE ──────────────────────────────────────────────
 function renderPsyFinance() {
-  const grid = document.getElementById('grid');
+  const grid = document.getElementById('news-grid');
   grid.style.display = 'block';
   grid.innerHTML =
     '<div style="animation:fadeUp 0.4s ease;">' +
@@ -3329,7 +3413,7 @@ if (aboutButton) {
   aboutButton.addEventListener('mouseenter', () => { aboutButton.style.color = 'var(--text-primary)'; });
   aboutButton.addEventListener('mouseleave', () => { aboutButton.style.color = 'var(--text-muted)'; });
 }
-
+\n\nfunction renderClinics() {\n  var grid = document.getElementById('news-grid');\n  if (!grid) return;\n  document.title = 'Psychedelic Clinics Directory and Safety Guide — The Psychedelic Digest';\n  updateCanonical('/clinics');\n  grid.style.display = 'block';\n  grid.innerHTML = `\n    <section style="grid-column:1/-1;max-width:1040px;margin:0 auto;padding:28px 0 70px;">\n      <div style="text-align:center;padding:28px 0 28px;">\n        <div style="font-family:'Syne',sans-serif;font-size:0.66rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#2dd4bf;margin-bottom:12px;">Clinic Directory</div>\n        <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.4rem);">Psychedelic Clinics & Safe Access</h1>\n        <p class="section-subtitle" style="max-width:760px;">A future directory for legal psychedelic therapy providers, plus a practical safety guide for choosing clinics with clinical oversight, screening and integration support.</p>\n      </div>\n      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:12px;">\n        <article class="info-panel">\n          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">How to choose a clinic</h2>\n          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">Look for licensed clinicians, medical screening, clear consent, emergency protocols, transparent pricing and integration sessions. Avoid any clinic promising guaranteed cures.</p>\n        </article>\n        <article class="info-panel">\n          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">Country pages later</h2>\n          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">This hub is ready to expand into /clinics/australia/, /clinics/uk/, /clinics/sydney/ and other city or country pages when provider data is verified.</p>\n        </article>\n        <article class="info-panel">\n          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">YMYL safety first</h2>\n          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">Clinic content should be reviewed, cited and carefully worded because psychedelic therapy is health-related and legally sensitive.</p>\n        </article>\n      </div>\n      <div style="margin-top:22px;border-radius:16px;border:0.5px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.035);padding:22px;">\n        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:12px;">Clinic safety checklist</h2>\n        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">\n          ${['Medical intake and contraindication screening','Medication interaction review','Licensed clinician or psychiatrist involvement','Written informed consent','Emergency and adverse-event protocol','Preparation and integration support','Transparent cost breakdown','No miracle-cure promises'].map(x=>`<div style="padding:10px 12px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.07);font-size:0.82rem;color:var(--text-secondary);">✓ ${x}</div>`).join('')}\n        </div>\n      </div>\n    </section>`;\n}\n
 // ─── LEARN+ ───────────────────────────────────────────────────
 const LEARN_COURSES = {
   history: {
@@ -3653,4 +3737,13 @@ routeFromPath(window.location.pathname || '/');
 
 </script>
 </body>
+
+<!--
+SEO ARCHITECTURE MAP — v1
+Core preserved: logo, dark aura design, psychedelic editorial identity.
+Primary hubs: /news/, /legality/, /blog/, /learn/, /research/, /retreats/, /clinics/, /finance/, /library/.
+Blog role: long-form AEO/GEO/LLMO editorial engine, supporting Research, Learn+, Legal Map, Retreats and Clinics.
+Homepage priority order: Latest News, Legal Map, AEO answers, Blog/Editorial, Microdosing book, Newsletter, PsyFinance, Learn+, Retreats, Clinics.
+Future programmatic pages: /legality/[country]/, /retreats/[country]/, /clinics/[city]/, /therapy/[condition]/, /substances/[substance]/.
+-->
 </html>
