@@ -1030,6 +1030,24 @@
   @media (max-width: 768px) { .ucb { padding: 14px 8px; gap: 6px; } .ucb-t { font-size: 0.72rem; } }
   @media (max-width: 480px) { [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2,1fr) !important; } }
 
+
+/* Stability patch: prevent horizontal clipping and keep SEO blocks full-width */
+html, body { max-width: 100%; overflow-x: hidden; }
+#mainNav { width: 100%; max-width: 100vw; }
+#primaryNav { min-width: 0; }
+#section-news-layout { width: 100%; }
+#answer-engine-block, #homepage-blog-preview, #microdosing-book-cta {
+  width: 100% !important;
+}
+@media (min-width: 901px) {
+  #homepage-seo-blocks {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 14px;
+  }
+}
+
 </style>
 
 <script type="application/ld+json" id="seo-architecture-schema">
@@ -2192,8 +2210,8 @@ function blueprintAuraImage(title, category) {
   var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">'
     +'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl('+h1+',72%,14%)"/><stop offset="0.55" stop-color="hsl('+h2+',74%,22%)"/><stop offset="1" stop-color="hsl('+h3+',78%,12%)"/></linearGradient>'
     +'<radialGradient id="a" cx="30%" cy="20%" r="70%"><stop offset="0" stop-color="#2dd4bf" stop-opacity="0.45"/><stop offset="0.55" stop-color="#a78bfa" stop-opacity="0.15"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>'
-    +'<pattern id="news-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#fff" stroke-opacity="0.08" stroke-width="1"/></pattern></defs>'
-    +'<rect width="800" height="500" fill="url(#g)"/><rect width="800" height="500" fill="url(#a)"/><rect width="800" height="500" fill="url(#news-grid)"/>'
+    +'<pattern id="blueprintGrid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#fff" stroke-opacity="0.08" stroke-width="1"/></pattern></defs>'
+    +'<rect width="800" height="500" fill="url(#g)"/><rect width="800" height="500" fill="url(#a)"/><rect width="800" height="500" fill="url(#blueprintGrid)"/>'
     +'<g fill="none" stroke="#2dd4bf" stroke-opacity="0.4" stroke-width="2"><circle cx="620" cy="130" r="74"/><circle cx="620" cy="130" r="38"/><path d="M80 380 C180 260,270 450,380 305 S585 215,710 355"/></g>'
     +'<text x="48" y="420" fill="#fff" fill-opacity="0.82" font-family="Arial,sans-serif" font-size="32" font-weight="700">'+esc(label)+'</text>'
     +'<text x="50" y="455" fill="#2dd4bf" fill-opacity="0.7" font-family="monospace" font-size="13" letter-spacing="4">THE PSYCHEDELIC DIGEST</text></svg>';
@@ -2208,10 +2226,26 @@ function showLoading() {
   if (ls) ls.style.display = '';
   if (hero) hero.innerHTML = '';
   if (sl) sl.innerHTML = '';
+
+  // Fast visible fallback: do not leave users staring at skeletons if RSS/CORS is slow.
+  clearTimeout(window._newsFallbackTimer);
+  window._newsFallbackTimer = setTimeout(function() {
+    if ((!_allArticles || !_allArticles.length) && typeof renderArticles === 'function') {
+      renderArticles([
+        {title:'Latest psychedelic therapy news, research and policy updates',excerpt:'Live news is loading. If RSS is blocked, this fallback keeps the homepage readable while the site retries in the background.',source:'The Psychedelic Digest',date:'Live',url:'https://www.thepsychedelicdigest.com/news/',imageUrl:IMGS[0],category:'News'},
+        {title:'Australia leads legal psychedelic therapy access',excerpt:'Psilocybin and MDMA therapy access remains one of the most searched topics in psychedelic medicine.',source:'The Psychedelic Digest',date:'Guide',url:'https://www.thepsychedelicdigest.com/legality/',imageUrl:IMGS[1],category:'Policy'},
+        {title:'How to choose a safe psychedelic clinic',excerpt:'A practical safety-first guide to screening, clinical oversight, consent, integration and red flags.',source:'The Psychedelic Digest',date:'Guide',url:'https://www.thepsychedelicdigest.com/clinics/',imageUrl:IMGS[2],category:'Clinics'},
+        {title:'Best psychedelic retreats: safety, legality and fit',excerpt:'Affiliate-ready retreat guidance focused on trust, screening, country legality and preparation.',source:'The Psychedelic Digest',date:'Guide',url:'https://www.thepsychedelicdigest.com/retreats/',imageUrl:IMGS[3],category:'Retreats'},
+        {title:'What psychedelic therapy really feels like',excerpt:'AEO and LLMO editorial answer built for Google AI Overviews, ChatGPT and Perplexity.',source:'The Psychedelic Digest',date:'Editorial',url:'https://www.thepsychedelicdigest.com/blog/',imageUrl:IMGS[4],category:'Editorial'},
+        {title:'Psychedelic finance: companies, approvals and market signals',excerpt:'Track psychedelic biotech, stocks, approvals and investor-facing industry movements.',source:'The Psychedelic Digest',date:'Market',url:'https://www.thepsychedelicdigest.com/finance/',imageUrl:IMGS[5],category:'Finance'}
+      ]);
+    }
+  }, 1200);
 }
 
 // ─── RENDER ARTICLES ─────────────────────────────────────────
 function renderArticles(articles) {
+  clearTimeout(window._newsFallbackTimer);
   _allArticles = Array.isArray(articles) ? articles.slice(0,18) : [];
   var ls = document.getElementById('loadingState');
   var hero = document.getElementById('hero');
@@ -3413,7 +3447,44 @@ if (aboutButton) {
   aboutButton.addEventListener('mouseenter', () => { aboutButton.style.color = 'var(--text-primary)'; });
   aboutButton.addEventListener('mouseleave', () => { aboutButton.style.color = 'var(--text-muted)'; });
 }
-\n\nfunction renderClinics() {\n  var grid = document.getElementById('news-grid');\n  if (!grid) return;\n  document.title = 'Psychedelic Clinics Directory and Safety Guide — The Psychedelic Digest';\n  updateCanonical('/clinics');\n  grid.style.display = 'block';\n  grid.innerHTML = `\n    <section style="grid-column:1/-1;max-width:1040px;margin:0 auto;padding:28px 0 70px;">\n      <div style="text-align:center;padding:28px 0 28px;">\n        <div style="font-family:'Syne',sans-serif;font-size:0.66rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#2dd4bf;margin-bottom:12px;">Clinic Directory</div>\n        <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.4rem);">Psychedelic Clinics & Safe Access</h1>\n        <p class="section-subtitle" style="max-width:760px;">A future directory for legal psychedelic therapy providers, plus a practical safety guide for choosing clinics with clinical oversight, screening and integration support.</p>\n      </div>\n      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:12px;">\n        <article class="info-panel">\n          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">How to choose a clinic</h2>\n          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">Look for licensed clinicians, medical screening, clear consent, emergency protocols, transparent pricing and integration sessions. Avoid any clinic promising guaranteed cures.</p>\n        </article>\n        <article class="info-panel">\n          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">Country pages later</h2>\n          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">This hub is ready to expand into /clinics/australia/, /clinics/uk/, /clinics/sydney/ and other city or country pages when provider data is verified.</p>\n        </article>\n        <article class="info-panel">\n          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">YMYL safety first</h2>\n          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">Clinic content should be reviewed, cited and carefully worded because psychedelic therapy is health-related and legally sensitive.</p>\n        </article>\n      </div>\n      <div style="margin-top:22px;border-radius:16px;border:0.5px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.035);padding:22px;">\n        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:12px;">Clinic safety checklist</h2>\n        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">\n          ${['Medical intake and contraindication screening','Medication interaction review','Licensed clinician or psychiatrist involvement','Written informed consent','Emergency and adverse-event protocol','Preparation and integration support','Transparent cost breakdown','No miracle-cure promises'].map(x=>`<div style="padding:10px 12px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.07);font-size:0.82rem;color:var(--text-secondary);">✓ ${x}</div>`).join('')}\n        </div>\n      </div>\n    </section>`;\n}\n
+
+
+function renderClinics() {
+  var grid = document.getElementById('news-grid');
+  if (!grid) return;
+  document.title = 'Psychedelic Clinics Directory and Safety Guide — The Psychedelic Digest';
+  updateCanonical('/clinics');
+  grid.style.display = 'block';
+  grid.innerHTML = `
+    <section style="grid-column:1/-1;max-width:1040px;margin:0 auto;padding:28px 0 70px;">
+      <div style="text-align:center;padding:28px 0 28px;">
+        <div style="font-family:'Syne',sans-serif;font-size:0.66rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#2dd4bf;margin-bottom:12px;">Clinic Directory</div>
+        <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.4rem);">Psychedelic Clinics & Safe Access</h1>
+        <p class="section-subtitle" style="max-width:760px;">A future directory for legal psychedelic therapy providers, plus a practical safety guide for choosing clinics with clinical oversight, screening and integration support.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:12px;">
+        <article class="info-panel">
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">How to choose a clinic</h2>
+          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">Look for licensed clinicians, medical screening, clear consent, emergency protocols, transparent pricing and integration sessions. Avoid any clinic promising guaranteed cures.</p>
+        </article>
+        <article class="info-panel">
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">Country pages later</h2>
+          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">This hub is ready to expand into /clinics/australia/, /clinics/uk/, /clinics/sydney/ and other city or country pages when provider data is verified.</p>
+        </article>
+        <article class="info-panel">
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">YMYL safety first</h2>
+          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">Clinic content should be reviewed, cited and carefully worded because psychedelic therapy is health-related and legally sensitive.</p>
+        </article>
+      </div>
+      <div style="margin-top:22px;border-radius:16px;border:0.5px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.035);padding:22px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:12px;">Clinic safety checklist</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+          ${['Medical intake and contraindication screening','Medication interaction review','Licensed clinician or psychiatrist involvement','Written informed consent','Emergency and adverse-event protocol','Preparation and integration support','Transparent cost breakdown','No miracle-cure promises'].map(x=>`<div style="padding:10px 12px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.07);font-size:0.82rem;color:var(--text-secondary);">✓ ${x}</div>`).join('')}
+        </div>
+      </div>
+    </section>`;
+}
+
 // ─── LEARN+ ───────────────────────────────────────────────────
 const LEARN_COURSES = {
   history: {
@@ -3703,6 +3774,32 @@ function renderLibrary() {
   var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(spawn, 200); });
 })();
 
+
+// ─── HOMEPAGE LAYOUT STABILIZER ──────────────────────────────
+function stabilizeHomepageBlocks() {
+  var newsLayout = document.getElementById('section-news-layout');
+  var newsTwoCol = document.getElementById('news-two-col');
+  if (!newsLayout || !newsTwoCol) return;
+
+  var answer = document.getElementById('answer-engine-block');
+  var blogPreview = document.getElementById('homepage-blog-preview');
+  var bookCta = document.getElementById('microdosing-book-cta');
+
+  if (!answer && !blogPreview && !bookCta) return;
+
+  var wrap = document.getElementById('homepage-seo-blocks');
+  if (!wrap) {
+    wrap = document.createElement('div');
+    wrap.id = 'homepage-seo-blocks';
+    wrap.setAttribute('aria-label', 'SEO homepage modules');
+    newsTwoCol.insertAdjacentElement('afterend', wrap);
+  }
+
+  [answer, blogPreview, bookCta].forEach(function(el) {
+    if (el && el.parentNode !== wrap) wrap.appendChild(el);
+  });
+}
+
 // ─── APP BOOT ────────────────────────────────────────────────
 // Particles
 (function(){
@@ -3729,6 +3826,7 @@ document.addEventListener('error',function(e){
 },true);
 
 // Boot
+stabilizeHomepageBlocks();
 initReadingProgress();
 initJournalPrompt();
 wireDropdowns();
