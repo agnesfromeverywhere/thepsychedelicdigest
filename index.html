@@ -3421,7 +3421,44 @@ if (aboutButton) {
   aboutButton.addEventListener('mouseenter', () => { aboutButton.style.color = 'var(--text-primary)'; });
   aboutButton.addEventListener('mouseleave', () => { aboutButton.style.color = 'var(--text-muted)'; });
 }
-\n\nfunction renderClinics() {\n  var grid = document.getElementById('news-grid');\n  if (!grid) return;\n  document.title = 'Psychedelic Clinics Directory and Safety Guide — The Psychedelic Digest';\n  updateCanonical('/clinics');\n  grid.style.display = 'block';\n  grid.innerHTML = `\n    <section style="grid-column:1/-1;max-width:1040px;margin:0 auto;padding:28px 0 70px;">\n      <div style="text-align:center;padding:28px 0 28px;">\n        <div style="font-family:'Syne',sans-serif;font-size:0.66rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#2dd4bf;margin-bottom:12px;">Clinic Directory</div>\n        <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.4rem);">Psychedelic Clinics & Safe Access</h1>\n        <p class="section-subtitle" style="max-width:760px;">A future directory for legal psychedelic therapy providers, plus a practical safety guide for choosing clinics with clinical oversight, screening and integration support.</p>\n      </div>\n      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:12px;">\n        <article class="info-panel">\n          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">How to choose a clinic</h2>\n          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">Look for licensed clinicians, medical screening, clear consent, emergency protocols, transparent pricing and integration sessions. Avoid any clinic promising guaranteed cures.</p>\n        </article>\n        <article class="info-panel">\n          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">Country pages later</h2>\n          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">This hub is ready to expand into /clinics/australia/, /clinics/uk/, /clinics/sydney/ and other city or country pages when provider data is verified.</p>\n        </article>\n        <article class="info-panel">\n          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">YMYL safety first</h2>\n          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">Clinic content should be reviewed, cited and carefully worded because psychedelic therapy is health-related and legally sensitive.</p>\n        </article>\n      </div>\n      <div style="margin-top:22px;border-radius:16px;border:0.5px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.035);padding:22px;">\n        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:12px;">Clinic safety checklist</h2>\n        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">\n          ${['Medical intake and contraindication screening','Medication interaction review','Licensed clinician or psychiatrist involvement','Written informed consent','Emergency and adverse-event protocol','Preparation and integration support','Transparent cost breakdown','No miracle-cure promises'].map(x=>`<div style="padding:10px 12px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.07);font-size:0.82rem;color:var(--text-secondary);">✓ ${x}</div>`).join('')}\n        </div>\n      </div>\n    </section>`;\n}\n
+
+
+function renderClinics() {
+  var grid = document.getElementById('news-grid');
+  if (!grid) return;
+  document.title = 'Psychedelic Clinics Directory and Safety Guide — The Psychedelic Digest';
+  updateCanonical('/clinics');
+  grid.style.display = 'block';
+  grid.innerHTML = `
+    <section style="grid-column:1/-1;max-width:1040px;margin:0 auto;padding:28px 0 70px;">
+      <div style="text-align:center;padding:28px 0 28px;">
+        <div style="font-family:'Syne',sans-serif;font-size:0.66rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#2dd4bf;margin-bottom:12px;">Clinic Directory</div>
+        <h1 class="section-title" style="font-size:clamp(2rem,5vw,3.4rem);">Psychedelic Clinics & Safe Access</h1>
+        <p class="section-subtitle" style="max-width:760px;">A future directory for legal psychedelic therapy providers, plus a practical safety guide for choosing clinics with clinical oversight, screening and integration support.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:12px;">
+        <article class="info-panel">
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">How to choose a clinic</h2>
+          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">Look for licensed clinicians, medical screening, clear consent, emergency protocols, transparent pricing and integration sessions. Avoid any clinic promising guaranteed cures.</p>
+        </article>
+        <article class="info-panel">
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">Country pages later</h2>
+          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">This hub is ready to expand into /clinics/australia/, /clinics/uk/, /clinics/sydney/ and other city or country pages when provider data is verified.</p>
+        </article>
+        <article class="info-panel">
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:8px;">YMYL safety first</h2>
+          <p style="font-size:0.86rem;color:var(--text-secondary);line-height:1.7;">Clinic content should be reviewed, cited and carefully worded because psychedelic therapy is health-related and legally sensitive.</p>
+        </article>
+      </div>
+      <div style="margin-top:22px;border-radius:16px;border:0.5px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.035);padding:22px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:12px;">Clinic safety checklist</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+          ${['Medical intake and contraindication screening','Medication interaction review','Licensed clinician or psychiatrist involvement','Written informed consent','Emergency and adverse-event protocol','Preparation and integration support','Transparent cost breakdown','No miracle-cure promises'].map(x=>`<div style="padding:10px 12px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.07);font-size:0.82rem;color:var(--text-secondary);">✓ ${x}</div>`).join('')}
+        </div>
+      </div>
+    </section>`;
+}
+
 // ─── LEARN+ ───────────────────────────────────────────────────
 const LEARN_COURSES = {
   history: {
