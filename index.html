@@ -15,7 +15,7 @@
 <meta name="geo.placename" content="Sydney, New South Wales, Australia">
 <meta name="geo.position" content="-33.8688;151.2093">
 <meta name="ICBM" content="-33.8688, 151.2093">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; img-src 'self' https: data: blob:; connect-src 'self' https:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; form-action 'self' https://beehiiv.com; upgrade-insecure-requests;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; img-src 'self' https: data: blob:; connect-src 'self' https:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; form-action 'self' https://beehiiv.com; upgrade-insecure-requests;">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
@@ -1963,11 +1963,86 @@ function switchTopic(label) {
   fetchNews();
 }
 
+
+// ─── SECTION DISPLAY ─────────────────────────────────────────
+function showSection(section, option) {
+  section = section || 'news';
+  currentPage = null;
+  currentSection = section;
+
+  var newsLayout = document.getElementById('section-news-layout');
+  var loading = document.getElementById('loadingState');
+  var newsSection = document.getElementById('section-news');
+  var grid = document.getElementById('grid');
+  var hero = document.getElementById('hero');
+  var empty = document.getElementById('empty');
+  var storyList = document.getElementById('story-list');
+  var searchWrap = document.querySelector('.search-wrap');
+  var filtersWrap = document.querySelector('.filters-wrap');
+  var searchInput = document.getElementById('searchInput');
+
+  ['section-jobs','section-retreats','section-collab','section-blog','section-library','section-learn'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+
+  if (grid) {
+    grid.style.display = 'none';
+    grid.innerHTML = '';
+  }
+  if (empty) empty.style.display = 'none';
+
+  var isNews = section === 'news';
+  if (newsLayout) newsLayout.style.display = isNews ? 'block' : 'none';
+  if (newsSection) newsSection.style.display = isNews ? '' : 'none';
+  if (loading && !isNews) loading.style.display = 'none';
+  if (searchWrap) searchWrap.style.display = isNews ? 'block' : 'none';
+  if (filtersWrap) filtersWrap.style.display = isNews ? 'block' : 'none';
+  if (searchInput) {
+    searchInput.style.display = isNews ? '' : 'none';
+    if (!isNews) searchInput.value = '';
+  }
+
+  if (isNews) {
+    if (!_isPopState) pushRoute('/' + (activeTopic && activeTopic.slug ? activeTopic.slug : 'all'));
+    renderFilters();
+    if (!_allArticles.length) fetchNews();
+    return;
+  }
+
+  var target = document.getElementById('section-' + section);
+  if (target) target.style.display = 'block';
+  if (hero) hero.innerHTML = '';
+  if (storyList) storyList.innerHTML = '';
+
+  if (!_isPopState) {
+    var routes = {blog:'/blog', jobs:'/jobs', retreats:'/retreats', collab:'/collaborate', library:'/library', learn:'/learn'};
+    if (routes[section]) pushRoute(routes[section]);
+  }
+
+  renderFilters();
+
+  if (section === 'blog') renderBlog(option || '');
+  else if (section === 'jobs') renderJobs('all');
+  else if (section === 'retreats') filterRetreats();
+  else if (section === 'library') renderLibrary();
+  else if (section === 'learn') renderLearn(option || '');
+}
+
 // ─── SPECIAL PAGE DISPLAY ────────────────────────────────────
 function showPage(page) {
   currentPage    = page;
   currentSection = 'news';
   closeAllDropdowns();
+  ['section-jobs','section-retreats','section-collab','section-blog','section-library','section-learn'].forEach(function(id) {
+    var el = document.getElementById(id); if (el) el.style.display = 'none';
+  });
+  var newsLayout = document.getElementById('section-news-layout');
+  var newsSection = document.getElementById('section-news');
+  var grid = document.getElementById('grid');
+  if (newsLayout) newsLayout.style.display = 'block';
+  if (newsSection) newsSection.style.display = '';
+  if (grid) { grid.style.display = ''; grid.innerHTML = ''; }
   const si = document.getElementById('searchInput');
   if (si) si.style.display = 'none';
   const hero = document.getElementById('hero');
