@@ -2472,14 +2472,9 @@ async function fetchNews() {
   const rssAU = 'https://news.google.com/rss/search?q=' + encodeURIComponent(q) + '&hl=en-AU&gl=AU&ceid=AU:en';
   const rssUS = 'https://news.google.com/rss/search?q=' + encodeURIComponent(q) + '&hl=en-US&gl=US&ceid=US:en';
 
-  var attempts = [
-    'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssAU) + '&count=20',
-    'https://www.thepsychedelicdigest.com/api/rss?q=' + encodeURIComponent(q),
-    'https://api.allorigins.win/raw?url=' + encodeURIComponent(rssAU),
-    'https://api.allorigins.win/raw?url=' + encodeURIComponent(rssUS),
-    'https://corsproxy.io/?' + encodeURIComponent(rssAU),
+var attempts = [
+  '/api/news'
   ];
-
   for (var i = 0; i < attempts.length; i++) {
     try {
       var res = await fetchWithTimeout(attempts[i], 3500);
