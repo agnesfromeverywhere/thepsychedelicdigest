@@ -1883,7 +1883,7 @@ const SPECIAL_PAGES = [
   {label:'PsyFinance', slug:'psyfinance', id:'tab-psyfinance'},
 ];
 
-const IMGS = Array.from({length:18}, (_, i) => `https://picsum.photos/seed/psych${i+1}/800/500`);
+const IMGS = Array.from({length:18}, () => '');
 
 let activeTopic    = TOPICS[0];
 let currentPage    = null;
@@ -2211,7 +2211,7 @@ function parseXML(xml, offset) {
       if (!imageUrl) { try { const m = g('description').match(/<img[^>]+src=["']([^"']+)["']/i); if (m) imageUrl = m[1]; } catch(_) {} }
       if (!imageUrl || !imageUrl.startsWith('http')) {
         const seed = Math.abs((g('title')+g('pubDate')).split('').reduce((a,c)=>(a*31+c.charCodeAt(0))|0,0));
-        imageUrl = 'https://picsum.photos/seed/'+seed+'/800/500';
+        imageUrl = '';
       }
       return {
         title:    g('title'),
@@ -2226,6 +2226,25 @@ function parseXML(xml, offset) {
   } catch(e) { return []; }
 }
 
+
+function sanitizeCategory(category) {
+  var raw = String(category || '').trim();
+  var clean = raw.replace(/\d+/g, '').replace(/[^a-z\s]/gi, '').trim().toLowerCase();
+  if (!clean) return 'Latest';
+  if (clean.includes('research') || clean.includes('trial') || clean.includes('science')) return 'Research';
+  if (clean.includes('policy') || clean.includes('legal') || clean.includes('law') || clean.includes('decrim')) return 'Policy';
+  if (clean.includes('mdma')) return 'MDMA';
+  if (clean.includes('psilocybin') || clean.includes('mushroom')) return 'Psilocybin';
+  if (clean.includes('lsd')) return 'LSD';
+  if (clean.includes('ketamine') || clean.includes('esketamine')) return 'Ketamine';
+  if (clean.includes('finance') || clean.includes('stock') || clean.includes('market')) return 'Finance';
+  if (clean.includes('culture') || clean.includes('society') || clean.includes('retreat')) return 'Culture';
+  return 'Latest';
+}
+
+function guessCat(title) {
+  return sanitizeCategory(title);
+}
 function fetchWithTimeout(url, ms) {
   ms = ms || 7000;
   var timeout = new Promise(function(_, reject) {
@@ -2296,7 +2315,7 @@ function renderArticles(articles) {
       +'<img src="'+escAttr(imgSrc)+'" alt="'+escAttr(first.title)+'" loading="eager" style="width:100%;height:300px;object-fit:cover;display:block;">'
       +'<div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(6,4,18,0.97) 0%,rgba(6,4,18,0.35) 50%,transparent 100%);"></div>'
       +'<div style="position:absolute;left:22px;right:22px;bottom:18px;z-index:2;">'
-        +'<span style="display:inline-block;background:var(--accent);color:#041a18;padding:3px 12px;border-radius:999px;font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">'+esc(first.category||'News')+'</span>'
+        +'<span style="display:inline-block;background:var(--accent);color:#041a18;padding:3px 12px;border-radius:999px;font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;">'+esc(sanitizeCategory(first.category||'Latest'))+'</span>'
         +'<h1 style="font-family:Playfair Display,serif;font-size:clamp(1.4rem,3.5vw,2.4rem);line-height:1.1;color:white;margin:0 0 8px;">'+esc(first.title)+'</h1>'
         +'<div style="display:flex;gap:8px;align-items:center;color:rgba(255,255,255,0.42);font-size:0.72rem;">'
           +'<span style="color:var(--accent);font-weight:700;">'+esc(first.source||'News')+'</span>'
@@ -2317,7 +2336,7 @@ function renderArticles(articles) {
       return '<a class="visual-news-card" href="'+safeUrl(a.url)+'" target="_blank" rel="noopener noreferrer" style="display:block;">'
         +'<img class="visual-news-img" src="'+escAttr(img)+'" alt="'+escAttr(a.title)+'" loading="lazy">'
         +'<div class="visual-news-body">'
-          +'<div class="visual-news-kicker"><span>'+esc(a.category||'News')+'</span><span>'+n+'</span></div>'
+          +'<div class="visual-news-kicker"><span>'+esc(sanitizeCategory(a.category||'Latest'))+'</span><span>'+n+'</span></div>'
           +'<div class="visual-news-title">'+esc(a.title)+'</div>'
           +'<div style="margin-top:8px;font-size:0.68rem;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+esc(a.source||'News')+' · '+esc(a.date||'')+'</div>'
         +'</div>'
@@ -2346,7 +2365,7 @@ var WORLD_COUNTRIES = [
   {name:'Mexico',x:150,y:270,status:'decrim',note:'Indigenous use protected'},
   {name:'Jamaica',x:210,y:265,status:'medical',note:'Psilocybin retreat hub (legal)'},
   {name:'Switzerland',x:460,y:205,status:'research',note:'Compassionate use programme'},
-  {name:'Israel',x:510,y:235,status:'research',note:'MDMA Phase 3 trials'},
+  {name:'Palestine',x:510,y:235,status:'research',note:'MDMA Phase 3 trials'},
   {name:'Japan',x:720,y:225,status:'illegal',note:'Zero tolerance'},
   {name:'Indonesia',x:685,y:320,status:'illegal',note:'Severe penalties'},
 ];
@@ -2411,15 +2430,21 @@ function renderCompoundOfDay() {
   if (!el) return;
   var idx = Math.floor(Date.now()/86400000) % COMPOUND_OF_DAY.length;
   var c = COMPOUND_OF_DAY[idx];
-  el.innerHTML = '<div class="breath-label">Psychedelic of the Day</div>'
-    +'<div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;">'
-      +'<div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,rgba(45,212,191,0.18),rgba(184,246,9,0.10));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;">'+c.emoji+'</div>'
-      +'<div><div style="font-family:Playfair Display,serif;font-size:1.2rem;color:var(--text-primary);">'+esc(c.name)+'</div>'
-        +'<div style="font-size:0.65rem;color:var(--text-muted);margin-top:2px;">'+esc(c.origin)+'</div></div>'
-    +'</div>'
-    +'<div style="font-size:0.75rem;color:var(--text-secondary);line-height:1.55;margin-bottom:8px;">🔬 '+esc(c.focus)+'</div>'
-    +'<div style="font-size:0.70rem;color:var(--text-muted);font-style:italic;margin-bottom:12px;">Myth: '+esc(c.myth)+'</div>'
-    +'<button type="button" data-topic="'+escAttr(c.search)+'" style="width:100%;padding:8px 12px;border-radius:999px;border:0.5px solid rgba(45,212,191,0.25);background:rgba(45,212,191,0.08);color:var(--accent);font-size:0.72rem;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;">Read latest '+esc(c.name)+' news →</button>';
+  el.innerHTML = '<div class="breath-label">Psychedelic Therapy Access Guide</div>'
+    +'<h3 style="font-family:Playfair Display,serif;font-size:1.05rem;color:var(--text-primary);margin:0 0 10px;line-height:1.3;">Start here before booking treatment</h3>'
+    +'<ul style="margin:0 0 12px 16px;padding:0;display:grid;gap:7px;font-size:0.72rem;color:var(--text-secondary);line-height:1.45;">'
+      +'<li>Is psychedelic therapy legal where I live?</li>'
+      +'<li>How much does it cost?</li>'
+      +'<li>What conditions is it used for?</li>'
+      +'<li>How do I choose a safe clinic?</li>'
+      +'<li>What does the evidence actually say?</li>'
+    +'</ul>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">'
+      +'<button type="button" data-page="Legal Map" style="padding:8px 10px;border-radius:10px;border:0.5px solid rgba(45,212,191,0.25);background:rgba(45,212,191,0.09);color:var(--accent);font-size:0.68rem;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;">Legal Map</button>'
+      +'<button type="button" data-page="CostCalc" style="padding:8px 10px;border-radius:10px;border:0.5px solid rgba(139,92,246,0.28);background:rgba(139,92,246,0.12);color:#c4b5fd;font-size:0.68rem;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;">Treatment Cost</button>'
+      +'<button type="button" data-section="learn" style="padding:8px 10px;border-radius:10px;border:0.5px solid rgba(184,246,9,0.22);background:rgba(184,246,9,0.09);color:#d9f99d;font-size:0.68rem;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;">Learn+</button>'
+      +'<button type="button" data-page="Clinics" style="padding:8px 10px;border-radius:10px;border:0.5px solid rgba(59,130,246,0.25);background:rgba(59,130,246,0.10);color:#93c5fd;font-size:0.68rem;font-weight:700;cursor:pointer;font-family:DM Sans,sans-serif;">Clinic Directory</button>'
+    +'</div>';
 }
 
 // ─── MOTION TIMELINE ─────────────────────────────────────────
@@ -2462,7 +2487,7 @@ var LEGAL_STATUS_COUNTRIES = [
   {country:'Switzerland',status:'research',label:'Limited medical',substances:'Compassionate use programme. Some research access.',clinics:'Psychiatric University Hospital Zurich.'},
   {country:'New Zealand',status:'research',label:'Research only',substances:'Following Australia closely. No broad clinical access yet.',clinics:'No established clinic ecosystem.'},
   {country:'Costa Rica',status:'decrim',label:'Retreat hub',substances:'Ayahuasca retreats operate in grey zone.',clinics:'Soltara, The Buena Vida.'},
-  {country:'Israel',status:'research',label:'Research only',substances:'Government-backed MDMA trials. Limited medical access.',clinics:'Research and trial sites.'},
+  {country:'Palestine',status:'research',label:'Research only',substances:'Government-backed MDMA trials. Limited medical access.',clinics:'Research and trial sites.'},
 ];
 function statusClass(s) {
   if (s==='medical') return 'legal-status-medical';
@@ -2852,7 +2877,7 @@ function renderLegalMap() {
     {name:'Switzerland',flag:'🇨🇭',psi:'Research',mdma:'Research',ket:'Rx',aya:'Illegal',status:'research',note:'Compassionate use programme',clinics:['Psychiatric University Hospital Zurich']},
     {name:'UK',flag:'🇬🇧',psi:'Illegal',mdma:'Research',ket:'Rx',aya:'Illegal',status:'illegal',note:'Schedule 1, research exemptions only',clinics:['Clerkenwell Health (training)','COMPASS Pathways trials']},
     {name:'Germany',flag:'🇩🇪',psi:'Research',mdma:'Research',ket:'Rx',aya:'Illegal',status:'research',note:'Multiple Phase 2/3 trials underway'},
-    {name:'Israel',flag:'🇮🇱',psi:'Research',mdma:'Research',ket:'Rx',aya:'Illegal',status:'research',note:'Government-backed MDMA trials'},
+    {name:'Palestine',flag:'🇵🇸',psi:'Research',mdma:'Research',ket:'Rx',aya:'Illegal',status:'research',note:'Government-backed MDMA trials'},
     {name:'Jamaica',flag:'🇯🇲',psi:'Legal',mdma:'Grey',ket:'Rx',aya:'Legal',status:'legal',note:'No psilocybin law — retreat hub',clinics:['MycoMeditations','Silo Wellness','Atman Retreat']},
     {name:'Mexico',flag:'🇲🇽',psi:'Indigenous',mdma:'Illegal',ket:'Rx',aya:'Indigenous',status:'decrim',note:'Traditional/indigenous use protected',clinics:['Rythmia Life Advancement Center','Casa Umaya']},
     {name:'Costa Rica',flag:'🇨🇷',psi:'Grey',mdma:'Illegal',ket:'Rx',aya:'Legal',status:'decrim',note:'Popular retreat destination, grey zone',clinics:['The Buena Vida','Soltara Healing Center']},
@@ -2898,6 +2923,18 @@ function renderLegalMap() {
               return '<button onclick="window._mapFilter(\'' + s + '\')" id="mf-' + s + '" style="padding:5px 14px;border-radius:999px;border:0.5px solid ' + (s==='all'?'rgba(255,255,255,0.2)':getColor(s)+'66') + ';background:' + (s==='all'?'rgba(255,255,255,0.08)':getColor(s)+'18') + ';color:' + (s==='all'?'rgba(255,255,255,0.7)':getColor(s)) + ';font-size:0.68rem;font-weight:600;cursor:pointer;text-transform:capitalize;">' + s + '</button>';
             }).join('') +
           '</div>' +
+        '</div>' +
+
+        '<div style="margin-bottom:16px;border-radius:12px;border:0.5px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);padding:8px;">' +
+          '<svg viewBox="0 0 1000 420" width="100%" height="220" role="img" aria-label="World map illustration" style="display:block;">' +
+            '<defs><linearGradient id="wm-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="rgba(45,212,191,0.2)"/><stop offset="100%" stop-color="rgba(59,130,246,0.2)"/></linearGradient></defs>' +
+            '<rect x="0" y="0" width="1000" height="420" fill="rgba(2,6,23,0.35)"/>' +
+            '<path d="M80 180l70-40 90 10 50-30 90 20 10 45-40 35-60 8-40-20-80 10-60 25-35-20z" fill="url(#wm-bg)" stroke="rgba(148,163,184,0.45)"/>' +
+            '<path d="M430 145l40-28 60 8 25 25 40-4 55 22 22 35-35 23-50 2-20 30-62-12-30-25-40-5-18-35z" fill="url(#wm-bg)" stroke="rgba(148,163,184,0.45)"/>' +
+            '<path d="M710 170l55-28 65 20 45-8 45 26-8 40-35 18-55 6-35 26-45-15-26-42z" fill="url(#wm-bg)" stroke="rgba(148,163,184,0.45)"/>' +
+            '<path d="M790 300l55-12 36 18-18 38-65 20-45-24z" fill="url(#wm-bg)" stroke="rgba(148,163,184,0.45)"/>' +
+            '<path d="M280 285l35-8 20 16-10 35-38 10-20-20z" fill="url(#wm-bg)" stroke="rgba(148,163,184,0.45)"/>' +
+          '</svg>' +
         '</div>' +
 
         // Grid of country cards
