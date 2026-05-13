@@ -1029,7 +1029,65 @@
   .ucb-t { font-family: 'Syne', sans-serif; font-size: 0.80rem; font-weight: 800; letter-spacing: 0.02em; color: var(--text-primary); line-height: 1.2; }
   @media (max-width: 768px) { .ucb { padding: 14px 8px; gap: 6px; } .ucb-t { font-size: 0.72rem; } }
   @media (max-width: 480px) { [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2,1fr) !important; } }
+/* Emergency visual fix */
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit !important;
+  text-decoration: none !important;
+}
 
+#story-list,
+#news-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+
+#story-list a,
+#news-grid a,
+.article-card,
+.visual-news-card {
+  display: block !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+  background: rgba(18,16,24,0.85) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  color: var(--text-primary) !important;
+  text-decoration: none !important;
+}
+
+#story-list img,
+#news-grid img,
+.visual-news-img,
+.card-image img {
+  width: 100% !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+#story-list h2,
+#story-list h3,
+#news-grid h2,
+#news-grid h3,
+.card-title,
+.visual-news-title {
+  color: var(--text-primary) !important;
+  text-decoration: none !important;
+  font-size: 1rem !important;
+  line-height: 1.25 !important;
+  padding: 14px !important;
+}
+
+@media (max-width: 768px) {
+  #story-list,
+  #news-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
 </style>
 
 <script type="application/ld+json" id="seo-architecture-schema">
