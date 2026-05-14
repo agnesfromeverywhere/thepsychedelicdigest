@@ -2210,8 +2210,22 @@ function showPage(page) {
 }
 
 // ─── PARSE XML ───────────────────────────────────────────────
-// ─── PARSE XML ───────────────────────────────────────────────
-function parseXML(xml, offset = 0) {
+function formatDate(dateStr) {
+  try {
+    const d = new Date(dateStr);
+
+    if (isNaN(d.getTime())) return '';
+
+    return d.toLocaleDateString('en-AU', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    });
+  } catch (_) {
+    return '';
+  }
+}
+  function parseXML(xml, offset = 0) {
   try {
     const parser = new DOMParser();
     const doc = parser.parseFromString(xml, 'text/xml');
