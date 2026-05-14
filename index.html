@@ -2167,8 +2167,8 @@ function showSection(section, option) {
   if (currentSection === 'jobs') renderJobs('all');
   if (currentSection === 'retreats') renderRetreats('all','all');
   if (currentSection === 'library') renderLibrary();
-  if (currentSection === 'learn') setTimeout(function(){ renderLearn(option || 'history'); }, 0); if (currentSection === 'collab') filterInfluencers();
-
+ if (currentSection === 'learn') setTimeout(function(){ renderLearn(option || 'history'); }, 0);
+if (currentSection === 'collab') filterInfluencers();
   renderFilters();
 }
 
