@@ -2081,9 +2081,10 @@ function wireDropdowns() {
   });
   var tabLearn = document.getElementById('tab-learn');
   if (tabLearn) tabLearn.addEventListener('click', function(e) {
-    e.preventDefault(); e.stopPropagation();
-    toggleDropdown('learnDropdown');
-  });
+  e.preventDefault(); e.stopPropagation();
+  showSection('learn');
+  toggleDropdown('learnDropdown');
+});
   var tabLearnNav = document.getElementById('tab-learn-nav');
   if (tabLearnNav) tabLearnNav.addEventListener('click', function() {
     closeAllDropdowns(); showSection('learn');
