@@ -36,7 +36,7 @@ export default async function handler(req, res) {
     }
 
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Cache-Control", "s-maxage=900, stale-while-revalidate=3600");
+ res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=600");
     res.setHeader("Content-Type", "application/xml; charset=utf-8");
 
     return res.status(200).send(successfulFeeds[0].xml);
