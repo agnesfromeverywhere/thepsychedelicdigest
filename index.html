@@ -2210,36 +2210,120 @@ function showPage(page) {
 }
 
 // ─── PARSE XML ───────────────────────────────────────────────
-function parseXML(xml, offset) {
-  try 
+function parseXML(xml, offset = 0) {
+  try {
     const parser = new DOMParser();
-    const doc    = parser.parseFromString(xml, 'text/xml');
-    const items  = [...doc.querySelectorAll('item')].slice(0, 18);
-    if (!items.length) return [];
-    return items.map((item, i) => {
-     const g = tag => { try { const el = item.getElementsByTagName(tag)[0]; return (el?.textContent || el?.innerHTML || '').trim(); } catch(e) { return ''; } };
-    const rawDesc = g('description') || ''; const hrefMatch = rawDesc.match(/href="([^"]+)"/); const url = (hrefMatch && hrefMatch[1].replace(/&amp;/g,'&')) || g('link') || '#';
-      let imageUrl = '';
-      try { const mc = item.getElementsByTagNameNS('*','content')[0] || item.getElementsByTagName('media:content')[0]; if (mc) imageUrl = mc.getAttribute('url') || ''; } catch(_) {}
-      if (!imageUrl) { try { const enc = item.getElementsByTagName('enclosure')[0]; if (enc && (enc.getAttribute('type')||'').startsWith('image')) imageUrl = enc.getAttribute('url') || ''; } catch(_) {} }
-      if (!imageUrl) { try { const m = g('description').match(/<img[^>]+src=["']([^"']+)["']/i); if (m) imageUrl = m[1]; } catch(_) {} }
-      if (!imageUrl || !imageUrl.startsWith('http')) {
-        const seed = Math.abs((g('title')+g('pubDate')).split('').reduce((a,c)=>(a*31+c.charCodeAt(0))|0,0));
-        imageUrl = 'https://picsum.photos/seed/'+seed+'/800/500';
-      }
-      return {
-        title:    g('title'),
-        excerpt:  stripHtml(g('description') || ''),
-        source:   g('source') || extractSource(g('author') || ''),
-        date:     formatDate(g('pubDate')),
-        url:      url.startsWith('http') ? url : '#',
-        imageUrl,
-        category: guessCat(g('title')),
-      };
-    }).filter(a => a.title && a.url !== '#');
-  } catch(e) { return []; }
-}
+    const doc = parser.parseFromString(xml, 'text/xml');
 
+    if (doc.querySelector('parsererror')) return [];
+
+    const getText = (item, tag) => {
+      try {
+        const el = item.getElementsByTagName(tag)[0];
+        if (!el) return '';
+
+        let text = '';
+
+        el.childNodes.forEach(node => {
+          if (
+            node.nodeType === Node.TEXT_NODE ||
+            node.nodeType === Node.CDATA_SECTION_NODE
+          ) {
+            text += node.nodeValue || '';
+          }
+        });
+
+        return (text || el.textContent || '').trim();
+      } catch (_) {
+        return '';
+      }
+    };
+
+    const getLink = item => {
+      try {
+        const el = item.getElementsByTagName('link')[0];
+        if (!el) return '#';
+
+        let link = '';
+
+        el.childNodes.forEach(node => {
+          if (
+            node.nodeType === Node.TEXT_NODE ||
+            node.nodeType === Node.CDATA_SECTION_NODE
+          ) {
+            const value = (node.nodeValue || '').trim();
+            if (value.startsWith('http')) link = value;
+          }
+        });
+
+        return (link || el.textContent || '').trim().replace(/&amp;/g, '&') || '#';
+      } catch (_) {
+        return '#';
+      }
+    };
+
+    const items = [...doc.querySelectorAll('item')].slice(offset, offset + 18);
+
+    return items.map(item => {
+      const title = getText(item, 'title');
+      const description = getText(item, 'description');
+      const source = getText(item, 'source') || extractSource(getText(item, 'author'));
+      const pubDate = getText(item, 'pubDate');
+      const url = getLink(item);
+
+      let imageUrl = '';
+
+      try {
+        const media =
+          item.getElementsByTagNameNS('*', 'content')[0] ||
+          item.getElementsByTagName('media:content')[0];
+
+        if (media) imageUrl = media.getAttribute('url') || '';
+      } catch (_) {}
+
+      try {
+        if (!imageUrl) {
+          const enclosure = item.getElementsByTagName('enclosure')[0];
+          if (
+            enclosure &&
+            (enclosure.getAttribute('type') || '').startsWith('image')
+          ) {
+            imageUrl = enclosure.getAttribute('url') || '';
+          }
+        }
+      } catch (_) {}
+
+      try {
+        if (!imageUrl) {
+          const imgMatch = description.match(/<img[^>]+src=["']([^"']+)["']/i);
+          if (imgMatch) imageUrl = imgMatch[1];
+        }
+      } catch (_) {}
+
+      if (!imageUrl || !imageUrl.startsWith('http')) {
+        const seed = Math.abs(
+          (title + pubDate)
+            .split('')
+            .reduce((a, c) => (a * 31 + c.charCodeAt(0)) | 0, 0)
+        );
+
+        imageUrl = `https://picsum.photos/seed/${seed}/800/500`;
+      }
+
+      return {
+        title,
+        excerpt: stripHtml(description || ''),
+        source,
+        date: formatDate(pubDate),
+        url: url.startsWith('http') ? url : '#',
+        imageUrl,
+        category: guessCat(title),
+      };
+    }).filter(article => article.title && article.url !== '#');
+  } catch (_) {
+    return [];
+  }
+  
 function fetchWithTimeout(url, ms) {
   ms = ms || 7000;
   var timeout = new Promise(function(_, reject) {
