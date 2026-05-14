@@ -2317,7 +2317,7 @@ function renderArticles(articles) {
       return '<a class="visual-news-card" href="'+safeUrl(a.url)+'" target="_blank" rel="noopener noreferrer" style="display:block;">'
         +'<img class="visual-news-img" src="'+escAttr(img)+'" alt="'+escAttr(a.title)+'" loading="lazy">'
         +'<div class="visual-news-body">'
-          +'<div class="visual-news-kicker"><span>'+esc(a.category||'News')+'</span><span>'+n+'</span></div>'
+          +'<div class="visual-news-kicker"><span>'+esc(a.category||'News')+'</span></div>'
           +'<div class="visual-news-title">'+esc(a.title)+'</div>'
           +'<div style="margin-top:8px;font-size:0.68rem;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+esc(a.source||'News')+' · '+esc(a.date||'')+'</div>'
         +'</div>'
