@@ -2217,51 +2217,71 @@ function parseXML(xml, offset = 0) {
 
     if (doc.querySelector('parsererror')) return [];
 
+    const items = Array.from(doc.querySelectorAll('item')).slice(offset, offset + 18);
+    if (!items.length) return [];
+
     const getText = (item, tag) => {
-      try {
-        const el = item.getElementsByTagName(tag)[0];
-        if (!el) return '';
-
-        let text = '';
-
-        el.childNodes.forEach(node => {
-          if (
-            node.nodeType === Node.TEXT_NODE ||
-            node.nodeType === Node.CDATA_SECTION_NODE
-          ) {
-            text += node.nodeValue || '';
-          }
-        });
-
-        return (text || el.textContent || '').trim();
-      } catch (_) {
-        return '';
-      }
+      const el = item.getElementsByTagName(tag)[0];
+      return el ? (el.textContent || '').trim() : '';
     };
 
     const getLink = item => {
-      try {
-        const el = item.getElementsByTagName('link')[0];
-        if (!el) return '#';
+      const el = item.getElementsByTagName('link')[0];
+      if (!el) return '#';
 
-        let link = '';
+      let url = '';
 
-        el.childNodes.forEach(node => {
-          if (
-            node.nodeType === Node.TEXT_NODE ||
-            node.nodeType === Node.CDATA_SECTION_NODE
-          ) {
-            const value = (node.nodeValue || '').trim();
-            if (value.startsWith('http')) link = value;
-          }
-        });
+      el.childNodes.forEach(node => {
+        if (
+          node.nodeType === Node.TEXT_NODE ||
+          node.nodeType === Node.CDATA_SECTION_NODE
+        ) {
+          const value = (node.nodeValue || '').trim();
+          if (value.startsWith('http')) url = value;
+        }
+      });
 
-        return (link || el.textContent || '').trim().replace(/&amp;/g, '&') || '#';
-      } catch (_) {
-        return '#';
-      }
+      if (!url) url = (el.textContent || '').trim();
+
+      return url.replace(/&amp;/g, '&') || '#';
     };
 
+    const articles = items.map(item => {
+      const title = getText(item, 'title');
+      const description = getText(item, 'description');
+      const pubDate = getText(item, 'pubDate');
+      const source = getText(item, 'source');
+      const url = getLink(item);
+
+      let imageUrl = '';
+
+      const seed = Math.abs(
+        (title + pubDate)
+          .split('')
+          .reduce((a, c) => (a * 31 + c.charCodeAt(0)) | 0, 0)
+      );
+
+      imageUrl = `https://picsum.photos/seed/${seed}/800/500`;
+
+      return {
+        title,
+        excerpt: stripHtml(description || ''),
+        source: source || 'Google News',
+        date: formatDate(pubDate),
+        url: url.startsWith('http') ? url : '#',
+        imageUrl,
+        category: guessCat(title)
+      };
+    });
+
+    console.log('PARSED ARTICLES:', articles);
+
+    return articles.filter(a => a.title && a.url !== '#');
+  } catch (e) {
+    console.error('parseXML error:', e);
+    return [];
+  }
+}
     const items = [...doc.querySelectorAll('item')].slice(offset, offset + 18);
 
     return items.map(item => {
