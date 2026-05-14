@@ -2257,19 +2257,54 @@ function stripHtml(h) { return String(h||'').replace(/<[^>]*>/g,'').replace(/&am
 // ─── BLUEPRINT AURA IMAGE ────────────────────────────────────
 function blueprintAuraImage(title, category) {
   var label = String(title||category||'Psychedelic Therapy').substring(0,40);
-  var raw = label, hash = 0;
-  for (var i=0;i<raw.length;i++) hash=((hash*31)+raw.charCodeAt(i))|0;
-  var h1=Math.abs(hash)%360, h2=(h1+95)%360, h3=(h1+210)%360;
-  var cat = String(category||'').toUpperCase().substring(0,12).replace(/['"<>]/g,'');
+  var cat = String(category||'').toUpperCase();
+  var palettes = {
+    'RESEARCH':   {h1:'180',h2:'200',h3:'220',accent:'#2dd4bf',pattern:'grid'},
+    'POLICY':     {h1:'220',h2:'240',h3:'200',accent:'#3b82f6',pattern:'map'},
+    'MDMA':       {h1:'320',h2:'340',h3:'300',accent:'#ec4899',pattern:'glow'},
+    'PSILOCYBIN': {h1:'160',h2:'140',h3:'180',accent:'#10b981',pattern:'neural'},
+    'LSD':        {h1:'270',h2:'290',h3:'250',accent:'#a78bfa',pattern:'prism'},
+    'KETAMINE':   {h1:'240',h2:'260',h3:'220',accent:'#8b5cf6',pattern:'wave'},
+    'CULTURE':    {h1:'300',h2:'280',h3:'320',accent:'#f472b6',pattern:'dream'},
+    'FINANCE':    {h1:'140',h2:'160',h3:'120',accent:'#b8f609',pattern:'data'},
+    'AYAHUASCA':  {h1:'120',h2:'100',h3:'140',accent:'#34d399',pattern:'vine'},
+  };
+  var p = palettes[cat] || {h1:'180',h2:'200',h3:'160',accent:'#2dd4bf',pattern:'grid'};
+  var grain = '<filter id="gr"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feBlend in="SourceGraphic" mode="overlay" result="blend"/><feComposite in="blend" in2="SourceGraphic" operator="in"/></filter>';
+  var patterns = {
+    grid:   '<line x1="0" y1="0" x2="800" y2="500" stroke="'+p.accent+'" stroke-opacity="0.08" stroke-width="1"/><line x1="0" y1="100" x2="800" y2="100" stroke="'+p.accent+'" stroke-opacity="0.06" stroke-width="0.5"/><line x1="0" y1="200" x2="800" y2="200" stroke="'+p.accent+'" stroke-opacity="0.06" stroke-width="0.5"/><line x1="0" y1="300" x2="800" y2="300" stroke="'+p.accent+'" stroke-opacity="0.06" stroke-width="0.5"/><line x1="0" y1="400" x2="800" y2="400" stroke="'+p.accent+'" stroke-opacity="0.06" stroke-width="0.5"/><line x1="200" y1="0" x2="200" y2="500" stroke="'+p.accent+'" stroke-opacity="0.05" stroke-width="0.5"/><line x1="400" y1="0" x2="400" y2="500" stroke="'+p.accent+'" stroke-opacity="0.05" stroke-width="0.5"/><line x1="600" y1="0" x2="600" y2="500" stroke="'+p.accent+'" stroke-opacity="0.05" stroke-width="0.5"/>',
+    neural: '<circle cx="200" cy="150" r="4" fill="'+p.accent+'" fill-opacity="0.5"/><circle cx="400" cy="100" r="3" fill="'+p.accent+'" fill-opacity="0.4"/><circle cx="600" cy="200" r="4" fill="'+p.accent+'" fill-opacity="0.5"/><circle cx="300" cy="300" r="3" fill="'+p.accent+'" fill-opacity="0.4"/><circle cx="500" cy="350" r="4" fill="'+p.accent+'" fill-opacity="0.5"/><line x1="200" y1="150" x2="400" y2="100" stroke="'+p.accent+'" stroke-opacity="0.2" stroke-width="1"/><line x1="400" y1="100" x2="600" y2="200" stroke="'+p.accent+'" stroke-opacity="0.2" stroke-width="1"/><line x1="200" y1="150" x2="300" y2="300" stroke="'+p.accent+'" stroke-opacity="0.15" stroke-width="1"/><line x1="600" y1="200" x2="500" y2="350" stroke="'+p.accent+'" stroke-opacity="0.15" stroke-width="1"/><line x1="300" y1="300" x2="500" y2="350" stroke="'+p.accent+'" stroke-opacity="0.2" stroke-width="1"/>',
+    prism:  '<polygon points="400,50 650,400 150,400" fill="none" stroke="'+p.accent+'" stroke-opacity="0.15" stroke-width="1"/><polygon points="400,120 580,380 220,380" fill="none" stroke="'+p.accent+'" stroke-opacity="0.12" stroke-width="1"/><line x1="400" y1="50" x2="150" y2="400" stroke="'+p.accent+'" stroke-opacity="0.1" stroke-width="0.5"/><line x1="400" y1="50" x2="650" y2="400" stroke="'+p.accent+'" stroke-opacity="0.1" stroke-width="0.5"/>',
+    glow:   '<circle cx="400" cy="250" r="180" fill="'+p.accent+'" fill-opacity="0.06"/><circle cx="400" cy="250" r="120" fill="'+p.accent+'" fill-opacity="0.06"/><circle cx="400" cy="250" r="60" fill="'+p.accent+'" fill-opacity="0.08"/>',
+    wave:   '<path d="M0,200 Q200,100 400,200 T800,200" fill="none" stroke="'+p.accent+'" stroke-opacity="0.15" stroke-width="1.5"/><path d="M0,250 Q200,150 400,250 T800,250" fill="none" stroke="'+p.accent+'" stroke-opacity="0.10" stroke-width="1"/><path d="M0,300 Q200,200 400,300 T800,300" fill="none" stroke="'+p.accent+'" stroke-opacity="0.08" stroke-width="1"/>',
+    dream:  '<circle cx="150" cy="150" r="80" fill="'+p.accent+'" fill-opacity="0.07"/><circle cx="650" cy="350" r="100" fill="'+p.accent+'" fill-opacity="0.06"/><circle cx="400" cy="250" r="60" fill="'+p.accent+'" fill-opacity="0.05"/>',
+    data:   '<rect x="50" y="350" width="30" height="80" fill="'+p.accent+'" fill-opacity="0.2"/><rect x="100" y="300" width="30" height="130" fill="'+p.accent+'" fill-opacity="0.15"/><rect x="150" y="320" width="30" height="110" fill="'+p.accent+'" fill-opacity="0.2"/><rect x="200" y="280" width="30" height="150" fill="'+p.accent+'" fill-opacity="0.15"/><rect x="250" y="310" width="30" height="120" fill="'+p.accent+'" fill-opacity="0.2"/>',
+    map:    '<rect x="100" y="100" width="200" height="120" rx="4" fill="none" stroke="'+p.accent+'" stroke-opacity="0.12" stroke-width="1"/><rect x="350" y="80" width="150" height="100" rx="4" fill="none" stroke="'+p.accent+'" stroke-opacity="0.10" stroke-width="1"/><rect x="200" y="280" width="180" height="100" rx="4" fill="none" stroke="'+p.accent+'" stroke-opacity="0.12" stroke-width="1"/>',
+    vine:   '<path d="M100,500 Q200,300 300,250 Q400,200 500,150 Q600,100 700,50" fill="none" stroke="'+p.accent+'" stroke-opacity="0.15" stroke-width="2"/><path d="M50,400 Q150,350 200,250 Q250,150 350,100" fill="none" stroke="'+p.accent+'" stroke-opacity="0.10" stroke-width="1.5"/>',
+  };
   var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">'
-    +'<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl('+h1+',72%,14%)"/><stop offset="0.55" stop-color="hsl('+h2+',74%,22%)"/><stop offset="1" stop-color="hsl('+h3+',78%,12%)"/></linearGradient>'
-    +'<radialGradient id="a" cx="30%" cy="20%" r="70%"><stop offset="0" stop-color="#2dd4bf" stop-opacity="0.45"/><stop offset="0.55" stop-color="#a78bfa" stop-opacity="0.15"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>'
-    +'<pattern id="news-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#fff" stroke-opacity="0.08" stroke-width="1"/></pattern></defs>'
-    +'<rect width="800" height="500" fill="url(#g)"/><rect width="800" height="500" fill="url(#a)"/><rect width="800" height="500" fill="url(#news-grid)"/>'
-    +'<g fill="none" stroke="#2dd4bf" stroke-opacity="0.4" stroke-width="2"><circle cx="620" cy="130" r="74"/><circle cx="620" cy="130" r="38"/><path d="M80 380 C180 260,270 450,380 305 S585 215,710 355"/></g>'
-    +'<text x="48" y="420" fill="#fff" fill-opacity="0.82" font-family="Arial,sans-serif" font-size="32" font-weight="700">'+esc(label)+'</text>'
-    +'<text x="50" y="455" fill="#2dd4bf" fill-opacity="0.7" font-family="monospace" font-size="13" letter-spacing="4">THE PSYCHEDELIC DIGEST</text></svg>';
+    +'<defs>'
+    +'<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">'
+    +'<stop offset="0" stop-color="hsl('+p.h1+',60%,8%)"/>'
+    +'<stop offset="0.5" stop-color="hsl('+p.h2+',65%,12%)"/>'
+    +'<stop offset="1" stop-color="hsl('+p.h3+',55%,7%)"/>'
+    +'</linearGradient>'
+    +'<radialGradient id="au" cx="30%" cy="30%" r="60%">'
+    +'<stop offset="0" stop-color="'+p.accent+'" stop-opacity="0.25"/>'
+    +'<stop offset="1" stop-color="'+p.accent+'" stop-opacity="0"/>'
+    +'</radialGradient>'
+    +grain
+    +'</defs>'
+    +'<rect width="800" height="500" fill="url(#bg)"/>'
+    +'<rect width="800" height="500" fill="url(#au)"/>'
+    +'<g>'+(patterns[p.pattern]||patterns.grid)+'</g>'
+    +'<rect width="800" height="500" fill="url(#bg)" fill-opacity="0.15" filter="url(#gr)"/>'
+    +'<text x="40" y="440" fill="'+p.accent+'" fill-opacity="0.9" font-family="monospace" font-size="11" font-weight="700" letter-spacing="3">'+cat+'</text>'
+    +'<text x="40" y="470" fill="#fff" fill-opacity="0.75" font-family="Arial,sans-serif" font-size="22" font-weight="700">'+esc(label)+'</text>'
+    +'<text x="40" y="492" fill="'+p.accent+'" fill-opacity="0.5" font-family="monospace" font-size="10" letter-spacing="3">THEPSYCHEDELICDIGEST.COM</text>'
+    +'</svg>';
   return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+}
 }
 
 // ─── SHOW LOADING ─────────────────────────────────────────────
