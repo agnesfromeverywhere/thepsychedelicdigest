@@ -2534,7 +2534,7 @@ var attempts = ['/api/news'];
   for (var i = 0; i < attempts.length; i++) {
     try {
       var res = await fetchWithTimeout(attempts[i], 3500);
-     if (false && attempts[i].includes('rss2json')) {
+  if (attempts[i].includes('rss2json')) {
         if (!res.ok) continue;
         var data = await res.json();
         if (data.items && data.items.length) {
