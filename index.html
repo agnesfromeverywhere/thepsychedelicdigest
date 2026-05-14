@@ -2211,14 +2211,14 @@ function showPage(page) {
 
 // ─── PARSE XML ───────────────────────────────────────────────
 function parseXML(xml, offset) {
-  try {
+  try 
     const parser = new DOMParser();
     const doc    = parser.parseFromString(xml, 'text/xml');
     const items  = [...doc.querySelectorAll('item')].slice(0, 18);
     if (!items.length) return [];
     return items.map((item, i) => {
-      const g = tag => { try { return item.getElementsByTagName(tag)[0]?.textContent?.trim() || ''; } catch(e) { return ''; } };
-      const url = g('link') || g('guid') || '#';
+     const g = tag => { try { const el = item.getElementsByTagName(tag)[0]; return (el?.textContent || el?.innerHTML || '').trim(); } catch(e) { return ''; } };
+    const rawDesc = g('description') || ''; const hrefMatch = rawDesc.match(/href="([^"]+)"/); const url = (hrefMatch && hrefMatch[1].replace(/&amp;/g,'&')) || g('link') || '#';
       let imageUrl = '';
       try { const mc = item.getElementsByTagNameNS('*','content')[0] || item.getElementsByTagName('media:content')[0]; if (mc) imageUrl = mc.getAttribute('url') || ''; } catch(_) {}
       if (!imageUrl) { try { const enc = item.getElementsByTagName('enclosure')[0]; if (enc && (enc.getAttribute('type')||'').startsWith('image')) imageUrl = enc.getAttribute('url') || ''; } catch(_) {} }
