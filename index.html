@@ -2445,15 +2445,8 @@ function safeUrl(url) {
     return '#';
   }
 }
-function escAttr(str = '') {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-}
-  function esc(str = '') {
+
+function esc(str = '') {
   return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -2461,6 +2454,11 @@ function escAttr(str = '') {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
+function escAttr(str = '') {
+  return esc(str);
+}
+
 function renderArticles(articles) {
   _allArticles = Array.isArray(articles) ? articles.slice(0,18) : [];
   var ls = document.getElementById('loadingState');
