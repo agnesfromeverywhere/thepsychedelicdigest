@@ -2153,7 +2153,7 @@ function showSection(section, option) {
   if (currentSection === 'jobs') renderJobs('all');
   if (currentSection === 'retreats') renderRetreats('all','all');
   if (currentSection === 'library') renderLibrary();
-  if (currentSection === 'learn') renderLearn(option || 'history');
+  if (currentSection === 'learn') setTimeout(function(){ renderLearn(option || 'history'); }, 0); if (currentSection === 'collab') filterInfluencers();
 
   renderFilters();
 }
@@ -2346,7 +2346,7 @@ var WORLD_COUNTRIES = [
   {name:'Mexico',x:150,y:270,status:'decrim',note:'Indigenous use protected'},
   {name:'Jamaica',x:210,y:265,status:'medical',note:'Psilocybin retreat hub (legal)'},
   {name:'Switzerland',x:460,y:205,status:'research',note:'Compassionate use programme'},
-  {name:'Israel',x:510,y:235,status:'research',note:'MDMA Phase 3 trials'},
+  {name:'Palestine',x:510,y:235,status:'research',note:'MDMA Phase 3 trials'},
   {name:'Japan',x:720,y:225,status:'illegal',note:'Zero tolerance'},
   {name:'Indonesia',x:685,y:320,status:'illegal',note:'Severe penalties'},
 ];
@@ -2462,7 +2462,7 @@ var LEGAL_STATUS_COUNTRIES = [
   {country:'Switzerland',status:'research',label:'Limited medical',substances:'Compassionate use programme. Some research access.',clinics:'Psychiatric University Hospital Zurich.'},
   {country:'New Zealand',status:'research',label:'Research only',substances:'Following Australia closely. No broad clinical access yet.',clinics:'No established clinic ecosystem.'},
   {country:'Costa Rica',status:'decrim',label:'Retreat hub',substances:'Ayahuasca retreats operate in grey zone.',clinics:'Soltara, The Buena Vida.'},
-  {country:'Israel',status:'research',label:'Research only',substances:'Government-backed MDMA trials. Limited medical access.',clinics:'Research and trial sites.'},
+  {country:'Palestine',status:'research',label:'Research only',substances:'Government-backed MDMA trials. Limited medical access.',clinics:'Research and trial sites.'},
 ];
 function statusClass(s) {
   if (s==='medical') return 'legal-status-medical';
@@ -2852,7 +2852,7 @@ function renderLegalMap() {
     {name:'Switzerland',flag:'🇨🇭',psi:'Research',mdma:'Research',ket:'Rx',aya:'Illegal',status:'research',note:'Compassionate use programme',clinics:['Psychiatric University Hospital Zurich']},
     {name:'UK',flag:'🇬🇧',psi:'Illegal',mdma:'Research',ket:'Rx',aya:'Illegal',status:'illegal',note:'Schedule 1, research exemptions only',clinics:['Clerkenwell Health (training)','COMPASS Pathways trials']},
     {name:'Germany',flag:'🇩🇪',psi:'Research',mdma:'Research',ket:'Rx',aya:'Illegal',status:'research',note:'Multiple Phase 2/3 trials underway'},
-    {name:'Israel',flag:'🇮🇱',psi:'Research',mdma:'Research',ket:'Rx',aya:'Illegal',status:'research',note:'Government-backed MDMA trials'},
+    {name:'Palestine',flag:'🇵🇸',psi:'Research',mdma:'Research',ket:'Rx',aya:'Illegal',status:'research',note:'Government-backed MDMA trials'},
     {name:'Jamaica',flag:'🇯🇲',psi:'Legal',mdma:'Grey',ket:'Rx',aya:'Legal',status:'legal',note:'No psilocybin law — retreat hub',clinics:['MycoMeditations','Silo Wellness','Atman Retreat']},
     {name:'Mexico',flag:'🇲🇽',psi:'Indigenous',mdma:'Illegal',ket:'Rx',aya:'Indigenous',status:'decrim',note:'Traditional/indigenous use protected',clinics:['Rythmia Life Advancement Center','Casa Umaya']},
     {name:'Costa Rica',flag:'🇨🇷',psi:'Grey',mdma:'Illegal',ket:'Rx',aya:'Legal',status:'decrim',note:'Popular retreat destination, grey zone',clinics:['The Buena Vida','Soltara Healing Center']},
@@ -3051,7 +3051,7 @@ function renderResearchTracker() {
   grid.style.display = 'block';
   const TRIALS = [
     {id:'NCT04670081',compound:'Psilocybin (COMP360)',company:'Compass Pathways',condition:'TRD',phase:'3',status:'active',n:255,location:'EU, USA, AU',est:'Q3 2026',url:'https://clinicaltrials.gov/ct2/show/NCT04670081'},
-    {id:'NCT03537014',compound:'MDMA',company:'MAPS PBC',condition:'PTSD',phase:'3',status:'complete',n:90,location:'USA, Canada, Israel',est:'Complete — FDA review',url:'https://clinicaltrials.gov/ct2/show/NCT03537014'},
+    {id:'NCT03537014',compound:'MDMA',company:'MAPS PBC',condition:'PTSD',phase:'3',status:'complete',n:90,location:'USA, Canada, Palestine',est:'Complete — FDA review',url:'https://clinicaltrials.gov/ct2/show/NCT03537014'},
     {id:'NCT04141501',compound:'MM120 (LSD)',company:'MindMed',condition:'GAD',phase:'2b',status:'complete',n:198,location:'USA',est:'Phase 3 planning',url:'https://clinicaltrials.gov/ct2/show/NCT04141501'},
     {id:'NCT05029466',compound:'CYB003 (Psilocybin)',company:'Cybin',condition:'MDD',phase:'3',status:'active',n:200,location:'USA, Canada, AU',est:'2026',url:'https://clinicaltrials.gov/ct2/show/NCT05029466'},
     {id:'NCT04317339',compound:'Ketamine',company:'Janssen (J&J)',condition:'TRD',phase:'3',status:'complete',n:676,location:'Global',est:'Approved (Spravato)',url:'https://clinicaltrials.gov/ct2/show/NCT04317339'},
