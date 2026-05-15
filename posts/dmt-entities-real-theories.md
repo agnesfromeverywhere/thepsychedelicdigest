@@ -1,3 +1,10 @@
+---
+title: "Are DMT Entities Real? 5 Powerful Theories That Science and Consciousness Research Cannot Ignore"
+date: 2026-05-15
+image: /assets/images/dmt-entities-card.png
+category: Research
+author: Agnes 
+---
 # Are DMT Entities Real? 5 Powerful Theories That Science and Consciousness Research Cannot Ignore
 
 *Published on The Psychedelic Digest | thepsychedelicdigest.com*
