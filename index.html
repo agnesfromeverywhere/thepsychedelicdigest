@@ -1949,6 +1949,15 @@ a:active {
   </div>
 </footer>
 <script>
+  function updateCanonical(path) {
+  let link = document.querySelector("link[rel='canonical']");
+  if (!link) {
+    link = document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    document.head.appendChild(link);
+  }
+  link.setAttribute('href', 'https://www.thepsychedelicdigest.com' + path);
+}
 // ─── CONFIGURATION ───────────────────────────────────────────
 let TOPICS = [
   {label:'All',        query:'psychedelic therapy',            slug:'all'},
