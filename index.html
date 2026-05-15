@@ -2281,7 +2281,7 @@ function formatDate(dateStr) {
         source: source || 'Google News',
         date: formatDate(pubDate),
         url: url.startsWith('http') ? url : '#',
-        imageUrl: `https://picsum.photos/seed/${seed}/800/500`,
+        imageUrl: '',
       category: (function(t){t=(t||'').toLowerCase();if(t.includes('mdma'))return'MDMA';if(t.includes('psilocybin')||t.includes('mushroom'))return'Psilocybin';if(t.includes('ketamine'))return'Ketamine';if(t.includes('lsd'))return'LSD';if(t.includes('ayahuasca'))return'Ayahuasca';if(t.includes('policy')||t.includes('law')||t.includes('legal')||t.includes('bill'))return'Policy';if(t.includes('research')||t.includes('trial')||t.includes('study')||t.includes('clinical'))return'Research';if(t.includes('culture')||t.includes('art')||t.includes('music'))return'Culture';if(t.includes('finance')||t.includes('stock')||t.includes('market')||t.includes('invest'))return'Finance';return'Latest';})(title)
       };
     });
