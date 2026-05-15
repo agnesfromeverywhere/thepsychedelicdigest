@@ -2,7 +2,7 @@ export default async function handler(req, res) {
   const feeds = [
     {
       name: "Google News",
-      url: "https://news.google.com/rss/search?q=psychedelic%20therapy%20OR%20psilocybin%20OR%20MDMA%20therapy%20OR%20ketamine%20therapy&hl=en-AU&gl=AU&ceid=AU:en"
+    url: "https://news.google.com/rss/search?q=psychedelic%20therapy%20OR%20psilocybin%20OR%20MDMA%20therapy%20OR%20ketamine%20therapy&hl=en-AU&gl=AU&ceid=AU:en&tbs=qdr:w"
     }
   ];
 
