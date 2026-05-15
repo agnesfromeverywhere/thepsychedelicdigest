@@ -1,18 +1,15 @@
 ---
 title: "Are DMT Entities Real? 5 Powerful Theories That Science and Consciousness Research Cannot Ignore"
-date: 2026-05-15
-image: /assets/images/dmt-entities-card.png
-category: Research
-author: Agnes 
----
-# Are DMT Entities Real? 5 Powerful Theories That Science and Consciousness Research Cannot Ignore
-
-*Published on The Psychedelic Digest | thepsychedelicdigest.com*
-
----
-
-**Meta description:** Are DMT entities real? Explore 5 evidence-backed theories from neuroscience, psychology, and consciousness research that challenge everything we think we know.
-
+date: "2026-05-15"
+author: "Agnes Horry"
+category: "Research"
+readTime: "8 min read"
+excerpt: "Nearly half of all DMT users report meeting a non-human presence. Here are the 5 most compelling theories science and consciousness research have to offer."
+image: "/images/dmt-entities-card.png"
+tags:
+  - DMT
+  - consciousness
+  - entities
 ---
 
 Something strange happens to nearly half of all people who smoke DMT. They meet someone.
@@ -22,7 +19,7 @@ Not a hallucination in the blurry, formless sense. Not a dream. A presence. Stru
 This is not a fringe question. It is now the subject of peer-reviewed studies, university symposiums, and some of the most rigorous consciousness research of our generation. The answer, depending on which theory you follow, could redefine our understanding of mind, reality, and what it means to be conscious.
 
 ---
-![DMT Entities Card](../assets/images/dmt-entities-card.png)
+
 ## What the Data Actually Shows
 
 Before we get to the theories, the numbers deserve attention.
