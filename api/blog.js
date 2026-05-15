@@ -28,14 +28,11 @@ function mdToHtml(md) {
 }
 
 // ─── Frontmatter parser ───────────────────────────────────────
-// Handles CRLF, trailing spaces, missing final newline
-// Returns null if content looks like a GitHub attachment link (not a real post)
 function parseFrontmatter(raw) {
   const normalised = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
 
-  // Detect GitHub attachment uploads — content starts with a markdown link to github.com
   if (normalised.startsWith('[') && normalised.includes('github.com/user-attachments')) {
-    return null; // signal: this file was uploaded wrong
+    return null;
   }
 
   const match = normalised.match(/^---[ \t]*\n([\s\S]*?)\n---[ \t]*(?:\n|$)([\s\S]*)$/);
@@ -58,8 +55,6 @@ function estimateReadTime(text) {
 }
 
 // ─── Hardcoded fallback posts ─────────────────────────────────
-// Used when .md files are missing or were uploaded incorrectly.
-// Delete a fallback entry once the real .md file is in /posts/ correctly.
 const FALLBACK_POSTS = {
   'psychedelics-vs-antidepressants-study-2026': {
     title:    'The New Study Says Psychedelics Are No Better Than Antidepressants. Here Is What It Actually Means.',
@@ -220,24 +215,6 @@ Australia showed the world it could be done. The next question is whether it can
 
 *This article is for informational purposes only and does not constitute medical advice. Always consult a qualified healthcare provider.*`,
   },
-  'dmt-entities-real-theories': {
-    title:    'Are DMT Entities Real? 5 Powerful Theories That Science and Consciousness Research Cannot Ignore',
-    date:     '2026-05-15',
-    author:   'Agnes Horry',
-    excerpt:  'Nearly half of all DMT users report meeting a non-human presence. Here are the 5 most compelling theories science and consciousness research have to offer.',
-    category: 'Research',
-    image:    '/images/dmt-entities-card.png',
-    tags:     ['DMT', 'consciousness', 'entities'],
-    body: `Something strange happens to nearly half of all people who smoke DMT. They meet someone.
-
-Not a hallucination in the blurry, formless sense. Not a dream. A presence. Structured, communicative, seemingly aware of you. Beings that feel more real, not less, than the room you left behind. The question scientists and psychonauts keep circling is simple and unsettling: what exactly are these entities, and could they be real?
-
-This is not a fringe question. It is now the subject of peer-reviewed studies, university symposiums, and some of the most rigorous consciousness research of our generation.
-
-## What the Data Actually Shows
-
-A landmark 2022 study published in Scientific Reports analysed 3,778 DMT experience reports shared on Reddit's r/DMT community over a decade. Entity encounters appeared in 45.5% of all experiences. That is nearly o`,
-  },
 };
 
 // ─── Main handler ─────────────────────────────────────────────
@@ -254,7 +231,6 @@ module.exports = (req, res) => {
     const safe = slug.replace(/[^a-zA-Z0-9\-_]/g, '');
     if (!safe) return res.status(400).json({ error: 'Invalid slug' });
 
-    // Try reading from file first
     if (fs.existsSync(postsDir)) {
       const filePath = path.join(postsDir, safe + '.md');
       if (filePath.startsWith(postsDir + path.sep) && fs.existsSync(filePath)) {
@@ -274,7 +250,6 @@ module.exports = (req, res) => {
       }
     }
 
-    // Fall back to hardcoded posts
     const fb = FALLBACK_POSTS[safe];
     if (fb) {
       return res.status(200).json({
@@ -311,7 +286,6 @@ module.exports = (req, res) => {
     } catch(e) {}
   }
 
-  // Merge: file posts take priority over fallbacks; fill gaps with fallbacks
   const fileSlugs = new Set(postsFromFiles.map(p => p.slug));
   const fallbacks = Object.entries(FALLBACK_POSTS)
     .filter(([s]) => !fileSlugs.has(s))
