@@ -220,6 +220,24 @@ Australia showed the world it could be done. The next question is whether it can
 
 *This article is for informational purposes only and does not constitute medical advice. Always consult a qualified healthcare provider.*`,
   },
+  'dmt-entities-real-theories': {
+    title:    'Are DMT Entities Real? 5 Powerful Theories That Science and Consciousness Research Cannot Ignore',
+    date:     '2026-05-15',
+    author:   'Agnes Horry',
+    excerpt:  'Nearly half of all DMT users report meeting a non-human presence. Here are the 5 most compelling theories science and consciousness research have to offer.',
+    category: 'Research',
+    image:    '/images/dmt-entities-card.png',
+    tags:     ['DMT', 'consciousness', 'entities'],
+    body: `Something strange happens to nearly half of all people who smoke DMT. They meet someone.
+
+Not a hallucination in the blurry, formless sense. Not a dream. A presence. Structured, communicative, seemingly aware of you. Beings that feel more real, not less, than the room you left behind. The question scientists and psychonauts keep circling is simple and unsettling: what exactly are these entities, and could they be real?
+
+This is not a fringe question. It is now the subject of peer-reviewed studies, university symposiums, and some of the most rigorous consciousness research of our generation.
+
+## What the Data Actually Shows
+
+A landmark 2022 study published in Scientific Reports analysed 3,778 DMT experience reports shared on Reddit's r/DMT community over a decade. Entity encounters appeared in 45.5% of all experiences. That is nearly o`,
+  },
 };
 
 // ─── Main handler ─────────────────────────────────────────────
