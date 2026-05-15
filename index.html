@@ -2461,7 +2461,7 @@ function renderArticles(articles) {
     sl.style.display = 'grid';
     sl.style.gridTemplateColumns = 'repeat(auto-fill,minmax(200px,1fr))';
     sl.style.gap = '12px';
-    sl.innerHTML = _allArticles.slice(1,13).map(function(a,i) {
+    sl.innerHTML = _allArticles.slice(1,7).map(function(a,i) {
       var n = String(i+2).padStart(2,'0');
       var img = (a.imageUrl && a.imageUrl.startsWith('http')) ? a.imageUrl : blueprintAuraImage(a.title, a.category);
       return '<a class="visual-news-card" href="'+safeUrl(a.url)+'" target="_blank" rel="noopener noreferrer" style="display:block;">'
