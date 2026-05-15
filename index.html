@@ -1509,6 +1509,50 @@ a:active {
           </div>
           <div style="flex-shrink:0;padding:7px 14px;border-radius:999px;background:#b8f609;color:#0a1200;font-size:0.70rem;font-weight:700;box-shadow:0 2px 10px rgba(184,246,9,0.3);">Buy →</div>
         </a>
+        <!-- FAQ Accordion -->
+<div style="margin-top:10px;border-radius:14px;border:0.5px solid rgba(45,212,191,0.15);background:rgba(255,255,255,0.02);overflow:hidden;">
+  <div style="padding:14px 18px 10px;border-bottom:0.5px solid rgba(255,255,255,0.05);">
+    <div style="font-family:'Syne',sans-serif;font-size:0.62rem;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;color:#2dd4bf;">Quick Answers</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.05rem;color:rgba(255,255,255,0.88);margin-top:4px;">What people ask before their first session</div>
+  </div>
+  <div id="faq-accordion">
+    <div class="faq-item" style="border-bottom:0.5px solid rgba(255,255,255,0.05);">
+      <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:14px 18px;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:600;color:rgba(255,255,255,0.85);">
+        Is psychedelic therapy legal in Australia?
+        <span style="color:#2dd4bf;font-size:1rem;transition:transform 0.2s;">+</span>
+      </button>
+      <div class="faq-answer" style="display:none;padding:0 18px 14px;font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.7;">Yes. Since July 2023, Australia became the first country to legalise psilocybin and MDMA for therapeutic use. Access requires a TGA Authorised Prescriber psychiatrist. Costs range from A$4,250 to A$40,000.</div>
+    </div>
+    <div class="faq-item" style="border-bottom:0.5px solid rgba(255,255,255,0.05);">
+      <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:14px 18px;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:600;color:rgba(255,255,255,0.85);">
+        What conditions can psychedelic therapy treat?
+        <span style="color:#2dd4bf;font-size:1rem;transition:transform 0.2s;">+</span>
+      </button>
+      <div class="faq-answer" style="display:none;padding:0 18px 14px;font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.7;">Clinical evidence supports treatment-resistant depression, PTSD, end-of-life anxiety, addiction and OCD. In Australia, psilocybin is approved for treatment-resistant depression and MDMA for PTSD.</div>
+    </div>
+    <div class="faq-item" style="border-bottom:0.5px solid rgba(255,255,255,0.05);">
+      <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:14px 18px;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:600;color:rgba(255,255,255,0.85);">
+        How much does psychedelic therapy cost?
+        <span style="color:#2dd4bf;font-size:1rem;transition:transform 0.2s;">+</span>
+      </button>
+      <div class="faq-answer" style="display:none;padding:0 18px 14px;font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.7;">In Australia, costs typically range from A$4,250 to A$40,000 depending on the provider, substance and number of sessions. Medicare does not currently cover these treatments. Some clinics offer payment plans.</div>
+    </div>
+    <div class="faq-item" style="border-bottom:0.5px solid rgba(255,255,255,0.05);">
+      <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:14px 18px;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:600;color:rgba(255,255,255,0.85);">
+        How do I choose a safe psychedelic clinic?
+        <span style="color:#2dd4bf;font-size:1rem;transition:transform 0.2s;">+</span>
+      </button>
+      <div class="faq-answer" style="display:none;padding:0 18px 14px;font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.7;">Look for licensed clinicians, medical screening, clear consent forms, emergency protocols, integration support and transparent pricing. Avoid any provider promising guaranteed outcomes or pressuring high-dose experiences.</div>
+    </div>
+    <div class="faq-item">
+      <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:14px 18px;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;font-size:0.84rem;font-weight:600;color:rgba(255,255,255,0.85);">
+        What does the evidence actually say?
+        <span style="color:#2dd4bf;font-size:1rem;transition:transform 0.2s;">+</span>
+      </button>
+      <div class="faq-answer" style="display:none;padding:0 18px 14px;font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.7;">Phase 3 trials show psilocybin outperforms SSRIs for treatment-resistant depression at 12 months. MDMA-assisted therapy shows 67% of PTSD participants no longer met diagnostic criteria post-treatment. Ketamine has FDA approval via esketamine (Spravato).</div>
+    </div>
+  </div>
+</div>
         <div id="loadingState" class="loading-grid" style="grid-template-columns:1fr;">
           <div class="skeleton"><div class="skeleton-img" style="height:280px;"></div></div>
           <div class="skeleton"><div class="skeleton-body"><div class="skeleton-line medium"></div><div class="skeleton-line"></div></div></div>
@@ -3981,7 +4025,18 @@ initJournalPrompt();
 wireDropdowns();
 applyLang(_lang);
 routeFromPath(window.location.pathname || '/');
-
+function toggleFaq(btn) {
+  var answer = btn.nextElementSibling;
+  var icon = btn.querySelector('span');
+  var isOpen = answer.style.display === 'block';
+  document.querySelectorAll('.faq-answer').forEach(function(a){ a.style.display='none'; });
+  document.querySelectorAll('.faq-item button span').forEach(function(s){ s.textContent='+'; s.style.transform=''; });
+  if (!isOpen) {
+    answer.style.display = 'block';
+    icon.textContent = '×';
+    icon.style.transform = 'rotate(0deg)';
+  }
+}
 </script>
 </body>
 
