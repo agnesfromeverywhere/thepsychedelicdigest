@@ -15,7 +15,7 @@ Not a hallucination in the blurry, formless sense. Not a dream. A presence. Stru
 This is not a fringe question. It is now the subject of peer-reviewed studies, university symposiums, and some of the most rigorous consciousness research of our generation. The answer, depending on which theory you follow, could redefine our understanding of mind, reality, and what it means to be conscious.
 
 ---
-
+![DMT Entities Card](../assets/images/dmt-entities-card.png)
 ## What the Data Actually Shows
 
 Before we get to the theories, the numbers deserve attention.
