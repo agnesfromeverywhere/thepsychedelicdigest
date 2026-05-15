@@ -1495,6 +1495,35 @@ a:active {
             </button>
           </div>
         </section>
+        <!-- FAQ Accordion -->
+<section style="margin-top:14px;border-radius:14px;border:0.5px solid rgba(45,212,191,0.18);border-top:0.5px solid rgba(45,212,191,0.32);background:rgba(45,212,191,0.03);overflow:hidden;">
+  <div style="padding:16px 18px 10px;border-bottom:0.5px solid rgba(255,255,255,0.05);">
+    <div style="font-family:'Syne',sans-serif;font-size:0.62rem;font-weight:800;letter-spacing:0.13em;text-transform:uppercase;color:#2dd4bf;margin-bottom:4px;">AI Search Quick Answers</div>
+    <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:rgba(255,255,255,0.88);">5 questions people ask before trusting psychedelic therapy</div>
+  </div>
+  <div id="faq-accordion">
+    <div class="faq-item" style="border-bottom:0.5px solid rgba(255,255,255,0.05);">
+      <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:14px 18px;background:none;border:none;color:rgba(255,255,255,0.85);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">Is psychedelic therapy legal where I live?<span style="color:#2dd4bf;font-size:1rem;transition:transform 0.2s;">+</span></button>
+      <div class="faq-answer" style="display:none;padding:0 18px 14px;font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.7;">Legality varies by country, substance and clinical setting. Australia legalised psilocybin and MDMA therapy in 2023. The USA allows ketamine and has licensed psilocybin centres in Oregon and Colorado. The UK, Germany and Canada allow research access. <button type="button" data-page="Legal Map" style="background:none;border:none;color:#2dd4bf;cursor:pointer;font-size:0.78rem;font-weight:600;padding:0;">Check the full legal map →</button></div>
+    </div>
+    <div class="faq-item" style="border-bottom:0.5px solid rgba(255,255,255,0.05);">
+      <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:14px 18px;background:none;border:none;color:rgba(255,255,255,0.85);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">How much does psychedelic therapy cost?<span style="color:#2dd4bf;font-size:1rem;transition:transform 0.2s;">+</span></button>
+      <div class="faq-answer" style="display:none;padding:0 18px 14px;font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.7;">In Australia, psilocybin and MDMA programs range from A$4,250 to A$40,000. Ketamine infusions cost A$400 to A$800 each. Retreats in Jamaica or Peru start from $1,500. Medicare does not currently cover these treatments. <button type="button" data-page="CostCalc" style="background:none;border:none;color:#2dd4bf;cursor:pointer;font-size:0.78rem;font-weight:600;padding:0;">See full cost breakdown →</button></div>
+    </div>
+    <div class="faq-item" style="border-bottom:0.5px solid rgba(255,255,255,0.05);">
+      <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:14px 18px;background:none;border:none;color:rgba(255,255,255,0.85);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">What conditions can psychedelic therapy treat?<span style="color:#2dd4bf;font-size:1rem;transition:transform 0.2s;">+</span></button>
+      <div class="faq-answer" style="display:none;padding:0 18px 14px;font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.7;">Clinical evidence supports treatment-resistant depression, PTSD, end-of-life anxiety, addiction and OCD. In Australia the TGA has specifically approved psilocybin for treatment-resistant depression and MDMA for PTSD. Research into eating disorders, chronic pain and autism is ongoing.</div>
+    </div>
+    <div class="faq-item" style="border-bottom:0.5px solid rgba(255,255,255,0.05);">
+      <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:14px 18px;background:none;border:none;color:rgba(255,255,255,0.85);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">How do I choose a safe psychedelic clinic?<span style="color:#2dd4bf;font-size:1rem;transition:transform 0.2s;">+</span></button>
+      <div class="faq-answer" style="display:none;padding:0 18px 14px;font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.7;">Look for licensed clinicians, medical screening, clear consent forms, emergency protocols, transparent pricing and integration support. Avoid any provider that promises guaranteed results or pressures you into high doses. In Australia, verify the prescriber holds TGA Authorised Prescriber status.</div>
+    </div>
+    <div class="faq-item">
+      <button onclick="toggleFaq(this)" style="width:100%;text-align:left;padding:14px 18px;background:none;border:none;color:rgba(255,255,255,0.85);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">What does the evidence actually say?<span style="color:#2dd4bf;font-size:1rem;transition:transform 0.2s;">+</span></button>
+      <div class="faq-answer" style="display:none;padding:0 18px 14px;font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.7;">The evidence is promising but still maturing. Psilocybin has shown significant antidepressant effects in multiple Phase 2 and 3 trials. MDMA therapy achieved remission in 67% of PTSD patients in MAPS Phase 3 trials. Ketamine has strong evidence for rapid depression relief. Integration support significantly improves outcomes. <button type="button" data-section="learn" style="background:none;border:none;color:#2dd4bf;cursor:pointer;font-size:0.78rem;font-weight:600;padding:0;">Explore the research →</button></div>
+    </div>
+  </div>
+</section>
 
         <!-- Book CTA card -->
         <a href="https://amzn.to/4f37j75" target="_blank" rel="noopener sponsored"
@@ -2668,11 +2697,11 @@ function renderMiniLegalMap() {
   var wrap = document.getElementById('mini-legal-map');
   if (!wrap) return;
   wrap.innerHTML = LEGAL_STATUS_COUNTRIES.map(function(c) {
-    return '<button type="button" class="legal-card" data-legal-country="'+escAttr(c.country)+'">'
-      +'<span class="legal-dot '+statusClass(c.status)+'"></span>'
-      +'<div class="legal-card-title">'+esc(c.country)+'</div>'
-      +'<div class="legal-card-status">'+esc(c.label)+'</div>'
-    +'</button>';
+    var col = c.status==='medical'?'#22c55e':c.status==='decrim'?'#f59e0b':c.status==='research'?'#8b5cf6':'#ef4444';
+return '<button type="button" data-legal-country="'+escAttr(c.country)+'" style="background:'+col+'18;border:0.5px solid '+col+'44;border-radius:10px;padding:10px 12px;cursor:pointer;text-align:left;transition:all 0.2s;" onmouseover="this.style.background=\''+col+'30\'" onmouseout="this.style.background=\''+col+'18\'">'
++'<div style="font-family:\'Syne\',sans-serif;font-size:0.72rem;font-weight:800;color:'+col+';margin-bottom:3px;">'+esc(c.country)+'</div>'
++'<div style="font-size:0.62rem;color:rgba(255,255,255,0.5);letter-spacing:0.04em;">'+esc(c.label)+'</div>'
++'</button>';
   }).join('');
 }
 function openLegalStatusPopup(country) {
@@ -4025,16 +4054,18 @@ initJournalPrompt();
 wireDropdowns();
 applyLang(_lang);
 routeFromPath(window.location.pathname || '/');
-function toggleFaq(btn) {
+
+}
+  function toggleFaq(btn) {
   var answer = btn.nextElementSibling;
   var icon = btn.querySelector('span');
   var isOpen = answer.style.display === 'block';
   document.querySelectorAll('.faq-answer').forEach(function(a){ a.style.display='none'; });
-  document.querySelectorAll('.faq-item button span').forEach(function(s){ s.textContent='+'; s.style.transform=''; });
+  document.querySelectorAll('.faq-item button span').forEach(function(s){ s.textContent='+'; s.style.transform='rotate(0deg)'; });
   if (!isOpen) {
     answer.style.display = 'block';
-    icon.textContent = '×';
-    icon.style.transform = 'rotate(0deg)';
+    icon.textContent = '+';
+    icon.style.transform = 'rotate(45deg)';
   }
 }
 </script>
