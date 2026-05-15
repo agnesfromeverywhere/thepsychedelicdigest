@@ -6,15 +6,15 @@ export default async function handler(req, res) {
     },
     {
       name: "Google News Global Weekly",
-      url: "https://news.google.com/rss/search?q=psychedelic+therapy+OR+psilocybin+OR+MDMA+PTSD+OR+ketamine+depression&hl=en-US&gl=US&ceid=US:en&tbs=qdr:w"
+      url: "https://news.google.com/rss/search?q=psychedelic+therapy+OR+psilocybin+OR+MDMA+PTSD+OR+ketamine+depression&hl=en-US&gl=US&ceid=US:en&tbs=qdr:d"
     },
     {
       name: "Google News Policy",
-      url: "https://news.google.com/rss/search?q=psychedelic+decriminalization+OR+psychedelic+legislation+OR+psilocybin+legal+OR+MDMA+FDA&hl=en-US&gl=US&ceid=US:en&tbs=qdr:w"
+      url: "https://news.google.com/rss/search?q=psychedelic+decriminalization+OR+psychedelic+legislation+OR+psilocybin+legal+OR+MDMA+FDA&hl=en-US&gl=US&ceid=US:en&tbs=qdr:d"
     },
     {
       name: "Google News Research",
-      url: "https://news.google.com/rss/search?q=psilocybin+clinical+trial+OR+MDMA+clinical+trial+OR+psychedelic+research+2026&hl=en-US&gl=US&ceid=US:en&tbs=qdr:w"
+      url: "https://news.google.com/rss/search?q=psilocybin+clinical+trial+OR+MDMA+clinical+trial+OR+psychedelic+research+2026&hl=en-US&gl=US&ceid=US:en&tbs=qdr:d"
     }
   ];
 
@@ -22,9 +22,7 @@ export default async function handler(req, res) {
     const results = await Promise.allSettled(
       feeds.map(async (feed) => {
         const response = await fetch(feed.url, {
-          headers: {
-            "User-Agent": "The Psychedelic Digest/1.0 (https://thepsychedelicdigest.com)"
-          }
+          headers: { "User-Agent": "The Psychedelic Digest/1.0 (https://thepsychedelicdigest.com)" }
         });
         if (!response.ok) throw new Error(`${feed.name} failed with ${response.status}`);
         const xml = await response.text();
@@ -40,8 +38,6 @@ export default async function handler(req, res) {
       return res.status(502).json({ ok: false, error: "All feeds failed." });
     }
 
-    // Parse and merge all feeds
-    const parser = new (await import('node-html-parser')).default || null;
     const allItems = [];
     const seen = new Set();
 
@@ -56,19 +52,16 @@ export default async function handler(req, res) {
 
         if (!title || seen.has(title)) continue;
         seen.add(title);
-
-        allItems.push({ title, link, pubDate, source, description, feedName: feed.source });
+        allItems.push({ title, link, pubDate, source, description });
       }
     }
 
-    // Sort by pubDate descending
     allItems.sort((a, b) => {
       const da = a.pubDate ? new Date(a.pubDate).getTime() : 0;
       const db = b.pubDate ? new Date(b.pubDate).getTime() : 0;
       return db - da;
     });
 
-    // Rebuild XML
     const itemsXml = allItems.slice(0, 30).map(item => `
     <item>
       <title><![CDATA[${item.title}]]></title>
@@ -81,9 +74,9 @@ export default async function handler(req, res) {
     const mergedXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>The Psychedelic Digest — Live Feed</title>
+    <title>The Psychedelic Digest</title>
     <link>https://thepsychedelicdigest.com</link>
-    <description>Merged psychedelic therapy news feed</description>
+    <description>Merged psychedelic therapy news</description>
     ${itemsXml}
   </channel>
 </rss>`;
