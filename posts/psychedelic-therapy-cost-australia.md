@@ -1,19 +1,11 @@
 ---
-title: "Psychedelic Therapy Costs $40,000 in Australia. Here Are 5 Powerful Legal Alternatives."
-date: "2026-04-22"
-author: "Agnes Horry"
-category: "Access"
-readTime: "6 min read"
-excerpt: "A full course of legal psilocybin or MDMA therapy in Australia costs between $20,000 and $40,000 AUD out of pocket. Here is how to access the same science legally, for significantly less."
-image: "/images/psychedelic-therapy-australia-cost.jpg"
-tags:
-  - psilocybin
-  - access
-  - australia
-  - cost
-  - clinical trials
-  - alternatives
-  - MDMA therapy
+title: Underground Luxury Retreats
+date: 2026-05-20
+author: Agnes Horry
+excerpt: Your excerpt here
+category: Retreats
+image: /images/your-image.png
+tags: retreats, psychedelics, luxury
 ---
 
 Australia made history in July 2023. It became the first country in the world to legally allow psychiatrists to prescribe psilocybin and MDMA for therapeutic use.
