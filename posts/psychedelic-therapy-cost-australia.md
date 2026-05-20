@@ -1,16 +1,15 @@
 ---
-title: "The Brutal Cost of Getting Better: 7 Truths About Luxury Retreats, Psychedelic Therapy in Australia, and the Quiet Revolution Happening Without Either"
+title: "Psychedelic Therapy Costs $40,000 in Australia. Here Are 5 Powerful Legal Alternatives."
 date: "2026-05-20"
 author: "Agnes Horry"
-category: "Analysis"
-readTime: "10 min read"
-excerpt: "Psychedelic therapy in Australia can cost up to A$40,000. Luxury retreats run to $15,000 a week. After 6 years watching a real psychedelic community up close, here is what I see happening without either."
-image: "/images/Underground-or-Luxury-retreats.jpg"
-tags: retreats, psychedelic therapy, Australia, luxury retreats, psilocybin, MDMA therapy, access
+category: "Access"
+readTime: "6 min read"
+excerpt: "A full course of legal psilocybin or MDMA therapy in Australia can cost between $20,000 and $40,000 AUD. Here are five legitimate, lower-cost alternatives."
+image: "/images/psychedelic-therapy-australia-cost.jpg"
+tags: psilocybin, MDMA therapy, Australia, access, cost, clinical trials, alternatives
 ---
 
-[Underground or Luxury Retreats — The Ceremony Room, Bloom & Dissolve, The Canopy Circle, Salt & Surrender](/images/Underground-or-Luxury-retreats.jpg)
-
+![Psychedelic Therapy Australia Cost](/images/psychedelic-therapy-australia-cost.jpg)
 Six years of running a psychedelic therapy community on Instagram teaches you things no research paper will tell you.
 
 I started the [@psychedelictherapyclub](https://www.instagram.com/psychedelictherapyclub) account in the years before mainstream media had decided psychedelics were interesting. Back then, you had to explain what psilocybin was. You had to clarify that no, this was not about getting high at festivals. I was also on TikTok before the ban cut that channel off. Together, those platforms gave me something rare: a direct, unfiltered window into how ordinary people relate to psychedelic healing. Not the people who can afford a week in Costa Rica. Not the people booking consultations with Sydney psychiatrists. Everyone else.
