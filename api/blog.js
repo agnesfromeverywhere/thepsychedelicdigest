@@ -1,9 +1,7 @@
-// /api/blog.js — Serve blog posts from /posts/*.md with fallback posts
-
+// /api/blog.js
 const fs = require('fs');
 const path = require('path');
 
-// ─── Markdown → HTML ─────────────────────────────────────────
 function mdToHtml(md = '') {
   return md
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
@@ -26,49 +24,29 @@ function mdToHtml(md = '') {
     .join('\n');
 }
 
-// ─── Frontmatter parser ───────────────────────────────────────
 function parseFrontmatter(raw = '') {
   const normalised = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
-
   const match = normalised.match(/^---[ \t]*\n([\s\S]*?)\n---[ \t]*(?:\n|$)([\s\S]*)$/);
-
-  if (!match) {
-    return { meta: {}, body: normalised };
-  }
-
+  if (!match) return { meta: {}, body: normalised };
   const meta = {};
   const lines = match[1].split('\n');
   let currentKey = null;
-
   lines.forEach(line => {
     const trimmed = line.trim();
     if (!trimmed) return;
-
     if (trimmed.startsWith('- ') && currentKey) {
       if (!Array.isArray(meta[currentKey])) meta[currentKey] = [];
-      meta[currentKey].push(
-        trimmed.slice(2).trim().replace(/^["']|["']$/g, '')
-      );
+      meta[currentKey].push(trimmed.slice(2).trim().replace(/^["']|["']$/g, ''));
       return;
     }
-
     const colonIndex = line.indexOf(':');
     if (colonIndex === -1) return;
-
     const key = line.slice(0, colonIndex).trim();
-    const value = line
-      .slice(colonIndex + 1)
-      .trim()
-      .replace(/^["']|["']$/g, '');
-
+    const value = line.slice(colonIndex + 1).trim().replace(/^["']|["']$/g, '');
     currentKey = key;
     meta[key] = value === '' ? [] : value;
   });
-
-  return {
-    meta,
-    body: match[2].trim()
-  };
+  return { meta, body: match[2].trim() };
 }
 
 function estimateReadTime(text = '') {
@@ -78,142 +56,10 @@ function estimateReadTime(text = '') {
 
 function normaliseTags(tags) {
   if (Array.isArray(tags)) return tags;
-  if (typeof tags === 'string') {
-    return tags.split(',').map(t => t.trim()).filter(Boolean);
-  }
+  if (typeof tags === 'string') return tags.split(',').map(t => t.trim()).filter(Boolean);
   return [];
 }
 
-function buildPostObject({ slug, meta, body, includeHtml = false }) {
-  const post = {
-    slug,
-    title: meta.title || slug,
-    date: meta.date || '',
-    author: meta.author || 'The Psychedelic Digest',
-    excerpt: meta.excerpt || `${body.slice(0, 160).replace(/\n/g, ' ')}...`,
-    category: meta.category || 'Research',
-    image: meta.image || '',
-    tags: normaliseTags(meta.tags),
-    readTime: meta.readTime || estimateReadTime(body)
-  };
-
-  if (includeHtml) {
-    post.html = mdToHtml(body);
-  }
-
-  return post;
-}
-
-// ─── Hardcoded fallback posts ─────────────────────────────────
-// Keep your existing FALLBACK_POSTS object here exactly as it already is.
 const FALLBACK_POSTS = {
-  // Paste your existing fallback posts here.
-};
-
-// ─── Main handler ─────────────────────────────────────────────
-module.exports = (req, res) => {
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-
-  const postsDir = path.join(process.cwd(), 'posts');
-  const slug = req.query && req.query.slug;
-
-  // ── Single post ─────────────────────────────────────────────
-  if (slug) {
-    const safe = slug.replace(/[^a-zA-Z0-9-_]/g, '');
-
-    if (!safe) {
-      return res.status(400).json({ error: 'Invalid slug' });
-    }
-
-    if (fs.existsSync(postsDir)) {
-      const filePath = path.join(postsDir, `${safe}.md`);
-
-      if (filePath.startsWith(postsDir + path.sep) && fs.existsSync(filePath)) {
-        try {
-          const raw = fs.readFileSync(filePath, 'utf8');
-          const parsed = parseFrontmatter(raw);
-
-          const post = buildPostObject({
-            slug: safe,
-            meta: parsed.meta,
-            body: parsed.body,
-            includeHtml: true
-          });
-
-          return res.status(200).json(post);
-        } catch (e) {
-          console.error('Error reading post:', e);
-        }
-      }
-    }
-
-    const fb = FALLBACK_POSTS[safe];
-
-    if (fb) {
-      return res.status(200).json({
-        slug: safe,
-        title: fb.title,
-        date: fb.date,
-        author: fb.author,
-        excerpt: fb.excerpt,
-        category: fb.category,
-        image: fb.image || '',
-        tags: fb.tags || [],
-        readTime: estimateReadTime(fb.body || ''),
-        html: mdToHtml(fb.body || '')
-      });
-    }
-
-    return res.status(404).json({ error: 'Post not found' });
-  }
-
-  // ── Post list ───────────────────────────────────────────────
-  const postsFromFiles = [];
-
-  if (fs.existsSync(postsDir)) {
-    try {
-      fs.readdirSync(postsDir)
-        .filter(file => file.endsWith('.md'))
-        .forEach(file => {
-          const safeFile = file.replace(/[^a-zA-Z0-9-_.]/g, '');
-          const slug = safeFile.replace(/\.md$/, '');
-          const raw = fs.readFileSync(path.join(postsDir, safeFile), 'utf8');
-          const parsed = parseFrontmatter(raw);
-
-          postsFromFiles.push(
-            buildPostObject({
-              slug,
-              meta: parsed.meta,
-              body: parsed.body,
-              includeHtml: false
-            })
-          );
-        });
-    } catch (e) {
-      console.error('Error loading posts:', e);
-    }
-  }
-
-  const fileSlugs = new Set(postsFromFiles.map(p => p.slug));
-
-  const fallbackPosts = Object.entries(FALLBACK_POSTS)
-    .filter(([slug]) => !fileSlugs.has(slug))
-    .map(([slug, fb]) => ({
-      slug,
-      title: fb.title,
-      date: fb.date,
-      author: fb.author,
-      excerpt: fb.excerpt,
-      category: fb.category,
-      image: fb.image || '',
-      tags: fb.tags || [],
-      readTime: estimateReadTime(fb.body || '')
-    }));
-
-  const posts = [...postsFromFiles, ...fallbackPosts]
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  return res.status(200).json({ posts });
-};
+  'psychedelics-vs-antidepressants-study-2026': {
+    title: 'The New Study Says Psychedelics Are No Better Than Antidepressants. Here Is What It Actually Means.'
