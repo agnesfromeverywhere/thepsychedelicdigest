@@ -2815,25 +2815,45 @@ var attempts = ['/api/news'];
 
 async function loadBlogPost(slug) {
   const content = document.getElementById('blog-post-content');
+  if (!content) return;
+
+  const escapeText = value =>
+    String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
   content.innerHTML = '<p style="color:var(--text-muted);padding:40px 0;">Loading...</p>';
 
   try {
     const res = await fetch('/api/blog?slug=' + encodeURIComponent(slug));
-    if (!res.ok) throw new Error('Post request failed');
+
+    if (!res.ok) {
+      throw new Error('Post request failed: ' + res.status);
+    }
 
     const data = await res.json();
     const post = data.post || data;
 
-    if (!post || !post.title) throw new Error('Invalid post data');
+    if (!post || !post.title) {
+      throw new Error('Invalid post data');
+    }
 
     document.title = post.title + ' — The Psychedelic Digest';
-    updateCanonical('/blog/' + encodeURIComponent(slug));
+
+    if (typeof updateCanonical === 'function') {
+      updateCanonical('/blog/' + encodeURIComponent(slug));
+    }
 
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', post.excerpt || post.title || '');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', post.excerpt || post.title || '');
+    }
 
-    const existingSchema = document.getElementById('blog-post-schema');
-    if (existingSchema) existingSchema.remove();
+    const oldSchema = document.getElementById('blog-post-schema');
+    if (oldSchema) oldSchema.remove();
 
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
@@ -2859,24 +2879,28 @@ async function loadBlogPost(slug) {
 
     content.innerHTML = `
       <div class="blog-card-meta" style="margin-bottom:16px;">
-        <span class="blog-card-cat">${esc(post.category || 'Blog')}</span>
-        <span style="color:var(--text-muted);">${esc(post.date || '')}</span>
-        <span style="color:var(--text-muted);">${esc(post.readTime || '')}</span>
+        <span class="blog-card-cat">${escapeText(post.category || 'Blog')}</span>
+        <span style="color:var(--text-muted);">${escapeText(post.date || '')}</span>
+        <span style="color:var(--text-muted);">${escapeText(post.readTime || '')}</span>
       </div>
 
       <h1 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;color:var(--text-primary);line-height:1.15;margin-bottom:12px;">
-        ${esc(post.title)}
+        ${escapeText(post.title)}
       </h1>
 
       <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:40px;padding-bottom:24px;border-bottom:0.5px solid var(--border-1);">
-        By ${esc(post.author || 'The Psychedelic Digest')}
+        By ${escapeText(post.author || 'The Psychedelic Digest')}
       </p>
 
-      <div>${post.html || post.content || ''}</div>
+      <div>${post.html || post.content || '<p>No content found.</p>'}</div>
     `;
   } catch (e) {
     console.error('Blog post load error:', e);
-    content.innerHTML = '<p style="color:var(--text-muted);padding:40px 0;">Could not load this post.</p>';
+    content.innerHTML = `
+      <p style="color:var(--text-muted);padding:40px 0;">
+        Could not load this post.
+      </p>
+    `;
   }
 }
 function closeBlogPost() {
