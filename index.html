@@ -2813,33 +2813,127 @@ var attempts = ['/api/news'];
 }
 
 
+// ─── BLOG ────────────────────────────────────────────────────
+// FIX: showSection('blog') calls renderBlog(option), but your current index had
+// loadBlogPost only. That made the whole Blog/Articles section fail with:
+// "renderBlog is not defined".
+
+async function renderBlog(openSlug) {
+  const listView = document.getElementById('blog-list-view');
+  const postView = document.getElementById('blog-post-view');
+  const grid     = document.getElementById('blog-grid');
+  const loading  = document.getElementById('blog-loading');
+  const errEl    = document.getElementById('blog-error');
+
+  if (!listView || !postView || !grid) {
+    console.error('Blog DOM missing: blog-list-view, blog-post-view, or blog-grid not found');
+    return;
+  }
+
+  if (openSlug) {
+    listView.style.display = 'none';
+    postView.style.display = 'block';
+    await loadBlogPost(openSlug);
+    return;
+  }
+
+  listView.style.display = 'block';
+  postView.style.display = 'none';
+  grid.innerHTML = '';
+
+  if (loading) loading.style.display = 'block';
+  if (errEl) errEl.style.display = 'none';
+
+  try {
+    const res = await fetch('/api/blog');
+    if (!res.ok) throw new Error('Blog list request failed: ' + res.status);
+
+    const data = await res.json();
+    const posts = Array.isArray(data.posts) ? data.posts : [];
+
+    if (loading) loading.style.display = 'none';
+
+    if (!posts.length) {
+      grid.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:40px;grid-column:1/-1;">No posts yet.</p>';
+      return;
+    }
+
+    grid.innerHTML = posts.map(function(p) {
+      const slug = escAttr(p.slug || '');
+      const title = esc(p.title || 'Untitled post');
+      const image = p.image ? String(p.image) : '';
+
+      return `
+        <button type="button" class="blog-card js-blog-card" data-slug="${slug}" aria-label="Open ${escAttr(p.title || 'Blog post')}" style="text-align:left;border:none;font-family:inherit;color:inherit;">
+          <div class="blog-card-img-wrap">
+            ${
+              image
+                ? `<img class="blog-card-img" src="${escAttr(image)}" alt="${escAttr(p.title || 'Blog image')}" loading="lazy">`
+                : `<div style="width:100%;height:100%;background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(13,148,136,0.12));display:flex;align-items:center;justify-content:center;font-size:2.5rem;">🍄</div>`
+            }
+          </div>
+
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-card-cat">${esc(p.category || 'Blog')}</span>
+              <span>${esc(p.date || '')}</span>
+              <span>${esc(p.readTime || '')}</span>
+            </div>
+
+            <div class="blog-card-title">${title}</div>
+
+            <p style="color:var(--text-secondary);font-size:0.85rem;line-height:1.7;margin:0;">
+              ${esc(p.excerpt || '')}
+            </p>
+
+            <div class="blog-card-footer">
+              <span>${esc(p.author || 'The Psychedelic Digest')}</span>
+              <span style="color:#8b5cf6;font-weight:600;">Read →</span>
+            </div>
+          </div>
+        </button>
+      `;
+    }).join('');
+
+  } catch (e) {
+    console.error('Blog list error:', e);
+    if (loading) loading.style.display = 'none';
+    if (errEl) errEl.style.display = 'block';
+    grid.innerHTML = '<p style="color:var(--text-muted);padding:40px;grid-column:1/-1;">Could not load blog posts.</p>';
+  }
+}
+
+async function openBlogPost(slug) {
+  if (!slug) return;
+
+  const listView = document.getElementById('blog-list-view');
+  const postView = document.getElementById('blog-post-view');
+
+  if (listView) listView.style.display = 'none';
+  if (postView) postView.style.display = 'block';
+
+  if (typeof pushRoute === 'function' && !_isPopState) {
+    pushRoute('/blog/' + encodeURIComponent(slug));
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  await loadBlogPost(slug);
+}
+
 async function loadBlogPost(slug) {
   const content = document.getElementById('blog-post-content');
   if (!content) return;
-
-  const escapeText = value =>
-    String(value || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
 
   content.innerHTML = '<p style="color:var(--text-muted);padding:40px 0;">Loading...</p>';
 
   try {
     const res = await fetch('/api/blog?slug=' + encodeURIComponent(slug));
-
-    if (!res.ok) {
-      throw new Error('Post request failed: ' + res.status);
-    }
+    if (!res.ok) throw new Error('Post request failed: ' + res.status);
 
     const data = await res.json();
     const post = data.post || data;
 
-    if (!post || !post.title) {
-      throw new Error('Invalid post data');
-    }
+    if (!post || !post.title) throw new Error('Invalid post data');
 
     document.title = post.title + ' — The Psychedelic Digest';
 
@@ -2852,69 +2946,76 @@ async function loadBlogPost(slug) {
       metaDesc.setAttribute('content', post.excerpt || post.title || '');
     }
 
-    const oldSchema = document.getElementById('blog-post-schema');
-    if (oldSchema) oldSchema.remove();
+    const existingSchema = document.getElementById('blog-post-schema');
+    if (existingSchema) existingSchema.remove();
 
     const schema = document.createElement('script');
     schema.type = 'application/ld+json';
     schema.id = 'blog-post-schema';
     schema.textContent = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": post.title,
-      "description": post.excerpt || '',
-      "datePublished": post.date || '',
-      "author": {
-        "@type": "Person",
-        "name": post.author || 'The Psychedelic Digest'
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: post.title,
+      description: post.excerpt || '',
+      datePublished: post.date || '',
+      author: {
+        '@type': 'Person',
+        name: post.author || 'The Psychedelic Digest'
       },
-      "publisher": {
-        "@type": "Organization",
-        "name": "The Psychedelic Digest",
-        "url": "https://thepsychedelicdigest.com"
+      publisher: {
+        '@type': 'Organization',
+        name: 'The Psychedelic Digest',
+        url: 'https://thepsychedelicdigest.com'
       },
-      "url": "https://thepsychedelicdigest.com/blog/" + encodeURIComponent(slug)
+      url: 'https://thepsychedelicdigest.com/blog/' + encodeURIComponent(slug)
     });
     document.head.appendChild(schema);
 
     content.innerHTML = `
       <div class="blog-card-meta" style="margin-bottom:16px;">
-        <span class="blog-card-cat">${escapeText(post.category || 'Blog')}</span>
-        <span style="color:var(--text-muted);">${escapeText(post.date || '')}</span>
-        <span style="color:var(--text-muted);">${escapeText(post.readTime || '')}</span>
+        <span class="blog-card-cat">${esc(post.category || 'Blog')}</span>
+        <span style="color:var(--text-muted);">${esc(post.date || '')}</span>
+        <span style="color:var(--text-muted);">${esc(post.readTime || '')}</span>
       </div>
 
       <h1 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;color:var(--text-primary);line-height:1.15;margin-bottom:12px;">
-        ${escapeText(post.title)}
+        ${esc(post.title)}
       </h1>
 
       <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:40px;padding-bottom:24px;border-bottom:0.5px solid var(--border-1);">
-        By ${escapeText(post.author || 'The Psychedelic Digest')}
+        By ${esc(post.author || 'The Psychedelic Digest')}
       </p>
 
       <div>${post.html || post.content || '<p>No content found.</p>'}</div>
     `;
   } catch (e) {
     console.error('Blog post load error:', e);
-    content.innerHTML = `
-      <p style="color:var(--text-muted);padding:40px 0;">
-        Could not load this post.
-      </p>
-    `;
+    content.innerHTML = '<p style="color:var(--text-muted);padding:40px 0;">Could not load this post.</p>';
   }
 }
+
 function closeBlogPost() {
   const listView = document.getElementById('blog-list-view');
   const postView = document.getElementById('blog-post-view');
-  postView.style.display = 'none';
-  listView.style.display = 'block';
+
+  if (postView) postView.style.display = 'none';
+  if (listView) listView.style.display = 'block';
+
   document.title = 'The Psychedelic Digest — Psychedelic Therapy News';
-  updateCanonical('/blog');
-  if (!_isPopState) pushRoute('/blog');
-  window.scrollTo({top: 0, behavior: 'smooth'});
+
+  if (typeof updateCanonical === 'function') updateCanonical('/blog');
+  if (typeof pushRoute === 'function' && !_isPopState) pushRoute('/blog');
+
   const existingSchema = document.getElementById('blog-post-schema');
   if (existingSchema) existingSchema.remove();
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+window.renderBlog = renderBlog;
+window.openBlogPost = openBlogPost;
+window.loadBlogPost = loadBlogPost;
+window.closeBlogPost = closeBlogPost;
 
 // ─── NEWSLETTER ──────────────────────────────────────────────
 let _lastSubmit = 0;
