@@ -1,11 +1,11 @@
 ---
-title: "The Brutal Cost of Getting Better: 7 Truths About Luxury Retreats, Psychedelic Therapy in Australia, and the Quiet Revolution Happening Without Either"
-date: 2026-04-30
-author: Agnes 
-category: Analysis
-readTime: 9 min read
-image: /images/Underground-or-Luxury-retreats.jpg
-excerpt: "Psychedelic therapy in Australia costs up to A$40,000. Luxury retreats run to $15,000 a week. So who is actually healing? After 6 years watching a real psychedelic community up close, here is what I see."
+title: Underground Luxury Retreats
+date: 2026-05-20
+author: Agnes Horry
+excerpt: Your excerpt here
+category: Retreats
+image: /images/your-image.png
+tags: retreats, psychedelics, luxury
 ---
 
 [Underground or Luxury Retreats — The Ceremony Room, Bloom & Dissolve, The Canopy Circle, Salt & Surrender](/images/Underground-or-Luxury-retreats.jpg)
