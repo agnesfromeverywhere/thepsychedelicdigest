@@ -3994,18 +3994,16 @@ const BOOKS = [
   {section:'Practice & Integration', title:'When the Impossible Happens', author:'Stanislav Grof', desc:'The founder of transpersonal psychology shares extraordinary case studies from 60 years of psychedelic research.', url:'https://www.amazon.com.au/When-Impossible-Happens-Adventures-Non-Ordinary/dp/1591794668?tag=psychedelic00-22', badge:''},
 ];
 const RETREAT_PREP = [
-  {title:'Eye Mask / Mindfold', desc:'Used in virtually every clinical psilocybin trial. Essential for any inner journey.', url:'https://www.amazon.com.au/Mindfold-Relaxation-Sleep-Mask/dp/B0007ZK3MM?tag=psychedelic00-22'},
-  {title:'Noise-Cancelling Headphones', desc:'Music is medicine in psychedelic therapy. Good headphones are non-negotiable.', url:'https://www.amazon.com.au/dp/B0CCZ1L489?tag=psychedelic00-22'},
-  {title:"Lion\'s Mane Supplement", desc:'The most-researched mushroom for neuroplasticity and cognitive support.', url:'https://www.amazon.com.au/s?k=lions+mane+mushroom+supplement&tag=psychedelic00-22'},
-  {title:'Meditation Cushion', desc:'Comfort during long sessions matters. A good zafu makes preparation practice sustainable.', url:'https://www.amazon.com.au/s?k=meditation+cushion+zafu&tag=psychedelic00-22'},
-  {title:'Integration Journal', desc:'A dedicated dot-grid journal for recording insights, intentions and integration notes before and after sessions.', url:'https://www.amazon.com.au/s?k=leuchtturm1917+notebook+dotted&tag=psychedelic00-22'},
-  {title:'Weighted Blanket', desc:'Used in clinical settings for grounding during sessions. The deep pressure supports nervous system regulation.', url:'https://www.amazon.com.au/s?k=weighted+blanket+7kg&tag=psychedelic00-22'},
-  {title:'Reishi Mushroom Supplement', desc:'The relaxation mushroom. Pairs naturally with Lion\'s Mane for nervous system support and sleep quality.', url:'https://www.amazon.com.au/s?k=reishi+mushroom+supplement&tag=psychedelic00-22'},
-  {title:'Essential Oil Diffuser', desc:'Aromatherapy is standard in preparation and integration spaces. Lavender and frankincense are most used clinically.', url:'https://www.amazon.com.au/s?k=aromatherapy+diffuser+oils+set&tag=psychedelic00-22'},
-  {title:'Yoga Mat (Premium)', desc:'Somatic integration, breathwork, body-based processing. A quality mat makes daily practice sustainable.', url:'https://www.amazon.com.au/s?k=manduka+pro+yoga+mat&tag=psychedelic00-22'},
-  {title:'Nature Sounds Machine', desc:'Used for sleep, preparation and post-session integration. Helps regulate the nervous system after intense experiences.', url:'https://www.amazon.com.au/s?k=white+noise+sleep+machine&tag=psychedelic00-22'},
+  {title:'Eye Mask / Mindfold', desc:'Used in virtually every clinical psilocybin trial. Essential for any inner journey.', url:'https://www.amazon.com.au/Mindfold-Relaxation-Sleep-Mask/dp/B0007ZK3MM?tag=psychedelic00-22', store:'amazon'},
+  {title:'Noise-Cancelling Headphones', desc:'Music is medicine in psychedelic therapy. Good headphones are non-negotiable.', url:'https://www.amazon.com.au/dp/B0CCZ1L489?tag=psychedelic00-22', store:'amazon'},
+  {title:"Lion's Mane + Cordyceps + Reishi", desc:"The functional mushroom stack our community uses to support neuroplasticity, energy, and integration. Use code AGNES11 for 15% off.", url:'https://www.lifecykel.com/?rfsn=9104369.c3c8cb&utm_source=refersion&utm_medium=affiliate&utm_campaign=9104369.c3c8cb', store:'lifecykel'},
+  {title:'Meditation Cushion', desc:'Comfort during long sessions matters. A good zafu makes preparation practice sustainable.', url:'https://www.amazon.com.au/s?k=meditation+cushion+zafu&tag=psychedelic00-22', store:'amazon'},
+  {title:'Integration Journal', desc:'A dedicated dot-grid journal for recording insights, intentions and integration notes before and after sessions.', url:'https://www.amazon.com.au/s?k=leuchtturm1917+notebook+dotted&tag=psychedelic00-22', store:'amazon'},
+  {title:'Weighted Blanket', desc:'Used in clinical settings for grounding during sessions. The deep pressure supports nervous system regulation.', url:'https://www.amazon.com.au/s?k=weighted+blanket+7kg&tag=psychedelic00-22', store:'amazon'},
+  {title:'Essential Oil Diffuser', desc:'Aromatherapy is standard in preparation and integration spaces. Lavender and frankincense are most used clinically.', url:'https://www.amazon.com.au/s?k=aromatherapy+diffuser+oils+set&tag=psychedelic00-22', store:'amazon'},
+  {title:'Yoga Mat (Premium)', desc:'Somatic integration, breathwork, body-based processing. A quality mat makes daily practice sustainable.', url:'https://www.amazon.com.au/s?k=manduka+pro+yoga+mat&tag=psychedelic00-22', store:'amazon'},
+  {title:'Nature Sounds Machine', desc:'Used for sleep, preparation and post-session integration. Helps regulate the nervous system after intense experiences.', url:'https://www.amazon.com.au/s?k=white+noise+sleep+machine&tag=psychedelic00-22', store:'amazon'},
 ];
-
 const LIBRARY_SECTIONS_EN = ['Start Here', 'Clinical & Research', 'Integration & Growth', 'Science & History', 'Practice & Integration'];
 const LIBRARY_SECTIONS_FR = ['Par Ou Commencer', 'Clinique et Recherche', 'Integration et Croissance'];
 const LIBRARY_SECTION_MAP = {'Start Here':'Par Ou Commencer','Clinical & Research':'Clinique et Recherche','Integration & Growth':'Integration et Croissance'};
@@ -4072,21 +4070,19 @@ function renderLibrary() {
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;">`;
 
-  RETREAT_PREP.forEach(p => {
-    html += `<a href="${safeUrl(p.url)}" target="_blank" rel="noopener sponsored"
-      style="display:flex;flex-direction:column;text-decoration:none;background:var(--surface-1);border:0.5px solid var(--border-1);border-radius:12px;padding:18px;transition:all 0.25s;"
-     
-     >
-      <div style="font-family:\'Playfair Display\',serif;font-size:0.92rem;font-weight:600;color:var(--text-primary);margin-bottom:7px;">${esc(p.title)}</div>
-      <p style="font-size:0.75rem;color:var(--text-secondary);line-height:1.6;flex:1;margin-bottom:12px;">${esc(p.desc)}</p>
-      <div style="font-size:0.68rem;font-weight:600;color:var(--accent);">${isFR ? 'Voir sur Amazon' : 'View on Amazon'} →</div>
-    </a>`;
-  });
-
-  html += `</div></div>`;
-  grid.innerHTML = html;
+ RETREAT_PREP.forEach(p => {
+  const isLifecykel = p.store === 'lifecykel';
+  html += `<a href="${safeUrl(p.url)}" target="_blank" rel="noopener sponsored"
+    style="display:flex;flex-direction:column;text-decoration:none;background:var(--surface-1);border:0.5px solid ${isLifecykel ? 'rgba(13,148,136,0.4)' : 'var(--border-1)'};border-radius:12px;padding:18px;transition:all 0.25s;">
+    <div style="font-family:'Playfair Display',serif;font-size:0.92rem;font-weight:600;color:var(--text-primary);margin-bottom:7px;">${esc(p.title)}</div>
+    <p style="font-size:0.75rem;color:var(--text-secondary);line-height:1.6;flex:1;margin-bottom:12px;">${esc(p.desc)}</p>
+    ${isLifecykel ? `<div style="font-size:0.68rem;background:rgba(13,148,136,0.15);color:#2dd4bf;border:1px solid rgba(13,148,136,0.3);border-radius:999px;padding:3px 10px;display:inline-block;margin-bottom:8px;">Use code AGNES11 — 15% off</div>` : ''}
+    <div style="font-size:0.68rem;font-weight:600;color:var(--accent);">${isLifecykel ? 'Shop Lifecykel' : (isFR ? 'Voir sur Amazon' : 'View on Amazon')} →</div>
+  </a>`;
+});
+html += `</div></div>`;
+grid.innerHTML = html;
 }
-
 // ─── PARTICLES ───────────────────────────────────────────────
 (function initParticles(){
   function spawn() {
