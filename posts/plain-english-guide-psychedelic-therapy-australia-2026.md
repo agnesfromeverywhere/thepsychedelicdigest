@@ -1,5 +1,4 @@
 ---
-
 title: "Psychedelic Therapy in Australia: Who Qualifies, What It Costs, and How to Access It in 2026"
 date: "2026-05-27"
 author: "Agnes Horry"
@@ -8,14 +7,12 @@ category: "Guides"
 readTime: "12 min read"
 image: "/images/plain-english-guide-psychedelic-therapy-australia.jpg"
 tags:
-
-* psychedelic therapy Australia
-* psilocybin Australia
-* MDMA therapy PTSD
-* treatment-resistant depression
-* authorised prescriber
-* psychedelic therapy cost Australia
-
+  - psychedelic therapy Australia
+  - psilocybin Australia
+  - MDMA therapy PTSD
+  - treatment-resistant depression
+  - authorised prescriber
+  - psychedelic therapy cost Australia
 ---
 
 ## Psychedelic Therapy Is Now Legal in Australia
@@ -34,11 +31,11 @@ Psychedelic therapy is a structured clinical treatment that combines a psychedel
 
 Researchers and clinicians describe three essential phases:
 
-**Preparation:** A series of talk-therapy sessions with a trained therapist before any medicine is taken. The goal is to build therapeutic trust, explore the patient's history, and set a clear intention for the experience ahead.
+Preparation: A series of talk-therapy sessions with a trained therapist before any medicine is taken. The goal is to build therapeutic trust, explore the patient's history, and set a clear intention for the experience ahead.
 
-**The dosing session:** The patient takes the prescribed medicine in a clinical setting, lying down, typically with an eye mask and music. One or two trained therapists are present throughout. Each session lasts six or more hours.
+The dosing session: The patient takes the prescribed medicine in a clinical setting, lying down, typically with an eye mask and music. One or two trained therapists are present throughout. Each session lasts six or more hours.
 
-**Integration:** A series of therapy sessions after the dosing experience to make sense of what surfaced, translate insights into lasting change, and process anything difficult or confusing. This phase can continue for weeks or months.
+Integration: A series of therapy sessions after the dosing experience to make sense of what surfaced, translate insights into lasting change, and process anything difficult or confusing. This phase can continue for weeks or months.
 
 Without all three phases, the treatment is incomplete. The medicine is the key. The therapy is the door.
 
@@ -54,9 +51,9 @@ Australia is the first country in the world to establish a national, regulated c
 
 Currently, two conditions are approved:
 
-**Psilocybin** is approved for **treatment-resistant depression (TRD)**, defined as depression that has not responded to at least two conventional treatments such as antidepressants or psychotherapy.
+Psilocybin is approved for treatment-resistant depression (TRD), defined as depression that has not responded to at least two conventional treatments such as antidepressants or psychotherapy.
 
-**MDMA** is approved for **post-traumatic stress disorder (PTSD).**
+MDMA is approved for post-traumatic stress disorder (PTSD).
 
 Some people with co-occurring mental health conditions may also be eligible. However, people with a personal or family history of bipolar disorder, psychosis, or certain other psychiatric conditions are not considered suitable under current safety protocols.
 
@@ -94,14 +91,14 @@ Psychedelic therapy is expensive.
 
 Average prices in 2026 sit at:
 
-* **$10,000 AUD** for a single dosing session including preparation and integration
-* **$30,000 AUD** for a full three-dose MDMA-assisted therapy program
+- $10,000 AUD for a single dosing session including preparation and integration
+- $30,000 AUD for a full three-dose MDMA-assisted therapy program
 
 That is beyond the reach of most Australians.
 
-**Medibank** committed $10 million AUD to fund MDMA-assisted therapy for PTSD for eligible members, in partnership with Emyria.
+Medibank committed $10 million AUD to fund MDMA-assisted therapy for PTSD for eligible members, in partnership with Emyria.
 
-**The Department of Veterans' Affairs** also committed funding for eligible veterans with PTSD.
+The Department of Veterans' Affairs also committed funding for eligible veterans with PTSD.
 
 ## What About Microdosing?
 
@@ -137,4 +134,4 @@ Australia made history in 2023. The harder work now is making that history genui
 
 ---
 
-*Agnes Horry is the author of [The Microdosing Guidebook](https://amzn.to/4f37j75) and the founder of The Psychedelic Digest.*
+Agnes Horry is the author of [The Microdosing Guidebook](https://amzn.to/4f37j75) and the founder of The Psychedelic Digest.
