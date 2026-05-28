@@ -5,8 +5,8 @@ author: Agnes Horry
 excerpt: "New research shows psychedelics may address what stimulant medication cannot. Here is what the science actually says about ADHD and psilocybin in 2026."
 category: Research
 tags: ADHD and psychedelics, microdosing ADHD, psilocybin ADHD, psychedelic therapy neurodivergent, ADHD treatment alternatives, microdosing psilocybin focus, ADHD emotional regulation psychedelics
+image: "/images/adhd_and_Psychedelics_Research_Overview.png"
 ---
-
 ## Why People with ADHD Are Turning to Psychedelics
 
 Something unexpected is happening in the ADHD community. Thousands of adults who have tried stimulant medication, adjusted their diets, built elaborate systems, and still felt like they were failing are quietly turning to a different kind of treatment: psychedelics.
