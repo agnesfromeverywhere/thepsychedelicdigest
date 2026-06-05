@@ -3,7 +3,7 @@
 const fs   = require('fs');
 const path = require('path');
 
-const DOMAIN = 'https://thepsychedelicdigest.com';
+const DOMAIN = 'https://www.thepsychedelicdigest.com';
 
 // Static pages — ordered by SEO priority
 const STATIC_PAGES = [
