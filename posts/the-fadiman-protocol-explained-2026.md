@@ -6,61 +6,62 @@ excerpt: The Fadiman Protocol is the world's most used microdosing schedule. Her
 category: Guides
 image: https://thepsychedelicdigest.com/images/fadiman-protocol.jpg
 tags: Fadiman protocol, microdosing schedule, James Fadiman, psilocybin, microdosing protocol, one day on two days off
-image: https://thepsychedelicdigest.com/images/fadiman-protocol.jpg
 ---
 
-The Fadiman Protocol is the most widely used microdosing schedule in the world. It follows a simple pattern: one day on, two days off, repeated over four to eight weeks. Named after psychedelic researcher Dr James Fadiman, it was designed to allow sub-perceptual dosing while preventing tolerance buildup and giving the nervous system adequate rest between doses.
+The Fadiman Protocol is the most widely used microdosing schedule in the world. One day on, two days off, repeated over four to eight weeks. It is the starting point most practitioners recommend, it has the largest body of self-reported data behind it, and it is the schedule I see working most consistently across the Psychedelic Therapy Club community.
 
-If you are new to microdosing and want a structured place to start, this is where most people in the Psychedelic Therapy Club community begin.
+If you are new to microdosing and wondering where to begin, this is it.
 
 ## Who Is James Fadiman?
 
-Dr James Fadiman is a psychedelic researcher, author, and former Stanford professor who has been studying psychedelics since the 1960s. His book The Psychedelic Explorer's Guide, published in 2011, is widely credited with bringing systematic microdosing into mainstream awareness. Since then, Fadiman has collected thousands of self-reported microdosing experiences from participants around the world through his research project. The Fadiman Protocol emerged from that work as a practical, repeatable structure for beginners and experienced practitioners alike.
+Dr James Fadiman is a psychedelic researcher, author, and former Stanford lecturer who has been studying psychedelics since the 1960s. His 2011 book The Psychedelic Explorer's Guide brought systematic microdosing into mainstream awareness for the first time. Since then, Fadiman has collected thousands of self-reported microdosing observations through his ongoing research project, accessible at [fadiman.com](https://www.jamesfadiman.com). The protocol that carries his name emerged from that data as the most practical, repeatable structure available to beginners and experienced practitioners alike.
 
 ## How the Protocol Works
 
-The schedule is built on a three-day cycle.
+The schedule runs on a three-day cycle.
 
-Day 1 is a dose day. You take your microdose in the morning, preferably within an hour of waking. The morning window matters because psilocybin and LSD both carry stimulant properties that can interfere with sleep if taken later in the day.
+Day 1 is your dose day. Take your microdose in the morning, ideally within an hour of waking. Morning timing matters because both psilocybin and LSD carry mild stimulant properties that can interfere with sleep if taken later in the day.
 
-Day 2 is a transition day. You take no dose. Many practitioners report that day 2 carries a residual effect from the previous day, a subtle afterglow that is often described as the most productive day of the cycle.
+Day 2 is your transition day. No dose. Many practitioners report that this day carries a subtle afterglow from the previous dose and is often their most productive day of the cycle. Do not skip journalling on day 2.
 
-Day 3 is a rest day. No dose, no noticeable effects. This day allows your system to return to baseline before the next dose.
+Day 3 is your rest day. No dose, no noticeable effect. Your system returns fully to baseline before the next dose.
 
-The cycle then repeats from Day 1.
+The cycle then repeats.
 
-## Why the Gap Matters
+## Why the Two-Day Gap Matters
 
-Psychedelics produce tolerance quickly. Taking a full dose two days in a row would require a larger dose on day two to achieve the same effect. At the microdosing level, this tolerance buildup is subtler but still present. The two-day gap prevents this from accumulating and means your dose remains effective throughout the protocol without needing adjustment.
+Psychedelics produce tolerance quickly. Dosing two days in a row would require a larger dose on day two to achieve a comparable effect. At microdose levels this is subtler, but the accumulation is real. The two-day gap prevents tolerance from building and keeps your dose effective throughout the full protocol without adjustment.
 
-The gap also allows you to build a genuine baseline comparison. If you only ever had dose days, you would have no reference point for what the substance is actually doing. The off days are part of the data.
+The gap also gives you something more valuable: a baseline for comparison. Without off days, you have no reference point for what the substance is actually doing versus your ordinary mood variation. The off days are not gaps in the protocol. They are part of the data. For more on how to track this properly, see the [microdosing journal guide](https://thepsychedelicdigest.com/blog/microdosing-journal-what-to-track-2026) on this site.
 
 ## Typical Dose Ranges
 
-For dried psilocybin mushrooms, most practitioners using the Fadiman Protocol start at 0.1g and calibrate up to 0.2g or 0.3g if needed. For LSD, the starting range is typically 5 to 10 micrograms. These are starting points, not targets. The right dose is the lowest amount that produces a subtle, positive effect without any perceptual impairment.
+For dried psilocybin mushrooms, most practitioners start at 0.1g and adjust to between 0.1g and 0.3g. For LSD, 5 to 10 micrograms is the standard starting range. The right dose is the lowest amount that produces a subtle positive shift without any perceptual impairment. If you feel clearly altered, you have gone too high.
 
-For a glossary of terms including psilocybin, tolerance, and sub-perceptual, visit [thepsychedelicdigest.com/glossary](https://thepsychedelicdigest.com/glossary).
+For a full glossary of terms including tolerance, sub-perceptual, and psilocybin, visit the [Psychedelic Digest glossary](https://thepsychedelicdigest.com/glossary).
 
-## How Long Should You Run the Protocol?
+## How Long Should You Run It?
 
-Fadiman recommends a minimum of four weeks, with eight weeks being the sweet spot for gathering enough data to draw meaningful conclusions about your experience. After completing a full protocol, most practitioners take a two to four week break before considering another cycle. This extended rest period allows for deeper integration of the experience and helps you assess whether changes in mood, productivity, or wellbeing persist independently of the substance.
+Fadiman recommends a minimum of four weeks. Eight weeks gives you enough cycles to identify genuine patterns rather than reacting to early variability. After completing a full protocol, take a two to four week break before starting another cycle. This rest period allows integration and helps you assess whether the changes you noticed persist independently of the substance.
 
-## What Results Do People Report?
+Research from [Vince Polito at Macquarie University](https://researchers.mq.edu.au/en/persons/vince-polito), who has run some of the most rigorous longitudinal microdosing studies to date, consistently shows that the integration period between cycles is where many of the lasting psychological shifts consolidate.
 
-Based on Fadiman's aggregated data and consistent reports from the @psychedelictherapyclub community, the most commonly reported effects on dose days include improved mood, increased focus, greater creative fluency, and reduced social anxiety. The most commonly reported challenges are occasional restlessness, overstimulation, and emotional sensitivity if the dose is too high. Fatigue at the end of a cycle is also common and is a normal sign that a break is needed.
+## What People Actually Report
 
-A minority of people find the Fadiman Protocol too frequent and do better on an every-other-day or twice-weekly schedule. If you find yourself feeling stimulated or unsettled on dose days, switching to a less frequent schedule is a reasonable first adjustment before lowering your dose.
+From Fadiman's aggregated data and consistent observations within the @psychedelictherapyclub community, the most commonly reported effects on dose days are improved mood, increased focus, greater creative fluency, and reduced social anxiety. The most commonly reported challenges are restlessness or mild overstimulation when the dose is too high, and emotional sensitivity during difficult life periods.
 
-## Who Is It Not Right For?
+A minority of people find the Fadiman Protocol too frequent and do better on a twice-weekly or every-other-day schedule. If dose days feel stimulating rather than clean, try reducing your dose before changing your schedule.
 
-The Fadiman Protocol is not appropriate for people with a personal or family history of psychosis, schizophrenia, or bipolar I disorder. It is also not recommended during pregnancy or breastfeeding, or for anyone currently taking SSRIs or MAOIs without medical guidance. The interaction between psilocybin and SSRIs is poorly studied at the microdose level, and some practitioners report blunted effects while others report unexpected potentiation.
+## Who Should Not Use It
 
-## Comparing It to Other Protocols
+The Fadiman Protocol is not appropriate for people with a personal or family history of psychosis, schizophrenia, or bipolar I disorder. It is not recommended during pregnancy or breastfeeding. Anyone taking SSRIs or MAOIs should consult a medical professional before starting, as the interactions at microdose levels are not well studied. The [Zendo Project](https://zendoproject.org) and [MAPS](https://maps.org) both publish harm reduction resources that cover contraindications in detail.
 
-The main alternative to the Fadiman Protocol is the Stamets Stack, which doses four days on and three days off and pairs psilocybin with lion's mane mushroom and niacin. The Stamets Stack is more intensive and may suit people specifically interested in neurogenesis and cognitive enhancement. The Every Other Day protocol is simpler but carries a higher risk of tolerance buildup over time.
+## How It Compares to Other Protocols
 
-For beginners, the Fadiman Protocol remains the most well-documented and widely validated starting point. It offers enough structure to produce meaningful data without being so demanding that it becomes a stressor in itself.
+The Stamets Stack doses four days on, three days off, and combines psilocybin with lion's mane mushroom and niacin. It is more intensive and may suit people specifically focused on neurogenesis and cognitive enhancement. The Every Other Day protocol is simpler but carries a higher risk of tolerance accumulation over time.
 
-The Microdosing Guidebook covers the Fadiman Protocol in detail alongside all other major schedules: [https://amzn.to/4f37j75](https://amzn.to/4f37j75). If you are serious about running a protocol well, it is the most complete single resource available.
+For most people starting out, the Fadiman Protocol is the right first choice. It is structured enough to produce meaningful data without being demanding enough to become a stressor.
 
-Track your experience from day one. The protocol is a container. What you put into it determines what you get out.
+[The Microdosing Guidebook](https://amzn.to/4f37j75) covers the Fadiman Protocol in full alongside every other major schedule, with practical guidance on calibration, journalling, and integration.
+
+Track your experience from day one. The protocol is a container. What you bring to it determines what you get out.
