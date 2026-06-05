@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/26162172/README.md)
+[README.md](https://github.com/user-attachments/files/28620364/README.md)
 # The Psychedelic Digest — Blog System
 
 > A zero-database, zero-CMS blog built on Markdown files and a Vercel serverless function. Write in GitHub, publish in 30 seconds. No login. Nothing to hack.
@@ -52,11 +52,22 @@ date: 2026-03-21
 author: Agnes Horry
 excerpt: One or two sentence summary shown on the blog index and in meta descriptions. Keep under 160 characters.
 category: Research
+image: https://thepsychedelicdigest.com/images/your-image.jpg
 tags: psilocybin, depression, clinical trial
 ---
 
 Article body starts here...
 ```
+
+### Notes on frontmatter fields
+- `title` — wrap in quotes if it contains a colon
+- `date` — no quotes, format YYYY-MM-DD
+- `author` — always `Agnes Horry` (byline displays as Agnes only)
+- `excerpt` — under 160 characters, no quotes needed
+- `category` — must be one of the valid categories below
+- `image` — full URL to image hosted in `/images` folder; use `https://thepsychedelicdigest.com/images/your-image.jpg`; leave blank if no image
+- `tags` — comma-separated, no quotes
+- **No H1 in the article body** — the title renders from frontmatter; an H1 in the body will bleed into card excerpts
 
 ### Valid categories
 `Research` · `Policy` · `Culture` · `Personal` · `Guides` · `Finance`
@@ -70,6 +81,8 @@ thepsychedelicdigest/
 ├── api/
 │   ├── rss.js                              Fetches Google News RSS (curated news feed)
 │   └── blog.js                             Serves blog posts from /posts/*.md
+├── images/
+│   └── your-image.jpg                      Blog card images
 └── posts/
     ├── australia-psilocybin-approval-2026.md
     └── microdosing-science-2026.md
@@ -104,6 +117,7 @@ Returns a list of all posts (metadata only, no body).
       "author": "Agnes Horry",
       "excerpt": "...",
       "category": "Policy",
+      "image": "https://thepsychedelicdigest.com/images/your-image.jpg",
       "readTime": "4 min read"
     }
   ]
