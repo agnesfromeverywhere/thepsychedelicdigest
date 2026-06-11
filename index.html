@@ -2478,76 +2478,9 @@ function blueprintAuraImage(title, category) {
   }
 
   // Render sidebar widgets
-  renderMiniLegalMap();
+ renderMiniLegalMap();
   renderCompoundOfDay();
   renderMotionTimeline();
-  renderWorldMap();
-}
-
-// ─── WORLD MAP RENDERER ───────────────────────────────────────
-var WORLD_COUNTRIES = [
-  {name:'Australia',x:700,y:350,status:'medical',note:'TGA approved MDMA+psilocybin 2023'},
-  {name:'USA',x:150,y:220,status:'decrim',note:'Oregon+Colorado licensed; federal Sched.I'},
-  {name:'Canada',x:160,y:170,status:'research',note:'Section 56 exemptions; ketamine clinics'},
-  {name:'UK',x:430,y:180,status:'research',note:'Research only; ketamine clinics legal'},
-  {name:'Netherlands',x:450,y:190,status:'decrim',note:'Psilocybin truffles legal'},
-  {name:'Portugal',x:420,y:215,status:'decrim',note:'All drugs decriminalised 2001'},
-  {name:'Germany',x:460,y:195,status:'research',note:'Phase 2/3 trials underway'},
-  {name:'Brazil',x:240,y:355,status:'decrim',note:'Ayahuasca legal (religious use)'},
-  {name:'Peru',x:200,y:330,status:'decrim',note:'Ayahuasca cultural heritage'},
-  {name:'Mexico',x:150,y:270,status:'decrim',note:'Indigenous use protected'},
-  {name:'Jamaica',x:210,y:265,status:'medical',note:'Psilocybin retreat hub (legal)'},
-  {name:'Switzerland',x:460,y:205,status:'research',note:'Compassionate use programme'},
-  {name:'Palestine',x:510,y:235,status:'research',note:'MDMA Phase 3 trials'},
-  {name:'Japan',x:720,y:225,status:'illegal',note:'Zero tolerance'},
-  {name:'Indonesia',x:685,y:320,status:'illegal',note:'Severe penalties'},
-];
-var STATUS_DOT_COLOR = {medical:'#22c55e',decrim:'#f59e0b',research:'#8b5cf6',illegal:'#ef4444',grey:'#94a3b8'};
-
-function renderWorldMap() {
-  var wrap = document.getElementById('mini-world-map');
-  if (!wrap) return;
-  var W=wrap.offsetWidth||700, H=260;
-  // Simple SVG world silhouette with dot markers
-  var dots = WORLD_COUNTRIES.map(function(c) {
-    var xPct = c.x/800, yPct = c.y/500;
-    var px = xPct*W, py = yPct*H;
-    var col = STATUS_DOT_COLOR[c.status]||'#94a3b8';
-    return '<g class="map-dot" data-legal-country-map="'+escAttr(c.name)+'" style="cursor:pointer;">'
-      +'<circle cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="7" fill="'+col+'" fill-opacity="0.85" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>'
-      +'<circle cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" r="12" fill="'+col+'" fill-opacity="0.15"/>'
-      +'<title>'+c.name+': '+c.note+'</title>'
-    +'</g>';
-  }).join('');
-  wrap.innerHTML = '<svg width="100%" height="260" viewBox="0 0 '+W+' 260" style="display:block;">'
-    +'<rect width="'+W+'" height="260" fill="rgba(13,148,136,0.04)" rx="0"/>'
-    +dots+'</svg>';
-
-  // Click delegation for map dots
-  wrap.addEventListener('click', function(e) {
-    var dot = e.target.closest('[data-legal-country-map]');
-    if (!dot) return;
-    var name = dot.getAttribute('data-legal-country-map');
-    var c = WORLD_COUNTRIES.find(function(x){return x.name===name;});
-    if (!c) return;
-    var tt = document.getElementById('map-tooltip');
-    var tc = document.getElementById('tt-country');
-    var ts = document.getElementById('tt-status');
-    var tn = document.getElementById('tt-note');
-    if (tt && tc && ts && tn) {
-      tc.textContent = c.name;
-      ts.textContent = '● '+c.status.charAt(0).toUpperCase()+c.status.slice(1);
-      ts.style.color = STATUS_DOT_COLOR[c.status]||'#94a3b8';
-      tn.textContent = c.note;
-      tt.style.display = 'block';
-      tt.style.left = (e.offsetX+16)+'px';
-      tt.style.top  = (e.offsetY-10)+'px';
-    }
-  });
-  wrap.addEventListener('mouseleave', function() {
-    var tt = document.getElementById('map-tooltip');
-    if (tt) tt.style.display = 'none';
-  });
 }
 
 // ─── COMPOUND OF DAY ─────────────────────────────────────────
