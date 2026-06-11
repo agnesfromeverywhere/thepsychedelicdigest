@@ -1222,27 +1222,11 @@ a:active {
 
   <!-- Primary tabs -->
   <div id="primaryNav" role="tablist" style="display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;flex:1;">
-    <div class="dropdown-wrap" id="newsDropdown" style="flex-shrink:0;">
-      <button type="button" id="tab-news" class="nav-pill dropdown-trigger" role="tab" aria-haspopup="true" aria-expanded="false" style="border-radius:0;border:none;border-bottom:2px solid transparent;padding:14px 12px;">
-        News <span class="chevron" style="font-size:0.6rem;opacity:0.5;">▾</span>
-      </button>
-      <div class="dropdown-menu" role="menu" style="min-width:200px;">
-        <div class="dropdown-menu-label">Browse by topic</div>
-        <button type="button" class="dropdown-item" data-topic="All" data-section-news="true">All</button>
-        <div class="dropdown-divider"></div>
-        <button type="button" class="dropdown-item" data-topic="Policy" data-section-news="true">Policy</button>
-        <button type="button" class="dropdown-item" data-topic="Research" data-section-news="true">Research</button>
-        <button type="button" class="dropdown-item" data-topic="Culture" data-section-news="true">Culture</button>
-        <button type="button" class="dropdown-item" data-topic="Decrim" data-section-news="true">Recent Decriminalizations</button>
-        <div class="dropdown-divider"></div>
-        <button type="button" class="dropdown-item" data-topic="All" data-section-news="true" style="color:var(--text-muted);font-size:0.76rem;">Medicines — use search 🔍</button>
-      </div>
-    </div>
     <button type="button" data-section="blog"     id="tab-blog"     class="nav-pill" role="tab" style="color:#f3ffb9;">Editorial</button>
     <button type="button" data-section="library"  id="tab-library"  class="nav-pill" role="tab" style="color:rgba(251,191,36,0.75);">📚 The Library</button>
     <button type="button" data-section="jobs"     id="tab-jobs"     class="nav-pill" role="tab" style="color:#f62e09;">Jobs</button>
     <button type="button" data-section="retreats" id="tab-retreats" class="nav-pill" role="tab" style="color:#b8f609;">Retreats</button>
-    <button type="button" data-section="collab"   id="tab-collab"   class="nav-pill nav-pill-collab" role="tab">Collaborate</button>
+    <button type="button" data-section="collab" id="tab-collab" class="nav-pill nav-pill-collab" role="tab" style="color:#a78bfa;">Collaborate</button>
     <div class="dropdown-wrap" id="learnDropdown" style="flex-shrink:0;">
       <button type="button" id="tab-learn" class="nav-pill dropdown-trigger" aria-haspopup="true" aria-expanded="false" style="border-radius:0;border:none;border-bottom:2px solid transparent;padding:14px 12px;color:var(--accent);">
         Learn + 
@@ -1266,13 +1250,15 @@ a:active {
     </div>
     <div class="dropdown-wrap right" id="resourcesDropdown" style="flex-shrink:0;">
       <button type="button" class="dropdown-trigger" id="resourcesBtn" aria-haspopup="true" aria-expanded="false" style="color:#d04a71;">Resources <span class="chevron" style="color:#d04a71;">▾</span></button>
-      <div class="dropdown-menu" role="menu">
-        <div class="dropdown-menu-label">Tools</div>
-        <button type="button" class="dropdown-item" data-page="Legal Map"  id="tab-legalmap">🗺️ Legal Map</button>
-        <button type="button" class="dropdown-item" data-page="Glossary"   id="tab-glossary">📖 Glossary</button>
+   <div class="dropdown-menu" role="menu">
+        <div class="dropdown-menu-label">Legal & Data</div>
+        <button type="button" class="dropdown-item" data-page="Legal Map" id="tab-legalmap">🗺️ Legal Map</button>
         <button type="button" class="dropdown-item" data-page="PsyFinance" id="tab-psyfinance">💰 PsyFinance</button>
-          <button type="button" class="dropdown-item" data-page="CostCalc">💊 Treatment Costs</button>
-          <button type="button" class="dropdown-item" data-page="ResearchTracker">🔬 Trial Tracker</button>
+        <button type="button" class="dropdown-item" data-page="ResearchTracker">🔬 Trial Tracker</button>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-menu-label">Reference</div>
+        <button type="button" class="dropdown-item" data-page="Glossary" id="tab-glossary">📖 Glossary</button>
+        <button type="button" class="dropdown-item" data-page="CostCalc">💊 Treatment Costs</button>
       </div>
     </div>
   </div>
@@ -1418,24 +1404,16 @@ a:active {
   <div id="section-news-layout" style="display:block;">
 
     <!-- QUICK UTILITY ROW -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:18px 0 14px;">
-      <button type="button" class="ucb" data-page="Legal Map">
-        <span style="font-size:1.4rem;">🗺️</span>
-        <span class="ucb-t">Legal Map</span>
-      </button>
-      <button type="button" class="ucb" data-page="CostCalc">
-        <span style="font-size:1.4rem;">💊</span>
-        <span class="ucb-t">Treatment Costs</span>
-      </button>
-      <button type="button" class="ucb" data-page="Glossary">
-        <span style="font-size:1.4rem;">📖</span>
-        <span class="ucb-t">Glossary</span>
-      </button>
-      <button type="button" class="ucb" data-section="learn" data-course="history">
-        <span style="font-size:1.4rem;">🎓</span>
-        <span class="ucb-t">Start Learning</span>
-      </button>
-    </div>
+   <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:18px 0 14px;">
+  <button type="button" class="ucb" data-page="CostCalc">
+    <span style="font-size:1.4rem;">💊</span>
+    <span class="ucb-t">Treatment Costs</span>
+  </button>
+  <button type="button" class="ucb" data-section="learn" data-course="history">
+    <span style="font-size:1.4rem;">🎓</span>
+    <span class="ucb-t">Start Learning</span>
+  </button>
+</div>
 
     <!-- Hero + numbered stories LEFT | Sidebar RIGHT -->
     <div id="news-two-col" style="display:grid;grid-template-columns:1fr 300px;gap:20px;padding:20px 0 0;">
@@ -1462,32 +1440,6 @@ a:active {
             <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#ef4444;display:inline-block;"></span>Illegal</span>
           </div>
         </div>
-
-        <!-- WORLD MAP — interactive legal status map -->
-        <div id="world-map-widget" style="margin-top:14px;border-radius:14px;overflow:hidden;border:0.5px solid rgba(255,255,255,0.08);border-top:0.5px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.02);">
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px 10px;border-bottom:0.5px solid rgba(255,255,255,0.05);">
-            <div style="display:flex;align-items:center;gap:8px;">
-              <span style="font-family:'Syne',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#2dd4bf;">🌍 Legal Status Map</span>
-              <span style="font-size:0.58rem;color:var(--text-muted);font-family:monospace;">Worldwide · Click a country</span>
-            </div>
-            <button type="button" data-page="Legal Map" style="font-size:0.65rem;color:var(--accent);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">Full map →</button>
-          </div>
-          <div id="mini-world-map" style="width:100%;height:260px;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(6,13,12,0) 0%,rgba(6,13,12,0) 100%);"></div>
-          <div id="map-tooltip" style="display:none;position:absolute;z-index:100;background:rgba(12,20,18,0.97);border:0.5px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 14px;pointer-events:none;max-width:220px;">
-            <div id="tt-country" style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;color:white;margin-bottom:4px;"></div>
-            <div id="tt-status" style="font-size:0.70rem;margin-bottom:4px;"></div>
-            <div id="tt-note" style="font-size:0.65rem;color:rgba(255,255,255,0.45);"></div>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;padding:8px 16px;border-top:0.5px solid rgba(255,255,255,0.05);flex-wrap:wrap;">
-            <span style="font-size:0.58rem;color:rgba(255,255,255,0.3);">Legend:</span>
-            <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#22c55e;display:inline-block;"></span>Legal/Medical</span>
-            <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#f59e0b;display:inline-block;"></span>Decrim</span>
-            <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#8b5cf6;display:inline-block;"></span>Research only</span>
-            <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#ef4444;display:inline-block;"></span>Illegal</span>
-            <span style="font-size:0.60rem;display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#94a3b8;display:inline-block;"></span>Grey zone</span>
-          </div>
-        </div>
-
         <!-- PsyStock mini-widget — fills blank space after stories -->
         <div id="psystock-widget" style="margin-top:12px;border-radius:12px;border:0.5px solid rgba(255,255,255,0.08);border-top:0.5px solid rgba(255,255,255,0.14);background:rgba(255,255,255,0.03);overflow:hidden;">
           <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px 8px;border-bottom:0.5px solid rgba(255,255,255,0.05);">
@@ -2212,33 +2164,47 @@ function toggleDropdown(wrapId) {
 document.addEventListener('click', function(e) {
   if (!e.target.closest('.dropdown-wrap')) closeAllDropdowns();
 });
-
-// Wire dropdown triggers
 // ─── JOURNAL PROMPTS ─────────────────────────────────────────
-
 function wireDropdowns() {
-  var resourcesBtn = document.getElementById('resourcesBtn');
-  if (resourcesBtn) resourcesBtn.addEventListener('click', function(e) {
-    e.preventDefault(); e.stopPropagation();
-    toggleDropdown('resourcesDropdown');
-  });
+  // Resources — hover open, mouse-leave close
+  var resourcesWrap = document.getElementById('resourcesDropdown');
+  if (resourcesWrap) {
+    resourcesWrap.addEventListener('mouseenter', function() {
+      closeAllDropdowns();
+      resourcesWrap.classList.add('open');
+      var btn = resourcesWrap.querySelector('[aria-expanded]');
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+    });
+    resourcesWrap.addEventListener('mouseleave', function() {
+      resourcesWrap.classList.remove('open');
+      var btn = resourcesWrap.querySelector('[aria-expanded]');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // News dropdown (topic filters)
   var tabNews = document.getElementById('tab-news');
   if (tabNews) tabNews.addEventListener('click', function(e) {
     e.preventDefault(); e.stopPropagation();
     if (currentSection !== 'news') showSection('news');
     toggleDropdown('newsDropdown');
   });
+
+  // Medicines filter (topic strip)
   var medicinesBtn = document.getElementById('medicinesBtn');
   if (medicinesBtn) medicinesBtn.addEventListener('click', function(e) {
     e.preventDefault(); e.stopPropagation();
     toggleDropdown('medicinesDropdown');
   });
+
+  // Learn dropdown
   var tabLearn = document.getElementById('tab-learn');
   if (tabLearn) tabLearn.addEventListener('click', function(e) {
-  e.preventDefault(); e.stopPropagation();
-  showSection('learn');
-  toggleDropdown('learnDropdown');
-});
+    e.preventDefault(); e.stopPropagation();
+    showSection('learn');
+    toggleDropdown('learnDropdown');
+  });
+
   var tabLearnNav = document.getElementById('tab-learn-nav');
   if (tabLearnNav) tabLearnNav.addEventListener('click', function() {
     closeAllDropdowns(); showSection('learn');
@@ -3740,7 +3706,7 @@ function applyLang(lang) {
 // ─── DOM EVENT LISTENERS ─────────────────────────────────────
 document.addEventListener('click', (e) => {
   // ── Nav dropdown triggers: show section AND open dropdown ──
-  const navTrigger = e.target.closest('#tab-news, #tab-learn, #resourcesBtn, #medicinesBtn');
+  const navTrigger = e.target.closest('#tab-news, #tab-learn, #medicinesBtn');
   if (navTrigger) {
     e.stopPropagation();
     if (navTrigger.id === 'tab-news') {
@@ -3749,8 +3715,6 @@ document.addEventListener('click', (e) => {
     } else if (navTrigger.id === 'tab-learn') {
       showSection('learn');
       toggleDropdown('learnDropdown');
-    } else if (navTrigger.id === 'resourcesBtn') {
-      toggleDropdown('resourcesDropdown');
     } else if (navTrigger.id === 'medicinesBtn') {
       toggleDropdown('medicinesDropdown');
     }
