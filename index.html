@@ -1029,175 +1029,69 @@
   .ucb-t { font-family: 'Syne', sans-serif; font-size: 0.80rem; font-weight: 800; letter-spacing: 0.02em; color: var(--text-primary); line-height: 1.2; }
   @media (max-width: 768px) { .ucb { padding: 14px 8px; gap: 6px; } .ucb-t { font-size: 0.72rem; } }
   @media (max-width: 480px) { [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2,1fr) !important; } }
-/* Emergency visual fix */
-a,
-a:visited,
-a:hover,
-a:active {
-  color: inherit !important;
-  text-decoration: none !important;
-}
-
+/* Visual card fix */
 #story-list,
 #news-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 18px !important;
-  align-items: stretch !important;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
 }
 
 #story-list a,
 #news-grid a,
 .article-card,
 .visual-news-card {
-  display: block !important;
-  overflow: hidden !important;
-  border-radius: 16px !important;
-  background: rgba(18,16,24,0.85) !important;
-  border: 1px solid rgba(255,255,255,0.10) !important;
-  color: var(--text-primary) !important;
-  text-decoration: none !important;
+  display: block;
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgba(18,16,24,0.85);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: var(--text-primary);
+  text-decoration: none;
 }
 
-#story-list img,
-#news-grid img,
+#story-list a:visited,
+#news-grid a:visited {
+  color: var(--text-primary);
+}
+
 .visual-news-img,
-.card-image img {
-  width: 100% !important;
-  height: 180px !important;
-  object-fit: cover !important;
-  display: block !important;
+.card-image img,
+#story-list img,
+#news-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
 }
 
+.card-title,
+.visual-news-title,
 #story-list h2,
 #story-list h3,
 #news-grid h2,
-#news-grid h3,
-.card-title,
-.visual-news-title {
-  color: var(--text-primary) !important;
-  text-decoration: none !important;
-  font-size: 1rem !important;
-  line-height: 1.25 !important;
-  padding: 14px !important;
+#news-grid h3 {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 1.25;
+  padding: 14px;
+}
+
+@media (max-width: 1024px) {
+  #story-list,
+  #news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 768px) {
   #story-list,
   #news-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
 }
-</style>
-
-<script type="application/ld+json" id="seo-architecture-schema">
-{
-  "@context":"https://schema.org",
-  "@type":"WebSite",
-  "name":"The Psychedelic Digest",
-  "url":"https://www.thepsychedelicdigest.com/",
-  "potentialAction":{"@type":"SearchAction","target":"https://www.thepsychedelicdigest.com/search?q={search_term_string}","query-input":"required name=search_term_string"},
-  "hasPart":[
-    {"@type":"CollectionPage","name":"Latest Psychedelic News","url":"https://www.thepsychedelicdigest.com/news/"},
-    {"@type":"CollectionPage","name":"Psychedelic Legality Map","url":"https://www.thepsychedelicdigest.com/legality/"},
-    {"@type":"Blog","name":"The Digest Editorial Blog","url":"https://www.thepsychedelicdigest.com/blog/"},
-    {"@type":"CollectionPage","name":"Psychedelic Retreats","url":"https://www.thepsychedelicdigest.com/retreats/"},
-    {"@type":"CollectionPage","name":"Psychedelic Clinics","url":"https://www.thepsychedelicdigest.com/clinics/"},
-    {"@type":"CollectionPage","name":"Psychedelic Finance","url":"https://www.thepsychedelicdigest.com/finance/"},
-    {"@type":"Course","name":"Learn+ Psychedelic Education","url":"https://www.thepsychedelicdigest.com/learn/"},
-    {"@type":"CollectionPage","name":"Psychedelic Library","url":"https://www.thepsychedelicdigest.com/library/"},
-    {"@type":"CollectionPage","name":"Psychedelic Research","url":"https://www.thepsychedelicdigest.com/research/"}
-  ]
-}
-</script>
-<script type="application/ld+json" id="homepage-aeo-faq-schema">
-{
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"Is psychedelic therapy legal?","acceptedAnswer":{"@type":"Answer","text":"Psychedelic therapy legality depends on the country, substance, clinical setting and medical indication. Some places allow supervised medical use of MDMA, psilocybin or ketamine, while others allow only research or decriminalised personal possession."}},
-    {"@type":"Question","name":"How do I choose a safe psychedelic clinic?","acceptedAnswer":{"@type":"Answer","text":"A safer psychedelic clinic should use licensed clinicians, medical screening, clear consent forms, emergency protocols, integration support, transparent pricing and evidence-based treatment pathways. Avoid providers that promise guaranteed cures or pressure people into high-dose experiences."}},
-    {"@type":"Question","name":"Are psychedelic retreats safe?","acceptedAnswer":{"@type":"Answer","text":"Some retreats are well structured, but safety varies widely. Key risks include weak screening, unsafe facilitation, medication interactions, lack of integration, poor emergency planning and vulnerable participants being pushed beyond their capacity."}},
-    {"@type":"Question","name":"What does psychedelic integration mean?","acceptedAnswer":{"@type":"Answer","text":"Psychedelic integration is the process of making sense of insights, emotions and memories after an experience, then translating them into grounded changes in everyday life. It can include therapy, journaling, nervous system support, community reflection and behavioural change."}},
-    {"@type":"Question","name":"Can psychedelics make anxiety worse?","acceptedAnswer":{"@type":"Answer","text":"Yes, psychedelics can temporarily or sometimes persistently worsen anxiety in some people, especially with high doses, poor setting, trauma history, bipolar risk, psychosis vulnerability, unsafe retreats or medication interactions. Screening and support matter."}}
-  ]
-}
-</script>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I start microdosing?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Start by choosing a protocol such as the Fadiman Protocol, sourcing a precision scale that measures to 0.01g, and beginning with a low dose of 0.1g of dried psilocybin mushrooms. Take your first dose on a low-pressure day with no important obligations and record your experience in a journal from day one. The goal on your first dose is observation, not transformation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the best microdosing protocol?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Fadiman Protocol is the most widely used and best documented microdosing schedule. It follows a one day on, two days off cycle repeated over four to eight weeks. Developed by psychedelic researcher Dr James Fadiman, it has the largest body of self-reported data behind it and is the best starting point for most beginners."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is microdosing legal in Australia?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "For most Australians, microdosing psilocybin is not legal. Possession of psilocybin mushrooms for personal use remains a criminal offence in all states except the ACT, where small amounts were decriminalised for personal possession in 2023. In 2023, the TGA rescheduled psilocybin to allow authorised psychiatrists to prescribe it for treatment-resistant depression in clinical settings, but this is a therapeutic access pathway, not a personal use framework."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What are the benefits of microdosing psilocybin?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The most consistently reported benefits of microdosing psilocybin include improved mood, reduced social anxiety, greater emotional openness, enhanced creative thinking, and improved focus on complex cognitive tasks. These are supported by observational research from Vince Polito, James Fadiman, and Imperial College London, though controlled trial evidence remains limited. Benefits vary significantly between individuals."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much should I microdose?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "For dried psilocybin mushrooms, most practitioners start at 0.1g and calibrate to between 0.1g and 0.3g. For LSD, the typical microdose range is 5 to 15 micrograms. A correctly calibrated microdose produces no hallucinations, no perceptual impairment, and no significant alteration in perception. If you feel clearly altered, your dose is too high."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the Fadiman protocol?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Fadiman Protocol is a microdosing schedule consisting of one dose day followed by two consecutive non-dose days, repeated in a continuous cycle over four to eight weeks. Developed by Dr James Fadiman, it is designed to prevent tolerance buildup and give the nervous system adequate recovery between doses. It is the most widely used and documented microdosing schedule in the world."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you microdose and work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, for most people at a correctly calibrated dose. A true microdose should be sub-perceptual and compatible with ordinary work including focused cognitive tasks and social interactions. Many knowledge workers and creatives report microdosing during their working day with positive results. A dose that is too high will produce restlessness and impair performance, so calibration is essential."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What mushrooms are used for microdosing?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The most common psilocybin-containing mushroom used for microdosing is Psilocybe cubensis. Other psilocybin species include Psilocybe semilanceata, known as liberty caps, which are more potent gram-for-gram. Lion's mane (Hericium erinaceus) is a non-psychedelic functional mushroom often used alongside psilocybin in the Stamets Stack protocol for its neurogenesis-supporting properties."
-      }
-    }
-  ]
-}
-</script>
-
-</head>
-<body>
 
 <!-- Floating particles -->
 <div id="particles"></div>
@@ -1222,7 +1116,7 @@ a:active {
 
   <!-- Primary tabs -->
   <div id="primaryNav" role="tablist" style="display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;flex:1;">
-    <button type="button" data-section="blog"     id="tab-blog"     class="nav-pill" role="tab" style="color:#f3ffb9;">Editorial</button>
+    <button type="button" data-section="blog"     id="tab-blog"     class="nav-pill" role="tab" style="color:#f3ffb9;">Editorial<div id="primaryNav" role="tablist" style="display:flex;align-items:stretch;overflow:visible;scrollbar-width:none;flex:1;">/button>
     <button type="button" data-section="library"  id="tab-library"  class="nav-pill" role="tab" style="color:rgba(251,191,36,0.75);">📚 The Library</button>
     <button type="button" data-section="jobs"     id="tab-jobs"     class="nav-pill" role="tab" style="color:#f62e09;">Jobs</button>
     <button type="button" data-section="retreats" id="tab-retreats" class="nav-pill" role="tab" style="color:#b8f609;">Retreats</button>
@@ -1248,7 +1142,7 @@ a:active {
         <button type="button" class="dropdown-item" data-section="learn">📚 All Courses</button>
       </div>
     </div>
-    <div class="dropdown-wrap right" id="resourcesDropdown" style="flex-shrink:0;">
+ <div class="dropdown-wrap right" id="resourcesDropdown" style="flex-shrink:0;position:relative;z-index:9999;">
       <button type="button" class="dropdown-trigger" id="resourcesBtn" aria-haspopup="true" aria-expanded="false" style="color:#d04a71;">Resources <span class="chevron" style="color:#d04a71;">▾</span></button>
    <div class="dropdown-menu" role="menu">
         <div class="dropdown-menu-label">Legal & Data</div>
