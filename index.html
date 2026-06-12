@@ -2439,8 +2439,52 @@ function blueprintAuraImage(title, category) {
     +'<text x="40" y="470" fill="#fff" fill-opacity="0.75" font-family="Arial,sans-serif" font-size="22" font-weight="700">'+esc(label)+'</text>'
     +'<text x="40" y="492" fill="'+p.accent+'" fill-opacity="0.5" font-family="monospace" font-size="10" letter-spacing="3">THEPSYCHEDELICDIGEST.COM</text>'
     +'</svg>';
-  return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+   return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
 }
+
+function safeUrl(url) {
+  try {
+    var u = new URL(String(url || '#'), window.location.href);
+    if (u.protocol === 'http:' || u.protocol === 'https:' || u.protocol === 'mailto:') return u.href;
+  } catch (e) {}
+  return '#';
+}
+
+function showLoading() {
+  var loading = document.getElementById('loadingState');
+  var empty = document.getElementById('empty');
+  var hero = document.getElementById('hero');
+  var sl = document.getElementById('story-list');
+
+  if (loading) loading.style.display = 'block';
+  if (empty) empty.style.display = 'none';
+  if (hero) hero.innerHTML = '';
+  if (sl) sl.innerHTML = '';
+}
+
+function renderArticles(articles) {
+  _allArticles = Array.isArray(articles) ? articles : [];
+
+  var hero = document.getElementById('hero');
+  var sl = document.getElementById('story-list');
+  var grid = document.getElementById('news-grid');
+  var loading = document.getElementById('loadingState');
+  var empty = document.getElementById('empty');
+  var sb = document.getElementById('statusBar');
+
+  if (loading) loading.style.display = 'none';
+  if (empty) empty.style.display = _allArticles.length ? 'none' : 'block';
+  if (grid) { grid.style.display = 'none'; grid.innerHTML = ''; }
+  if (sb) sb.style.display = _allArticles.length ? 'flex' : 'none';
+
+  if (!_allArticles.length) {
+    if (hero) hero.innerHTML = '';
+    if (sl) sl.innerHTML = '';
+    return;
+  }
+
+  var first = _allArticles[0];
+
   // Hero card
   if (hero) {
     var imgSrc = first.imageUrl && first.imageUrl.startsWith('http') ? first.imageUrl : blueprintAuraImage(first.title, first.category);
