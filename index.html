@@ -3548,24 +3548,26 @@ function applyLang(lang) {
 
 // ─── DOM EVENT LISTENERS ─────────────────────────────────────
 document.addEventListener('click', (e) => {
-  // ── Nav dropdown triggers: show section AND open dropdown ──
+ // ── Nav dropdown triggers: show section AND open dropdown ──
 const navTrigger = e.target.closest('#tab-news, #tab-learn, #medicinesBtn, #resourcesBtn');
-  if (navTrigger) {
-    e.stopPropagation();
-    if (navTrigger.id === 'tab-news') {
-      showSection('news');
-      toggleDropdown('newsDropdown');
-    } else if (navTrigger.id === 'tab-learn') {
-      showSection('learn');
-      toggleDropdown('learnDropdown');
-   } else if (navTrigger.id === 'medicinesBtn') {
-  toggleDropdown('medicinesDropdown');
-} else if (navTrigger.id === 'resourcesBtn') {
-  toggleDropdown('resourcesDropdown');
-}
-    return;
+if (navTrigger) {
+  e.preventDefault();
+  e.stopPropagation();
+
+  if (navTrigger.id === 'tab-news') {
+    showSection('news');
+    toggleDropdown('newsDropdown');
+  } else if (navTrigger.id === 'tab-learn') {
+    showSection('learn');
+    toggleDropdown('learnDropdown');
+  } else if (navTrigger.id === 'medicinesBtn') {
+    toggleDropdown('medicinesDropdown');
+  } else if (navTrigger.id === 'resourcesBtn') {
+    toggleDropdown('resourcesDropdown');
   }
 
+  return;
+}
   // ── Mini legal map cards ──────────────────────────────────
   const legalCard = e.target.closest('[data-legal-country]');
   if (legalCard) { e.preventDefault(); openLegalStatusPopup(legalCard.getAttribute('data-legal-country')); return; }
