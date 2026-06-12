@@ -4206,11 +4206,9 @@ document.addEventListener('error',function(e){
 },true);
 
 // Boot
-initReadingProgress();
-initJournalPrompt();
-wireDropdowns();
-applyLang(_lang);
-routeFromPath(window.location.pathname || '/');
+try { initReadingProgress(); } catch(e) { console.warn('initReadingProgress failed', e); }
+try { initJournalPrompt(); } catch(e) { console.warn('initJournalPrompt failed', e); }
+try { applyLang(_lang); } catch(e) { console.warn('applyLang failed', e); }
 
 document.addEventListener('click', function(e) {
   var navTrigger = e.target.closest('#tab-learn, #medicinesBtn, #resourcesBtn');
@@ -4269,7 +4267,9 @@ document.addEventListener('click', function(e) {
   }
 });
 
-  function toggleFaq(btn) {
+try { routeFromPath(window.location.pathname || '/'); } catch(e) { console.warn('routeFromPath failed', e); }
+
+function toggleFaq(btn) {
   var answer = btn.nextElementSibling;
   var icon = btn.querySelector('span');
   var isOpen = answer.style.display === 'block';
@@ -4283,7 +4283,6 @@ document.addEventListener('click', function(e) {
 }
 </script>
 </body>
-
 <!--
 SEO ARCHITECTURE MAP — v1
 Core preserved: logo, dark aura design, psychedelic editorial identity.
