@@ -4212,6 +4212,63 @@ wireDropdowns();
 applyLang(_lang);
 routeFromPath(window.location.pathname || '/');
 
+document.addEventListener('click', function(e) {
+  var navTrigger = e.target.closest('#tab-learn, #medicinesBtn, #resourcesBtn');
+  if (navTrigger) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (navTrigger.id === 'tab-learn') {
+      showSection('learn');
+      toggleDropdown('learnDropdown');
+    } else if (navTrigger.id === 'medicinesBtn') {
+      toggleDropdown('medicinesDropdown');
+    } else if (navTrigger.id === 'resourcesBtn') {
+      toggleDropdown('resourcesDropdown');
+    }
+    return;
+  }
+
+  var pageBtn = e.target.closest('[data-page]');
+  if (pageBtn) {
+    e.preventDefault();
+    closeAllDropdowns();
+    showPage(pageBtn.getAttribute('data-page'));
+    return;
+  }
+
+  var sectionBtn = e.target.closest('[data-section]');
+  if (sectionBtn) {
+    e.preventDefault();
+    closeAllDropdowns();
+    showSection(sectionBtn.getAttribute('data-section'), sectionBtn.getAttribute('data-course') || '');
+    return;
+  }
+
+  var topicBtn = e.target.closest('[data-topic]');
+  if (topicBtn) {
+    e.preventDefault();
+    closeAllDropdowns();
+    switchTopic(topicBtn.getAttribute('data-topic'));
+    return;
+  }
+
+  var homeBtn = e.target.closest('[data-action="go-home"]');
+  if (homeBtn) {
+    e.preventDefault();
+    closeAllDropdowns();
+    switchTopic('All');
+    return;
+  }
+
+  var blogCard = e.target.closest('.js-blog-card');
+  if (blogCard) {
+    e.preventDefault();
+    openBlogPost(blogCard.getAttribute('data-slug'));
+    return;
+  }
+});
+
   function toggleFaq(btn) {
   var answer = btn.nextElementSibling;
   var icon = btn.querySelector('span');
