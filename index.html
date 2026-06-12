@@ -2076,21 +2076,13 @@ document.addEventListener('click', function(e) {
 });
 // ─── JOURNAL PROMPTS ─────────────────────────────────────────
 function wireDropdowns() {
-  // Resources — hover open, mouse-leave close
-  var resourcesWrap = document.getElementById('resourcesDropdown');
-  if (resourcesWrap) {
-    resourcesWrap.addEventListener('mouseenter', function() {
-      closeAllDropdowns();
-      resourcesWrap.classList.add('open');
-      var btn = resourcesWrap.querySelector('[aria-expanded]');
-      if (btn) btn.setAttribute('aria-expanded', 'true');
-    });
-    resourcesWrap.addEventListener('mouseleave', function() {
-      resourcesWrap.classList.remove('open');
-      var btn = resourcesWrap.querySelector('[aria-expanded]');
-      if (btn) btn.setAttribute('aria-expanded', 'false');
-    });
-  }
+   // Resources dropdown
+  var resourcesBtn = document.getElementById('resourcesBtn');
+  if (resourcesBtn) resourcesBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleDropdown('resourcesDropdown');
+  });
 
   // News dropdown (topic filters)
   var tabNews = document.getElementById('tab-news');
@@ -4211,7 +4203,7 @@ try { wireDropdowns(); } catch(e) { console.warn('wireDropdowns failed', e); }
 try { applyLang(_lang); } catch(e) { console.warn('applyLang failed', e); }
 
 document.addEventListener('click', function(e) {
-  var navTrigger = e.target.closest('#tab-learn, #medicinesBtn, #resourcesBtn');
+var navTrigger = e.target.closest('#tab-learn, #medicinesBtn');
   if (navTrigger) {
     e.preventDefault();
     e.stopPropagation();
