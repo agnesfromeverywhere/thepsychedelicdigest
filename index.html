@@ -4207,6 +4207,7 @@ document.addEventListener('error',function(e){
 // Boot
 try { initReadingProgress(); } catch(e) { console.warn('initReadingProgress failed', e); }
 try { initJournalPrompt(); } catch(e) { console.warn('initJournalPrompt failed', e); }
+try { wireDropdowns(); } catch(e) { console.warn('wireDropdowns failed', e); }
 try { applyLang(_lang); } catch(e) { console.warn('applyLang failed', e); }
 
 document.addEventListener('click', function(e) {
