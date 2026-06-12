@@ -3144,20 +3144,22 @@ function renderLegalMap() {
 }
 // ─── DOSE CALCULATOR ─────────────────────────────────────────
 function renderDoseCalc() {
-  ['hero','story-list','mini-legal-map-widget','psystock-widget','answer-engine-block','homepage-blog-preview','faq-accordion','loadingState','sidebar-col'].forEach(function(id){
+  ['hero','story-list','mini-legal-map-widget','psystock-widget','answer-engine-block','homepage-blog-preview','faq-accordion','loadingState','sidebar-col','statusBar','empty'].forEach(function(id){
     var el = document.getElementById(id);
     if (el) el.style.display = 'none';
   });
+
   var twoCol = document.getElementById('news-two-col');
-  if (twoCol) twoCol.style.display = 'none';
+  if (twoCol) twoCol.style.display = 'block';
+
   var secNews = document.getElementById('section-news');
-  if (secNews) secNews.style.display = 'none';
+  if (secNews) secNews.style.display = 'block';
+
   var grid = document.getElementById('news-grid');
+  if (!grid) return;
+
   grid.style.display = 'block';
-  grid.innerHTML = '<div style="max-width:680px;margin:0 auto;padding:8px 0 48px;">'
-  + '<div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#2dd4bf;margin-bottom:6px;">🍄 Harm reduction · Evidence-based</div>'
-  + '<div style="font-family:\'Playfair Display\',serif;font-size:2rem;font-weight:400;color:rgba(255,255,255,0.92);margin-bottom:6px;">Psilocybin & Psychedelic Dose Calculator</div>'
-  + '<div style="font-size:0.82rem;color:rgba(255,255,255,0.38);margin-bottom:28px;line-height:1.5;">Personalised dose ranges based on substance, strain, method and experience. Not medical advice.</div>'
+  grid.innerHTML = '<div style="max-width:680px;margin:0 auto;padding:0 0 48px;">'
   + '<div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Substance</div>'
   + '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:22px;">'
   + '<button class="dc-sub dcon" onclick="dcSub(\'psilocybin\',this)"><span style="font-size:1.5rem;display:block;margin-bottom:6px;">🍄</span><span style="font-size:0.72rem;font-weight:600;">Psilocybin</span></button>'
