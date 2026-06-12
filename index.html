@@ -1155,6 +1155,7 @@
         <div class="dropdown-menu-label">Reference</div>
         <button type="button" class="dropdown-item" data-page="Glossary" id="tab-glossary">📖 Glossary</button>
         <button type="button" class="dropdown-item" data-page="CostCalc" id="tab-costcalc">💊 Treatment Costs</button>
+        <button type="button" class="dropdown-item" data-page="DoseCalc" id="tab-dosecalc">🍄 Dose Calculator</button>
       </div>
     </div>
   </div>
@@ -2235,6 +2236,7 @@ function showPage(page) {
   else if (page === 'Glossary')   renderGlossary();
   else if (page === 'PsyFinance') renderPsyFinance();
   else if (page === 'CostCalc') renderCostCalc();
+  else if (page === 'DoseCalc') renderDoseCalc();
   else if (page === 'ResearchTracker') renderResearchTracker();
   else if (page === 'Clinics') renderClinics();
 }
@@ -3148,7 +3150,225 @@ function renderLegalMap() {
     if (closeBtn) document.getElementById('country-detail').style.display = 'none';
   });
 }
+// ─── DOSE CALCULATOR ─────────────────────────────────────────
+function renderDoseCalc() {
+  var grid = document.getElementById('news-grid');
+  grid.style.display = 'block';
+  grid.innerHTML = '<div style="max-width:680px;margin:0 auto;padding:8px 0 48px;">'
+  + '<div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#2dd4bf;margin-bottom:6px;">🍄 Harm reduction · Evidence-based</div>'
+  + '<div style="font-family:\'Playfair Display\',serif;font-size:2rem;font-weight:400;color:rgba(255,255,255,0.92);margin-bottom:6px;">Dose Calculator</div>'
+  + '<div style="font-size:0.82rem;color:rgba(255,255,255,0.38);margin-bottom:28px;line-height:1.5;">Personalised dose ranges based on substance, strain, method and experience. Not medical advice.</div>'
 
+  + '<div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Substance</div>'
+  + '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:22px;">'
+  + '<button class="dc-sub dcon" onclick="dcSub(\'psilocybin\',this)"><span style="font-size:1.5rem;display:block;margin-bottom:6px;">🍄</span><span style="font-size:0.72rem;font-weight:600;">Psilocybin</span></button>'
+  + '<button class="dc-sub" onclick="dcSub(\'lsd\',this)"><span style="font-size:1.5rem;display:block;margin-bottom:6px;">🔬</span><span style="font-size:0.72rem;font-weight:600;">LSD</span></button>'
+  + '<button class="dc-sub" onclick="dcSub(\'mdma\',this)"><span style="font-size:1.5rem;display:block;margin-bottom:6px;">💊</span><span style="font-size:0.72rem;font-weight:600;">MDMA</span></button>'
+  + '<button class="dc-sub" onclick="dcSub(\'ketamine\',this)"><span style="font-size:1.5rem;display:block;margin-bottom:6px;">💉</span><span style="font-size:0.72rem;font-weight:600;">Ketamine</span></button>'
+  + '</div>'
+
+  + '<div id="dc-strain-sec"><div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Strain / Species</div>'
+  + '<div id="dc-strain-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:22px;max-height:280px;overflow-y:auto;"></div></div>'
+
+  + '<div id="dc-lsd-sec" style="display:none;margin-bottom:22px;"><div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Tab strength (estimate)</div>'
+  + '<div style="display:flex;gap:6px;flex-wrap:wrap;">'
+  + '<button class="dc-pill dcon" onclick="dcLsd(100,this)">~100mcg standard</button>'
+  + '<button class="dc-pill" onclick="dcLsd(50,this)">~50mcg weak</button>'
+  + '<button class="dc-pill" onclick="dcLsd(150,this)">~150mcg strong</button>'
+  + '<button class="dc-pill" onclick="dcLsd(200,this)">~200mcg very strong</button>'
+  + '</div><div style="font-size:0.68rem;color:rgba(255,255,255,0.22);margin-top:8px;">Always use Ehrlich reagent before any LSD use.</div></div>'
+
+  + '<div id="dc-mdma-sec" style="display:none;margin-bottom:22px;"><div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Purity (estimate)</div>'
+  + '<div style="display:flex;gap:6px;flex-wrap:wrap;">'
+  + '<button class="dc-pill dcon" onclick="dcPurity(0.8,this)">~80% typical press</button>'
+  + '<button class="dc-pill" onclick="dcPurity(0.95,this)">~95% crystal</button>'
+  + '<button class="dc-pill" onclick="dcPurity(0.5,this)">~50% low purity</button>'
+  + '</div><div style="font-size:0.68rem;color:rgba(255,255,255,0.22);margin-top:8px;">Always test with Marquis + Simon + fentanyl strip.</div></div>'
+
+  + '<div id="dc-ket-sec" style="display:none;margin-bottom:22px;"><div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Route</div>'
+  + '<div style="display:flex;gap:6px;flex-wrap:wrap;">'
+  + '<button class="dc-pill dcon" onclick="dcKet(\'nasal\',this)">Nasal</button>'
+  + '<button class="dc-pill" onclick="dcKet(\'oral\',this)">Oral</button>'
+  + '<button class="dc-pill" onclick="dcKet(\'im\',this)">IM — clinical only</button>'
+  + '</div><div style="font-size:0.68rem;color:rgba(255,255,255,0.22);margin-top:8px;">Ketamine is prescription-only in Australia.</div></div>'
+
+  + '<div id="dc-method-sec" style="margin-bottom:22px;"><div style="height:0.5px;background:rgba(255,255,255,0.06);margin-bottom:18px;"></div>'
+  + '<div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Preparation method</div>'
+  + '<div style="display:flex;gap:6px;flex-wrap:wrap;">'
+  + '<button class="dc-pill dcon" onclick="dcMethod(\'dry\',this)">🌾 Dried</button>'
+  + '<button class="dc-pill" onclick="dcMethod(\'tea\',this)">☕ Tea</button>'
+  + '<button class="dc-pill" onclick="dcMethod(\'lemontek\',this)">🍋 Lemon tek ⚡</button>'
+  + '<button class="dc-pill" onclick="dcMethod(\'capsule\',this)">💊 Capsule</button>'
+  + '</div></div>'
+
+  + '<div style="height:0.5px;background:rgba(255,255,255,0.06);margin-bottom:18px;"></div>'
+  + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px;">'
+  + '<div><div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Experience</div>'
+  + '<div style="display:flex;flex-direction:column;gap:6px;" id="dc-exp-btns">'
+  + '<button class="dc-cpill dcon" onclick="dcExp(\'none\',this)">First time</button>'
+  + '<button class="dc-cpill" onclick="dcExp(\'some\',this)">Some experience</button>'
+  + '<button class="dc-cpill" onclick="dcExp(\'high\',this)">Experienced</button>'
+  + '</div></div>'
+  + '<div><div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Intent</div>'
+  + '<div style="display:flex;flex-direction:column;gap:6px;" id="dc-intent-btns">'
+  + '<button class="dc-cpill" onclick="dcIntent(\'micro\',this)">Microdose</button>'
+  + '<button class="dc-cpill dcon" onclick="dcIntent(\'therapeutic\',this)">Therapeutic</button>'
+  + '<button class="dc-cpill" onclick="dcIntent(\'strong\',this)">High dose</button>'
+  + '</div></div></div>'
+
+  + '<div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Body weight</div>'
+  + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">'
+  + '<span style="font-size:0.72rem;color:rgba(255,255,255,0.25);">40kg</span>'
+  + '<input type="range" id="dc-wslider" min="40" max="120" value="70" step="1" style="flex:1;accent-color:#2dd4bf;" oninput="document.getElementById(\'dc-wout\').textContent=this.value+\'kg\'">'
+  + '<span style="font-size:0.72rem;color:rgba(255,255,255,0.25);">120kg</span>'
+  + '<span style="font-size:0.92rem;font-weight:700;color:#2dd4bf;min-width:52px;text-align:right;" id="dc-wout">70kg</span>'
+  + '</div>'
+  + '<div style="font-size:0.68rem;color:rgba(255,255,255,0.22);line-height:1.6;margin-bottom:20px;">Johns Hopkins 2021 (n=288): body weight does not significantly affect psilocybin subjective effects across 49–113kg.</div>'
+
+  + '<button onclick="dcCalc()" style="width:100%;padding:13px 26px;background:#2dd4bf;color:#041a18;border:none;border-radius:999px;font-family:\'DM Sans\',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;letter-spacing:0.02em;">Calculate dose →</button>'
+
+  + '<div id="dc-result" style="display:none;margin-top:20px;border-radius:16px;border:0.5px solid rgba(45,212,191,0.2);border-top:0.5px solid rgba(45,212,191,0.4);background:rgba(45,212,191,0.04);overflow:hidden;">'
+  + '<div style="padding:22px 22px 16px;"><div style="font-family:\'Playfair Display\',serif;font-size:2.2rem;font-weight:400;color:#2dd4bf;line-height:1;" id="dc-rdose">—</div>'
+  + '<div style="font-size:0.75rem;color:rgba(255,255,255,0.38);margin-top:6px;" id="dc-rdesc">—</div></div>'
+  + '<div style="display:grid;grid-template-columns:repeat(3,1fr);border-top:0.5px solid rgba(255,255,255,0.06);">'
+  + '<div style="padding:12px 18px;border-right:0.5px solid rgba(255,255,255,0.06);"><div style="font-family:\'Syne\',sans-serif;font-size:0.52rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-bottom:4px;">Onset</div><div style="font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.75);" id="dc-ronset">—</div></div>'
+  + '<div style="padding:12px 18px;border-right:0.5px solid rgba(255,255,255,0.06);"><div style="font-family:\'Syne\',sans-serif;font-size:0.52rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-bottom:4px;">Duration</div><div style="font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.75);" id="dc-rdur">—</div></div>'
+  + '<div style="padding:12px 18px;"><div style="font-family:\'Syne\',sans-serif;font-size:0.52rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-bottom:4px;">Peak</div><div style="font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.75);" id="dc-rpeak">—</div></div>'
+  + '</div>'
+  + '<div style="margin:12px 18px;padding:10px 16px;background:rgba(245,158,11,0.07);border:0.5px solid rgba(245,158,11,0.18);border-radius:999px;font-size:0.72rem;color:rgba(245,158,11,0.85);line-height:1.65;" id="dc-rwarn"></div>'
+  + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 18px 18px;">'
+  + '<div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;"><div style="font-family:\'Syne\',sans-serif;font-size:0.52rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-bottom:5px;">Set & Setting</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.62);line-height:1.6;" id="dc-rset">—</div></div>'
+  + '<div style="background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px 14px;"><div style="font-family:\'Syne\',sans-serif;font-size:0.52rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);margin-bottom:5px;">Integration</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.62);line-height:1.6;" id="dc-rint">—</div></div>'
+  + '</div>'
+  + '<div style="font-size:0.65rem;color:rgba(255,255,255,0.18);line-height:1.6;padding:12px 18px;border-top:0.5px solid rgba(255,255,255,0.05);">Harm reduction information only. Psilocybin, LSD and MDMA are controlled substances in most jurisdictions — check local law. Not medical advice. · thepsychedelicdigest.com</div>'
+  + '</div></div>';
+
+  var style = document.createElement('style');
+  style.textContent = '.dc-sub{background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.10);border-radius:14px;padding:14px 8px;cursor:pointer;text-align:center;transition:all 0.2s;color:rgba(255,255,255,0.6);font-family:\'DM Sans\',sans-serif;}.dc-sub:hover{background:rgba(45,212,191,0.08);border-color:rgba(45,212,191,0.3);}.dc-sub.dcon{background:rgba(45,212,191,0.14);border-color:#2dd4bf;color:#2dd4bf;}.dc-pill{background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.08);border-radius:999px;padding:8px 18px;cursor:pointer;font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.55);transition:all 0.15s;font-family:\'DM Sans\',sans-serif;white-space:nowrap;}.dc-pill:hover{border-color:rgba(45,212,191,0.3);color:rgba(255,255,255,0.85);}.dc-pill.dcon{background:rgba(45,212,191,0.12);border-color:#2dd4bf;color:#2dd4bf;}.dc-cpill{background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.08);border-radius:999px;padding:9px 18px;cursor:pointer;font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.55);transition:all 0.15s;font-family:\'DM Sans\',sans-serif;text-align:left;}.dc-cpill:hover{border-color:rgba(45,212,191,0.3);color:rgba(255,255,255,0.85);}.dc-cpill.dcon{background:rgba(45,212,191,0.12);border-color:#2dd4bf;color:#2dd4bf;}';
+  document.head.appendChild(style);
+
+  var DC_STRAINS=[
+    {id:'gt',name:'Golden Teacher',species:'P. cubensis',potency:0.95,color:'#2dd4bf'},
+    {id:'bp',name:'B+',species:'P. cubensis',potency:0.85,color:'#2dd4bf'},
+    {id:'amz',name:'Amazonian',species:'P. cubensis',potency:0.85,color:'#2dd4bf'},
+    {id:'maz',name:'Mazatapec',species:'P. cubensis',potency:0.75,color:'#2dd4bf'},
+    {id:'alb',name:'Albino A+',species:'P. cubensis',potency:0.85,color:'#2dd4bf'},
+    {id:'jmf',name:'Jedi Mind F.',species:'P. cubensis',potency:1.2,color:'#f59e0b'},
+    {id:'pe',name:'Penis Envy',species:'P. cubensis',potency:1.85,color:'#ef4444'},
+    {id:'semi',name:'Liberty Caps',species:'P. semilanceata',potency:1.2,color:'#f59e0b'},
+    {id:'cyan',name:'Wavy Caps',species:'P. cyanescens',potency:1.6,color:'#f97316'},
+    {id:'azure',name:'Flying Saucers',species:'P. azurescens',potency:2.15,color:'#ef4444'},
+    {id:'blue',name:'Blue Meanies',species:'Panaeolus cyanescens',potency:1.75,color:'#f97316'},
+    {id:'tamp',name:'Truffles (tampanensis)',species:'P. tampanensis',potency:0.65,color:'#10b981'},
+    {id:'mex',name:'Truffles (mexicana)',species:'P. mexicana',potency:0.60,color:'#10b981'},
+  ];
+
+  var dcSub_='psilocybin',dcStrain_=DC_STRAINS[0],dcMethod_='dry',dcExp_='none',dcIntent_='therapeutic',dcLsd_=100,dcPurity_=0.8,dcKet_='nasal';
+
+  function dcRenderStrains(){
+    var g=document.getElementById('dc-strain-grid');
+    if(!g)return;
+    g.innerHTML=DC_STRAINS.map(function(s){
+      return '<button style="background:rgba(255,255,255,0.03);border:0.5px solid '+(s.id===dcStrain_.id?'#2dd4bf':'rgba(255,255,255,0.07)')+';border-radius:10px;padding:10px 12px;cursor:pointer;text-align:left;transition:all 0.15s;font-family:\'DM Sans\',sans-serif;background:'+(s.id===dcStrain_.id?'rgba(45,212,191,0.08)':'rgba(255,255,255,0.03)')+'" onclick="dcPickStrain(\''+s.id+'\')">'
+      +'<span style="font-size:0.76rem;font-weight:600;color:rgba(255,255,255,0.82);display:block;margin-bottom:2px;">'+s.name+'</span>'
+      +'<span style="font-size:0.62rem;color:rgba(255,255,255,0.28);display:block;margin-bottom:6px;">'+s.species+'</span>'
+      +'<div style="height:2px;background:rgba(255,255,255,0.06);border-radius:1px;overflow:hidden;"><div style="height:100%;border-radius:1px;width:'+Math.min(100,s.potency/2.5*100).toFixed(0)+'%;background:'+s.color+'"></div></div>'
+      +'<div style="font-size:0.60rem;color:rgba(255,255,255,0.25);margin-top:3px;">'+s.potency.toFixed(2)+'% avg potency</div>'
+      +'</button>';
+    }).join('');
+  }
+
+  window.dcPickStrain=function(id){dcStrain_=DC_STRAINS.find(function(s){return s.id===id;});dcRenderStrains();};
+  window.dcSub=function(s,el){
+    dcSub_=s;
+    document.querySelectorAll('.dc-sub').forEach(function(b){b.classList.remove('dcon');});
+    el.classList.add('dcon');
+    document.getElementById('dc-strain-sec').style.display=s==='psilocybin'?'block':'none';
+    document.getElementById('dc-lsd-sec').style.display=s==='lsd'?'block':'none';
+    document.getElementById('dc-mdma-sec').style.display=s==='mdma'?'block':'none';
+    document.getElementById('dc-ket-sec').style.display=s==='ketamine'?'block':'none';
+    document.getElementById('dc-method-sec').style.display=s==='psilocybin'?'block':'none';
+    document.getElementById('dc-result').style.display='none';
+  };
+  window.dcLsd=function(v,el){dcLsd_=v;document.querySelectorAll('#dc-lsd-sec .dc-pill').forEach(function(b){b.classList.remove('dcon');});el.classList.add('dcon');};
+  window.dcPurity=function(v,el){dcPurity_=v;document.querySelectorAll('#dc-mdma-sec .dc-pill').forEach(function(b){b.classList.remove('dcon');});el.classList.add('dcon');};
+  window.dcKet=function(v,el){dcKet_=v;document.querySelectorAll('#dc-ket-sec .dc-pill').forEach(function(b){b.classList.remove('dcon');});el.classList.add('dcon');};
+  window.dcMethod=function(v,el){dcMethod_=v;document.querySelectorAll('#dc-method-sec .dc-pill').forEach(function(b){b.classList.remove('dcon');});el.classList.add('dcon');};
+  window.dcExp=function(v,el){dcExp_=v;document.querySelectorAll('#dc-exp-btns .dc-cpill').forEach(function(b){b.classList.remove('dcon');});el.classList.add('dcon');};
+  window.dcIntent=function(v,el){dcIntent_=v;document.querySelectorAll('#dc-intent-btns .dc-cpill').forEach(function(b){b.classList.remove('dcon');});el.classList.add('dcon');};
+
+  window.dcCalc=function(){
+    var w=parseInt(document.getElementById('dc-wslider').value)||70;
+    var dose,desc,onset,dur,peak,warn,set,integ;
+    if(dcSub_==='psilocybin'){
+      var potency=dcStrain_.potency/100;
+      var expM={none:0.6,some:1,high:1.3}[dcExp_]||1;
+      var bases={micro:[0.1,0.3],therapeutic:[1.5,3.0],strong:[3.0,5.0]}[dcIntent_];
+      var lo=(bases[0]*(0.01/potency)*expM).toFixed(2);
+      var hi=(bases[1]*(0.01/potency)*expM).toFixed(2);
+      var mLabel={dry:'dried',tea:'as tea',lemontek:'lemon tek',capsule:'capsule'}[dcMethod_];
+      dose=lo+'–'+hi+'g';
+      desc='~'+(bases[0]*potency*10).toFixed(1)+'–'+(bases[1]*potency*10).toFixed(1)+'mg psilocybin · '+dcStrain_.name+' · '+mLabel;
+      warn='';
+      if(dcMethod_==='lemontek')warn+='⚡ Lemon tek increases intensity and shortens duration by 30–60 min. Start at the lower end. ';
+      if(dcStrain_.id==='pe')warn+='⚠️ Penis Envy is 1.5–2× stronger than standard cubensis. Treat this dose seriously. ';
+      if(['azure','blue','cyan'].includes(dcStrain_.id))warn+='⚠️ Wild species — significantly higher potency than cubensis. ';
+      if(dcExp_==='none')warn+='🔰 First time: choose the lowest dose. Have a trusted sober sitter present. ';
+      if(dcIntent_==='strong')warn+='🌌 High doses can produce ego dissolution. Safe set, setting and sitter essential. ';
+      if(dcIntent_==='micro'){onset='20–60 min';dur='3–5 hrs';peak='1–2 hrs';}
+      else if(dcMethod_==='lemontek'){onset='15–30 min';dur='3–5 hrs';peak='1–2 hrs';}
+      else{onset='30–60 min';dur='4–6 hrs';peak='2–3 hrs';}
+      set='Comfortable, familiar space. Trusted sitter if first time. Phone away.';
+      integ='Journal within 24hrs. Rest the following day. 2–4 weeks between sessions.';
+    } else if(dcSub_==='lsd'){
+      var expM={none:0.5,some:1,high:1.3}[dcExp_]||1;
+      var bases={micro:[5,20],therapeutic:[75,150],strong:[150,300]}[dcIntent_]||[75,150];
+      var lo=Math.round(bases[0]*expM);
+      var hi=Math.round(bases[1]*expM);
+      dose=lo+'–'+hi+'mcg';
+      desc='≈ '+(lo/dcLsd_).toFixed(2)+'–'+(hi/dcLsd_).toFixed(2)+' tabs at ~'+dcLsd_+'mcg per tab';
+      warn='⚠️ Tab strength highly variable (50–200mcg+). Always use Ehrlich reagent. Never redose before onset — can take 90 min. ';
+      onset='30–120 min';dur='8–12 hrs';peak='4–6 hrs';
+      set='Plan the full day. No obligations. Nature or comfortable indoor space.';
+      integ='Duration is long — plan a rest day after. Journal within 24hrs.';
+    } else if(dcSub_==='mdma'){
+      var expM={none:0.7,some:1,high:1}[dcExp_]||1;
+      var base=Math.min(Math.round(w*expM),120);
+      dose=base+'–'+Math.round(base*1.1)+'mg';
+      desc='Pure MDMA · ~'+Math.round(base/dcPurity_)+'mg pill equivalent at '+Math.round(dcPurity_*100)+'% purity';
+      warn='⚠️ Minimum 3 months between sessions. Test with Marquis + Simon + fentanyl strip. Max 500ml water/hr. Never mix with SSRIs, MAOIs or stimulants. ';
+      if(dcExp_==='none')warn+='🔰 First time: cap at 75mg. Never redose more than once. ';
+      onset='30–90 min';dur='3–5 hrs';peak='1.5–2.5 hrs';
+      set='Trusted people only. Temperature control critical. No alcohol.';
+      integ='5-HTP the day after supports serotonin recovery. Rest 24hrs.';
+    } else {
+      var routes={nasal:{lo:0.3,hi:0.75,label:'nasal'},oral:{lo:1.5,hi:3.0,label:'oral'},im:{lo:0.3,hi:0.5,label:'IM clinical'}};
+      var r=routes[dcKet_]||routes.nasal;
+      dose=(r.lo*w).toFixed(0)+'–'+(r.hi*w).toFixed(0)+'mg';
+      desc=r.lo+'–'+r.hi+'mg/kg · '+r.label+' route';
+      warn='ℹ️ Ketamine is prescription-only in Australia. IM is clinical-only. ';
+      if(dcKet_==='nasal')warn+='Nasal bioavailability 25–50%.';
+      if(dcKet_==='oral')warn+='Oral bioavailability ~20%. Higher dose needed vs nasal.';
+      onset=dcKet_==='im'?'5–15 min':'15–30 min';
+      dur=dcKet_==='im'?'30–60 min':'1–2 hrs';
+      peak=dcKet_==='im'?'10–20 min':'20–45 min';
+      set='Lying down, eye mask, music. Clinical setting strongly recommended.';
+      integ='Antidepressant effects peak 1–3 days post session. Integration therapy recommended.';
+    }
+    document.getElementById('dc-rdose').textContent=dose;
+    document.getElementById('dc-rdesc').textContent=desc;
+    document.getElementById('dc-ronset').textContent=onset;
+    document.getElementById('dc-rdur').textContent=dur;
+    document.getElementById('dc-rpeak').textContent=peak;
+    document.getElementById('dc-rwarn').textContent=warn||'No additional warnings for this selection.';
+    document.getElementById('dc-rset').textContent=set;
+    document.getElementById('dc-rint').textContent=integ;
+    document.getElementById('dc-result').style.display='block';
+    document.getElementById('dc-result').scrollIntoView({behavior:'smooth',block:'nearest'});
+  };
+
+  dcRenderStrains();
+}
 // ─── COST CALCULATOR ─────────────────────────────────────────
 function renderCostCalc() {
   const grid = document.getElementById('news-grid');
