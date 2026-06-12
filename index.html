@@ -3144,6 +3144,14 @@ function renderLegalMap() {
 }
 // ─── DOSE CALCULATOR ─────────────────────────────────────────
 function renderDoseCalc() {
+  ['hero','story-list','mini-legal-map-widget','psystock-widget','answer-engine-block','homepage-blog-preview','faq-accordion','loadingState','sidebar-col'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  var twoCol = document.getElementById('news-two-col');
+  if (twoCol) twoCol.style.display = 'none';
+  var secNews = document.getElementById('section-news');
+  if (secNews) secNews.style.display = 'none';
   var grid = document.getElementById('news-grid');
   grid.style.display = 'block';
   grid.innerHTML = '<div style="max-width:680px;margin:0 auto;padding:8px 0 48px;">'
