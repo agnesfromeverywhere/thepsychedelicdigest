@@ -1105,7 +1105,6 @@
 <!-- UNIFIED STICKY NAV — logo left, tabs centre, actions right -->
 <nav id="mainNav" role="navigation" aria-label="Main navigation" style="position:sticky;top:0;z-index:100;background:rgba(6,13,12,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border-1);display:flex;align-items:center;padding:0 24px;gap:0;">
 
-  <!-- Logo -->
   <button type="button" data-action="go-home" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:8px 16px 8px 0;border-right:0.5px solid var(--border-1);margin-right:6px;flex-shrink:0;" title="Home">
     <div style="position:relative;flex-shrink:0;">
       <canvas id="logoC" width="36" height="38" style="display:block;"></canvas>
@@ -1114,16 +1113,16 @@
     <span style="font-family:'Syne',sans-serif;font-size:1.0rem;font-weight:800;white-space:nowrap;background:linear-gradient(90deg,#2dd4bf,#60a5fa,#a78bfa,#f472b6,#fb923c,#2dd4bf);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:iridescent-title 5s linear infinite;">The Psychedelic Digest</span>
   </button>
 
-  <!-- Primary tabs -->
-  <div id="primaryNav" role="tablist" style="display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;flex:1;">
-    <button type="button" data-section="blog"     id="tab-blog"     class="nav-pill" role="tab" style="color:#f3ffb9;">Editorial<div id="primaryNav" role="tablist" style="display:flex;align-items:stretch;overflow:visible;scrollbar-width:none;flex:1;">/button>
-    <button type="button" data-section="library"  id="tab-library"  class="nav-pill" role="tab" style="color:rgba(251,191,36,0.75);">📚 The Library</button>
-    <button type="button" data-section="jobs"     id="tab-jobs"     class="nav-pill" role="tab" style="color:#f62e09;">Jobs</button>
+  <div id="primaryNav" role="tablist" style="display:flex;align-items:stretch;overflow:visible;scrollbar-width:none;flex:1;">
+    <button type="button" data-section="blog" id="tab-blog" class="nav-pill" role="tab" style="color:#f3ffb9;">Editorial</button>
+    <button type="button" data-section="library" id="tab-library" class="nav-pill" role="tab" style="color:rgba(251,191,36,0.75);">📚 The Library</button>
+    <button type="button" data-section="jobs" id="tab-jobs" class="nav-pill" role="tab" style="color:#f62e09;">Jobs</button>
     <button type="button" data-section="retreats" id="tab-retreats" class="nav-pill" role="tab" style="color:#b8f609;">Retreats</button>
     <button type="button" data-section="collab" id="tab-collab" class="nav-pill nav-pill-collab" role="tab" style="color:#a78bfa;">Collaborate</button>
-    <div class="dropdown-wrap" id="learnDropdown" style="flex-shrink:0;">
+
+    <div class="dropdown-wrap" id="learnDropdown" style="flex-shrink:0;position:relative;z-index:9999;">
       <button type="button" id="tab-learn" class="nav-pill dropdown-trigger" aria-haspopup="true" aria-expanded="false" style="border-radius:0;border:none;border-bottom:2px solid transparent;padding:14px 12px;color:var(--accent);">
-        Learn + 
+        Learn +
       </button>
       <div class="dropdown-menu" role="menu" style="min-width:280px;">
         <div class="dropdown-menu-label">Free Courses</div>
@@ -1142,9 +1141,10 @@
         <button type="button" class="dropdown-item" data-section="learn">📚 All Courses</button>
       </div>
     </div>
- <div class="dropdown-wrap right" id="resourcesDropdown" style="flex-shrink:0;position:relative;z-index:9999;">
+
+    <div class="dropdown-wrap right" id="resourcesDropdown" style="flex-shrink:0;position:relative;z-index:9999;">
       <button type="button" class="dropdown-trigger" id="resourcesBtn" aria-haspopup="true" aria-expanded="false" style="color:#d04a71;">Resources <span class="chevron" style="color:#d04a71;">▾</span></button>
-   <div class="dropdown-menu" role="menu">
+      <div class="dropdown-menu" role="menu">
         <div class="dropdown-menu-label">Legal & Data</div>
         <button type="button" class="dropdown-item" data-page="Legal Map" id="tab-legalmap">🗺️ Legal Map</button>
         <button type="button" class="dropdown-item" data-page="PsyFinance" id="tab-psyfinance">💰 PsyFinance</button>
@@ -1157,13 +1157,11 @@
     </div>
   </div>
 
-  <!-- Right actions -->
   <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;padding-left:12px;border-left:0.5px solid var(--border-1);">
     <div class="lang-toggle" role="group" aria-label="Language selector">
       <button type="button" class="lang-btn active" id="langEN" data-lang="en">🇬🇧 EN</button>
       <button type="button" class="lang-btn" id="langFR" data-lang="fr">🇫🇷 FR</button>
     </div>
-    
   </div>
 </nav>
 
@@ -1199,32 +1197,102 @@
 </div>
 
 <style>
-@keyframes logoPulseRing { 0%{transform:scale(0.95);opacity:0.7} 60%{transform:scale(1.4);opacity:0} 100%{transform:scale(1.4);opacity:0} }
+
+#mainNav {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 54px !important;
+  height: auto !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 99999 !important;
+}
+
+#primaryNav {
+  display: flex !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+}
+
+.dropdown-wrap {
+  position: relative !important;
+}
+
+.dropdown-wrap.open .dropdown-menu {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 999999 !important;
+}
+
+@keyframes logoPulseRing { 
+  0%{transform:scale(0.95);opacity:0.7} 
+  60%{transform:scale(1.4);opacity:0} 
+  100%{transform:scale(1.4);opacity:0} 
+}
+
+#mainNav {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 54px !important;
+  height: auto !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 99999 !important;
+}
+
+#primaryNav {
+  display: flex !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+}
+
+.dropdown-wrap {
+  position: relative !important;
+}
+
+.dropdown-wrap.open .dropdown-menu {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 999999 !important;
+}
+
 /* Nav pill override for tab style */
-#primaryNav .nav-pill { border-radius:0; border:none; border-bottom:2px solid transparent; padding:14px 12px; }
-#primaryNav .nav-pill.active { border-bottom-color:var(--accent); }
-#primaryNav .dropdown-trigger { border-radius:0; border:none; border-bottom:2px solid transparent; padding:14px 12px; }
-#primaryNav .dropdown-trigger.active { border-bottom-color:var(--accent); }
+#primaryNav .nav-pill { 
+  border-radius:0; 
+  border:none; 
+  border-bottom:2px solid transparent; 
+  padding:14px 12px; 
+}
 
-  .map-card:hover { opacity:0.85; }
-  .psystock-link:hover { opacity:0.85; }
-  .book-cta:hover { opacity:0.9; }
-  .story-item:hover { background:rgba(255,255,255,0.05) !important; }
+#primaryNav .nav-pill.active { 
+  border-bottom-color:var(--accent); 
+}
+
+#primaryNav .dropdown-trigger { 
+  border-radius:0; 
+  border:none; 
+  border-bottom:2px solid transparent; 
+  padding:14px 12px; 
+}
+
+#primaryNav .dropdown-trigger.active { 
+  border-bottom-color:var(--accent); 
+}
+
+.map-card:hover { opacity:0.85; }
+.psystock-link:hover { opacity:0.85; }
+.book-cta:hover { opacity:0.9; }
+.story-item:hover { background:rgba(255,255,255,0.05) !important; }
+
 </style>
-
-<!-- Modals (kept here, before main content) -->
-<div class="modal-overlay" id="privacyModal">
-  <div class="modal" style="max-width:640px;max-height:80vh;overflow-y:auto;">
-    <button class="modal-close" type="button" data-close-modal="privacyModal" aria-label="Close privacy policy">×</button>
-    <h2>Privacy Policy</h2>
-    <p style="color:var(--text-muted);font-size:0.8rem;margin-bottom:20px;">Last updated: March 2026</p>
-    <p>The Psychedelic Digest ("we", "our", "us") is committed to protecting your privacy.</p>
-    <p><strong>What we collect</strong><br>When you subscribe to our newsletter, we collect your email address only.</p>
-    <p><strong>How we use it</strong><br>Your email is used solely to send our newsletter. We never sell your data.</p>
-    <p><strong>Cookies</strong><br>This site does not use tracking or advertising cookies.</p>
-    <p><strong>Contact</strong><br><a href="mailto:hello@thepsychedelicdigest.com">hello@thepsychedelicdigest.com</a></p>
-  </div>
-</div>
 
 <div class="modal-overlay" id="aboutModal">
   <div class="modal">
@@ -1235,8 +1303,6 @@
     <a href="mailto:hello@thepsychedelicdigest.com?subject=Story%20Submission" class="submit-link">Submit a story →</a>
   </div>
 </div>
-
-
 
 <script>
 (function(){
@@ -1291,7 +1357,6 @@
   loop();
 })();
 </script>
-
 
 <main style="max-width:1280px;margin:0 auto;padding:0 24px 40px;">
   <!-- NEWS SECTION — two-column editorial layout -->
