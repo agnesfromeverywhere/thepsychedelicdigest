@@ -1150,11 +1150,11 @@
         <div class="dropdown-menu-label">Legal & Data</div>
         <button type="button" class="dropdown-item" data-page="Legal Map" id="tab-legalmap">🗺️ Legal Map</button>
         <button type="button" class="dropdown-item" data-page="PsyFinance" id="tab-psyfinance">💰 PsyFinance</button>
-        <button type="button" class="dropdown-item" data-page="ResearchTracker">🔬 Trial Tracker</button>
+       <button type="button" class="dropdown-item" data-page="ResearchTracker" id="tab-researchtracker">🔬 Trial Tracker</button>
         <div class="dropdown-divider"></div>
         <div class="dropdown-menu-label">Reference</div>
         <button type="button" class="dropdown-item" data-page="Glossary" id="tab-glossary">📖 Glossary</button>
-        <button type="button" class="dropdown-item" data-page="CostCalc">💊 Treatment Costs</button>
+        <button type="button" class="dropdown-item" data-page="CostCalc" id="tab-costcalc">💊 Treatment Costs</button>
       </div>
     </div>
   </div>
@@ -1908,6 +1908,8 @@ const SPECIAL_PAGES = [
   {label:'Legal Map',  slug:'legal-map',  id:'tab-legalmap'},
   {label:'Glossary',   slug:'glossary',   id:'tab-glossary'},
   {label:'PsyFinance', slug:'psyfinance', id:'tab-psyfinance'},
+  {label:'ResearchTracker', slug:'research-tracker', id:'tab-researchtracker'},
+  {label:'CostCalc', slug:'cost-calculator', id:'tab-costcalc'},
 ];
 
 const IMGS = Array.from({length:18}, (_, i) => `https://picsum.photos/seed/psych${i+1}/800/500`);
