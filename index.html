@@ -2204,7 +2204,7 @@ function showPage(page) {
     var el = document.getElementById(id); if (el) el.style.display = 'none';
   });
   const newsLayout = document.getElementById('section-news-layout');
-  if (newsLayout) newsLayout.style.display = 'block';
+  if (newsLayout) newsLayout.style.display = 'none';
   const si = document.getElementById('searchInput');
   if (si) si.style.display = 'none';
   const hero = document.getElementById('hero');
@@ -3229,32 +3229,152 @@ function renderDoseCalc() {
   style.textContent = '.dc-sub{background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.10);border-radius:14px;padding:14px 8px;cursor:pointer;text-align:center;transition:all 0.2s;color:rgba(255,255,255,0.6);font-family:\'DM Sans\',sans-serif;}.dc-sub:hover{background:rgba(45,212,191,0.08);border-color:rgba(45,212,191,0.3);}.dc-sub.dcon{background:rgba(45,212,191,0.14);border-color:#2dd4bf;color:#2dd4bf;}.dc-pill{background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.08);border-radius:999px;padding:8px 18px;cursor:pointer;font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.55);transition:all 0.15s;font-family:\'DM Sans\',sans-serif;white-space:nowrap;}.dc-pill:hover{border-color:rgba(45,212,191,0.3);color:rgba(255,255,255,0.85);}.dc-pill.dcon{background:rgba(45,212,191,0.12);border-color:#2dd4bf;color:#2dd4bf;}.dc-cpill{background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.08);border-radius:999px;padding:9px 18px;cursor:pointer;font-size:0.76rem;font-weight:500;color:rgba(255,255,255,0.55);transition:all 0.15s;font-family:\'DM Sans\',sans-serif;text-align:left;}.dc-cpill:hover{border-color:rgba(45,212,191,0.3);color:rgba(255,255,255,0.85);}.dc-cpill.dcon{background:rgba(45,212,191,0.12);border-color:#2dd4bf;color:#2dd4bf;}';
   document.head.appendChild(style);
 
-  var DC_STRAINS=[
-    {id:'gt',name:'Golden Teacher',species:'P. cubensis',potency:0.95,color:'#2dd4bf'},
-    {id:'bp',name:'B+',species:'P. cubensis',potency:0.85,color:'#2dd4bf'},
-    {id:'amz',name:'Amazonian',species:'P. cubensis',potency:0.85,color:'#2dd4bf'},
-    {id:'maz',name:'Mazatapec',species:'P. cubensis',potency:0.75,color:'#2dd4bf'},
-    {id:'alb',name:'Albino A+',species:'P. cubensis',potency:0.85,color:'#2dd4bf'},
-    {id:'jmf',name:'Jedi Mind F.',species:'P. cubensis',potency:1.2,color:'#f59e0b'},
-    {id:'pe',name:'Penis Envy',species:'P. cubensis',potency:1.85,color:'#ef4444'},
-    {id:'semi',name:'Liberty Caps',species:'P. semilanceata',potency:1.2,color:'#f59e0b'},
-    {id:'cyan',name:'Wavy Caps',species:'P. cyanescens',potency:1.6,color:'#f97316'},
-    {id:'azure',name:'Flying Saucers',species:'P. azurescens',potency:2.15,color:'#ef4444'},
-    {id:'blue',name:'Blue Meanies',species:'Panaeolus cyanescens',potency:1.75,color:'#f97316'},
-    {id:'tamp',name:'Truffles (tampanensis)',species:'P. tampanensis',potency:0.65,color:'#10b981'},
-    {id:'mex',name:'Truffles (mexicana)',species:'P. mexicana',potency:0.60,color:'#10b981'},
+  var DC_STRAINS = [
+    {id:'gt',  name:'Golden Teacher',        species:'P. cubensis',           potency:0.95, color:'#2dd4bf'},
+    {id:'bp',  name:'B+',                    species:'P. cubensis',           potency:0.85, color:'#2dd4bf'},
+    {id:'amz', name:'Amazonian',             species:'P. cubensis',           potency:0.85, color:'#2dd4bf'},
+    {id:'maz', name:'Mazatapec',             species:'P. cubensis',           potency:0.75, color:'#2dd4bf'},
+    {id:'alb', name:'Albino A+',             species:'P. cubensis',           potency:0.85, color:'#2dd4bf'},
+    {id:'jmf', name:'Jedi Mind F.',          species:'P. cubensis',           potency:1.20, color:'#f59e0b'},
+    {id:'pe',  name:'Penis Envy',            species:'P. cubensis',           potency:1.85, color:'#ef4444'},
+    {id:'semi',name:'Liberty Caps',          species:'P. semilanceata',       potency:1.20, color:'#f59e0b'},
+    {id:'cyan',name:'Wavy Caps',             species:'P. cyanescens',         potency:1.60, color:'#f97316'},
+    {id:'azure',name:'Flying Saucers',       species:'P. azurescens',         potency:2.15, color:'#ef4444'},
+    {id:'blue',name:'Blue Meanies',          species:'Panaeolus cyanescens',  potency:1.75, color:'#f97316'},
+    {id:'tamp',name:'Truffles (tampanensis)',species:'P. tampanensis',        potency:0.65, color:'#10b981'},
+    {id:'mex', name:'Truffles (mexicana)',   species:'P. mexicana',           potency:0.60, color:'#10b981'},
   ];
 
-  var dcSub_='psilocybin',dcStrain_=DC_STRAINS[0],dcMethod_='dry',dcExp_='none',dcIntent_='therapeutic',dcLsd_=100,dcPurity_=0.8,dcKet_='nasal';
+  var dcSub_     = 'psilocybin';
+  var dcStrain_  = DC_STRAINS[0];
+  var dcMethod_  = 'dry';
+  var dcExp_     = 'none';
+  var dcIntent_  = 'therapeutic';
+  var dcLsd_     = 100;
+  var dcPurity_  = 0.8;
+  var dcKet_     = 'nasal';
 
-  function dcRenderStrains(){
-    var g=document.getElementById('dc-strain-grid');
-    if(!g)return;
-    g.innerHTML=DC_STRAINS.map(function(s){
-      return '<button style="background:'+(s.id===dcStrain_.id?'rgba(45,212,191,0.08)':'rgba(255,255,255,0.03)')+';border:0.5px solid '+(s.id===dcStrain_.id?'#2dd4bf':'rgba(255,255,255,0.07)')+';border-radius:10px;padding:10px 12px;cursor:pointer;text-align:left;transition:all 0.15s;font-family:\'DM Sans\',sans-serif;" onclick="dcPickStrain(\''+s.id+'\')">'
-      +'<span style="font-size:0.76rem;font-weight:600;color:rgba(255,255,255,0.82);display:block;margin-bottom:2px;">'+s.name+'</span>'
-      +'<span style="font-size:0.62rem;color:rgba(255,255,255,0.28);display:block;margin-bottom:6px;">'+s.species+'</span>'
-      +'<div style="height:2px;background:rgba(255,255,255,0.06);border-radius:1px;overflow:hidden;"><div style="height:100%;border-radius:1px;width:'+Math.mi
+  function dcRenderStrains() {
+    var g = document.getElementById('dc-strain-grid');
+    if (!g) return;
+    g.innerHTML = DC_STRAINS.map(function(s) {
+      var isActive = s.id === dcStrain_.id;
+      return '<button style="background:' + (isActive ? 'rgba(45,212,191,0.08)' : 'rgba(255,255,255,0.03)')
+        + ';border:0.5px solid ' + (isActive ? '#2dd4bf' : 'rgba(255,255,255,0.07)')
+        + ';border-radius:10px;padding:10px 12px;cursor:pointer;text-align:left;transition:all 0.15s;font-family:\'DM Sans\',sans-serif;" onclick="dcPickStrain(\'' + s.id + '\')">'
+        + '<span style="font-size:0.76rem;font-weight:600;color:rgba(255,255,255,0.82);display:block;margin-bottom:2px;">' + s.name + '</span>'
+        + '<span style="font-size:0.62rem;color:rgba(255,255,255,0.28);display:block;margin-bottom:6px;">' + s.species + '</span>'
+        + '<div style="height:2px;background:rgba(255,255,255,0.06);border-radius:1px;overflow:hidden;"><div style="height:100%;border-radius:1px;width:' + Math.min(100, s.potency / 2.5 * 100).toFixed(0) + '%;background:' + s.color + '"></div></div>'
+        + '<div style="font-size:0.60rem;color:rgba(255,255,255,0.25);margin-top:3px;">' + s.potency.toFixed(2) + '% avg potency</div>'
+        + '</button>';
+    }).join('');
+  }
+
+  window.dcPickStrain = function(id) {
+    dcStrain_ = DC_STRAINS.find(function(s) { return s.id === id; });
+    dcRenderStrains();
+  };
+
+  window.dcSub = function(s, el) {
+    dcSub_ = s;
+    document.querySelectorAll('.dc-sub').forEach(function(b) { b.classList.remove('dcon'); });
+    el.classList.add('dcon');
+    document.getElementById('dc-strain-sec').style.display  = s === 'psilocybin' ? 'block' : 'none';
+    document.getElementById('dc-lsd-sec').style.display     = s === 'lsd'        ? 'block' : 'none';
+    document.getElementById('dc-mdma-sec').style.display    = s === 'mdma'       ? 'block' : 'none';
+    document.getElementById('dc-ket-sec').style.display     = s === 'ketamine'   ? 'block' : 'none';
+    document.getElementById('dc-method-sec').style.display  = s === 'psilocybin' ? 'block' : 'none';
+    document.getElementById('dc-result').style.display      = 'none';
+  };
+
+  window.dcLsd     = function(v, el) { dcLsd_    = v; document.querySelectorAll('#dc-lsd-sec .dc-pill').forEach(function(b)  { b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcPurity  = function(v, el) { dcPurity_ = v; document.querySelectorAll('#dc-mdma-sec .dc-pill').forEach(function(b) { b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcKet     = function(v, el) { dcKet_    = v; document.querySelectorAll('#dc-ket-sec .dc-pill').forEach(function(b)  { b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcMethod  = function(v, el) { dcMethod_ = v; document.querySelectorAll('#dc-method-sec .dc-pill').forEach(function(b){ b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcExp     = function(v, el) { dcExp_    = v; document.querySelectorAll('#dc-exp-btns .dc-cpill').forEach(function(b){ b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcIntent  = function(v, el) { dcIntent_ = v; document.querySelectorAll('#dc-intent-btns .dc-cpill').forEach(function(b){ b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+
+  window.dcCalc = function() {
+    var w = parseInt(document.getElementById('dc-wslider').value) || 70;
+    var dose, desc, onset, dur, peak, warn, set, integ;
+
+    if (dcSub_ === 'psilocybin') {
+      var psiPotency = dcStrain_.potency / 100;
+      var psiExpM    = {none:0.6, some:1, high:1.3}[dcExp_] || 1;
+      var psiBases   = {micro:[0.1,0.3], therapeutic:[1.5,3.0], strong:[3.0,5.0]}[dcIntent_];
+      var psiLo      = (psiBases[0] * (0.01 / psiPotency) * psiExpM).toFixed(2);
+      var psiHi      = (psiBases[1] * (0.01 / psiPotency) * psiExpM).toFixed(2);
+      var psiMgLo    = (psiBases[0] * psiPotency * 10).toFixed(1);
+      var psiMgHi    = (psiBases[1] * psiPotency * 10).toFixed(1);
+      var psiLabel   = {dry:'dried', tea:'as tea', lemontek:'lemon tek', capsule:'capsule'}[dcMethod_];
+      dose  = psiLo + '–' + psiHi + 'g';
+      desc  = '~' + psiMgLo + '–' + psiMgHi + 'mg psilocybin · ' + dcStrain_.name + ' · ' + psiLabel;
+      warn  = '';
+      if (dcMethod_ === 'lemontek')                                    warn += '⚡ Lemon tek increases intensity and shortens duration by 30–60 min. Start at the lower end. ';
+      if (dcStrain_.id === 'pe')                                       warn += '⚠️ Penis Envy is 1.5–2× stronger than standard cubensis. Treat this dose seriously. ';
+      if (dcStrain_.id === 'azure' || dcStrain_.id === 'blue' || dcStrain_.id === 'cyan') warn += '⚠️ Wild species — significantly higher potency than cubensis. ';
+      if (dcExp_ === 'none')                                           warn += '🔰 First time: choose the lowest dose. Have a trusted sober sitter present. ';
+      if (dcIntent_ === 'strong')                                      warn += '🌌 High doses can produce ego dissolution. Safe set, setting and sitter essential. ';
+      if (dcIntent_ === 'micro')         { onset = '20–60 min'; dur = '3–5 hrs';  peak = '1–2 hrs'; }
+      else if (dcMethod_ === 'lemontek') { onset = '15–30 min'; dur = '3–5 hrs';  peak = '1–2 hrs'; }
+      else                               { onset = '30–60 min'; dur = '4–6 hrs';  peak = '2–3 hrs'; }
+      set   = 'Comfortable, familiar space. Trusted sitter if first time. Phone away.';
+      integ = 'Journal within 24hrs. Rest the following day. 2–4 weeks between sessions.';
+
+    } else if (dcSub_ === 'lsd') {
+      var lsdExpM  = {none:0.5, some:1, high:1.3}[dcExp_] || 1;
+      var lsdBases = {micro:[5,20], therapeutic:[75,150], strong:[150,300]}[dcIntent_] || [75,150];
+      var lsdLo    = Math.round(lsdBases[0] * lsdExpM);
+      var lsdHi    = Math.round(lsdBases[1] * lsdExpM);
+      dose  = lsdLo + '–' + lsdHi + 'mcg';
+      desc  = '≈ ' + (lsdLo / dcLsd_).toFixed(2) + '–' + (lsdHi / dcLsd_).toFixed(2) + ' tabs at ~' + dcLsd_ + 'mcg per tab';
+      warn  = '⚠️ Tab strength highly variable (50–200mcg+). Always use Ehrlich reagent. Never redose before onset — can take 90 min. ';
+      if (dcIntent_ === 'micro') warn += 'Microdose every 4th day max to prevent tolerance. ';
+      onset = '30–120 min'; dur = '8–12 hrs'; peak = '4–6 hrs';
+      set   = 'Plan the full day. No obligations. Nature or comfortable indoor space.';
+      integ = 'Duration is long — plan a rest day after. Journal within 24hrs.';
+
+    } else if (dcSub_ === 'mdma') {
+      var mdmaExpM = {none:0.7, some:1, high:1}[dcExp_] || 1;
+      var mdmaBase = Math.min(Math.round(w * mdmaExpM), 120);
+      dose  = mdmaBase + '–' + Math.round(mdmaBase * 1.1) + 'mg';
+      desc  = 'Pure MDMA · ~' + Math.round(mdmaBase / dcPurity_) + 'mg pill equivalent at ' + Math.round(dcPurity_ * 100) + '% purity';
+      warn  = '⚠️ Minimum 3 months between sessions. Test with Marquis + Simon + fentanyl strip. Max 500ml water/hr. Never mix with SSRIs, MAOIs or stimulants. ';
+      if (dcExp_ === 'none') warn += '🔰 First time: cap at 75mg. Never redose more than once. ';
+      onset = '30–90 min'; dur = '3–5 hrs'; peak = '1.5–2.5 hrs';
+      set   = 'Trusted people only. Temperature control critical. No alcohol.';
+      integ = '5-HTP the day after supports serotonin recovery. Rest 24hrs.';
+
+    } else {
+      var ketRoutes = {nasal:{lo:0.3,hi:0.75,label:'nasal'}, oral:{lo:1.5,hi:3.0,label:'oral'}, im:{lo:0.3,hi:0.5,label:'IM clinical'}};
+      var ketR      = ketRoutes[dcKet_] || ketRoutes.nasal;
+      dose  = (ketR.lo * w).toFixed(0) + '–' + (ketR.hi * w).toFixed(0) + 'mg';
+      desc  = ketR.lo + '–' + ketR.hi + 'mg/kg · ' + ketR.label + ' route';
+      warn  = 'ℹ️ Ketamine is prescription-only in Australia. IM is clinical-only. ';
+      if (dcKet_ === 'nasal') warn += 'Nasal bioavailability 25–50% — effects vary by individual.';
+      if (dcKet_ === 'oral')  warn += 'Oral bioavailability ~20%. Higher dose needed vs nasal.';
+      onset = dcKet_ === 'im' ? '5–15 min'  : '15–30 min';
+      dur   = dcKet_ === 'im' ? '30–60 min' : '1–2 hrs';
+      peak  = dcKet_ === 'im' ? '10–20 min' : '20–45 min';
+      set   = 'Lying down, eye mask, music. Clinical setting strongly recommended.';
+      integ = 'Antidepressant effects peak 1–3 days post session. Integration therapy recommended.';
+    }
+
+    document.getElementById('dc-rdose').textContent  = dose;
+    document.getElementById('dc-rdesc').textContent  = desc;
+    document.getElementById('dc-ronset').textContent = onset;
+    document.getElementById('dc-rdur').textContent   = dur;
+    document.getElementById('dc-rpeak').textContent  = peak;
+    document.getElementById('dc-rwarn').textContent  = warn || 'No additional warnings for this selection.';
+    document.getElementById('dc-rset').textContent   = set;
+    document.getElementById('dc-rint').textContent   = integ;
+    document.getElementById('dc-result').style.display = 'block';
+    document.getElementById('dc-result').scrollIntoView({behavior:'smooth', block:'nearest'});
+  };
+
+  dcRenderStrains();
+}
+
 // ─── COST CALCULATOR ─────────────────────────────────────────
 function renderCostCalc() {
   const grid = document.getElementById('news-grid');
