@@ -2077,21 +2077,8 @@ document.addEventListener('click', function(e) {
 // ─── JOURNAL PROMPTS ─────────────────────────────────────────
 function wireDropdowns() {
   // Resources — hover open, mouse-leave close
-  var resourcesWrap = document.getElementById('resourcesDropdown');
-  if (resourcesWrap) {
-    resourcesWrap.addEventListener('mouseenter', function() {
-      closeAllDropdowns();
-      resourcesWrap.classList.add('open');
-      var btn = resourcesWrap.querySelector('[aria-expanded]');
-      if (btn) btn.setAttribute('aria-expanded', 'true');
-    });
-    resourcesWrap.addEventListener('mouseleave', function() {
-      resourcesWrap.classList.remove('open');
-      var btn = resourcesWrap.querySelector('[aria-expanded]');
-      if (btn) btn.setAttribute('aria-expanded', 'false');
-    });
-  }
-
+ function wireDropdowns() {
+  
   // News dropdown (topic filters)
   var tabNews = document.getElementById('tab-news');
   if (tabNews) tabNews.addEventListener('click', function(e) {
