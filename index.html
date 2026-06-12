@@ -1807,22 +1807,6 @@ a:active {
     </div>
   </div>
 
-    <!-- ASK AGNES — moved after Influencer Directory -->
-    <div style="margin-top:48px;padding-top:40px;border-top:0.5px solid var(--border-1);">
-<div style="margin-bottom:28px;border-radius:14px;padding:22px 24px;border:0.5px solid rgba(167,139,250,0.2);border-top:0.5px solid rgba(167,139,250,0.35);background:rgba(167,139,250,0.04);">
-      <div style="font-family:'Syne',sans-serif;font-size:0.60rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#a78bfa;margin-bottom:8px;">💬 Ask Agnes</div>
-      <div style="font-family:'Playfair Display',serif;font-size:1.15rem;color:rgba(255,255,255,0.88);margin-bottom:6px;">Got a question about psychedelic therapy?</div>
-      <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;">Agnes answers reader questions in the weekly newsletter. Anonymous submissions welcome.</div>
-      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="display:flex;flex-direction:column;gap:10px;">
-        <input type="email" name="email" placeholder="Your email (optional — for follow-up)" style="padding:10px 14px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:0.80rem;outline:none;">
-        <textarea name="question" placeholder="Your question..." rows="3" style="padding:10px 14px;border-radius:10px;border:0.5px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.8);font-family:'DM Sans',sans-serif;font-size:0.80rem;outline:none;resize:vertical;"></textarea>
-        <button type="submit" style="align-self:flex-start;padding:8px 20px;border-radius:999px;background:#a78bfa;color:white;border:none;font-size:0.75rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;">Submit question →</button>
-      </form>
-    </div>
-    </div>
-
-
-  
     <!-- MOTION TIMELINE -->
     <section class="motion-timeline" aria-label="Psychedelic history timeline" style="margin:18px 0 0;border-radius:18px;overflow:hidden;border:0.5px solid rgba(255,255,255,0.09);border-top:0.5px solid rgba(255,255,255,0.16);background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(13,148,136,0.04));position:relative;">
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px 0;position:relative;z-index:1;flex-wrap:wrap;">
@@ -3565,7 +3549,7 @@ function applyLang(lang) {
 // ─── DOM EVENT LISTENERS ─────────────────────────────────────
 document.addEventListener('click', (e) => {
   // ── Nav dropdown triggers: show section AND open dropdown ──
-  const navTrigger = e.target.closest('#tab-news, #tab-learn, #medicinesBtn');
+const navTrigger = e.target.closest('#tab-news, #tab-learn, #medicinesBtn, #resourcesBtn');
   if (navTrigger) {
     e.stopPropagation();
     if (navTrigger.id === 'tab-news') {
@@ -3574,9 +3558,11 @@ document.addEventListener('click', (e) => {
     } else if (navTrigger.id === 'tab-learn') {
       showSection('learn');
       toggleDropdown('learnDropdown');
-    } else if (navTrigger.id === 'medicinesBtn') {
-      toggleDropdown('medicinesDropdown');
-    }
+   } else if (navTrigger.id === 'medicinesBtn') {
+  toggleDropdown('medicinesDropdown');
+} else if (navTrigger.id === 'resourcesBtn') {
+  toggleDropdown('resourcesDropdown');
+}
     return;
   }
 
