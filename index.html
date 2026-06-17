@@ -2219,7 +2219,12 @@ function showPage(page) {
   if (hero) hero.innerHTML = '';
   if (stories) stories.innerHTML = '';
   if (sidebar) sidebar.innerHTML = '';
-  if (grid) { grid.style.display = 'block'; grid.innerHTML = ''; }
+ if (grid) {
+    var mainEl = document.querySelector('main');
+    if (mainEl && grid.parentElement !== mainEl) mainEl.appendChild(grid);
+    grid.style.display = 'block';
+    grid.innerHTML = '';
+  }
   if (sb)   sb.style.display  = 'none';
   if (ls)   ls.style.display  = 'none';
   if (emp)  emp.style.display = 'none';
@@ -3151,8 +3156,10 @@ function renderDoseCalc() {
   var dcWrap = document.createElement('div');
   dcWrap.id = 'dc-container';
   dcWrap.style.cssText = 'padding:20px 0 40px;';
-  var layout = document.getElementById('section-news-layout');
-  layout.insertBefore(dcWrap, layout.firstChild);
+var layout = document.getElementById('news-grid');
+  layout.style.display = 'block';
+  layout.innerHTML = '';
+  layout.appendChild(dcWrap);
   dcWrap.innerHTML = '<div style="max-width:680px;margin:0 auto;padding:8px 0 48px;">'
   + '<div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#2dd4bf;margin-bottom:6px;">🍄 Harm reduction · Evidence-based</div>'
   + '<div style="font-family:\'Playfair Display\',serif;font-size:2rem;font-weight:400;color:rgba(255,255,255,0.92);margin-bottom:6px;">Psilocybin & Psychedelic Dose Calculator</div>'
