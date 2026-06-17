@@ -2115,6 +2115,7 @@ function wireDropdowns() {
 
 // ─── TOPIC SWITCHING ─────────────────────────────────────────
 function switchTopic(label) {
+  var dc = document.getElementById('dc-container'); if (dc) dc.remove();
   activeTopic    = TOPICS.find(t => t.label === label) || TOPICS[0];
   currentPage    = null;
   currentSection = 'news';
@@ -2144,6 +2145,7 @@ function switchTopic(label) {
 
 // ─── MAIN SECTION DISPLAY ────────────────────────────────────
 function showSection(section, option) {
+  var dc = document.getElementById('dc-container'); if (dc) dc.remove();
   currentPage = null;
   currentSection = section || 'news';
   closeAllDropdowns();
