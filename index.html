@@ -3144,22 +3144,17 @@ function renderLegalMap() {
 }
 // ─── DOSE CALCULATOR ─────────────────────────────────────────
 function renderDoseCalc() {
-  ['hero','story-list','mini-legal-map-widget','psystock-widget','answer-engine-block','homepage-blog-preview','faq-accordion','loadingState','sidebar-col','statusBar','empty'].forEach(function(id){
-    var el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-
-  var twoCol = document.getElementById('news-two-col');
-  if (twoCol) twoCol.style.display = 'block';
-
-  var secNews = document.getElementById('section-news');
-  if (secNews) secNews.style.display = 'block';
-
-  var grid = document.getElementById('news-grid');
-  if (!grid) return;
-
-  grid.style.display = 'block';
-  grid.innerHTML = '<div style="max-width:680px;margin:0 auto;padding:0 0 48px;">'
+  var existing = document.getElementById('dc-container');
+  if (existing) existing.remove();
+  var dcWrap = document.createElement('div');
+  dcWrap.id = 'dc-container';
+  dcWrap.style.cssText = 'padding:20px 0 40px;';
+  var layout = document.getElementById('section-news-layout');
+  layout.insertBefore(dcWrap, layout.firstChild);
+  dcWrap.innerHTML = '<div style="max-width:680px;margin:0 auto;padding:8px 0 48px;">'
+  + '<div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#2dd4bf;margin-bottom:6px;">🍄 Harm reduction · Evidence-based</div>'
+  + '<div style="font-family:\'Playfair Display\',serif;font-size:2rem;font-weight:400;color:rgba(255,255,255,0.92);margin-bottom:6px;">Psilocybin & Psychedelic Dose Calculator</div>'
+  + '<div style="font-size:0.82rem;color:rgba(255,255,255,0.38);margin-bottom:28px;line-height:1.5;">Personalised dose ranges based on substance, strain, method and experience. Not medical advice.</div>'
   + '<div style="font-family:\'Syne\',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Substance</div>'
   + '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:22px;">'
   + '<button class="dc-sub dcon" onclick="dcSub(\'psilocybin\',this)"><span style="font-size:1.5rem;display:block;margin-bottom:6px;">🍄</span><span style="font-size:0.72rem;font-weight:600;">Psilocybin</span></button>'
@@ -3255,14 +3250,14 @@ function renderDoseCalc() {
     {id:'mex', name:'Truffles (mexicana)',   species:'P. mexicana',           potency:0.60, color:'#10b981'},
   ];
 
-  var dcSub_     = 'psilocybin';
-  var dcStrain_  = DC_STRAINS[0];
-  var dcMethod_  = 'dry';
-  var dcExp_     = 'none';
-  var dcIntent_  = 'therapeutic';
-  var dcLsd_     = 100;
-  var dcPurity_  = 0.8;
-  var dcKet_     = 'nasal';
+  var dcSub_    = 'psilocybin';
+  var dcStrain_ = DC_STRAINS[0];
+  var dcMethod_ = 'dry';
+  var dcExp_    = 'none';
+  var dcIntent_ = 'therapeutic';
+  var dcLsd_    = 100;
+  var dcPurity_ = 0.8;
+  var dcKet_    = 'nasal';
 
   function dcRenderStrains() {
     var g = document.getElementById('dc-strain-grid');
@@ -3297,12 +3292,12 @@ function renderDoseCalc() {
     document.getElementById('dc-result').style.display      = 'none';
   };
 
-  window.dcLsd     = function(v, el) { dcLsd_    = v; document.querySelectorAll('#dc-lsd-sec .dc-pill').forEach(function(b)  { b.classList.remove('dcon'); }); el.classList.add('dcon'); };
-  window.dcPurity  = function(v, el) { dcPurity_ = v; document.querySelectorAll('#dc-mdma-sec .dc-pill').forEach(function(b) { b.classList.remove('dcon'); }); el.classList.add('dcon'); };
-  window.dcKet     = function(v, el) { dcKet_    = v; document.querySelectorAll('#dc-ket-sec .dc-pill').forEach(function(b)  { b.classList.remove('dcon'); }); el.classList.add('dcon'); };
-  window.dcMethod  = function(v, el) { dcMethod_ = v; document.querySelectorAll('#dc-method-sec .dc-pill').forEach(function(b){ b.classList.remove('dcon'); }); el.classList.add('dcon'); };
-  window.dcExp     = function(v, el) { dcExp_    = v; document.querySelectorAll('#dc-exp-btns .dc-cpill').forEach(function(b){ b.classList.remove('dcon'); }); el.classList.add('dcon'); };
-  window.dcIntent  = function(v, el) { dcIntent_ = v; document.querySelectorAll('#dc-intent-btns .dc-cpill').forEach(function(b){ b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcLsd    = function(v, el) { dcLsd_    = v; document.querySelectorAll('#dc-lsd-sec .dc-pill').forEach(function(b)   { b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcPurity = function(v, el) { dcPurity_ = v; document.querySelectorAll('#dc-mdma-sec .dc-pill').forEach(function(b)  { b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcKet    = function(v, el) { dcKet_    = v; document.querySelectorAll('#dc-ket-sec .dc-pill').forEach(function(b)   { b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcMethod = function(v, el) { dcMethod_ = v; document.querySelectorAll('#dc-method-sec .dc-pill').forEach(function(b){ b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcExp    = function(v, el) { dcExp_    = v; document.querySelectorAll('#dc-exp-btns .dc-cpill').forEach(function(b) { b.classList.remove('dcon'); }); el.classList.add('dcon'); };
+  window.dcIntent = function(v, el) { dcIntent_ = v; document.querySelectorAll('#dc-intent-btns .dc-cpill').forEach(function(b){ b.classList.remove('dcon'); }); el.classList.add('dcon'); };
 
   window.dcCalc = function() {
     var w = parseInt(document.getElementById('dc-wslider').value) || 70;
@@ -3320,14 +3315,14 @@ function renderDoseCalc() {
       dose  = psiLo + '–' + psiHi + 'g';
       desc  = '~' + psiMgLo + '–' + psiMgHi + 'mg psilocybin · ' + dcStrain_.name + ' · ' + psiLabel;
       warn  = '';
-      if (dcMethod_ === 'lemontek')                                    warn += '⚡ Lemon tek increases intensity and shortens duration by 30–60 min. Start at the lower end. ';
-      if (dcStrain_.id === 'pe')                                       warn += '⚠️ Penis Envy is 1.5–2× stronger than standard cubensis. Treat this dose seriously. ';
+      if (dcMethod_ === 'lemontek') warn += '⚡ Lemon tek increases intensity and shortens duration by 30–60 min. Start at the lower end. ';
+      if (dcStrain_.id === 'pe')    warn += '⚠️ Penis Envy is 1.5–2× stronger than standard cubensis. Treat this dose seriously. ';
       if (dcStrain_.id === 'azure' || dcStrain_.id === 'blue' || dcStrain_.id === 'cyan') warn += '⚠️ Wild species — significantly higher potency than cubensis. ';
-      if (dcExp_ === 'none')                                           warn += '🔰 First time: choose the lowest dose. Have a trusted sober sitter present. ';
-      if (dcIntent_ === 'strong')                                      warn += '🌌 High doses can produce ego dissolution. Safe set, setting and sitter essential. ';
-      if (dcIntent_ === 'micro')         { onset = '20–60 min'; dur = '3–5 hrs';  peak = '1–2 hrs'; }
-      else if (dcMethod_ === 'lemontek') { onset = '15–30 min'; dur = '3–5 hrs';  peak = '1–2 hrs'; }
-      else                               { onset = '30–60 min'; dur = '4–6 hrs';  peak = '2–3 hrs'; }
+      if (dcExp_ === 'none')        warn += '🔰 First time: choose the lowest dose. Have a trusted sober sitter present. ';
+      if (dcIntent_ === 'strong')   warn += '🌌 High doses can produce ego dissolution. Safe set, setting and sitter essential. ';
+      if (dcIntent_ === 'micro')         { onset = '20–60 min'; dur = '3–5 hrs'; peak = '1–2 hrs'; }
+      else if (dcMethod_ === 'lemontek') { onset = '15–30 min'; dur = '3–5 hrs'; peak = '1–2 hrs'; }
+      else                               { onset = '30–60 min'; dur = '4–6 hrs'; peak = '2–3 hrs'; }
       set   = 'Comfortable, familiar space. Trusted sitter if first time. Phone away.';
       integ = 'Journal within 24hrs. Rest the following day. 2–4 weeks between sessions.';
 
@@ -3384,7 +3379,6 @@ function renderDoseCalc() {
 
   dcRenderStrains();
 }
-
 // ─── COST CALCULATOR ─────────────────────────────────────────
 function renderCostCalc() {
   const grid = document.getElementById('news-grid');
