@@ -2072,7 +2072,7 @@ function toggleDropdown(wrapId) {
 
 // Close dropdowns on outside click
 document.addEventListener('click', function(e) {
-  if (!e.target.closest('.dropdown-wrap')) closeAllDropdowns();
+  if (!e.target.closest('.dropdown-wrap') && !e.target.closest('[data-page]')) closeAllDropdowns();
 });
 // ─── JOURNAL PROMPTS ─────────────────────────────────────────
 function wireDropdowns() {
