@@ -2220,8 +2220,9 @@ function showPage(page) {
   if (stories) stories.innerHTML = '';
   if (sidebar) sidebar.innerHTML = '';
  if (grid) {
+if (grid) {
     var mainEl = document.querySelector('main');
-    if (mainEl && grid.parentElement !== mainEl) mainEl.appendChild(grid);
+    if (mainEl) mainEl.insertBefore(grid, mainEl.firstChild);
     grid.style.display = 'block';
     grid.innerHTML = '';
   }
