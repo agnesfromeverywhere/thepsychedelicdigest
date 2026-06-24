@@ -3571,12 +3571,16 @@ function renderPsyFinance() {
       '<div style="font-family:\'Syne\',sans-serif;font-size:0.60rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:12px;">Psychedelic Sector Stocks</div>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:28px;">' +
       [
-        {tick:'CMPS',name:'Compass Pathways',sub:'Psilocybin · NASDAQ',url:'https://finance.yahoo.com/quote/CMPS/',note:'Phase 3 trial results pending Q3 2026',col:'#2dd4bf'},
-        {tick:'DFTX',name:'Definium Therapeutics',sub:'LSD/DT120 · NASDAQ',url:'https://finance.yahoo.com/quote/DFTX/',note:'Formerly MindMed · Phase 3 GAD readouts 2026',col:'#a78bfa'},
-        {tick:'ATAI',name:'Atai Life Sciences',sub:'Multi-compound · NASDAQ',url:'https://finance.yahoo.com/quote/ATAI/',note:'Portfolio of 12 psychedelic programmes',col:'#60a5fa'},
-        {tick:'CYBN',name:'Cybin (Helus)',sub:'Psilocybin · NYSE',url:'https://finance.yahoo.com/quote/CYBN/',note:'CYB003 deuterated psilocybin Phase 3',col:'#34d399'},
-        {tick:'NUMI',name:'Numinus Wellness',sub:'Clinics · TSX',url:'https://finance.yahoo.com/quote/NUMI.TO/',note:'Canada\'s largest psychedelic clinic chain',col:'#f59e0b'},
-        {tick:'PSYK',name:'Horizons Psychedelic ETF',sub:'Sector ETF · TSX',url:'https://finance.yahoo.com/quote/PSYK.NE/',note:'Diversified psychedelic sector exposure',col:'#f97316'},
+       {tick:'CMPS',name:'Compass Pathways',sub:'Psilocybin · NASDAQ',url:'https://finance.yahoo.com/quote/CMPS/',note:'COMP360 Phase 3 TRD — launch-ready target 2026',col:'#2dd4bf'},
+{tick:'DFTX',name:'Definium Therapeutics',sub:'LSD/DT120 · NASDAQ',url:'https://finance.yahoo.com/quote/DFTX/',note:'Formerly MindMed · 3 Phase 3 readouts due 2026',col:'#a78bfa'},
+{tick:'ATAI',name:'AtaiBeckley',sub:'Multi-compound · NASDAQ',url:'https://finance.yahoo.com/quote/ATAI/',note:'Merged portfolio — psilocybin, MDMA, ketamine',col:'#60a5fa'},
+{tick:'HELP',name:'Helus Pharma',sub:'Psilocybin · NASDAQ',url:'https://finance.yahoo.com/quote/HELP/',note:'Formerly Cybin · HLP003 Phase 3 MDD due Q4 2026',col:'#34d399'},
+{tick:'GHRS',name:'GH Research',sub:'5-MeO-DMT · NASDAQ',url:'https://finance.yahoo.com/quote/GHRS/',note:'GH001 for TRD — FDA hold lifted Jan 2026',col:'#f59e0b'},
+{tick:'JNJ',name:'Johnson & Johnson',sub:'Esketamine · NYSE',url:'https://finance.yahoo.com/quote/JNJ/',note:'Spravato $1.7B revenue · 7,000+ certified sites',col:'#22c55e'},
+{tick:'ABBV',name:'AbbVie',sub:'Psilocybin · NYSE',url:'https://finance.yahoo.com/quote/ABBV/',note:'Acquired Gilgamesh psilocybin candidate 2025',col:'#ec4899'},
+{tick:'RLMD',name:'Relmada Therapeutics',sub:'Psilocybin · NASDAQ',url:'https://finance.yahoo.com/quote/RLMD/',note:'REL-P11 psilocybin Phase 1 complete',col:'#f97316'},
+{tick:'NUMI',name:'Numinus Wellness',sub:'Clinics · TSX',url:'https://finance.yahoo.com/quote/NUMI.TO/',note:'Canada largest psychedelic clinic network',col:'#0d9488'},
+{tick:'PSYK',name:'Horizons Psychedelic ETF',sub:'Sector ETF · TSX',url:'https://finance.yahoo.com/quote/PSYK.NE/',note:'Diversified sector exposure · up 31% past year',col:'#8b5cf6'},
       ].map(function(s) {
         return '<a href="' + s.url + '" target="_blank" rel="noopener" style="text-decoration:none;border-radius:12px;padding:14px 16px;border:0.5px solid ' + s.col + '22;background:' + s.col + '08;transition:all 0.2s;">' +
           '<div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px;">' +
