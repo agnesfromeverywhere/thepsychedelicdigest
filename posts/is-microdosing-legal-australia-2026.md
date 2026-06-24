@@ -1,8 +1,8 @@
 ---
-title: "Is Microdosing Legal in Australia in 2026? An Honest Guide"
+title: "Is Psilocybin Legal in Australia in 2026? A State-by-State Guide"
 date: 2026-05-29
 author: Agnes
-excerpt: Microdosing psilocybin is not legal for personal use in most of Australia in 2026, despite new therapeutic frameworks. Here's what you need to know.
+excerpt: Psilocybin remains illegal for personal use in most Australian states in 2026. Here is the state-by-state legal breakdown you need to know.
 category: Guides
 image: https://thepsychedelicdigest.com/images/microdosing-legal-australia.jpg
 tags: microdosing legal Australia, psilocybin law Australia, TGA, Schedule 9, psychedelic law, Australia 2026
