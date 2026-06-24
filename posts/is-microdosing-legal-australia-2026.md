@@ -5,7 +5,7 @@ author: Agnes
 excerpt: Psilocybin remains illegal for personal use in most Australian states in 2026. Here is the state-by-state legal breakdown you need to know.
 category: Guides
 image: https://thepsychedelicdigest.com/images/microdosing-legal-australia.jpg
-tags: microdosing legal Australia, psilocybin law Australia, TGA, Schedule 9, psychedelic law, Australia 2026
+tags: psilocybin legal Australia, microdosing legal Australia, psilocybin law Australia, TGA, Schedule 9, psychedelic law, Australia 2026
 ---
 
 Is microdosing legal in Australia in 2026? For most Australians, no. Possessing or using psilocybin mushrooms for personal use remains a criminal offence in every state and territory except the ACT. That said, the legal landscape has shifted significantly since 2023 and continues to evolve. If you are trying to understand where things actually stand, here is a clear and current overview.
