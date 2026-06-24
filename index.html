@@ -3490,52 +3490,789 @@ function renderResearchTracker() {
 }
 
 // ─── GLOSSARY ────────────────────────────────────────────────
+// ─── GLOSSARY — Full replacement function ────────────────────
+// Drop this in place of your existing renderGlossary() function
+// Includes: 40 terms · 5 categories · search · zero-click queries
+// Clinical notes · myth busters · DefinedTerm schema · Patient Prep Checklist
+
 function renderGlossary() {
   const grid = document.getElementById('news-grid');
-  const terms = [
-    ['Ayahuasca', 'A psychedelic brew from the Amazon made from Banisteriopsis caapi vine and Psychotria viridis leaves, containing DMT and MAOIs. Used in traditional indigenous ceremonies and increasingly in therapeutic contexts.'],
-    ['Default Mode Network (DMN)', 'A brain network active during self-referential thinking and mind-wandering. Psychedelics temporarily disrupt DMN activity, which is thought to underlie their therapeutic effects on rigid thought patterns.'],
-    ['Ego Dissolution', 'The temporary loss of the subjective sense of self, often occurring at higher doses of psychedelics. Associated with mystical experiences and considered therapeutically significant.'],
-    ['Entheogens', 'Psychoactive substances used in spiritual or religious contexts. From Greek: "generating the divine within." Includes psilocybin mushrooms, ayahuasca, peyote, and others.'],
-    ['Harm Reduction', 'A set of practical strategies aimed at reducing negative consequences of drug use without requiring abstinence. Includes safe dosing guidelines, set and setting awareness, and integration support.'],
-    ['Integration', 'The process of making meaning from a psychedelic experience and incorporating insights into daily life. Often involves therapy, journaling, meditation, and community support.'],
-    ['Ketamine', 'A dissociative anaesthetic with rapid antidepressant effects. The only legally available psychedelic-like medicine in most countries. Used via IV infusion, nasal spray (esketamine/Spravato), or IM injection.'],
-    ['LSD (Lysergic acid diethylamide)', 'A semi-synthetic psychedelic derived from ergot fungus. Active at microgram doses. Being studied for anxiety, addiction, and cluster headaches. Currently Schedule I in the US.'],
-    ['MAPS', 'Multidisciplinary Association for Psychedelic Studies. A non-profit research organisation that has led the most advanced clinical trials for MDMA-assisted therapy for PTSD.'],
-    ['MDMA', '3,4-methylenedioxymethamphetamine. Empathogen/entactogen with therapeutic potential for PTSD. Rejected by FDA in 2024 pending further trials. Currently in Phase 3 research globally.'],
-    ['Microdosing', 'Taking sub-perceptual doses of psychedelics (typically 1/10th of a full dose) on a regular schedule. Associated with improved mood, focus, and creativity. Evidence base still emerging.'],
-    ['Mystical Experience', 'A profound state characterised by unity, sacredness, noetic quality, and transcendence of time and space. Correlated with positive long-term outcomes in psychedelic therapy research.'],
-    ['Neuroplasticity', "The brain's ability to reorganise itself by forming new neural connections. Psychedelics promote neuroplasticity, which may underlie their ability to break entrenched thought and behaviour patterns."],
-    ['Psilocybin', 'The active compound in "magic mushrooms." Converts to psilocin in the body. Being studied for depression, anxiety, addiction, and end-of-life distress. FDA Breakthrough Therapy designation.'],
-    ['Psychedelic-Assisted Therapy (PAT)', 'A therapeutic model combining psychedelic medicine with psychological support. Includes preparation, dosing sessions with trained therapists, and integration work.'],
-    ['PTSD', 'Post-Traumatic Stress Disorder. A mental health condition triggered by traumatic events. One of the primary indications being studied for MDMA-assisted therapy.'],
-    ['Set and Setting', 'Coined by Timothy Leary. "Set" refers to mindset (intentions, expectations, emotional state). "Setting" refers to the physical and social environment. Both profoundly influence psychedelic experiences.'],
-    ['TGA (Therapeutic Goods Administration)', "Australia\'s drug regulator. In July 2023, became the first national regulator to approve psychedelics (psilocybin and MDMA) for therapeutic use."],
-    ['Treatment-Resistant Depression (TRD)', 'Depression that has not responded to at least two adequate trials of antidepressants. A major indication for psilocybin therapy research.'],
-  ];
-  const grouped = {};
-  terms.forEach(([term, def]) => {
-    const letter = term[0].toUpperCase();
-    if (!grouped[letter]) grouped[letter] = [];
-    grouped[letter].push([term, def]);
-  });
-  grid.style.display = 'block';
-  grid.innerHTML = `
-    <div style="animation:fadeUp 0.4s ease;grid-column:1/-1;">
-      <h2 style="font-family:\'Playfair Display\',serif;font-size:2rem;font-weight:400;margin-bottom:8px;color:var(--text-primary);">Psychedelic Therapy Glossary</h2>
-      <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:28px;">Key terms explained simply. No jargon, no judgment.</p>
-      ${Object.entries(grouped).sort().map(([letter, termList]) => `
-        <div style="margin-bottom:32px;">
-          <h3 style="font-family:\'Playfair Display\',serif;font-size:1.5rem;color:rgba(80,60,120,0.5);margin-bottom:16px;border-bottom:0.5px solid var(--border-1);padding-bottom:8px;">${letter}</h3>
-          ${termList.map(([term, def]) => `
-            <div style="margin-bottom:16px;padding:16px 20px;background:rgba(255,255,255,0.75);border-radius:12px;border:0.5px solid var(--border-1);box-shadow:0 2px 8px var(--bp-ink-05);">
-              <div style="font-weight:600;color:var(--text-primary);margin-bottom:6px;font-family:\'DM Sans\',sans-serif;">${term}</div>
-              <div style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;">${def}</div>
-            </div>`).join('')}
-        </div>`).join('')}
-    </div>`;
-}
+  if (!grid) return;
 
+  document.title = 'Psychedelic Therapy Glossary — 40 Terms Explained | The Psychedelic Digest';
+  updateCanonical('/glossary');
+
+  // ── INJECT DEFINEDTERM SCHEMA ─────────────────────────────
+  const existingSchema = document.getElementById('glossary-schema');
+  if (existingSchema) existingSchema.remove();
+
+  // ── TERMS DATA ────────────────────────────────────────────
+  const TERMS = [
+
+    // ── SUBSTANCES ──────────────────────────────────────────
+    {
+      term: 'Psilocybin',
+      category: 'Substances',
+      anchor: 'psilocybin',
+      query: 'What is psilocybin used for in therapy?',
+      definition: 'The active compound in psilocybe mushrooms. Converts to psilocin in the body, where it acts on serotonin receptors — particularly 5-HT2A — to produce altered states of consciousness. Currently holds FDA Breakthrough Therapy Designation for treatment-resistant depression.',
+      clinical: 'In clinical trials, a single 25mg dose administered under therapist supervision produces effects lasting 4–6 hours. Studies show remission rates significantly higher than SSRIs at 12 months.',
+      myth: 'Clinical psilocybin is not the same as eating magic mushrooms. Pharmaceutical-grade psilocybin is precisely dosed, tested for purity, and administered with weeks of preparation and integration support.',
+    },
+    {
+      term: 'MDMA',
+      category: 'Substances',
+      anchor: 'mdma',
+      query: 'How is MDMA used in psychedelic therapy?',
+      definition: '3,4-methylenedioxymethamphetamine. An empathogen and entactogen that increases release of serotonin, dopamine, and oxytocin. Being studied primarily for PTSD-assisted therapy. Currently in Phase 3 trials globally after Phase 2 showed 67% of participants no longer met PTSD diagnostic criteria.',
+      clinical: 'MDMA-assisted therapy involves two to three 8-hour dosing sessions (typically 80–120mg) supported by a therapist pair, preceded by preparation and followed by integration sessions.',
+      myth: 'Therapeutic MDMA use bears little resemblance to recreational use. Clinical settings are medically supervised, doses are controlled, and the therapeutic relationship is the primary driver of outcomes.',
+    },
+    {
+      term: 'Ketamine',
+      category: 'Substances',
+      anchor: 'ketamine',
+      query: 'Is ketamine a psychedelic and how is it used for depression?',
+      definition: 'A dissociative anaesthetic with rapid antidepressant effects, acting primarily on NMDA glutamate receptors. The only psychedelic-adjacent treatment currently approved and widely available. Administered as IV infusion, intramuscular injection, or nasal spray (esketamine/Spravato).',
+      clinical: 'Standard treatment protocols involve 6 infusions over 2–3 weeks. Antidepressant effects can appear within hours of the first session — significantly faster than traditional antidepressants which take weeks.',
+      myth: 'Ketamine is not a classic psychedelic — it works on different receptors than psilocybin or LSD. Its dissociative effects are distinct from serotonergic psychedelics, which is why it has a different regulatory pathway.',
+    },
+    {
+      term: 'LSD',
+      category: 'Substances',
+      anchor: 'lsd',
+      query: 'Is LSD being used in clinical therapy?',
+      definition: 'Lysergic acid diethylamide. A semi-synthetic psychedelic derived from ergot fungus, active at microgram doses. Being studied for generalised anxiety disorder (GAD), addiction, and cluster headaches. Definium Therapeutics (formerly MindMed) has DT120 — a pharmaceutically optimised form — in Phase 3 trials.',
+      clinical: 'Clinical LSD doses (typically 100mcg of pharmaceutical-grade material) produce effects lasting 8–12 hours, requiring full-day therapist support. Longer duration than psilocybin makes logistics more complex but may allow deeper processing.',
+      myth: 'LSD does not stay in your spine or cause chromosome damage. These are persistent myths with no scientific basis. Effects are entirely time-limited and dose-dependent.',
+    },
+    {
+      term: 'Ayahuasca',
+      category: 'Substances',
+      anchor: 'ayahuasca',
+      query: 'What is ayahuasca and is it used in therapy?',
+      definition: 'A psychedelic brew from the Amazon made from Banisteriopsis caapi vine and Psychotria viridis leaves, containing DMT and MAOIs. Used in traditional indigenous ceremonies for thousands of years and increasingly studied for depression and addiction.',
+      clinical: 'Clinical research shows ayahuasca produces rapid antidepressant effects, sometimes within 24 hours of a single ceremony. However, the MAOI content means it has significant drug interaction risks requiring careful medical screening.',
+      myth: 'Natural does not mean safe. Ayahuasca interacts seriously with SSRIs, antidepressants, and cardiac medications. The brew also varies in potency between batches and preparers, unlike pharmaceutical compounds.',
+    },
+    {
+      term: 'DMT',
+      category: 'Substances',
+      anchor: 'dmt',
+      query: 'What is DMT and how is it different from other psychedelics?',
+      definition: 'N,N-Dimethyltryptamine. A powerful, fast-acting psychedelic found naturally in many plants and in trace amounts in the human body. The active compound in ayahuasca when taken orally with MAOIs. When inhaled or injected, effects last only 15–30 minutes — making it a candidate for controlled clinical settings.',
+      clinical: 'Intravenous DMT is being explored as a therapeutic agent because its short duration allows full sessions within a standard clinical appointment. GH Research is studying mebufotenin (5-MeO-DMT) in this format for treatment-resistant depression.',
+      myth: 'DMT is not the "spirit molecule" in the sense of being endogenously psychedelic — the amounts naturally produced in the body are far too small to produce psychedelic effects under normal circumstances.',
+    },
+    {
+      term: '5-MeO-DMT',
+      category: 'Substances',
+      anchor: '5-meo-dmt',
+      query: 'What is 5-MeO-DMT used for in therapy?',
+      definition: '5-methoxy-N,N-dimethyltryptamine. A naturally occurring psychedelic found in the Colorado River toad (Incilius alvarius) and various plants. Produces an extremely intense, short-duration experience (15–45 minutes) characterised by ego dissolution. GH Research is the leading clinical developer.',
+      clinical: 'Early clinical data suggests a single inhalation of 5-MeO-DMT may produce significant antidepressant effects comparable to multiple psilocybin sessions. GH001 is currently in Phase 2b trials for treatment-resistant depression.',
+      myth: '5-MeO-DMT is often confused with DMT but produces a markedly different experience — less visual, more total dissolution of self-boundaries. The therapeutic mechanism is thought to be distinct from serotonergic psychedelics.',
+    },
+    {
+      term: 'Ibogaine',
+      category: 'Substances',
+      anchor: 'ibogaine',
+      query: 'What is ibogaine therapy and is it legal?',
+      definition: 'A psychoactive compound derived from the Tabernanthe iboga plant native to Central Africa. Used traditionally in Bwiti ceremonies. Shows significant promise for opioid use disorder and PTSD. Legal in some jurisdictions including South Africa and parts of Latin America. A 2025 Stanford study in veterans showed dramatic PTSD and traumatic brain injury improvements.',
+      clinical: 'Ibogaine treatment for addiction typically involves a single high-dose session lasting 24–36 hours, requiring cardiac monitoring due to QT-interval prolongation risk. Medical screening is critical — contraindicated with cardiac conditions.',
+      myth: 'Ibogaine is not a recreational drug — the experience is intense, often described as a life review rather than euphoric, and the cardiac risks make unsupervised use genuinely dangerous.',
+    },
+    {
+      term: 'Mescaline',
+      category: 'Substances',
+      anchor: 'mescaline',
+      query: 'What is mescaline and is it used in therapy?',
+      definition: 'A naturally occurring psychedelic alkaloid found in peyote cactus (Lophophora williamsii) and San Pedro cactus (Echinopsis pachanoi). One of the earliest psychedelics studied scientifically — Aldous Huxley described his mescaline experience in The Doors of Perception (1954). Legal for religious use by Native American communities in the USA.',
+      clinical: 'Less clinical research exists for mescaline than psilocybin or MDMA, but observational studies suggest it may be effective for depression and addiction. Effects last 8–12 hours. Currently receiving renewed research interest.',
+      myth: 'Peyote and mescaline are not interchangeable terms. Peyote is the cactus; mescaline is the compound within it. Synthetic mescaline exists and is chemically identical but produced without the plant.',
+    },
+    {
+      term: 'Psilocin',
+      category: 'Substances',
+      anchor: 'psilocin',
+      query: 'What is psilocin and how does it relate to psilocybin?',
+      definition: 'The active metabolite of psilocybin. When psilocybin is ingested, the body converts it to psilocin through dephosphorylation. Psilocin is the compound that actually crosses the blood-brain barrier and binds to serotonin receptors to produce psychedelic effects.',
+      clinical: 'Some pharmaceutical companies, including Helus Pharma (formerly Cybin), are developing deuterated forms of psilocin (HLP003) as direct drug candidates, bypassing the psilocybin-to-psilocin conversion step to achieve more predictable pharmacokinetics.',
+      myth: 'Psilocybin itself is not psychoactive — it is a prodrug. The experience is produced entirely by psilocin. This is why onset takes 30–60 minutes after ingestion.',
+    },
+
+    // ── CLINICAL ─────────────────────────────────────────────
+    {
+      term: 'Psychedelic-Assisted Therapy (PAT)',
+      category: 'Clinical',
+      anchor: 'psychedelic-assisted-therapy',
+      query: 'What happens in a psychedelic-assisted therapy session?',
+      definition: 'A therapeutic model combining a carefully dosed psychedelic medicine with structured psychological support. Consists of three phases: preparation sessions (building therapeutic alliance and setting intentions), one or more dosing sessions (the psychedelic experience with therapist support), and integration sessions (making meaning of the experience).',
+      clinical: 'Most clinical protocols involve 2–4 preparation sessions, 1–3 dosing sessions depending on the substance, and 3–6 integration sessions. The total programme typically spans 6–12 weeks.',
+      myth: 'The drug alone does not produce therapeutic outcomes. The therapeutic relationship, preparation, and integration work are considered equally or more important than the pharmacological effect.',
+    },
+    {
+      term: 'Preparation Session',
+      category: 'Clinical',
+      anchor: 'preparation-session',
+      query: 'What is a preparation session in psychedelic therapy?',
+      definition: 'Structured clinical meetings held before a psychedelic dosing session. Objectives include building trust with the therapist, setting clear intentions, reviewing medical and psychiatric history, addressing fears, and establishing safety protocols.',
+      clinical: 'Typically 2–4 sessions of 60–90 minutes each. Research shows quality of preparation significantly predicts therapeutic outcomes. Patients who feel safe with their therapist before dosing report more positive and therapeutically useful experiences.',
+      myth: 'Preparation is not optional or supplementary — it is a core component of the treatment. Skipping preparation to jump straight to dosing is considered clinically inappropriate and potentially harmful.',
+    },
+    {
+      term: 'Integration',
+      category: 'Clinical',
+      anchor: 'integration',
+      query: 'What is integration after psychedelic therapy?',
+      definition: 'The process of making meaning from a psychedelic experience and translating insights into lasting behavioural and psychological change. Involves therapy, journaling, somatic practices, meditation, and community support in the weeks and months following a session.',
+      clinical: 'Research suggests the majority of therapeutic benefit occurs not during the session itself but in the weeks following, as patients actively integrate insights. Most protocols include 3–6 integration sessions over 4–8 weeks post-dosing.',
+      myth: 'Integration is not just talking about what happened. It involves actively changing thought patterns, relationships, and behaviours — the session provides the opening, integration does the work.',
+    },
+    {
+      term: 'Dosing Session',
+      category: 'Clinical',
+      anchor: 'dosing-session',
+      query: 'What happens during a psychedelic dosing session?',
+      definition: 'The clinical appointment during which the psychedelic medicine is administered. Typically conducted in a specially designed room with comfortable furniture, soft lighting, curated music, and eye masks. One or two trained therapists are present throughout.',
+      clinical: 'Psilocybin dosing sessions last approximately 6–8 hours from administration to discharge. Patients lie down, wear eye masks, and listen to a pre-designed music playlist. Therapists provide support but generally do not direct the experience.',
+      myth: 'Therapists do not guide the psychedelic journey like a tour guide. Their role is to create safety, provide grounding if needed, and bear witness — not to interpret or direct the patient\'s inner experience.',
+    },
+    {
+      term: 'Trip Sitting',
+      category: 'Clinical',
+      anchor: 'trip-sitting',
+      query: 'What is trip sitting in psychedelic therapy?',
+      definition: 'The practice of remaining present with and supportive of someone undergoing a psychedelic experience. In clinical settings, trip sitting is performed by trained therapists. In informal settings, an experienced, sober person fulfils this role to ensure safety.',
+      clinical: 'Clinical trip sitters are trained in specific protocols including how to handle difficult experiences (sometimes called challenging experiences rather than bad trips), when to provide physical grounding, and how to avoid projecting their own interpretations onto the patient.',
+      myth: 'Trip sitting is not about controlling the experience. Intervention is minimal by design — the evidence shows that allowing the experience to unfold, even when difficult, produces better therapeutic outcomes than redirecting it.',
+    },
+    {
+      term: 'Set and Setting',
+      category: 'Clinical',
+      anchor: 'set-and-setting',
+      query: 'What does set and setting mean in psychedelic therapy?',
+      definition: 'A foundational concept first articulated by Timothy Leary in the 1960s. "Set" refers to mindset — the patient\'s intentions, expectations, beliefs, and emotional state entering the experience. "Setting" refers to the physical and social environment — the room, the music, the therapists, and the overall context.',
+      clinical: 'Research consistently shows set and setting are among the strongest predictors of psychedelic therapy outcomes. This is why clinical protocols invest heavily in preparation (shaping the set) and carefully designed environments (shaping the setting).',
+      myth: 'Set and setting is not just about having a nice room. It encompasses the entire therapeutic relationship, the patient\'s life context, and their psychological readiness — all of which must be carefully assessed before dosing.',
+    },
+    {
+      term: 'Authorised Prescriber',
+      category: 'Clinical',
+      anchor: 'authorised-prescriber',
+      query: 'What is a TGA Authorised Prescriber for psychedelic therapy in Australia?',
+      definition: 'In Australia, a psychiatrist who has received approval from the Therapeutic Goods Administration (TGA) to prescribe psilocybin for treatment-resistant depression or MDMA for PTSD outside of clinical trials. The Authorised Prescriber scheme is how Australia\'s 2023 psychedelic therapy approval operates in practice.',
+      clinical: 'As of 2026, the number of Authorised Prescribers remains small relative to patient demand. Access typically requires a referral from a GP, a comprehensive psychiatric assessment, and confirmation that at least two prior antidepressant treatments have failed.',
+      myth: 'Not all psychiatrists can prescribe psychedelic therapy in Australia. Only those with specific TGA authorisation can do so legally. Accessing treatment outside this pathway is not legally protected.',
+    },
+    {
+      term: 'Breakthrough Therapy Designation',
+      category: 'Clinical',
+      anchor: 'breakthrough-therapy-designation',
+      query: 'What does FDA Breakthrough Therapy Designation mean for psychedelics?',
+      definition: 'A US FDA designation that expedites the development and review of drugs for serious conditions where preliminary evidence shows the treatment may demonstrate substantial improvement over existing therapies. Psilocybin has received this designation for treatment-resistant depression and major depressive disorder.',
+      clinical: 'Breakthrough Therapy Designation does not mean a drug is approved — it means the FDA will work more closely with the developer during trials and review the application faster once submitted. COMP360 (Compass Pathways) and USONA\'s psilocybin formulation both hold this designation.',
+      myth: 'Breakthrough Therapy Designation is not FDA approval. Drugs with this designation still go through full Phase 3 trials and must demonstrate safety and efficacy before approval.',
+    },
+    {
+      term: 'Therapeutic Window',
+      category: 'Clinical',
+      anchor: 'therapeutic-window',
+      query: 'What is the therapeutic window in psychedelic therapy?',
+      definition: 'The dose range at which a psychedelic medicine produces therapeutic effects without causing unacceptable side effects or safety risks. For psilocybin, the therapeutic window in clinical trials is typically 25mg — high enough to produce meaningful effects but below doses associated with overwhelming adverse experiences.',
+      clinical: 'Finding the therapeutic window is complicated by individual variation in response. Factors including body weight, prior experience, and genetic variations in serotonin receptor density all influence how a patient responds to a given dose.',
+      myth: 'More is not always better in psychedelic therapy. Very high doses can produce experiences that are too destabilising to integrate, particularly for patients with trauma histories. Clinical protocols are conservative by design.',
+    },
+    {
+      term: 'Mystical Experience',
+      category: 'Clinical',
+      anchor: 'mystical-experience',
+      query: 'What is a mystical experience in psychedelic therapy and why does it matter?',
+      definition: 'A profound altered state characterised by unity consciousness, sense of sacredness, deeply felt positive affect, transcendence of time and space, and a sense of encountering ultimate reality. Measured clinically using the Mystical Experience Questionnaire (MEQ).',
+      clinical: 'Multiple studies show that the intensity of mystical experience during a psilocybin session is one of the strongest predictors of long-term therapeutic outcomes. Patients who report higher MEQ scores show greater reductions in depression, anxiety, and addiction at follow-up.',
+      myth: 'Mystical experiences are not required for therapeutic benefit — some patients show improvement without reporting classic mystical states. However, they appear to dramatically amplify outcomes when they occur.',
+    },
+    {
+      term: 'Ego Dissolution',
+      category: 'Clinical',
+      anchor: 'ego-dissolution',
+      query: 'What is ego dissolution and is it dangerous?',
+      definition: 'The temporary loss of the subjective boundary between self and world, typically occurring at higher doses of psychedelics. Associated with mystical experiences and considered therapeutically significant. Patients describe it as the self "dissolving" or "melting" — losing the usual sense of being a separate individual.',
+      clinical: 'Ego dissolution is measured using the Ego Dissolution Inventory (EDI) and is associated with lasting reductions in psychological rigidity, depression, and existential anxiety. It is particularly relevant in end-of-life anxiety treatment.',
+      myth: 'Ego dissolution is temporary and does not cause lasting personality loss. Patients return to their normal sense of self after the session. The therapeutic value appears to come from the perspective shift this temporary dissolution provides.',
+    },
+    {
+      term: 'Challenging Experience',
+      category: 'Clinical',
+      anchor: 'challenging-experience',
+      query: 'What is a bad trip and how is it managed in clinical settings?',
+      definition: 'A psychedelic experience involving fear, anxiety, paranoia, or distress. In clinical contexts referred to as a challenging experience rather than a "bad trip" — the framing acknowledges that difficult experiences can be therapeutically valuable when properly supported. All clinical trials have protocols for managing them.',
+      clinical: 'Clinical management involves grounding techniques, reassurance, physical presence of the therapist, and in rare cases oral benzodiazepines to reduce intensity. The MAPS Phase 3 trials reported challenging experiences in approximately 9% of sessions, all managed without lasting adverse outcomes.',
+      myth: 'A difficult experience is not a treatment failure. Some of the most therapeutically significant outcomes in psychedelic therapy research occurred in sessions that were initially distressing but led to profound insight and resolution.',
+    },
+    {
+      term: 'REMS',
+      category: 'Clinical',
+      anchor: 'rems',
+      query: 'What is a REMS program for psychedelic therapy?',
+      definition: 'Risk Evaluation and Mitigation Strategy. An FDA-required safety programme for drugs with serious risks that outweigh benefits unless certain conditions are met. If psychedelic medicines receive FDA approval, they will almost certainly require a REMS — meaning only specially certified therapists and clinics could administer them.',
+      clinical: 'A REMS for psilocybin would likely require therapist certification, patient enrolment in a registry, mandatory preparation and integration sessions, and reporting of adverse events. This is similar to the Spravato (esketamine) REMS already in place.',
+      myth: 'A REMS is not a barrier to access — it is a safety framework. The Spravato REMS has been successfully implemented at over 7,000 certified sites in the US, showing that psychedelic-adjacent medicines can scale within a REMS structure.',
+    },
+
+    // ── POLICY ───────────────────────────────────────────────
+    {
+      term: 'TGA (Therapeutic Goods Administration)',
+      category: 'Policy',
+      anchor: 'tga',
+      query: 'How did Australia legalise psychedelic therapy through the TGA?',
+      definition: 'Australia\'s national medicines regulator. In July 2023, the TGA became the first national regulator in the world to approve psychedelic medicines — specifically psilocybin for treatment-resistant depression and MDMA for PTSD — for use outside of clinical trials via the Authorised Prescriber pathway.',
+      clinical: 'The TGA\'s decision followed a review of clinical evidence including MAPS Phase 3 MDMA data and multiple psilocybin trials. It does not mean psychedelics are freely available — access is tightly controlled through the Authorised Prescriber scheme.',
+      myth: 'Australia\'s TGA approval does not mean psychedelic therapy is widely accessible. As of 2026, the number of Authorised Prescribers is small, costs are high (A$4,250–$40,000), and Medicare does not cover treatment.',
+    },
+    {
+      term: 'Schedule I',
+      category: 'Policy',
+      anchor: 'schedule-1',
+      query: 'Why are psychedelics still Schedule I in the US if they show medical benefits?',
+      definition: 'The most restrictive classification under the US Controlled Substances Act, reserved for substances deemed to have no accepted medical use and high potential for abuse. Psilocybin, LSD, MDMA, and DMT are all Schedule I in the USA at the federal level, making research difficult and access illegal outside approved trials.',
+      clinical: 'Schedule I classification requires researchers to obtain a DEA Schedule I researcher licence, which is difficult to obtain and limits supply chains. Despite this, Phase 3 trials are underway — but researchers must navigate significant regulatory complexity.',
+      myth: 'Schedule I does not mean a substance is more dangerous than Schedule II drugs like oxycodone and fentanyl, which have caused mass overdose deaths. The scheduling reflects political decisions made in the 1970s rather than current scientific evidence.',
+    },
+    {
+      term: 'Decriminalisation',
+      category: 'Policy',
+      anchor: 'decriminalisation',
+      query: 'What is the difference between decriminalisation and legalisation of psychedelics?',
+      definition: 'Decriminalisation removes criminal penalties for personal possession and use of a substance, but does not create a legal supply chain. Legalisation creates a regulated framework for production, sale, and use. Portugal decriminalised all drugs in 2001. Oregon (Measure 110) decriminalised psychedelic possession in 2020.',
+      clinical: 'Decriminalisation reduces harm by removing the threat of criminal prosecution from people seeking treatment, but does not on its own create access to clinical psychedelic therapy. Medical legalisation, as in Australia, is required to build a clinical access pathway.',
+      myth: 'Decriminalisation is not the same as legalisation. In decriminalised jurisdictions, psychedelics remain illegal — possession just results in a civil penalty (like a fine) rather than criminal prosecution.',
+    },
+    {
+      term: 'Oregon Measure 109',
+      category: 'Policy',
+      anchor: 'oregon-measure-109',
+      query: 'What is Oregon Measure 109 and how does it work?',
+      definition: 'A 2020 Oregon ballot measure that created the first regulated psilocybin service centre system in the USA. Under Measure 109, licensed facilitators can administer psilocybin to adults in approved service centres without a medical diagnosis or prescription. The first centres opened in 2023.',
+      clinical: 'Oregon\'s model differs from Australia\'s — it is a wellness model rather than a medical model. No diagnosis is required, but sessions must be conducted in licensed facilities by certified facilitators. It provides an important real-world dataset for policy makers globally.',
+      myth: 'Oregon Measure 109 did not legalise recreational psilocybin. Use must occur in a licensed service centre under facilitator supervision. Home use and retail sale of psilocybin remain illegal.',
+    },
+    {
+      term: 'Compassionate Use',
+      category: 'Policy',
+      anchor: 'compassionate-use',
+      query: 'What is compassionate use for psychedelic therapy?',
+      definition: 'A regulatory pathway that allows patients with serious or life-threatening conditions to access unapproved medicines outside of clinical trials when no other options exist. Also called expanded access. Used in Australia, Switzerland, and Canada to provide psychedelic therapy access before full approval.',
+      clinical: 'In Switzerland, a compassionate use programme has allowed terminally ill patients to access psilocybin therapy since the early 2020s. Canada\'s Section 56 exemptions operate similarly, allowing individual patients to apply for access to restricted substances.',
+      myth: 'Compassionate use is not a free pass — it requires extensive medical documentation, regulatory approval, and is typically only granted to patients with terminal or treatment-resistant conditions who have exhausted all other options.',
+    },
+    {
+      term: 'Lykos / MAPS FDA Rejection',
+      category: 'Policy',
+      anchor: 'lykos-fda-rejection',
+      query: 'Why did the FDA reject MDMA therapy in 2024?',
+      definition: 'In August 2024, the FDA rejected Lykos Therapeutics\' (formerly MAPS PBC) application for MDMA-assisted therapy for PTSD — the first psychedelic medicine application to reach FDA review. The agency cited concerns about trial design, functional unblinding (patients knowing they received MDMA), and data interpretation rather than safety concerns about MDMA itself.',
+      clinical: 'The FDA requested an additional Phase 3 trial. This set the timeline for MDMA approval back by several years. However, researchers noted the issues raised are considered addressable, and global trials are continuing.',
+      myth: 'The FDA rejection was not a rejection of psychedelic therapy broadly. It was specific to the application methodology of a single trial programme. Psilocybin trials from Compass Pathways and USONA continue toward their own separate applications.',
+    },
+
+    // ── SCIENCE ──────────────────────────────────────────────
+    {
+      term: 'Default Mode Network (DMN)',
+      category: 'Science',
+      anchor: 'default-mode-network',
+      query: 'What is the default mode network and how do psychedelics affect it?',
+      definition: 'A network of interconnected brain regions that is most active during self-referential thinking, mind-wandering, rumination, and the construction of the narrative self. Key regions include the medial prefrontal cortex, posterior cingulate cortex, and angular gyrus.',
+      clinical: 'Neuroimaging studies show psychedelics temporarily suppress DMN activity, correlating with ego dissolution and reduced rumination. This disruption is thought to break rigid, self-reinforcing thought patterns underlying depression, anxiety, and addiction.',
+      myth: 'The DMN is not inherently pathological — it is essential for planning, self-reflection, and social cognition. The therapeutic hypothesis is that psychedelics temporarily loosen its grip, creating a window for new patterns to form.',
+    },
+    {
+      term: 'Neuroplasticity',
+      category: 'Science',
+      anchor: 'neuroplasticity',
+      query: 'How do psychedelics promote neuroplasticity in the brain?',
+      definition: 'The brain\'s ability to reorganise itself by forming new synaptic connections. Psychedelics, particularly psilocybin and ketamine, have been shown to rapidly promote neuroplasticity — increasing dendritic spine density and synaptogenesis in ways that correlate with antidepressant effects.',
+      clinical: 'Animal studies show psilocybin increases BDNF (brain-derived neurotrophic factor) and promotes synaptogenesis within hours of administration. This biological change is thought to create the conditions for lasting psychological change when combined with therapy.',
+      myth: 'Neuroplasticity from psychedelics is not permanent on its own — it creates a window of enhanced plasticity during which therapeutic work appears more effective. Integration is required to consolidate new neural pathways into lasting change.',
+    },
+    {
+      term: '5-HT2A Receptor',
+      category: 'Science',
+      anchor: '5ht2a-receptor',
+      query: 'What is the 5-HT2A receptor and why do psychedelics target it?',
+      definition: 'A subtype of serotonin receptor found predominantly in the prefrontal cortex. The primary pharmacological target of classic serotonergic psychedelics including psilocybin, LSD, DMT, and mescaline. Agonism of 5-HT2A receptors triggers the cascade of effects that produce psychedelic experiences.',
+      clinical: 'The correlation between 5-HT2A binding affinity and psychedelic potency is well established. This receptor also plays a role in cognition, mood regulation, and perception under normal conditions, which is why psychedelics have such broad psychological effects.',
+      myth: 'Serotonin itself does not directly cause psychedelic experiences. SSRIs increase serotonin but are not psychedelic — because they do not directly agonise 5-HT2A in the way psychedelics do.',
+    },
+    {
+      term: 'BDNF',
+      category: 'Science',
+      anchor: 'bdnf',
+      query: 'What is BDNF and how does it relate to psychedelic therapy?',
+      definition: 'Brain-Derived Neurotrophic Factor. A protein that supports the growth, maturation, and maintenance of neurons. Often called "fertiliser for the brain." Low BDNF levels are associated with depression. Both psychedelics and exercise increase BDNF expression.',
+      clinical: 'Ketamine\'s rapid antidepressant effects are partly attributed to rapid BDNF release and mTOR pathway activation. Psilocybin also increases BDNF in animal models. This biological mechanism helps explain why effects can be rapid and lasting even after a single session.',
+      myth: 'BDNF alone does not explain psychedelic therapy outcomes — the psychological and relational components of treatment remain essential. BDNF is one biological mechanism among several, not the complete explanation.',
+    },
+    {
+      term: 'Serotonin Syndrome',
+      category: 'Science',
+      anchor: 'serotonin-syndrome',
+      query: 'Can psychedelics cause serotonin syndrome?',
+      definition: 'A potentially life-threatening drug reaction caused by excess serotonin activity in the nervous system. Symptoms range from shivering and diarrhoea to severe muscle rigidity, fever, and seizures. Risk is highest when serotonergic drugs are combined.',
+      clinical: 'Classic psychedelics (psilocybin, LSD) acting on 5-HT2A receptors carry low risk of serotonin syndrome on their own. Risk increases significantly when combined with SSRIs, MAOIs, or tramadol. Ayahuasca, which contains MAOIs, presents the highest risk when combined with other serotonergic medications.',
+      myth: 'Serotonin syndrome from psychedelics alone is rare but the risk from combinations is real and serious. This is a primary reason why thorough medication screening before any psychedelic therapy session is non-negotiable.',
+    },
+    {
+      term: 'Neurogenesis',
+      category: 'Science',
+      anchor: 'neurogenesis',
+      query: 'Do psychedelics cause neurogenesis or new brain cell growth?',
+      definition: 'The formation of new neurons, primarily in the hippocampus. Research has suggested psychedelics and antidepressants may promote hippocampal neurogenesis, which is associated with improved mood regulation and stress resilience.',
+      clinical: 'Evidence for psychedelic-induced neurogenesis in humans remains preliminary — most data comes from animal studies. However, increased dendritic branching (rather than full new neurons) has been more consistently demonstrated and is considered a key mechanism.',
+      myth: 'Psychedelics do not "grow new brain cells" in the dramatic sense sometimes claimed on social media. The neuroplasticity effects are real but more nuanced — involving synaptic remodelling and dendritic growth rather than mass neuron production.',
+    },
+
+    // ── INTEGRATION ──────────────────────────────────────────
+    {
+      term: 'Harm Reduction',
+      category: 'Integration',
+      anchor: 'harm-reduction',
+      query: 'What is harm reduction in the context of psychedelic use?',
+      definition: 'A set of practical strategies and policies aimed at reducing the negative consequences of drug use without requiring abstinence. In psychedelic contexts, harm reduction includes drug checking services, safe dosing guidance, set and setting education, sober sitter training, and integration support.',
+      clinical: 'The Australian TGA framework is itself a harm reduction model — by creating a legal, medically supervised access pathway, it reduces the harms associated with people seeking treatment in unregulated settings or overseas.',
+      myth: 'Harm reduction is not the same as encouraging drug use. It is a pragmatic public health approach that acknowledges people will use substances regardless of legal status, and focuses on minimising risks rather than enforcing abstinence.',
+    },
+    {
+      term: 'Somatic Therapy',
+      category: 'Integration',
+      anchor: 'somatic-therapy',
+      query: 'What is somatic therapy and how does it support psychedelic integration?',
+      definition: 'A body-based approach to psychotherapy that focuses on the connection between mind and body. Includes techniques like breathwork, body scanning, movement, and touch (where appropriate). Particularly relevant to psychedelic integration because psychedelic experiences are often felt as much in the body as in the mind.',
+      clinical: 'Many psychedelic therapists are trained in somatic approaches because trauma is often held in the body. Integration sessions that incorporate movement, breath, or body awareness help patients process somatic material that emerged during sessions.',
+      myth: 'Somatic therapy is not alternative medicine — it is evidence-based and increasingly incorporated into mainstream trauma treatment (including EMDR and SE). Its role in psychedelic integration is supported by a growing evidence base.',
+    },
+    {
+      term: 'Microdosing',
+      category: 'Integration',
+      anchor: 'microdosing',
+      query: 'Does microdosing psychedelics actually work?',
+      definition: 'Taking sub-perceptual doses of a psychedelic substance — typically 1/10th to 1/20th of a full dose — on a regular schedule. Common protocols include the Fadiman Protocol (one day on, two days off) and the Stamets Stack. Most commonly practised with psilocybin or LSD.',
+      clinical: 'The evidence base remains mixed. Some controlled studies show benefits for mood, focus, and creativity. Others show effects largely attributable to expectation (placebo). The largest randomised controlled study (Imperial College London, 2022) found microdosing produced small improvements in psychological wellbeing that could not be fully separated from placebo effects.',
+      myth: 'Microdosing is not an approved medical treatment anywhere and is not the same as psychedelic-assisted therapy. It is a self-directed practice with an emerging but not yet definitive evidence base.',
+    },
+    {
+      term: 'Journaling Protocol',
+      category: 'Integration',
+      anchor: 'journaling-protocol',
+      query: 'How should you journal after a psychedelic therapy session?',
+      definition: 'A structured approach to recording and processing the content of psychedelic experiences through writing. Recommended by most clinical protocols as a core integration tool. Typically involves writing within 24 hours of a session while memories are vivid, and returning to the journal repeatedly in subsequent weeks.',
+      clinical: 'Clinical integration therapists often provide structured prompts to guide journaling: What images or themes arose? What emotions were present? What insights feel most significant? What behavioural changes feel called for? The journal becomes a reference document for integration sessions.',
+      myth: 'Journaling is not just about recording what happened — it is about actively processing meaning. Research on expressive writing shows significant psychological benefits from structured written reflection, independent of psychedelic use.',
+    },
+    {
+      term: 'MAPS',
+      category: 'Integration',
+      anchor: 'maps',
+      query: 'What is MAPS and what role has it played in psychedelic therapy?',
+      definition: 'Multidisciplinary Association for Psychedelic Studies. A US non-profit research and advocacy organisation founded in 1986 by Rick Doblin. MAPS has funded and conducted the most advanced clinical trials for MDMA-assisted therapy for PTSD, spending over $130 million on research before forming Lykos Therapeutics as its commercial arm.',
+      clinical: 'MAPS developed the treatment manual and therapist training protocols used in MDMA trials globally, including in Australia. Their two-therapist model (one male, one female) has become the standard for MDMA-assisted therapy and influenced psilocybin protocols.',
+      myth: 'MAPS is not a drug company in the traditional sense — it is a non-profit that generated a commercial spin-off (Lykos) to fund FDA approval. The FDA rejection of Lykos\'s MDMA application in 2024 was a setback for MAPS\'s core mission.',
+    },
+    {
+      term: 'Entheogens',
+      category: 'Integration',
+      anchor: 'entheogens',
+      query: 'What does entheogen mean and how is it different from psychedelic?',
+      definition: 'From the Greek "generating the divine within." A term used to describe psychoactive substances used in spiritual or religious contexts. Preferred by some practitioners and researchers over "psychedelic" because it emphasises the sacred and intentional dimension of use rather than recreational connotations.',
+      clinical: 'Research shows that sessions framed with spiritual or intentional context produce better therapeutic outcomes than those without. This finding has led some clinicians to incorporate elements of meaning-making and spiritual preparation into otherwise secular protocols.',
+      myth: 'Entheogen and psychedelic are not interchangeable. All entheogens are psychedelics (they alter consciousness) but not all psychedelics are entheogens — the distinction is one of intent and context, not pharmacology.',
+    },
+    {
+      term: 'Contraindications',
+      category: 'Integration',
+      anchor: 'contraindications',
+      query: 'Who should not do psychedelic therapy?',
+      definition: 'Medical, psychiatric, or pharmacological factors that make psychedelic therapy inadvisable or unsafe for a given individual. Key contraindications include personal or family history of psychosis or schizophrenia, bipolar I disorder, active cardiovascular disease, current use of lithium or MAOIs, and pregnancy.',
+      clinical: 'Screening for contraindications is a core function of preparation sessions and psychiatric assessment. The risk is not that psychedelics are inherently dangerous for everyone — it is that they can destabilise specific vulnerable populations in ways that may be difficult to reverse.',
+      myth: 'Most people are not contraindicated for psychedelic therapy. The screening process exists to identify the minority for whom risks outweigh benefits — not to restrict access broadly. A thorough assessment protects both patients and the field.',
+    },
+    {
+      term: 'Treatment-Resistant Depression (TRD)',
+      category: 'Integration',
+      anchor: 'treatment-resistant-depression',
+      query: 'What is treatment-resistant depression and why are psychedelics being studied for it?',
+      definition: 'Depression that has not responded to at least two adequate trials of antidepressants given at appropriate doses for sufficient duration. Affects approximately 30% of people with major depressive disorder. TRD is the primary indication for psilocybin therapy in Australia under the TGA Authorised Prescriber scheme.',
+      clinical: 'The COMPASS Pathways Phase 3 trial of COMP360 (psilocybin) for TRD reported statistically significant reductions in depression scores at 12 weeks. A single 25mg dose outperformed lower doses and placebo, with effects maintained at 12-month follow-up.',
+      myth: 'Treatment-resistant does not mean untreatable. It means existing treatments have failed — which is precisely the population for whom the risk-benefit calculation of psychedelic therapy is most favourable.',
+    },
+    {
+      term: 'PTSD',
+      category: 'Integration',
+      anchor: 'ptsd',
+      query: 'How does psychedelic therapy help PTSD?',
+      definition: 'Post-Traumatic Stress Disorder. A mental health condition triggered by experiencing or witnessing traumatic events. Symptoms include intrusive memories, hypervigilance, emotional numbing, and avoidance. One of the two primary indications for psychedelic therapy in Australia alongside treatment-resistant depression.',
+      clinical: 'MDMA-assisted therapy is the most studied psychedelic treatment for PTSD. The MAPS Phase 3 trial showed 67% of participants no longer met PTSD diagnostic criteria after three MDMA sessions, compared to 32% in the placebo group.',
+      myth: 'Psychedelic therapy for PTSD does not work by making patients relive trauma in an unsafe way. The therapeutic mechanism appears to involve reduced fear response during memory recall — allowing trauma to be processed without overwhelming emotional activation.',
+    },
+  ];
+
+  // ── CATEGORIES ────────────────────────────────────────────
+  const CATS = ['All', 'Substances', 'Clinical', 'Policy', 'Science', 'Integration'];
+
+  // ── PATIENT PREP LIST ──────────────────────────────────────
+  const PREP_TERMS = [
+    'psilocybin', 'set-and-setting', 'preparation-session',
+    'dosing-session', 'integration', 'contraindications',
+    'authorised-prescriber', 'treatment-resistant-depression',
+    'challenging-experience', 'harm-reduction'
+  ];
+
+  // ── SCHEMA ────────────────────────────────────────────────
+  const schemaEntities = TERMS.map(t => ({
+    '@type': 'DefinedTerm',
+    'name': t.term,
+    'description': t.definition,
+    'inDefinedTermSet': {
+      '@type': 'DefinedTermSet',
+      'name': 'Psychedelic Therapy Glossary',
+      'url': 'https://www.thepsychedelicdigest.com/glossary'
+    },
+    'url': 'https://www.thepsychedelicdigest.com/glossary#' + t.anchor
+  }));
+
+  const faqEntities = TERMS.map(t => ({
+    '@type': 'Question',
+    'name': t.query,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': t.definition + ' ' + t.clinical
+    }
+  }));
+
+  const schemaEl = document.createElement('script');
+  schemaEl.type = 'application/ld+json';
+  schemaEl.id = 'glossary-schema';
+  schemaEl.textContent = JSON.stringify([
+    {
+      '@context': 'https://schema.org',
+      '@type': 'DefinedTermSet',
+      'name': 'Psychedelic Therapy Glossary',
+      'description': 'A comprehensive glossary of 40 psychedelic therapy terms — covering substances, clinical protocols, policy, science and integration. Written for patients, clinicians and researchers.',
+      'url': 'https://www.thepsychedelicdigest.com/glossary',
+      'publisher': {
+        '@type': 'Organization',
+        'name': 'The Psychedelic Digest',
+        'url': 'https://www.thepsychedelicdigest.com'
+      },
+      'hasDefinedTerm': schemaEntities
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': faqEntities
+    }
+  ]);
+  document.head.appendChild(schemaEl);
+
+  // ── RENDER ────────────────────────────────────────────────
+  grid.style.display = 'block';
+
+  function renderTerms(filter, search) {
+    let filtered = TERMS;
+    if (filter && filter !== 'All') filtered = filtered.filter(t => t.category === filter);
+    if (search) {
+      const q = search.toLowerCase();
+      filtered = filtered.filter(t =>
+        t.term.toLowerCase().includes(q) ||
+        t.definition.toLowerCase().includes(q) ||
+        t.category.toLowerCase().includes(q)
+      );
+    }
+
+    if (!filtered.length) {
+      return '<div style="text-align:center;padding:48px;color:var(--text-muted);">No terms match your search.</div>';
+    }
+
+    // Group by first letter
+    const groups = {};
+    filtered.forEach(t => {
+      const letter = t.term[0].toUpperCase();
+      if (!groups[letter]) groups[letter] = [];
+      groups[letter].push(t);
+    });
+
+    return Object.keys(groups).sort().map(letter => `
+      <div style="margin-bottom:32px;">
+        <div style="
+          font-family:'Syne',sans-serif;
+          font-size:1.8rem;
+          font-weight:800;
+          background:linear-gradient(90deg,#2dd4bf,#60a5fa,#a78bfa);
+          -webkit-background-clip:text;
+          -webkit-text-fill-color:transparent;
+          background-clip:text;
+          margin-bottom:14px;
+          padding-bottom:8px;
+          border-bottom:0.5px solid rgba(45,212,191,0.2);
+        ">${letter}</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          ${groups[letter].map(t => `
+            <div id="glossary-${t.anchor}" style="
+              background:rgba(18,16,24,0.85);
+              border:0.5px solid rgba(45,212,191,0.15);
+              border-top:0.5px solid rgba(45,212,191,0.28);
+              border-radius:14px;
+              overflow:hidden;
+              transition:border-color 0.2s;
+            ">
+              <!-- Term header -->
+              <div style="padding:18px 20px 14px;">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
+                  <div>
+                    <span style="
+                      font-size:0.58rem;font-weight:700;letter-spacing:0.12em;
+                      text-transform:uppercase;color:rgba(45,212,191,0.6);
+                      font-family:monospace;display:block;margin-bottom:5px;
+                    ">${t.category}</span>
+                    <h3 style="
+                      font-family:'Playfair Display',serif;
+                      font-size:1.15rem;font-weight:600;
+                      color:#2dd4bf;margin:0;line-height:1.2;
+                    ">${t.term}</h3>
+                  </div>
+                  <a href="/glossary#${t.anchor}"
+                    style="font-size:0.62rem;color:rgba(45,212,191,0.4);text-decoration:none;white-space:nowrap;padding-top:4px;font-family:monospace;"
+                    title="Direct link to ${t.term}">#</a>
+                </div>
+
+                <!-- Zero-click query -->
+                <div style="
+                  background:rgba(45,212,191,0.06);
+                  border:0.5px solid rgba(45,212,191,0.15);
+                  border-radius:8px;padding:8px 12px;margin-bottom:12px;
+                  display:flex;align-items:flex-start;gap:8px;
+                ">
+                  <span style="font-size:0.75rem;flex-shrink:0;">❓</span>
+                  <span style="font-size:0.74rem;color:rgba(255,255,255,0.55);font-style:italic;line-height:1.5;">${t.query}</span>
+                </div>
+
+                <!-- Definition -->
+                <p style="font-size:0.88rem;color:rgba(255,255,255,0.72);line-height:1.75;margin:0 0 14px;">${t.definition}</p>
+              </div>
+
+              <!-- Clinical note -->
+              <div style="
+                padding:12px 20px;
+                background:rgba(13,148,136,0.07);
+                border-top:0.5px solid rgba(13,148,136,0.15);
+              ">
+                <div style="display:flex;align-items:flex-start;gap:8px;">
+                  <span style="font-size:0.82rem;flex-shrink:0;margin-top:1px;">🔬</span>
+                  <div>
+                    <span style="font-family:'Syne',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:rgba(45,212,191,0.7);display:block;margin-bottom:3px;">Clinical Note</span>
+                    <p style="font-size:0.80rem;color:rgba(255,255,255,0.55);line-height:1.65;margin:0;">${t.clinical}</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Myth buster -->
+              <div style="
+                padding:12px 20px;
+                background:rgba(245,158,11,0.05);
+                border-top:0.5px solid rgba(245,158,11,0.12);
+              ">
+                <div style="display:flex;align-items:flex-start;gap:8px;">
+                  <span style="font-size:0.82rem;flex-shrink:0;margin-top:1px;">⚠️</span>
+                  <div>
+                    <span style="font-family:'Syne',sans-serif;font-size:0.58rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,158,11,0.7);display:block;margin-bottom:3px;">Common Myth</span>
+                    <p style="font-size:0.80rem;color:rgba(255,255,255,0.45);line-height:1.65;margin:0;font-style:italic;">${t.myth}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // ── PATIENT PREP CHECKLIST ────────────────────────────────
+  function renderPrepChecklist() {
+    const prepTerms = TERMS.filter(t => PREP_TERMS.includes(t.anchor));
+    return `
+      <div style="
+        margin-top:56px;
+        border-radius:18px;
+        overflow:hidden;
+        border:0.5px solid rgba(45,212,191,0.25);
+        border-top:0.5px solid rgba(45,212,191,0.45);
+        background:rgba(13,148,136,0.05);
+      ">
+        <div style="padding:28px 28px 20px;border-bottom:0.5px solid rgba(45,212,191,0.12);">
+          <div style="font-family:'Syne',sans-serif;font-size:0.62rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#2dd4bf;margin-bottom:8px;">Patient Resource</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:400;color:rgba(255,255,255,0.92);margin:0 0 8px;">10 Terms to Know Before Your First Session</h2>
+          <p style="font-size:0.84rem;color:var(--text-muted);margin:0;line-height:1.6;">If you are exploring psychedelic therapy for the first time, understanding these 10 concepts will help you prepare, communicate with your prescriber, and get the most from your treatment.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0;">
+          ${prepTerms.map((t, i) => `
+            <a href="#glossary-${t.anchor}"
+              style="
+                display:block;text-decoration:none;
+                padding:16px 20px;
+                border-bottom:0.5px solid rgba(255,255,255,0.05);
+                border-right:0.5px solid rgba(255,255,255,0.05);
+                transition:background 0.2s;
+              "
+              onmouseover="this.style.background='rgba(45,212,191,0.07)'"
+              onmouseout="this.style.background=''"
+            >
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="
+                  font-family:'Syne',sans-serif;font-size:0.70rem;font-weight:800;
+                  color:rgba(45,212,191,0.4);width:20px;flex-shrink:0;
+                ">${String(i+1).padStart(2,'0')}</span>
+                <div>
+                  <div style="font-size:0.86rem;font-weight:600;color:#2dd4bf;margin-bottom:3px;">${t.term}</div>
+                  <div style="font-size:0.72rem;color:var(--text-muted);line-height:1.4;">${t.definition.substring(0,80)}...</div>
+                </div>
+              </div>
+            </a>
+          `).join('')}
+        </div>
+        <div style="padding:16px 28px;border-top:0.5px solid rgba(45,212,191,0.12);">
+          <p style="font-size:0.72rem;color:var(--text-muted);margin:0;line-height:1.6;">This glossary is for educational purposes only and does not constitute medical advice. Always consult a qualified psychiatrist or Authorised Prescriber before pursuing psychedelic therapy.</p>
+        </div>
+      </div>
+    `;
+  }
+
+  // ── INITIAL RENDER ────────────────────────────────────────
+  let activeCat = 'All';
+  let searchVal = '';
+
+  function fullRender() {
+    grid.innerHTML = `
+      <div style="animation:fadeUp 0.4s ease;">
+
+        <!-- Page header -->
+        <div style="margin-bottom:32px;">
+          <div style="font-family:'Syne',sans-serif;font-size:0.62rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:#2dd4bf;margin-bottom:10px;">Reference · 40 Terms</div>
+          <h1 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;color:rgba(255,255,255,0.92);margin:0 0 10px;line-height:1.15;">Psychedelic Therapy Glossary</h1>
+          <p style="font-size:0.92rem;color:var(--text-muted);max-width:680px;line-height:1.7;margin:0;">Every term you need to understand psychedelic therapy — from substances and clinical protocols to Australian policy and the neuroscience behind how it works. Written for patients, clinicians and the genuinely curious.</p>
+        </div>
+
+        <!-- Search + stats bar -->
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap;">
+          <div style="position:relative;flex:1;min-width:220px;">
+            <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:0.85rem;pointer-events:none;">🔍</span>
+            <input
+              type="text"
+              id="glossary-search"
+              placeholder="Search terms..."
+              style="
+                width:100%;padding:10px 16px 10px 38px;
+                border-radius:999px;border:0.5px solid rgba(255,255,255,0.12);
+                background:rgba(18,16,24,0.80);color:rgba(255,255,255,0.85);
+                font-family:'DM Sans',sans-serif;font-size:0.84rem;outline:none;
+                transition:border-color 0.2s;
+              "
+              onfocus="this.style.borderColor='rgba(45,212,191,0.4)'"
+              onblur="this.style.borderColor='rgba(255,255,255,0.12)'"
+            >
+          </div>
+          <span id="glossary-count" style="font-size:0.72rem;color:var(--text-muted);white-space:nowrap;font-family:monospace;">${TERMS.length} terms</span>
+        </div>
+
+        <!-- Category tabs -->
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px;padding-bottom:16px;border-bottom:0.5px solid rgba(255,255,255,0.06);">
+          ${CATS.map(cat => `
+            <button
+              type="button"
+              class="gloss-cat-btn"
+              data-cat="${cat}"
+              style="
+                padding:6px 16px;border-radius:999px;cursor:pointer;
+                font-family:'DM Sans',sans-serif;font-size:0.76rem;font-weight:500;
+                transition:all 0.2s;white-space:nowrap;
+                ${cat === 'All'
+                  ? 'background:rgba(45,212,191,0.15);border:0.5px solid rgba(45,212,191,0.4);color:#2dd4bf;'
+                  : 'background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.10);color:rgba(255,255,255,0.55);'
+                }
+              "
+            >${cat} <span style="opacity:0.6;font-size:0.68rem;">${cat === 'All' ? TERMS.length : TERMS.filter(t=>t.category===cat).length}</span></button>
+          `).join('')}
+        </div>
+
+        <!-- Terms -->
+        <div id="glossary-terms-container">
+          ${renderTerms('All', '')}
+        </div>
+
+        <!-- Patient Prep Checklist -->
+        ${renderPrepChecklist()}
+
+        <!-- Disclaimer -->
+        <p style="margin-top:28px;font-size:0.70rem;color:var(--text-muted);font-family:monospace;text-align:center;line-height:1.7;">
+          The Psychedelic Digest Glossary · Last updated June 2026 · 40 terms · Not medical advice<br>
+          Cite as: The Psychedelic Digest. (2026). Psychedelic Therapy Glossary. thepsychedelicdigest.com/glossary
+        </p>
+      </div>
+    `;
+
+    // Wire search
+    const searchInput = document.getElementById('glossary-search');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        searchVal = this.value.trim();
+        const container = document.getElementById('glossary-terms-container');
+        const countEl = document.getElementById('glossary-count');
+        if (container) container.innerHTML = renderTerms(activeCat, searchVal);
+        const visibleCount = TERMS.filter(t =>
+          (activeCat === 'All' || t.category === activeCat) &&
+          (!searchVal || t.term.toLowerCase().includes(searchVal.toLowerCase()) ||
+           t.definition.toLowerCase().includes(searchVal.toLowerCase()))
+        ).length;
+        if (countEl) countEl.textContent = visibleCount + ' term' + (visibleCount !== 1 ? 's' : '');
+      });
+    }
+
+    // Wire category tabs
+    document.querySelectorAll('.gloss-cat-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        activeCat = this.dataset.cat;
+        searchVal = '';
+        const searchEl = document.getElementById('glossary-search');
+        if (searchEl) searchEl.value = '';
+
+        document.querySelectorAll('.gloss-cat-btn').forEach(b => {
+          b.style.background = 'rgba(255,255,255,0.04)';
+          b.style.borderColor = 'rgba(255,255,255,0.10)';
+          b.style.color = 'rgba(255,255,255,0.55)';
+        });
+        this.style.background = 'rgba(45,212,191,0.15)';
+        this.style.borderColor = 'rgba(45,212,191,0.4)';
+        this.style.color = '#2dd4bf';
+
+        const container = document.getElementById('glossary-terms-container');
+        const countEl = document.getElementById('glossary-count');
+        if (container) container.innerHTML = renderTerms(activeCat, '');
+        const count = activeCat === 'All' ? TERMS.length : TERMS.filter(t => t.category === activeCat).length;
+        if (countEl) countEl.textContent = count + ' term' + (count !== 1 ? 's' : '');
+      });
+    });
+
+    // Smooth scroll for prep checklist links
+    document.querySelectorAll('a[href^="#glossary-"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+  }
+
+  fullRender();
+}
 // ─── PSYFINANCE ──────────────────────────────────────────────
 function renderPsyFinance() {
   const grid = document.getElementById('news-grid');
