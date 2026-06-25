@@ -5,7 +5,7 @@ author: Agnes Horry
 excerpt: "Definium Therapeutics just posted the most significant psychedelic medicine data of 2026. Here is what the Phase 3 results actually mean."
 category: Finance
 tags: Definium Therapeutics, DFTX, LSD therapy, DT120, psychedelic stocks, psychedelic finance, MindMed, depression treatment, Phase 3 trial, psychedelic medicine investment
-image: "/images/psychedelicsfinance.jpg"
+image: "/images/psychedelicfinance.jpg"
 ---
 
 Psychedelic medicine had a very good week.
