@@ -1,14 +1,22 @@
 export const config = { runtime: 'nodejs' };
 
-export default async function handler(req, res) {
-  const ALLOWED_QUERIES = new Set([
+const ALLOWED_QUERIES = new Set([
   'psychedelic therapy',
   'psilocybin therapy',
   'MDMA therapy',
   'ketamine therapy'
 ]);
 
-const q = ALLOWED_QUERIES.has(req.query.q) ? req.query.q : 'psychedelic therapy';
+export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.thepsychedelicdigest.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=600');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  const q = ALLOWED_QUERIES.has(req.query.q) ? req.query.q : 'psychedelic therapy';
   const url = 'https://news.google.com/rss/search?q=' + encodeURIComponent(q) + '&hl=en-US&gl=US&ceid=US:en';
 
   try {
