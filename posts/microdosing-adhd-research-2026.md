@@ -19,16 +19,6 @@ tags:
 
 ---
 
-## Table of Contents
-- What Is Microdosing and Why Are People Doing It?
-- What Does Microdosing Actually Do to Your Brain?
-- What Are the Reported Benefits of Microdosing?
-- What Does the Clinical Research Show?
-- Who Is Microdosing in Australia?
-- What Are the Risks?
-- FAQ
----
-
 ## Why Are People With ADHD Microdosing?
 
 ADHD affects an estimated **one in twenty Australians**, and standard treatments, primarily stimulant medications like dexamphetamine and methylphenidate, do not work for everyone. Side effects including appetite suppression, sleep disruption, and cardiovascular impact lead many people to look for alternatives.
