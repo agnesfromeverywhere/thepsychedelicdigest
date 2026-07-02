@@ -5,7 +5,7 @@ author: "Agnes Horry"
 category: "Guides"
 readTime: "7 min read"
 excerpt: "Thousands of Australians with ADHD are microdosing psilocybin. Here is what the science says, what the risks are, and what legal options exist in 2026."
-image: "https://thepsychedelicdigest.com/images/microdosing_research.jpg"
+image: "https://thepsychedelicdigest.com/images/microdosing-research.jpg"
 tags:
   - microdosing
   - adhd
