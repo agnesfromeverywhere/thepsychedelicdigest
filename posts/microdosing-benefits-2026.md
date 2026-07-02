@@ -18,17 +18,6 @@ tags:
 
 ---
 
-## Table of Contents
-- [What Is Microdosing and Why Are People Doing It?](#what-is-microdosing)
-- [What Does Microdosing Actually Do to Your Brain?](#what-does-it-do)
-- [What Are the Reported Benefits of Microdosing?](#reported-benefits)
-- [What Does the Clinical Research Show?](#clinical-research)
-- [Who Is Microdosing in Australia?](#australia)
-- [What Are the Risks?](#risks)
-- [FAQ](#faq)
-
----
-
 ## What Is Microdosing and Why Are People Doing It?
 
 Microdosing means taking a sub-perceptual dose of a psychedelic substance, typically one-tenth of a full dose, on a structured schedule. The goal is no hallucinations, no trip, no significant perceptual shift. Just a subtle change in how you think, feel, or focus throughout the day.
