@@ -19,17 +19,6 @@ tags:
 
 ---
 
-## Table of Contents
-- [Why Volunteer for a Psychedelic Trial?](#why)
-- [How Many Trials Are Running in Australia Right Now?](#how-many)
-- [What Conditions Do Trials Currently Cover?](#conditions)
-- [What Does the Process Look Like?](#process)
-- [How Do You Find and Apply?](#how-to-find)
-- [What Are the Trade-offs?](#trade-offs)
-- [FAQ](#faq)
-
----
-
 ## Why Volunteer for a Psychedelic Trial?
 
 Legal psilocybin or MDMA therapy in Australia costs between $20,000 and $40,000 AUD out of pocket through the TGA's Authorised Prescriber scheme. For most Australians, that number is prohibitive.
