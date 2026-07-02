@@ -1,11 +1,15 @@
 ---
 title: "Microdosing FAQ: Everything You Need to Know in 2026"
-date: 2026-05-29
-author: Agnes
-excerpt: Your most common microdosing questions answered directly: how to start, which protocol to follow, legality in Australia, dosing, and more.
-category: Guides
-image: https://thepsychedelicdigest.com/images/microdosing-faq.jpg
-tags: microdosing FAQ, psilocybin questions, how to microdose, Fadiman protocol, microdosing legal Australia, microdosing benefits
+date: "2026-05-29"
+author: "Agnes Horry"
+category: "Guides"
+excerpt: "Your most common microdosing questions answered directly: how to start, which protocol to follow, and legality in Australia."
+image: "https://thepsychedelicdigest.com/images/microdosing-faq.jpg"
+tags:
+  - microdosing
+  - psilocybin
+  - guides
+  - australia
 ---
 
 These are the eight questions I am asked most often about microdosing, across six years of running the @psychedelictherapyclub community and publishing at The Psychedelic Digest. I have answered each one as directly and honestly as I can.
