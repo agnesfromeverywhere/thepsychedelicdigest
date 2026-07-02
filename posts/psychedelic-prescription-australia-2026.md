@@ -19,18 +19,6 @@ tags:
 
 ---
 
-## Table of Contents
-- [Who Is Legally Allowed to Prescribe Psychedelic Therapy in Australia?](#who)
-- [How Does a Psychiatrist Become an Authorised Prescriber?](#how-ap)
-- [How Many Authorised Prescribers Are There?](#how-many)
-- [Which Conditions Can Be Treated?](#conditions)
-- [How Do You Get a Referral?](#referral)
-- [Why Can Clinics Not Advertise This Service?](#advertising)
-- [What Does Treatment Actually Cost?](#cost)
-- [FAQ](#faq)
-
----
-
 ## Who Is Legally Allowed to Prescribe Psychedelic Therapy in Australia?
 
 In Australia, only **registered specialist psychiatrists** who have been individually approved by the Therapeutic Goods Administration (TGA) can legally prescribe psilocybin or MDMA as part of a therapeutic programme.
