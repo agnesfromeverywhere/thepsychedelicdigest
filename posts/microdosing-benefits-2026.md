@@ -24,7 +24,7 @@ Microdosing means taking a sub-perceptual dose of a psychedelic substance, typic
 
 The most common substances used for microdosing are **psilocybin mushrooms** and **LSD**, though some people also use mescaline, DMT, or ibogaine at sub-threshold levels.
 
-Interest has grown significantly since 2015, when tech workers in Silicon Valley began publicly discussing the practice. But the conversation has since moved far beyond productivity hacks. People are now microdosing for depression, anxiety, PTSD, ADHD, chronic pain, and general emotional regulation.
+Interest has grown significantly since 2015, when tech workers in Silicon Valley began publicly discussing the practice. Today microdosing is one of the most active topics on Reddit, with communities like r/microdosing counting hundreds of thousands of members sharing protocols, results, and questions in real time. But the conversation has since moved far beyond productivity hacks. People are now microdosing for depression, anxiety, PTSD, ADHD, chronic pain, and general emotional regulation.
 
 If you are new to this space and want a structured introduction to the practice, [The Microdosing Guidebook](https://www.amazon.com.au/dp/0645763209?&linkCode=sl2&tag=psychedelic00-22&linkId=b387efef4d07bab842c01c3fa3c59244&ref_=as_li_ss_tl) covers protocols, dosing, and what to expect in plain language.
 
