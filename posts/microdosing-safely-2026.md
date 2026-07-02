@@ -19,17 +19,6 @@ tags:
 
 ---
 
-## Table of Contents
-- [Why Do People Want to Microdose Daily?](#why-daily)
-- [What Happens to Your Body With Daily Microdosing?](#body)
-- [What Does Tolerance Do to the Effects?](#tolerance)
-- [What Are the Known Risks of Frequent Microdosing?](#risks)
-- [What Protocols Do Researchers Actually Recommend?](#protocols)
-- [How to Microdose More Safely](#safely)
-- [FAQ](#faq)
-
----
-
 ## Why Do People Want to Microdose Daily?
 
 The appeal is obvious. If microdosing makes you feel better, more focused, less anxious, why not do it every day?
