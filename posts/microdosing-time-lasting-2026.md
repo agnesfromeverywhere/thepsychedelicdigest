@@ -17,7 +17,8 @@ tags:
 **TL;DR:** Microdosing psilocybin produces noticeable effects within the first one to three dosing days for most people. Stable, meaningful results typically emerge after two to six weeks of consistent protocol use. Here is what to expect at each stage.
 
 ---
-# When Do You First Feel Microdosing Working?
+
+## When Do You First Feel Microdosing Working?
 
 This is one of the most common questions from people starting a microdosing practice, and the honest answer is that it varies more than most guides admit.
 
