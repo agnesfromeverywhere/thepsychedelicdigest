@@ -19,17 +19,6 @@ tags:
 
 ---
 
-## Table of Contents
-- [What Is the Stamets Stack?](#what-is-it)
-- [Who Is Paul Stamets?](#who-is-stamets)
-- [What Does Each Component Do?](#components)
-- [What Is the Theory Behind Combining Them?](#theory)
-- [What Does the Research Show?](#research)
-- [How Does It Compare to the Fadiman Protocol?](#comparison)
-- [How to Try the Stamets Stack](#how-to)
-- [FAQ](#faq)
-
----
 
 ## What Is the Stamets Stack?
 
