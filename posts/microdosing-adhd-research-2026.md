@@ -20,14 +20,13 @@ tags:
 ---
 
 ## Table of Contents
-- [Why Are People With ADHD Microdosing?](#why-adhd)
-- [What Does the Research Show?](#research)
-- [How Does Psilocybin Affect the ADHD Brain?](#brain)
-- [What Do People With ADHD Report?](#reports)
-- [What Are the Risks?](#risks)
-- [What Legal Options Exist in Australia?](#australia)
-- [FAQ](#faq)
-
+- What Is Microdosing and Why Are People Doing It?
+- What Does Microdosing Actually Do to Your Brain?
+- What Are the Reported Benefits of Microdosing?
+- What Does the Clinical Research Show?
+- Who Is Microdosing in Australia?
+- What Are the Risks?
+- FAQ
 ---
 
 ## Why Are People With ADHD Microdosing?
