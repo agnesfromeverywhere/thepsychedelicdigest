@@ -17,17 +17,7 @@ tags:
 
 **TL;DR:** Psilocybin-assisted therapy for treatment-resistant depression is legally available in Australia through the TGA's Authorised Prescriber scheme. The evidence is strong. Access is limited and expensive. Here is what the treatment actually involves and how to navigate the system in 2026.
 
----
 
-## Table of Contents
-- [Is Psilocybin Therapy for Depression Legal in Australia?](#legal)
-- [What Does the Research Show?](#research)
-- [Who Qualifies for Treatment?](#who-qualifies)
-- [What Does a Full Treatment Programme Look Like?](#programme)
-- [How Long Do the Effects Last?](#effects)
-- [What Does It Cost and Who Can Access It?](#cost)
-- [What Are the Alternatives?](#alternatives)
-- [FAQ](#faq)
 
 ---
 
