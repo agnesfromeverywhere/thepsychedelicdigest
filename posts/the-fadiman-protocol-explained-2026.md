@@ -4,19 +4,34 @@ date: 2026-05-29
 author: Agnes
 excerpt: The Fadiman Protocol is the world's most used microdosing schedule. Here's how it works, why it works, and who it's right for.
 category: Guides
-image: https://thepsychedelicdigest.com/images/fadiman-protocol.jpg
+image: /images/fadiman-protocol-infographic.jpg
 tags: Fadiman protocol, microdosing schedule, James Fadiman, psilocybin, microdosing protocol, one day on two days off
 ---
 
 The Fadiman Protocol is the most widely used microdosing schedule in the world. One day on, two days off, repeated over four to eight weeks. It is the starting point most practitioners recommend, it has the largest body of self-reported data behind it, and it is the schedule I see working most consistently across the Psychedelic Therapy Club community.
 
 If you are new to microdosing and wondering where to begin, this is it.
+
 <iframe width="100%" height="600" src="https://www.youtube.com/embed/7tO6_ppRDaI" frameborder="0" allowfullscreen></iframe>
+
 ## Who Is James Fadiman?
 
 Dr James Fadiman is a psychedelic researcher, author, and former Stanford lecturer who has been studying psychedelics since the 1960s. His 2011 book The Psychedelic Explorer's Guide brought systematic microdosing into mainstream awareness for the first time. Since then, Fadiman has collected thousands of self-reported microdosing observations through his ongoing research project, accessible at [fadiman.com](https://www.jamesfadiman.com). The protocol that carries his name emerged from that data as the most practical, repeatable structure available to beginners and experienced practitioners alike.
 
+It is also consistently one of the most searched topics in r/microdosing on Reddit, where thousands of people share real-world experiences following the schedule every month.
+
 ## How the Protocol Works
+
+The schedule runs on a three-day cycle.
+
+Day 1 is your dose day. Take your microdose in the morning, ideally within an hour of waking. Morning timing matters because both psilocybin and LSD carry mild stimulant properties that can interfere with sleep if taken later in the day.
+
+Day 2 is your transition day. No dose. Many practitioners report that this day carries a subtle afterglow from the previous dose and is often their most productive day of the cycle. Do not skip journalling on day 2.
+
+Day 3 is your rest day. No dose, no noticeable effect. Your system returns fully to baseline before the next dose.
+
+The cycle then repeats.
+
 ## The Fadiman Protocol Week-by-Week Schedule
 
 | Day | Action | What to Expect |
@@ -28,19 +43,10 @@ Dr James Fadiman is a psychedelic researcher, author, and former Stanford lectur
 
 Run this cycle for 4 to 8 weeks, then take a 2 to 4 week break before starting again.
 
-**Can you move dose days to fit your week?**
-Yes. Many people shift the cycle so dose days fall on Monday, Thursday, and Sunday rather than fixed calendar dates. The three-day gap is what matters, not which days of the week you choose. Avoid dosing on days when you need to drive long distances, sit important exams, or make high-stakes decisions until you know how your body responds.
+**Can you move dose days to fit your week?** Yes. Many people shift the cycle so dose days fall on Monday, Thursday, and Sunday rather than fixed calendar dates. The three-day gap is what matters, not which days of the week you choose. Avoid dosing on days when you need to drive long distances, sit important exams, or make high-stakes decisions until you know how your body responds.
 
-The schedule runs on a three-day cycle.
+![The Fadiman Protocol microdosing schedule infographic](/images/fadiman-protocol-infographic.jpg)
 
-Day 1 is your dose day. Take your microdose in the morning, ideally within an hour of waking. Morning timing matters because both psilocybin and LSD carry mild stimulant properties that can interfere with sleep if taken later in the day.
-
-Day 2 is your transition day. No dose. Many practitioners report that this day carries a subtle afterglow from the previous dose and is often their most productive day of the cycle. Do not skip journalling on day 2.
-
-Day 3 is your rest day. No dose, no noticeable effect. Your system returns fully to baseline before the next dose.
-
-The cycle then repeats.
-![The Fadiman Protocol microdosing schedule infographic](/ images/fadiman-protocol-infographic.jpg)
 ## Why the Two-Day Gap Matters
 
 Psychedelics produce tolerance quickly. Dosing two days in a row would require a larger dose on day two to achieve a comparable effect. At microdose levels this is subtler, but the accumulation is real. The two-day gap prevents tolerance from building and keeps your dose effective throughout the full protocol without adjustment.
@@ -68,6 +74,13 @@ A minority of people find the Fadiman Protocol too frequent and do better on a t
 ## Who Should Not Use It
 
 The Fadiman Protocol is not appropriate for people with a personal or family history of psychosis, schizophrenia, or bipolar I disorder. It is not recommended during pregnancy or breastfeeding. Anyone taking SSRIs or MAOIs should consult a medical professional before starting, as the interactions at microdose levels are not well studied. The [Zendo Project](https://zendoproject.org) and [MAPS](https://maps.org) both publish harm reduction resources that cover contraindications in detail.
+
+## How It Compares to Other Protocols
+
+The Stamets Stack doses four days on, three days off, and combines psilocybin with lion's mane mushroom and niacin. It is more intensive and may suit people specifically focused on neurogenesis and cognitive enhancement. The Every Other Day protocol is simpler but carries a higher risk of tolerance accumulation over time.
+
+For most people starting out, the Fadiman Protocol is the right first choice. It is structured enough to produce meaningful data without being demanding enough to become a stressor.
+
 ## Frequently Asked Questions
 
 **What is the Fadiman Protocol in simple terms?**
@@ -86,14 +99,4 @@ For most healthy adults with no personal or family history of psychosis, schizop
 Fadiman recommends a minimum of four weeks to see meaningful patterns. Eight weeks gives you enough cycles to distinguish genuine effects from natural mood variation. After completing a full cycle, take a two to four week break before starting again. This integration period is where many people notice whether the changes they experienced during the protocol persist on their own.
 
 **Fadiman Protocol vs Stamets Stack — which should beginners choose?**
-The Fadiman Protocol is the better starting point for most beginners. It is simpler, requires no additional supplements, uses fewer dose days per week, and has the longest track record of self-reported data. The Stamets Stack is more intensive, doses four days on and three days off, and adds lion's mane and niacin. Consider Stamets after you have completed at least one full Fadiman cycle and want to experiment further.
-
-## How It Compares to Other Protocols
-
-The Stamets Stack doses four days on, three days off, and combines psilocybin with lion's mane mushroom and niacin. It is more intensive and may suit people specifically focused on neurogenesis and cognitive enhancement. The Every Other Day protocol is simpler but carries a higher risk of tolerance accumulation over time.
-
-For most people starting out, the Fadiman Protocol is the right first choice. It is structured enough to produce meaningful data without being demanding enough to become a stressor.
-
-[The Microdosing Guidebook](https://amzn.to/4f37j75) covers the Fadiman Protocol in full alongside every other major schedule, with practical guidance on calibration, journalling, and integration.
-
-Track your experience from day one. The protocol is a container. What you bring to it determines what you get out.
+The
