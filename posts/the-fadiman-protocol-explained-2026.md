@@ -11,7 +11,7 @@ tags: Fadiman protocol, microdosing schedule, James Fadiman, psilocybin, microdo
 The Fadiman Protocol is the most widely used microdosing schedule in the world. One day on, two days off, repeated over four to eight weeks. It is the starting point most practitioners recommend, it has the largest body of self-reported data behind it, and it is the schedule I see working most consistently across the Psychedelic Therapy Club community.
 
 If you are new to microdosing and wondering where to begin, this is it.
-[Watch: The Fadiman Protocol explained in 60 seconds on YouTube](https://youtube.com/shorts/7tO6_ppRDaI)<iframe width="100%" height="600" src="https://www.youtube.com/embed/7tO6_ppRDaI" frameborder="0" allowfullscreen></iframe>
+[Watch: The Fadiman Protocol explained in 60 seconds on YouTube]
 
 ## Who Is James Fadiman?
 
