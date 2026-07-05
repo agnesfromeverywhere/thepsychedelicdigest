@@ -48,4 +48,48 @@ Run this cycle for 4 to 8 weeks, then take a 2 to 4 week break before starting a
 
 ## Why the Two-Day Gap Matters
 
-Psychedelics produce tolerance quickly. Dosing two days in a row would require a larger dose on day two to achieve a comparable effect. At
+Psychedelics produce tolerance quickly. Dosing two days in a row would require a larger dose on day two to achieve a comparable effect. At microdose levels this is subtler, but the accumulation is real. The two-day gap prevents tolerance from building and keeps your dose effective throughout the full protocol without adjustment.
+
+The gap also gives you something more valuable: a baseline for comparison. Without off days, you have no reference point for what the substance is actually doing versus your ordinary mood variation. The off days are not gaps in the protocol. They are part of the data. For more on how to track this properly, see the [microdosing journal guide](https://thepsychedelicdigest.com/blog/microdosing-journal-what-to-track-2026) on this site.
+
+## Tolerance: What Actually Happens in Your Brain
+
+This is where most guides stop short, so let us go deeper.
+
+Psilocybin works primarily through the 5-HT2A serotonin receptor. When you dose repeatedly without adequate rest, those receptors downregulate, meaning they become less sensitive to stimulation. Your brain is adapting to the input by reducing its own responsiveness to it.
+
+At full psychedelic doses, this tolerance effect is dramatic and fast. A second dose taken within 24 hours of the first produces noticeably blunted effects. Full receptor reset takes approximately 48 to 72 hours, which is exactly why the Fadiman one-on-two-off cadence is the tightest practical schedule that maintains full per-dose effect without adjustment.
+
+What this means practically: if you start noticing that your dose days feel flat or unremarkable after several weeks, tolerance is likely building even within the protocol. The solution is not to increase your dose. It is to lengthen your break, or to end your current cycle and take a full rest period before starting again.
+
+Some experienced practitioners also report that after multiple cycles, their effective dose gradually decreases rather than increases. This is the opposite of what tolerance produces with conventional stimulants and is one of the more consistently reported and scientifically interesting features of long-term microdosing practice.
+
+## Potency: Why Your Dose Is Not Just a Number
+
+If you are using dried psilocybin mushrooms, the standard starting range of 0.1g to 0.3g assumes a mid-potency strain. This is where most guides leave you, and it is also where most beginners get confused or overwhelmed.
+
+Mushroom potency varies significantly by species and strain.
+
+**Psilocybe cubensis** is the most common species used for microdosing. Within cubensis, potency varies considerably. Mid-potency strains such as Golden Teacher and B+ are the most forgiving starting points and roughly match what the 0.1g to 0.3g range assumes. High-potency cubensis strains such as Penis Envy and its variants (Albino Penis Envy, Trans Envy) can be two to three times more potent by weight than a standard Golden Teacher. If you are using a high-potency strain, start at 0.05g to 0.1g and adjust from there. Do not assume your usual dose applies.
+
+**Psilocybe azurescens and Psilocybe cyanescens** are wood-loving species found in parts of Australia and grown by some cultivators. These species carry significantly higher psilocybin concentrations than cubensis on average. If you have access to these varieties, treat them as high-potency by default and start well below your usual cubensis dose.
+
+**Potency also varies by batch.** Even within the same strain, different flushes can vary by 20 to 40% depending on substrate, growing conditions, and drying method. A consistent practice requires consistent sourcing. If you change batches, start low again.
+
+For precise dosing guidance calibrated to your specific substance and intended effect, use the [Psychedelic Digest Dose Calculator](https://www.thepsychedelicdigest.com/dose-calculator).
+
+## Typical Dose Ranges
+
+For dried psilocybin mushrooms, most practitioners start at 0.1g and adjust to between 0.1g and 0.3g for mid-potency strains. For LSD, 5 to 10 micrograms is the standard starting range. The right dose is the lowest amount that produces a subtle positive shift without any perceptual impairment. If you feel clearly altered, you have gone too high.
+
+For a full glossary of terms including tolerance, sub-perceptual, and psilocybin, visit the [Psychedelic Digest glossary](https://thepsychedelicdigest.com/glossary).
+
+## How Long Should You Run It?
+
+Fadiman recommends a minimum of four weeks. Eight weeks gives you enough cycles to identify genuine patterns rather than reacting to early variability. After completing a full protocol, take a two to four week break before starting another cycle. This rest period allows integration and helps you assess whether the changes you noticed persist independently of the substance.
+
+Research from [Vince Polito at Macquarie University](https://researchers.mq.edu.au/en/persons/vince-polito), who has run some of the most rigorous longitudinal microdosing studies to date, consistently shows that the integration period between cycles is where many of the lasting psychological shifts consolidate.
+
+## What People Actually Report
+
+From Fadiman's aggregated data and consistent observations within the @psychedelictherapyclub community, the most commonly reported effects on dose days are improved mood, increased focus, greater creative fluency, and reduced social anxiety. The most commonly reported challenges are restlessness or
