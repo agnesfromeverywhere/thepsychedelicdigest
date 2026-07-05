@@ -11,8 +11,7 @@ tags: Fadiman protocol, microdosing schedule, James Fadiman, psilocybin, microdo
 The Fadiman Protocol is the most widely used microdosing schedule in the world. One day on, two days off, repeated over four to eight weeks. It is the starting point most practitioners recommend, it has the largest body of self-reported data behind it, and it is the schedule I see working most consistently across the Psychedelic Therapy Club community.
 
 If you are new to microdosing and wondering where to begin, this is it.
-
-<iframe width="100%" height="600" src="https://www.youtube.com/embed/7tO6_ppRDaI" frameborder="0" allowfullscreen></iframe>
+[Watch: The Fadiman Protocol explained in 60 seconds on YouTube](https://youtube.com/shorts/7tO6_ppRDaI)<iframe width="100%" height="600" src="https://www.youtube.com/embed/7tO6_ppRDaI" frameborder="0" allowfullscreen></iframe>
 
 ## Who Is James Fadiman?
 
@@ -34,12 +33,13 @@ The cycle then repeats.
 
 ## The Fadiman Protocol Week-by-Week Schedule
 
-| Day | Action | What to Expect |
-|-----|--------|----------------|
-| Day 1 | Dose day — take microdose in the morning | Subtle lift in mood, focus, or creativity |
-| Day 2 | Transition day — no dose | Mild afterglow for many; often the most productive day |
-| Day 3 | Rest day — no dose | Full return to baseline |
-| Day 4 | Dose day — repeat cycle | Same as Day 1 |
+**Day 1 — Dose day:** Take your microdose in the morning. Expect a subtle lift in mood, focus, or creativity.
+
+**Day 2 — Transition day:** No dose. Mild afterglow for many people; often the most productive day of the cycle.
+
+**Day 3 — Rest day:** No dose. Full return to baseline.
+
+**Day 4:** Repeat from Day 1.
 
 Run this cycle for 4 to 8 weeks, then take a 2 to 4 week break before starting again.
 
