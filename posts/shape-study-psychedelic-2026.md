@@ -5,7 +5,7 @@ author: "Agnes Horry"
 category: "Research"
 readTime: "4 min read"
 excerpt: "The SHAPE study pays EUR 50 to people already planning to use LSD, psilocybin, ayahuasca, DMT, or MDMA. Here is who qualifies and how to join."
-image: "/images/trial-lake-lucerne.png"
+image: "/images/trial-lake-lucerne.jpg"
 tags:
   - psychedelic research
   - harm reduction
