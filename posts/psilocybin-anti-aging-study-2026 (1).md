@@ -130,7 +130,7 @@ Dr. Kato was direct about this: "It is important to note that additional researc
 
 **Psilocybin remains a Schedule I substance in the United States**, meaning it is classified as having no currently accepted medical use at a federal level, despite the FDA granting it Breakthrough Therapy designation for depression. In Australia, it is a Schedule 8 medicine only for specific conditions under an authorised psychiatrist.
 
-This study does not change the legal status of psilocybin anywhere. It does change the scientific conversation significantly.
+This study does not change the legal status of psilocybin anywhere. It does change the scientific conversation significantly. Reddit already started to get obsessed over this idea !
 
 ---
 
