@@ -17,7 +17,6 @@ tags:
 
 **TL;DR:** Researchers at Baylor College of Medicine published a peer-reviewed study in Nature Partner Journals showing psilocybin extended human cellular lifespan by up to 57%, preserved telomere length, reduced oxidative stress, and significantly improved survival in aged mice. This is the first study to show psilocybin has potent anti-aging effects outside the brain.
 
----
 
 ## What Did the Study Actually Find?
 
@@ -31,7 +30,6 @@ Their study, published in July 2025 in npj Aging, a Nature Partner Journal, foun
 
 This is not a wellness blog making bold claims. This is peer-reviewed science published in one of the world's most respected journal families.
 
----
 
 ## Who Conducted This Research?
 
@@ -41,7 +39,6 @@ The research was initiated at Emory University and supported by multiple institu
 
 These are not fringe researchers working outside mainstream science. This is funded, peer-reviewed academic work from two major US medical institutions.
 
----
 
 ## What Is Psilocin and Why Does It Matter?
 
