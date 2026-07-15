@@ -74,8 +74,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Psych Digest">
 <meta name="theme-color" content="#060d0c">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Syne:wght@700;800&family=JetBrains+Mono:wght@700&family=Permanent+Marker&family=Righteous&family=Monoton&display=swap" rel="stylesheet">
 <!-- JSON-LD FAQ Schema -->
 <script type="application/ld+json">
 {
@@ -2398,7 +2397,20 @@ function safeUrl(url) {
   return '#';
 }
 
-function showLoading() {
+var CAT_STYLE = {
+  'Research': {bg:'#3c3489', font:"'Syne',sans-serif", fw:800, fs:'0.85rem', ls:'0.02em'},
+  'Culture':  {bg:'#D85A30', font:"'Playfair Display',serif", fw:700, fs:'0.95rem', ls:'0', italic:true},
+  'Policy':   {bg:'#C4841D', font:"'JetBrains Mono',monospace", fw:700, fs:'0.72rem', ls:'0.03em'},
+  'Latest':   {bg:'#0f6e56', font:"'Permanent Marker',cursive", fw:400, fs:'0.9rem', ls:'0'},
+  'MDMA':     {bg:'#3b82f6', font:"'Righteous',sans-serif", fw:400, fs:'0.85rem', ls:'0.03em'},
+  'Psilocybin':{bg:'#3b82f6', font:"'Righteous',sans-serif", fw:400, fs:'0.85rem', ls:'0.03em'},
+  'Ketamine': {bg:'#3b82f6', font:"'Righteous',sans-serif", fw:400, fs:'0.85rem', ls:'0.03em'},
+  'LSD':      {bg:'#3b82f6', font:"'Righteous',sans-serif", fw:400, fs:'0.85rem', ls:'0.03em'},
+  'Ayahuasca':{bg:'#3b82f6', font:"'Righteous',sans-serif", fw:400, fs:'0.85rem', ls:'0.03em'},
+  'Finance':  {bg:'#6b7280', font:"'Monoton',cursive", fw:400, fs:'0.75rem', ls:'0.04em'},
+};
+function catStyle(cat) { return CAT_STYLE[cat] || CAT_STYLE['Latest']; }
+  function showLoading() {
   var loading = document.getElementById('loadingState');
   var empty = document.getElementById('empty');
   var hero = document.getElementById('hero');
@@ -2450,19 +2462,19 @@ function renderArticles(articles) {
     +'</a>';
   }
 
-  // Story grid (articles 2-13 as visual cards)
+// Story grid — 8 cards, 4 per row x 2 rows, colour-block category header
   if (sl) {
     sl.style.display = 'grid';
-    sl.style.gridTemplateColumns = 'repeat(auto-fill,minmax(200px,1fr))';
+    sl.style.gridTemplateColumns = 'repeat(4,1fr)';
     sl.style.gap = '12px';
-    sl.innerHTML = _allArticles.slice(1,7).map(function(a,i) {
-      var n = String(i+2).padStart(2,'0');
-      var img = (a.imageUrl && a.imageUrl.startsWith('http')) ? a.imageUrl : blueprintAuraImage(a.title, a.category);
-      return '<a class="visual-news-card" href="'+safeUrl(a.url)+'" target="_blank" rel="noopener noreferrer" style="display:block;">'
-        +'<img class="visual-news-img" src="'+escAttr(img)+'" alt="'+escAttr(a.title)+'" loading="lazy">'
-        +'<div class="visual-news-body">'
-          +'<div class="visual-news-kicker"><span>'+esc(a.category||'News')+'</span></div>'
-          +'<div class="visual-news-title">'+esc(a.title)+'</div>'
+    sl.innerHTML = _allArticles.slice(1,9).map(function(a) {
+      var cs = catStyle(a.category);
+      return '<a class="visual-news-card" href="'+safeUrl(a.url)+'" target="_blank" rel="noopener noreferrer" style="display:block;overflow:hidden;border-radius:14px;background:rgba(18,16,24,0.85);border:0.5px solid rgba(255,255,255,0.10);text-decoration:none;color:inherit;">'
+        +'<div style="height:80px;background:'+cs.bg+';display:flex;align-items:center;justify-content:center;padding:8px;">'
+          +'<span style="font-family:'+cs.font+';font-weight:'+cs.fw+';font-size:'+cs.fs+';letter-spacing:'+cs.ls+';color:#fff;text-align:center;'+(cs.italic?'font-style:italic;':'')+'">'+esc((a.category||'Latest').toUpperCase())+'</span>'
+        +'</div>'
+        +'<div style="padding:14px;">'
+          +'<div class="visual-news-title" style="color:var(--text-primary);font-size:0.88rem;line-height:1.3;">'+esc(a.title)+'</div>'
           +'<div style="margin-top:8px;font-size:0.68rem;color:var(--text-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+esc(a.source||'News')+' · '+esc(a.date||'')+'</div>'
         +'</div>'
       +'</a>';
