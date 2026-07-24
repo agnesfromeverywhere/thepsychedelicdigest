@@ -2,7 +2,11 @@ export const config = { runtime: 'nodejs' };
 
 const DRUGS = ['psilocybin', 'MDMA', 'LSD', 'ketamine', 'ibogaine', 'DMT'];
 const BASE = 'https://clinicaltrials.gov/api/v2/studies';
+const PSYCH_TERMS = /depress|ptsd|post.?traumatic|anxiety|anxious|addiction|use disorder|substance use|alcohol|opioid|tobacco|nicotine|cannabis|methamphetamine|\bocd\b|obsessive|suicid|trauma|mental health|well.?being|psychedelic|psychiatr|\bmood\b|anorexia|bulimia|eating disorder|bipolar|grief|burnout|demoraliz|existential|distress|palliative|cluster headache|migraine|adjustment disorder|autism|borderline|moral injury|anhedonia|lysergic|dimethyltryptamine|5-meo|ayahuasca/i;
 
+const CLINICAL_NOISE = /anesthe|anaesthe|sedation|surger|surgical|operative|intubat|catheter|delirium|tonsillect|hysterect|cesarean|shivering|status epilepticus|sclerosis|sickle cell|muscular atrophy|thrombosis|lupus|rheumatoid|cirrhosis|amyloid|stem cell|transplant|pleurodesis|hemorrhoid|cataract|bariatric|gastroscopy|colonoscopy|rotator cuff|dislocation/i;
+
+const GATED = new Set(['LSD', 'DMT', 'ketamine']);
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.thepsychedelicdigest.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
@@ -20,7 +24,7 @@ export default async function handler(req, res) {
     const trials = settled
       .filter(r => r.status === 'fulfilled')
       .flatMap(r => r.value)
-      .filter(t => t && !seen.has(t.id) && seen.add(t.id))
+      .filter(t => t && isRelevant(t) && !seen.has(t.id) && seen.add(t.id))
       .sort((a, b) => (b.au ? 1 : 0) - (a.au ? 1 : 0));
 
     return res.status(200).json({
@@ -73,4 +77,10 @@ function normalise(s, drug) {
     au: countries.includes('Australia'),
     url: 'https://clinicaltrials.gov/study/' + id
   };
+}
+function isRelevant(t) {
+  if (!GATED.has(t.drug)) return true;
+  const text = (t.title + ' ' + t.conditions.join(' ')).toLowerCase();
+  if (CLINICAL_NOISE.test(text)) return false;
+  return PSYCH_TERMS.test(text);
 }
