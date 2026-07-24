@@ -4,7 +4,7 @@ date: 2026-07-24
 author: Agnes
 excerpt: Psychedelic industry jobs are growing across research, therapy, biotech, policy, media, and operations. Here is where to find them in 2026.
 category: Careers
-image: https://thepsychedelicdigest.com/images/psychedelic-industry-jobs-2026.jpg
+image: https://thepsychedelicdigest.com/images/work-in-psychedelics.jpg
 tags: psychedelic industry jobs, psychedelic careers, psychedelic therapy jobs, psilocybin jobs, psychedelic research jobs, mental health careers
 ---
 
