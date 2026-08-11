@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "Ego dissolution is one of the most disorienting and potentially transformative aspects of a psychedelic experience. Here is what it is, why it happens, and why researchers think it is central to therapeutic benefit."
 category: Science
-image: /images/psychedelics-ego-dissolution.jpg
+image: /images/ego-death.jpg
 tags: ego dissolution, psychedelics, psilocybin, LSD, mental health, neuroscience, psychedelic therapy
 ---
 
