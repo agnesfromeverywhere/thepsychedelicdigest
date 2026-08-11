@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "The Silicon Valley microdosing narrative was always about creativity and performance. Here is what the science actually says about psychedelics, divergent thinking, and creative problem solving."
 category: Guides
-image: /images/psychedelics-creativity-microdosing.jpg
+image: /images/psychedelics-and-creativity.jpg
 tags: microdosing, creativity, psychedelics, psilocybin, LSD, divergent thinking, cognitive performance
 ---
 
