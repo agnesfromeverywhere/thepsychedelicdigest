@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "Ketamine is the most accessible psychedelic-adjacent treatment for depression in Australia right now. Here is what the evidence says and how to access it in 2026."
 category: Treatment
-image: /images/ketamine-depression-australia.jpg
+image: /images/ketamine-for-depression.jpg
 tags: ketamine, depression, mental health, ketamine therapy, Australia, treatment-resistant depression
 ---
 
