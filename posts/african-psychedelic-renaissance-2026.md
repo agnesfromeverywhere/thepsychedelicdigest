@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "Africa has the oldest psychedelic traditions on earth. Now a new generation is bringing that wisdom into modern mental health care and the world is paying attention."
 category: Culture
-image: /images/african-psychedelic-renaissance.jpg
+image: /images/africa-psychedelics.jpg
 tags: psychedelics, Africa, iboga, kambo, psilocybin, mental health, traditional medicine
 ---
 
