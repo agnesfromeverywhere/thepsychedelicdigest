@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "Anorexia nervosa has the highest mortality rate of any psychiatric condition. Early research on psilocybin is showing results that no existing treatment has matched. Here is what we know."
 category: Research
-image: /images/psilocybin-for-eating-disorder.jpg
+image: /images/psychedelics-for-eating-disorder.jpg
 tags: psilocybin, eating disorders, anorexia nervosa, mental health, psychedelic research, clinical trials
 ---
 
