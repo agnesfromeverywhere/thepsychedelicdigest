@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "The psychedelic experience is just the beginning. Integration therapy is what turns a profound journey into lasting change. Here is how it works and why it matters."
 category: Therapy
-image: /images/psychedelic-integration-therapy.jpg
+image: /images/psychedelic-integration.jpg
 tags: psychedelic therapy, integration, mental health, psilocybin, MDMA, somatic therapy
 ---
 
