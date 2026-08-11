@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "The psychedelic industry is one of the fastest-growing sectors in 2026. Here are the most in-demand careers in the USA and Europe right now."
 category: Industry
-image: /images/psychedelic-jobs-report-2026.jpg
+image: /images/work-in-psychedelics.jpg
 tags: psychedelic careers, psychedelic jobs, psychedelic industry, USA, Europe
 ---
 
