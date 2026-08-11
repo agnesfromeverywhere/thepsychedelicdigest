@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "Psychedelic therapy is not for everyone. But for some people, it could be the most significant mental health intervention of their lives. Here are 5 signs it might be worth exploring."
 category: Guides
-image: /images/signs-you-need-psychedelic-therapy.jpg
+image: /images/do-you-need-a-psychedelic-therapy.jpg
 tags: psychedelic therapy, mental health, depression, anxiety, PTSD, psilocybin, MDMA
 ---
 
