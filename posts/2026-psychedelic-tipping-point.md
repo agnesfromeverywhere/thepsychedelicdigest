@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "From the Eli Lilly acquisition to FDA priority vouchers and Trump's executive order, 2026 is the year psychedelic medicine stopped being fringe and became pharmaceutical strategy."
 category: Industry
-image: /images/2026-psychedelic-tipping-point.jpg
+image: /images/2026-year-of-psychedelics.jpg
 tags: psychedelic medicine, psilocybin, MDMA, clinical trials, drug policy, mental health, psyfinance
 ---
 
