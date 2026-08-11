@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "What actually happens during a psychedelic experience, and why does the context matter as much as the substance? Here is the science and the practice behind set, setting, and intention."
 category: Guides
-image: /images/psychedelic-experience-explained.jpg
+image: /images/psychedelic-experience.jpg
 tags: psychedelic experience, set and setting, psilocybin, intention, psychedelic therapy, harm reduction
 ---
 
