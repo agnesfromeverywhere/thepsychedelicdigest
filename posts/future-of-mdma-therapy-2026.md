@@ -4,7 +4,7 @@ date: 2026-07-23
 author: Agnes Horry
 excerpt: "MDMA-assisted therapy produced a 67% remission rate for PTSD in Phase 3 trials. Here is what comes next and who stands to benefit most when it is approved."
 category: Research
-image: /images/future-of-mdma-therapy.jpg
+image: /images/the-future-of-mdma.jpg
 tags: MDMA therapy, PTSD, psychedelic-assisted therapy, mental health, MAPS, clinical trials
 ---
 
