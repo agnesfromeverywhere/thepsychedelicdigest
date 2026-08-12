@@ -4,6 +4,7 @@ date: 2026-08-12
 author: Agnes Horry
 excerpt: The Quran never mentions psychedelics. Here are 7 evidence-based truths about Islam, plant medicine, and the debate reshaping mental health care globally.
 category: Research
+image: /images/islam-and-psychedelics.jpg
 tags: islam-psychedelics, psilocybin, plant-medicine, mental-health, psychedelic-therapy
 ---
 
