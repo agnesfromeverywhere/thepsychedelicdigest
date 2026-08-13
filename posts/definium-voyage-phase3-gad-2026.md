@@ -1,8 +1,8 @@
 ---
-title: "Definium Therapeutics Just Posted Its Second Positive Phase 3 Result and the Implications Are Enormous"
-date: date: "2026-08-13"
+title: "Definium Therapeutics Posts Two Phase 3 Wins in Eight Weeks and the Implications Are Enormous"
+date: "2026-08-13"
 author: Agnes Horry
-excerpt: "Definium's Phase 3 Voyage study of DT120, an LSD-derived tablet for generalised anxiety disorder, hit every endpoint. This is the second Phase 3 win in eight weeks and it changes the commercial picture for psychedelic medicine significantly."
+excerpt: "Definium's Phase 3 Voyage study of DT120 for anxiety hit every endpoint. Two Phase 3 wins in eight weeks from the same LSD-derived compound."
 category: Finance
 image: /images/definium-voyage-phase3.jpg
 tags:
@@ -16,7 +16,6 @@ tags:
   - psychedelic finance
   - psyfinance
 ---
-
 Something happened this morning that the mental health world has been waiting years to see.
 
 Definium Therapeutics announced positive topline results from Voyage, its Phase 3 study of DT120, an orally disintegrating tablet formulation of lysergide, in adults with generalised anxiety disorder. The study hit its primary endpoint with statistical significance and a large effect size. It swept every key secondary endpoint. And it did so just eight weeks after the company announced positive Phase 3 results from the Emerge study in major depressive disorder.
