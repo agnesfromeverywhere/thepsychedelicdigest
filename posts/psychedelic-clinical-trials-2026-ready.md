@@ -5,7 +5,7 @@ author: Agnes
 excerpt: "Psychedelic clinical trials are expanding at a record pace worldwide. Here are the 20+ studies most likely to change the mental health landscape in 2026 and beyond."
 category: Research
 readTime: "7 min read"
-image: /images/psychedelic-clinical-trials-2026.jpg
+image: /images/psychedelics-clinical-trials-2026.jpg
 tags: psychedelic research, clinical trials, psilocybin, MDMA, LSD, DMT, ketamine
 ---
 The psychedelic clinical trials landscape has never been more active or more promising. With major studies reading out in depression, PTSD, substance use disorders, and neurodegenerative diseases, 2026 is shaping up to be a pivotal year. Here are the 20+ trials to watch.
