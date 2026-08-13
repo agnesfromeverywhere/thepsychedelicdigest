@@ -2,7 +2,7 @@
 title: "The Psychedelic Clinical Trials Boom: 20+ Groundbreaking Studies to Watch in 2026"
 date: 2026-07-23
 author: Agnes
-excerpt: Psychedelic clinical trials are expanding at a record pace worldwide. Here are the 20+ studies most likely to change the mental health landscape in 2026 and beyond.
+excerpt: "Psychedelic clinical trials are expanding at a record pace worldwide. Here are the 20+ studies most likely to change the mental health landscape in 2026 and beyond."
 category: Research
 image:/ image/2026-trial-psychedelics.jpg
 tags: psychedelic research, clinical trials, psilocybin, MDMA, LSD, DMT, ketamine
