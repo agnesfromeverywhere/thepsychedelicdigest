@@ -1,11 +1,20 @@
 ---
 title: "Definium Therapeutics Just Posted Its Second Positive Phase 3 Result and the Implications Are Enormous"
-date: 2026-08-13
+date: '2026-08-13'
 author: Agnes Horry
 excerpt: "Definium's Phase 3 Voyage study of DT120, an LSD-derived tablet for generalised anxiety disorder, hit every endpoint. This is the second Phase 3 win in eight weeks and it changes the commercial picture for psychedelic medicine significantly."
 category: Finance
 image: /images/definium-voyage-phase3.jpg
-tags: Definium Therapeutics, DFTX, LSD, lysergide, generalised anxiety disorder, GAD, clinical trials, psychedelic finance, Phase 3, psyfinance
+tags: tags:
+  - Definium Therapeutics
+  - DFTX
+  - LSD
+  - lysergide
+  - generalised anxiety disorder
+  - GAD
+  - clinical trials
+  - psychedelic finance
+  - psyfinance
 ---
 
 Something happened this morning that the mental health world has been waiting years to see.
