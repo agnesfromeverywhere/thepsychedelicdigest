@@ -4,7 +4,7 @@ date: "2026-09-02"
 author: Agnes Horry
 excerpt: "I showed up to document an event for the Australian Psychedelic Society and ended up floating in geometric patterns somewhere between waking and dreaming. No substances. Just breath, light, and sound."
 category: Culture
-image: /images/breathwork-frequency-light.jpg
+image: /images/peter-volos.jpg
 tags:
   - breathwork
   - altered states
