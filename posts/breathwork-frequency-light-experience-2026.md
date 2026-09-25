@@ -21,19 +21,19 @@ I went to Newtown to take photos and ended up in another dimension.
 
 That was not the plan. The plan was to show up for the Australian Psychedelic Society, document the event, maybe grab some good footage of other people having an experience, and write something useful about it for this site. I cover psychedelic therapy research every day. I know what these altered states look like from the outside. I was there as an observer.
 
-Then Peter Volos, the facilitator, turned to me and asked if I wanted to participate.
+Then Pete, the facilitator, turned to me and asked if I wanted to participate.
 
 I said yes before I had fully thought it through. Which is usually how the best decisions happen.
 
 ## What Actually Goes On at One of These Sessions
 
-Peter Volos has been facilitating altered states of consciousness for years, working at the intersection of breathwork, somatic practice, and what he calls stroboscopic light therapy. The session I attended was hosted in a space in Newtown, Sydney, with the kind of atmosphere that immediately signals this is not a yoga class and not a rave. Somewhere in between. The lighting was dim and intentional. The setup was considered. The people who had come specifically for the session had done breathwork beforehand, which I had not, and that matters for how the experience unfolds.
+Pete has been facilitating altered states of consciousness for years, working at the intersection of breathwork, somatic practice, and what he calls stroboscopic light therapy. The session I attended was hosted in a space in Newtown, Sydney, with the kind of atmosphere that immediately signals this is not a yoga class and not a rave. Somewhere in between. The lighting was dim and intentional. The setup was considered. The people who had come specifically for the session had done breathwork beforehand, which I had not, and that matters for how the experience unfolds.
 
 The full session runs approximately three hours.
 
-What Peter is doing with the light is more specific than it might sound from the outside. He uses stroboscopic light at frequencies that shift throughout the session rather than staying fixed. He starts around 10 Hz, which sits in the alpha brainwave range, associated with relaxed, inward-focused, meditative states. As the session progresses he moves into higher frequencies, including 40 Hz in the gamma range, which is associated with attention, heightened sensory processing, and what researchers increasingly describe as psychedelic-like states.
+What Pete is doing with the light is more specific than it might sound from the outside. He uses stroboscopic light at frequencies that shift throughout the session rather than staying fixed. He starts around 10 Hz, which sits in the alpha brainwave range, associated with relaxed, inward-focused, meditative states. As the session progresses he moves into higher frequencies, including 40 Hz in the gamma range, which is associated with attention, heightened sensory processing, and what researchers increasingly describe as psychedelic-like states.
 
-The music moves in parallel with the light. Immersive, mostly ambient, shamanic and cinematic, building an arc from settling in through deeper and more immersive states and back out again. Peter chooses the progression deliberately. The playlist is not decoration. It is the architecture of the experience.
+The music moves in parallel with the light. Immersive, mostly ambient, shamanic and cinematic, building an arc from settling in through deeper and more immersive states and back out again. Pete chooses the progression deliberately. The playlist is not decoration. It is the architecture of the experience.
 
 Breathwork, light frequency, and music are happening simultaneously. Three inputs working on the nervous system at once, all pointing in the same direction.
 
@@ -57,19 +57,19 @@ Coming out of it was the only sad moment. I wanted to stay. The transition back 
 
 I write about psilocybin and MDMA and clinical trials and regulatory frameworks every day, and what I find is that most people, when they engage with this space, are fundamentally interested in the states of consciousness these medicines produce, not in the medicines themselves. They want access to the experience of profound peace, of perceiving the world differently, of stepping outside the relentless self-referential commentary of the ordinary mind, even briefly.
 
-What Peter is offering is a pathway to something in the same territory that requires no substance, no prescription, no $40,000 treatment course, and no legal complexity. That is not a small thing.
+What Pete is offering is a pathway to something in the same territory that requires no substance, no prescription, no $40,000 treatment course, and no legal complexity. That is not a small thing.
 
 He put it simply when I asked him what he thought a successful session looked like. Success for him is not about intensity. Someone might have extraordinary visuals and emotional release, or they might simply experience deep relaxation and presence. Both are valid. Both matter. His role, as he describes it, is not to direct the experience but to create a safe container in which the experience can unfold at its own pace.
 
-That philosophy is identical to the best psychedelic therapy I have read about and written about. The set and setting principles that research consistently identifies as the strongest predictors of therapeutic outcome in psilocybin therapy are exactly what Peter is applying here, without the psilocybin.
+That philosophy is identical to the best psychedelic therapy I have read about and written about. The set and setting principles that research consistently identifies as the strongest predictors of therapeutic outcome in psilocybin therapy are exactly what Pete is applying here, without the psilocybin.
 
-The integration question matters here too, and Peter knows it. He is explicit that what happens after the altered state is as important as the altered state itself. The experience can be beautiful and profound, but its real value lies in what you do with it when you bring it back into everyday life.
+The integration question matters here too, and Pete knows it. He is explicit that what happens after the altered state is as important as the altered state itself. The experience can be beautiful and profound, but its real value lies in what you do with it when you bring it back into everyday life.
 
 That is word for word what the best integration therapists in the psychedelic medicine space say. Different container. Same wisdom.
 
-## What Peter Said That Stayed With Me
+## What Pete Said That Stayed With Me
 
-Peter came to this work through his own experience with Cannabis used consciously in ceremonial settings, which gave him access to states he had not been able to reach through traditional therapy, including processing trauma that talking therapy had never touched. From that personal discovery he moved into facilitating spaces for others, adding breathwork, somatic practice, and eventually stroboscopic light as another tool for accessing states of consciousness without a substance.
+Pete came to this work through his own experience with Cannabis used consciously in ceremonial settings, which gave him access to states he had not been able to reach through traditional therapy, including processing trauma that talking therapy had never touched. From that personal discovery he moved into facilitating spaces for others, adding breathwork, somatic practice, and eventually stroboscopic light as another tool for accessing states of consciousness without a substance.
 
 When I asked what drew him to this work he described becoming fascinated by what can emerge when you create a structured container and allow people to explore different states of consciousness, states he describes as similar to psilocybin and ayahuasca, through non-pharmacological means.
 
@@ -79,7 +79,7 @@ That is rarer than it sounds.
 
 ## If You Are Curious
 
-I came to this event as a journalist and left as someone who had unexpectedly had an experience worth writing about. That does not happen often and I am grateful Peter offered me the chance to participate.
+I came to this event as a journalist and left as someone who had unexpectedly had an experience worth writing about. That does not happen often and I am grateful Pete offered me the chance to participate.
 
 If you are in Sydney and curious about what altered states of consciousness feel like without any substance involved, this is one of the most accessible and well-facilitated pathways I have encountered. Particularly if you are someone who has been curious about psychedelic therapy but is not ready for the clinical route, or someone who wants to understand what these states actually feel like before making any decisions.
 
