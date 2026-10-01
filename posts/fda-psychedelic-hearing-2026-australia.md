@@ -5,7 +5,8 @@ author: Agnes
 excerpt: On September 14, 2026, the FDA held its first ever public hearing on psychedelic therapy. Here is what happened and what it means for Australia.
 category: News
 tags: FDA psychedelic hearing 2026, psilocybin FDA approval 2026, psychedelic therapy USA Australia, Compass Pathways NDA, MDMA FDA resubmission
-image: "/images/therapyisexpensive.jpg"
+image: "image/5FDAmoments2026.jpg>
+"
 ---
 
 **On September 14, 2026, the United States Food and Drug Administration held its first ever public hearing on the potential therapeutic use of psychedelic drugs. The testimony was overwhelmingly positive. The implications are global.**
