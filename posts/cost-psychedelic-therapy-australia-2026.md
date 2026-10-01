@@ -5,6 +5,7 @@ author: Agnes
 excerpt: Psilocybin and MDMA therapy is now legal in Australia. But at $30,000 for a full MDMA course, who can actually access it? The honest breakdown.
 category: Guides
 tags: psychedelic therapy cost Australia, psilocybin therapy price Australia, MDMA therapy Australia cost, psychedelic treatment access Australia, TGA psilocybin 2026
+image: /images/therapyisexpensive.jpg
 ---
 
 **Psychedelic therapy is now legal in Australia. It is also, for most people, completely unaffordable.**
